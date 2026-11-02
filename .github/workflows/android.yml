@@ -30,7 +30,9 @@ jobs:
         run: ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk "miam-${VERSION}.apk"
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk "miam-${VERSION}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk miam-latest.apk
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -49,4 +51,6 @@ jobs:
             Build automatique du commit ${{ github.sha }}
 
             ${{ github.event.head_commit.message }}
-          files: miam-${{ env.VERSION }}.apk
+          files: |
+            miam-${{ env.VERSION }}.apk
+            miam-latest.apk
