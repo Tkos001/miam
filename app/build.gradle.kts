@@ -14,8 +14,10 @@ android {
         applicationId = "com.tkos.miam"
         minSdk = 26
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        // Numéro de build injecté par GitHub Actions (GITHUB_RUN_NUMBER) ; 1 en local.
+        val buildNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
+        versionCode = buildNumber
+        versionName = "0.1.$buildNumber"
         vectorDrawables { useSupportLibrary = true }
     }
 
