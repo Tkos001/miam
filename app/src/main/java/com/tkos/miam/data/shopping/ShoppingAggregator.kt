@@ -22,7 +22,7 @@ data class ShoppingLine(
     val checked: Boolean = false,
 ) {
     /** « 500 g », « 1,2 kg », « 3 », « 2 c. à soupe »… (sans le nom). */
-    val quantityLabel: String get() = formatQuantity(baseQuantity, family)
+    val quantityLabel: String get() = ShoppingAggregator.formatQuantity(baseQuantity, family)
 
     /** Texte complet pour partage : « Tomates — 500 g ». */
     val shareLabel: String get() = if (quantityLabel.isBlank()) name else "$name — $quantityLabel"
