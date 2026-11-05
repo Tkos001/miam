@@ -38,18 +38,38 @@ object Catalog {
 
 /** Mini client HTTP sans dépendance (HttpURLConnection). */
 object Http {
-    fun getText(url: String, accept: String = "application/json"): String {
-        val conn = (URL(url).openConnection() as HttpURLConnection).apply {
+    private fun open(url: String, accept: String): HttpURLConnection =
+        (URL(url).openConnection() as HttpURLConnection).apply {
             connectTimeout = 10_000
-            readTimeout = 15_000
+            readTimeout = 20_000
+            instanceFollowRedirects = true
             setRequestProperty("Accept", accept)
             setRequestProperty("Cache-Control", "no-cache")
             setRequestProperty("User-Agent", "Miam-Android")
         }
+
+    fun getText(url: String, accept: String = "application/json"): String {
+        val conn = open(url, accept)
         try {
             val code = conn.responseCode
             if (code !in 200..299) error("HTTP $code")
             return conn.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+        } finally {
+            conn.disconnect()
+        }
+    }
+
+    /** Télécharge un binaire vers `dest` (écrit d'abord dans un .tmp puis renomme). */
+    fun download(url: String, dest: java.io.File) {
+        val conn = open(url, "image/*")
+        val tmp = java.io.File(dest.parentFile, dest.name + ".tmp")
+        try {
+            val code = conn.responseCode
+            if (code !in 200..299) error("HTTP $code")
+            conn.inputStream.use { input -> tmp.outputStream().use { input.copyTo(it) } }
+            if (!tmp.renameTo(dest)) { tmp.copyTo(dest, overwrite = true); tmp.delete() }
+        } catch (e: Exception) {
+            tmp.delete(); throw e
         } finally {
             conn.disconnect()
         }

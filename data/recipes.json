@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 1,
+  "version": 2,
   "updatedAt": "2026-11-05",
   "recipes": [
     {
@@ -11,6 +11,7 @@
       "cookMinutes": 55,
       "servings": 4,
       "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
       "ingredients": [
         { "name": "Courge butternut", "quantity": 2, "unit": "PIECE", "aisle": "FRUITS_LEGUMES" },
         { "name": "Bœuf haché", "quantity": 800, "unit": "G", "aisle": "BOUCHERIE" },

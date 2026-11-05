@@ -192,10 +192,32 @@ class MiamRepository(private val context: Context) {
                 recipe
             }
             val id = recipeDao.upsertFull(toSave, ings, steps)
+            applyCatalogImage(id, remoteId, dto.imageUrl, force)
             recipeDao.getWithDetails(id)?.let { byName[ShoppingAggregator.normalizeName(it.recipe.name)] = it }
         }
         settings.setCatalogSynced(file.version, System.currentTimeMillis())
         return CatalogSyncResult.Updated(file.version, added, updated)
+    }
+
+    /**
+     * Télécharge l'image du catalogue dans le stockage interne (`images/catalog-<remoteId>.jpg`)
+     * et l'associe à la recette. Une photo choisie par l'utilisateur n'est jamais écrasée.
+     * Échec réseau = silencieux (la recette reste sans image, réessayé à la prochaine sync).
+     */
+    private suspend fun applyCatalogImage(recipeId: Long, remoteId: String, imageUrl: String?, force: Boolean) {
+        if (imageUrl.isNullOrBlank()) return
+        val recipe = recipeDao.getById(recipeId) ?: return
+        val current = recipe.imagePath
+        val isCatalogImage = current == null || File(current).name.startsWith("catalog-") || !File(current).exists()
+        if (!isCatalogImage) return
+        val dir = File(context.filesDir, "images").apply { mkdirs() }
+        val safe = remoteId.replace(Regex("[^A-Za-z0-9._-]"), "_")
+        val dest = File(dir, "catalog-$safe.jpg")
+        if (dest.exists() && !force && current == dest.absolutePath) return
+        withContext(Dispatchers.IO) {
+            runCatching { com.tkos.miam.data.catalog.Http.download(imageUrl, dest) }
+                .onSuccess { recipeDao.updateRecipe(recipe.copy(imagePath = dest.absolutePath)) }
+        }
     }
 
     /** Vérifie la dernière release GitHub ; mémorise le résultat pour l'afficher sur l'accueil. */

@@ -64,8 +64,11 @@ app/src/main/java/com/tkos/miam/
 
 1. Éditer `data/recipes.json` : ajouter un objet dans `recipes` avec un `remoteId` unique et stable
    (slug, ex. `butternut-farcie-boeuf`). Même structure qu'une recette de l'export ci-dessous.
-2. Incrémenter `version` (sinon l'app considère le catalogue inchangé au lancement).
-3. Commit + push sur `main`. L'app récupère le fichier via
+2. Illustration : déposer `data/images/<remoteId>.jpg` (1200×800, JPG) et renseigner
+   `imageUrl` avec son URL raw GitHub. Sources vectorielles dans `data/images/src/`.
+   L'app télécharge l'image à la sync ; une photo choisie à la main dans l'app n'est jamais écrasée.
+3. Incrémenter `version` (sinon l'app considère le catalogue inchangé au lancement).
+4. Commit + push sur `main`. L'app récupère le fichier via
    `https://raw.githubusercontent.com/Tkos001/miam/main/data/recipes.json` (cache CDN ~5 min ;
    « Mettre à jour maintenant » le contourne).
 

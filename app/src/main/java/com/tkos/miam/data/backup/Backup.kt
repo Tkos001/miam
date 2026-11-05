@@ -34,6 +34,8 @@ data class RecipeDto(
     val cuisine: String = "FRANCAISE",
     val sourceUrl: String? = null,
     val remoteId: String? = null,
+    /** Image distante (catalogue) : téléchargée à la sync, jamais utilisée pour l'export local. */
+    val imageUrl: String? = null,
     val ingredients: List<IngredientDto> = emptyList(),
     val steps: List<String> = emptyList(),
 )
