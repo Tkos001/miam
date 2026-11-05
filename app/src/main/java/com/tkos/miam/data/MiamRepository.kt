@@ -53,14 +53,19 @@ class MiamRepository(private val context: Context) {
     fun recipe(id: Long): Flow<RecipeWithDetails?> = recipeDao.observeWithDetails(id)
     suspend fun getRecipe(id: Long): RecipeWithDetails? = recipeDao.getWithDetails(id)
 
-    suspend fun saveRecipe(recipe: Recipe, ingredients: List<Ingredient>, steps: List<Step>): Long =
-        recipeDao.upsertFull(recipe, ingredients, steps)
+    suspend fun saveRecipe(recipe: Recipe, ingredients: List<Ingredient>, steps: List<Step>): Long {
+        val id = recipeDao.upsertFull(recipe, ingredients, steps)
+        // Modifiée dans l'app : la sync du catalogue ne doit plus l'écraser tant qu'elle n'est pas publiée.
+        if (recipe.id != 0L) settings.setRecipeDirty(id, true)
+        return id
+    }
 
     suspend fun setFavorite(id: Long, favorite: Boolean) = recipeDao.setFavorite(id, favorite)
 
     suspend fun deleteRecipe(id: Long) {
         recipeDao.getById(id)?.imagePath?.let { deleteImage(it) }
         recipeDao.deleteRecipe(id)
+        settings.setRecipeDirty(id, false)
     }
 
     /** Duplique une recette (utile pour adapter une recette de base). */
@@ -174,6 +179,7 @@ class MiamRepository(private val context: Context) {
         if (!force && file.version <= s.catalogVersion) return CatalogSyncResult.UpToDate(file.version)
 
         val byName = recipeDao.getAllWithDetails().associateBy { ShoppingAggregator.normalizeName(it.recipe.name) }.toMutableMap()
+        val dirty = s.dirtyRecipeIds
         var added = 0
         var updated = 0
         for (dto in file.recipes) {
@@ -181,6 +187,11 @@ class MiamRepository(private val context: Context) {
             val (recipe, ings, steps) = BackupCodec.fromDto(dto.copy(remoteId = remoteId, sourceUrl = url))
             val existing = recipeDao.getByRemoteId(remoteId)
                 ?: byName[ShoppingAggregator.normalizeName(dto.name)]?.recipe?.takeIf { it.remoteId == null }
+            if (existing != null && existing.id in dirty) {
+                // Modifiée localement, non publiée : on rattache l'id distant mais on garde le contenu local.
+                if (existing.remoteId != remoteId) recipeDao.updateRecipe(existing.copy(remoteId = remoteId, sourceUrl = url))
+                continue
+            }
             val toSave = if (existing != null) {
                 updated++
                 recipe.copy(
@@ -223,6 +234,24 @@ class MiamRepository(private val context: Context) {
             runCatching { com.tkos.miam.data.catalog.Http.download(imageUrl, dest) }
                 .onSuccess { recipeDao.updateRecipe(recipe.copy(imagePath = dest.absolutePath)) }
         }
+    }
+
+    /**
+     * Publie une recette dans le catalogue git (commit via l'API GitHub).
+     * Nécessite le token configuré dans les paramètres. Retourne le message de résultat.
+     */
+    suspend fun publishRecipe(recipeId: Long): kotlin.Result<String> = runCatching {
+        val s = settings.settings.first()
+        require(s.githubToken.isNotBlank()) { "Aucun token GitHub : renseigne-le dans Paramètres → Contribuer au catalogue" }
+        val d = recipeDao.getWithDetails(recipeId) ?: error("Recette introuvable")
+        val url = catalogUrl(s)
+        val r = com.tkos.miam.data.catalog.CatalogPublisher.publish(d, url, s.githubToken)
+        if (d.recipe.remoteId != r.remoteId || d.recipe.sourceUrl != url) {
+            recipeDao.updateRecipe(d.recipe.copy(remoteId = r.remoteId, sourceUrl = url))
+        }
+        settings.setRecipeDirty(recipeId, false)
+        settings.setCatalogSynced(r.version, System.currentTimeMillis())
+        "« ${d.recipe.name} » publiée (catalogue v${r.version})"
     }
 
     /** Vérifie la dernière release GitHub ; mémorise le résultat pour l'afficher sur l'accueil. */

@@ -79,6 +79,15 @@ Pour illustrer un plat de base (déjà dans l'app, non décrit dans le catalogue
 dans la carte `images` du catalogue : `"Crêpes": "https://…/crepes.jpg"`. Les illustrations sont
 générées par `python3 data/images/src/build.py` (une fonction par plat, style flat homogène).
 
+### Publier depuis l'app
+
+Paramètres → « Contribuer au catalogue » → token GitHub fine-grained (dépôt `Tkos001/miam`,
+permission *Contents : Read and write*). Ensuite, menu « ⋮ » d'une recette → « Publier dans le
+catalogue » : l'app relit `data/recipes.json`, remplace/ajoute l'entrée (clé `remoteId`, sinon nom),
+incrémente `version`, envoie la photo locale dans `data/images/<remoteId>.jpg` et commite.
+Une recette modifiée dans l'app n'est plus écrasée par la sync tant qu'elle n'est pas publiée
+(badge « Modifiée ici, pas encore publiée »).
+
 Règles de fusion côté app : une recette est reconnue par son `remoteId` (à défaut par son nom si la
 recette locale n'a pas de `remoteId`). Favori, photo et id local sont conservés ; ingrédients et
 étapes sont remplacés. Une recette du catalogue supprimée localement revient à la prochaine montée

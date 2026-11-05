@@ -26,6 +26,8 @@ import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Restore
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material.icons.filled.SystemUpdate
+import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.material3.Card
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
@@ -87,6 +89,8 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
     var catalogUrl by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(settings.catalogUrl) { if (catalogUrl == null) catalogUrl = settings.catalogUrl }
     var syncing by remember { mutableStateOf(false) }
+    var token by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(settings.githubToken) { if (token == null) token = settings.githubToken }
     var checkingUpdate by remember { mutableStateOf(false) }
     var updateInfo by remember { mutableStateOf<AppUpdate.Info?>(null) }
     val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
@@ -210,6 +214,41 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     enabled = (catalogUrl ?: "") != settings.catalogUrl,
                     modifier = Modifier.padding(top = 6.dp),
                 ) { Text("Enregistrer l'adresse") }
+            }
+
+            // ---- Contribuer au catalogue ----
+            Section("Contribuer au catalogue") {
+                Text(
+                    "Avec un token GitHub, le menu « ⋮ » d'une recette propose « Publier dans le catalogue » : la recette (et sa photo) est commitée dans le dépôt et arrive chez les autres à leur prochaine sync. Token fine-grained, dépôt Tkos001/miam, permission Contents : Read and write.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                OutlinedTextField(
+                    value = token ?: "",
+                    onValueChange = { token = it },
+                    label = { Text("Token GitHub") },
+                    placeholder = { Text("github_pat_…") },
+                    singleLine = true,
+                    visualTransformation = PasswordVisualTransformation(),
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                )
+                Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = { scope.launch { repository.settings.setGithubToken(token ?: ""); snackbar.showSnackbar(if ((token ?: "").isBlank()) "Token supprimé" else "Token enregistré") } },
+                        enabled = (token ?: "") != settings.githubToken,
+                    ) { Text("Enregistrer") }
+                    OutlinedButton(
+                        onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/settings/personal-access-tokens/new"))) },
+                    ) { Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Créer un token") }
+                }
+                if (settings.dirtyRecipeIds.isNotEmpty()) {
+                    Text(
+                        "${settings.dirtyRecipeIds.size} recette(s) modifiée(s) ici et pas encore publiée(s) : la sync ne les écrase pas.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
             }
 
             // ---- Mise à jour de l'app ----

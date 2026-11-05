@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.CloudUpload
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -87,6 +88,8 @@ fun RecipeDetailScreen(
     onOpenPlanner: () -> Unit,
 ) {
     val details by repository.recipe(recipeId).collectAsStateWithLifecycle(initialValue = null)
+    val appSettings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = com.tkos.miam.data.settings.Settings())
+    var publishing by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
     val snackbar = remember { SnackbarHostState() }
@@ -143,6 +146,24 @@ fun RecipeDetailScreen(
                                 },
                             )
                             DropdownMenuItem(
+                                text = { Text(if (publishing) "Publication…" else "Publier dans le catalogue") },
+                                leadingIcon = { Icon(Icons.Default.CloudUpload, contentDescription = null) },
+                                enabled = !publishing,
+                                onClick = {
+                                    menuOpen = false
+                                    if (appSettings.githubToken.isBlank()) {
+                                        scope.launch { snackbar.showSnackbar("Renseigne un token GitHub dans Paramètres → Contribuer au catalogue") }
+                                    } else {
+                                        publishing = true
+                                        scope.launch {
+                                            val r = repository.publishRecipe(d.recipe.id)
+                                            publishing = false
+                                            snackbar.showSnackbar(r.getOrElse { "Échec : ${it.message}" })
+                                        }
+                                    }
+                                },
+                            )
+                            DropdownMenuItem(
                                 text = { Text("Supprimer", color = MaterialTheme.colorScheme.error) },
                                 leadingIcon = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
                                 onClick = { menuOpen = false; confirmDelete = true },
@@ -172,6 +193,14 @@ fun RecipeDetailScreen(
                     Text(d.recipe.name, style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(top = 16.dp))
                     if (d.recipe.description.isNotBlank()) {
                         Text(d.recipe.description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
+                    }
+                    if (d.recipe.id in appSettings.dirtyRecipeIds && (d.recipe.remoteId != null || d.recipe.isBuiltIn)) {
+                        Text(
+                            "Modifiée ici, pas encore publiée dans le catalogue",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.padding(top = 6.dp),
+                        )
                     }
                     Row(Modifier.padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         InfoChip("${d.recipe.cuisineEnum.emoji} ${d.recipe.cuisineEnum.label}")

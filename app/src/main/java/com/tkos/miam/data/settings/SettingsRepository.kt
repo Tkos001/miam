@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -41,6 +42,10 @@ data class Settings(
     val catalogLastSync: Long = 0L,
     /** Synchroniser automatiquement le catalogue au lancement. */
     val catalogAutoSync: Boolean = true,
+    /** Token GitHub (fine-grained, Contents read/write) pour publier des recettes dans le catalogue. */
+    val githubToken: String = "",
+    /** Ids des recettes modifiées localement et pas encore publiées : la sync ne les écrase pas. */
+    val dirtyRecipeIds: Set<Long> = emptySet(),
 )
 
 class SettingsRepository(private val context: Context) {
@@ -54,6 +59,8 @@ class SettingsRepository(private val context: Context) {
         val CATALOG_VERSION = intPreferencesKey("catalog_version")
         val CATALOG_LAST_SYNC = longPreferencesKey("catalog_last_sync")
         val CATALOG_AUTO_SYNC = booleanPreferencesKey("catalog_auto_sync")
+        val GITHUB_TOKEN = stringPreferencesKey("github_token")
+        val DIRTY_RECIPES = stringSetPreferencesKey("dirty_recipes")
     }
 
     val settings: Flow<Settings> = context.dataStore.data.map { p ->
@@ -67,6 +74,8 @@ class SettingsRepository(private val context: Context) {
             catalogVersion = p[Keys.CATALOG_VERSION] ?: 0,
             catalogLastSync = p[Keys.CATALOG_LAST_SYNC] ?: 0L,
             catalogAutoSync = p[Keys.CATALOG_AUTO_SYNC] ?: true,
+            githubToken = p[Keys.GITHUB_TOKEN] ?: "",
+            dirtyRecipeIds = p[Keys.DIRTY_RECIPES]?.mapNotNull { it.toLongOrNull() }?.toSet() ?: emptySet(),
         )
     }
 
@@ -77,6 +86,11 @@ class SettingsRepository(private val context: Context) {
     suspend fun setSeeded(value: Boolean) = context.dataStore.edit { it[Keys.SEEDED] = value }
     suspend fun setCatalogUrl(value: String) = context.dataStore.edit { it[Keys.CATALOG_URL] = value.trim() }
     suspend fun setCatalogAutoSync(value: Boolean) = context.dataStore.edit { it[Keys.CATALOG_AUTO_SYNC] = value }
+    suspend fun setGithubToken(value: String) = context.dataStore.edit { it[Keys.GITHUB_TOKEN] = value.trim() }
+    suspend fun setRecipeDirty(id: Long, dirty: Boolean) = context.dataStore.edit {
+        val cur = it[Keys.DIRTY_RECIPES] ?: emptySet()
+        it[Keys.DIRTY_RECIPES] = if (dirty) cur + id.toString() else cur - id.toString()
+    }
     suspend fun setCatalogSynced(version: Int, at: Long) = context.dataStore.edit {
         it[Keys.CATALOG_VERSION] = version
         it[Keys.CATALOG_LAST_SYNC] = at
