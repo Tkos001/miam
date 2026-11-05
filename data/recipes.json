@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 3,
+  "version": 4,
   "updatedAt": "2026-11-05",
   "recipes": [
     {
@@ -13,16 +13,66 @@
       "cuisine": "FRANCAISE",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
       "ingredients": [
-        { "name": "Courge butternut", "quantity": 2, "unit": "PIECE", "aisle": "FRUITS_LEGUMES" },
-        { "name": "Bœuf haché", "quantity": 800, "unit": "G", "aisle": "BOUCHERIE" },
-        { "name": "Oignon", "quantity": 2, "unit": "PIECE", "aisle": "FRUITS_LEGUMES" },
-        { "name": "Ail", "quantity": 3, "unit": "GOUSSE", "aisle": "FRUITS_LEGUMES" },
-        { "name": "Crème fraîche épaisse", "quantity": 200, "unit": "G", "aisle": "FRAIS" },
-        { "name": "Gruyère râpé", "quantity": 150, "unit": "G", "aisle": "FRAIS" },
-        { "name": "Huile d'olive", "quantity": 3, "unit": "CAS", "aisle": "EPICERIE" },
-        { "name": "Cumin", "quantity": 2, "unit": "CAC", "aisle": "EPICERIE" },
-        { "name": "Sel", "quantity": null, "unit": "NONE", "aisle": "EPICERIE" },
-        { "name": "Poivre", "quantity": null, "unit": "NONE", "aisle": "EPICERIE" }
+        {
+          "name": "Courge butternut",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Bœuf haché",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 3,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 2,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
       ],
       "steps": [
         "Préchauffer le four à 200 °C. Couper les butternuts en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
@@ -33,5 +83,22 @@
         "Garnir les demi-courges, couvrir de gruyère râpé, remettre 15 min au four jusqu'à ce que le dessus gratine."
       ]
     }
-  ]
+  ],
+  "images": {
+    "Spaghetti bolognaise": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/spaghetti-bolognaise.jpg",
+    "Gratin dauphinois": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-dauphinois.jpg",
+    "Quiche lorraine": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-lorraine.jpg",
+    "Poulet rôti et pommes de terre": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-roti-pommes-de-terre.jpg",
+    "Bœuf bourguignon": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boeuf-bourguignon.jpg",
+    "Blanquette de veau": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
+    "Croque-monsieur": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/croque-monsieur.jpg",
+    "Hachis parmentier": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/hachis-parmentier.jpg",
+    "Ratatouille": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/ratatouille.jpg",
+    "Tartiflette": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tartiflette.jpg",
+    "Soupe à l'oignon gratinée": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/soupe-oignon-gratinee.jpg",
+    "Steak haché, frites maison, salade": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/steak-hache-frites-salade.jpg",
+    "Omelette aux fines herbes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/omelette-fines-herbes.jpg",
+    "Pot-au-feu": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pot-au-feu.jpg",
+    "Crêpes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/crepes.jpg"
+  }
 }

@@ -18,6 +18,8 @@ data class CatalogFile(
     val version: Int = 0,
     val updatedAt: String = "",
     val recipes: List<RecipeDto> = emptyList(),
+    /** Illustrations pour des recettes locales existantes (ex. plats de base), clé = nom du plat. */
+    val images: Map<String, String> = emptyMap(),
 )
 
 object Catalog {
@@ -26,10 +28,22 @@ object Catalog {
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    /** Télécharge et parse le catalogue. `bustCache` ajoute un paramètre pour contourner le cache CDN (~5 min). */
+    private val RAW_GITHUB = Regex("^https://raw\\.githubusercontent\\.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
+
+    /**
+     * Télécharge et parse le catalogue.
+     * `bustCache` : le CDN de raw.githubusercontent.com garde 5 min et ignore la query string ; pour une mise à jour
+     * forcée on passe par l'API GitHub (contenu brut, non mis en cache), avec repli sur l'URL d'origine.
+     */
     suspend fun fetch(url: String, bustCache: Boolean): CatalogFile = withContext(Dispatchers.IO) {
-        val full = if (bustCache) url + (if ('?' in url) "&" else "?") + "t=" + System.currentTimeMillis() else url
-        val text = Http.getText(full)
+        val text = if (bustCache) {
+            val m = RAW_GITHUB.find(url)
+            if (m != null) {
+                val (owner, repo, branch, path) = m.destructured
+                runCatching { Http.getText("https://api.github.com/repos/$owner/$repo/contents/$path?ref=$branch", "application/vnd.github.raw+json") }
+                    .getOrElse { Http.getText(url) }
+            } else Http.getText(url + (if ('?' in url) "&" else "?") + "t=" + System.currentTimeMillis())
+        } else Http.getText(url)
         val file = json.decodeFromString(CatalogFile.serializer(), text)
         require(file.format == "miam-catalog") { "Format inattendu : ${file.format}" }
         file

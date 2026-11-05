@@ -16,6 +16,11 @@ import com.tkos.miam.ui.theme.MiamTheme
 import com.tkos.miam.ui.theme.isDark
 
 class MainActivity : ComponentActivity() {
+    override fun onStart() {
+        super.onStart()
+        (application as MiamApp).syncInBackground()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

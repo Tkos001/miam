@@ -72,6 +72,10 @@ app/src/main/java/com/tkos/miam/
    `https://raw.githubusercontent.com/Tkos001/miam/main/data/recipes.json` (cache CDN ~5 min ;
    « Mettre à jour maintenant » le contourne).
 
+Pour illustrer un plat de base (déjà dans l'app, non décrit dans le catalogue), ajouter son nom exact
+dans la carte `images` du catalogue : `"Crêpes": "https://…/crepes.jpg"`. Les illustrations sont
+générées par `python3 data/images/src/build.py` (une fonction par plat, style flat homogène).
+
 Règles de fusion côté app : une recette est reconnue par son `remoteId` (à défaut par son nom si la
 recette locale n'a pas de `remoteId`). Favori, photo et id local sont conservés ; ingrédients et
 étapes sont remplacés. Une recette du catalogue supprimée localement revient à la prochaine montée

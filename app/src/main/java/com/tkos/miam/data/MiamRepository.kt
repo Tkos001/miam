@@ -195,6 +195,11 @@ class MiamRepository(private val context: Context) {
             applyCatalogImage(id, remoteId, dto.imageUrl, force)
             recipeDao.getWithDetails(id)?.let { byName[ShoppingAggregator.normalizeName(it.recipe.name)] = it }
         }
+        // Illustrations des recettes locales (plats de base) désignées par leur nom.
+        for ((name, imageUrl) in file.images) {
+            val local = byName[ShoppingAggregator.normalizeName(name)]?.recipe ?: continue
+            applyCatalogImage(local.id, "img-" + ShoppingAggregator.normalizeName(name), imageUrl, force)
+        }
         settings.setCatalogSynced(file.version, System.currentTimeMillis())
         return CatalogSyncResult.Updated(file.version, added, updated)
     }
