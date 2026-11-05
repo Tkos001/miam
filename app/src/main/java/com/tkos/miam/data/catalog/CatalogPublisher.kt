@@ -127,9 +127,7 @@ object CatalogPublisher {
         val target = targetOf(catalogUrl) ?: error("L'URL du catalogue doit être une URL raw.githubusercontent.com")
         val key = ShoppingAggregator.normalizeName(d.recipe.name)
 
-        var attempt = 0
-        while (true) {
-            attempt++
+        for (attempt in 1..3) {
             val (bytes, sha) = getFile(target, target.path, token) ?: (null to null)
             val catalog = bytes?.let { json.decodeFromString(CatalogFile.serializer(), it.toString(Charsets.UTF_8)) } ?: CatalogFile()
 
@@ -175,5 +173,6 @@ object CatalogPublisher {
                 throw e
             }
         }
+        error("Conflit persistant : réessaie dans un instant")
     }
 }
