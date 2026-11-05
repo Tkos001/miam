@@ -32,6 +32,9 @@ Chaque push sur `main` lance le workflow **Build APK** (`.github/workflows/andro
 Onglet *Actions* → dernier run → artefact `miam-debug-apk` → `app-debug.apk` à installer sur le
 téléphone (autoriser les sources inconnues).
 
+Signature : `app/miam-debug.keystore` (clé de dev committée) signe tous les builds, debug et release, pour
+que chaque APK s'installe par-dessus le précédent. Ne pas la régénérer : il faudrait désinstaller l'app.
+
 ### En local
 
 Android Studio Ladybug ou plus récent, JDK 17 :

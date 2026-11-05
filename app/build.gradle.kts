@@ -21,15 +21,29 @@ android {
         vectorDrawables { useSupportLibrary = true }
     }
 
+    // Clé de signature stable, committée dans le dépôt : indispensable pour que chaque APK
+    // produit par GitHub Actions puisse s'installer PAR-DESSUS le précédent (même signature).
+    // Clé de dev uniquement, pas de valeur de sécurité.
+    signingConfigs {
+        create("miam") {
+            storeFile = file("miam-debug.keystore")
+            storePassword = "miamdebug"
+            keyAlias = "miam"
+            keyPassword = "miamdebug"
+        }
+    }
+
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+            signingConfig = signingConfigs.getByName("miam")
         }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("miam")
         }
     }
     compileOptions {
