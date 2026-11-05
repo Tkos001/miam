@@ -44,6 +44,8 @@ data class Settings(
     val catalogAutoSync: Boolean = true,
     /** Token GitHub (fine-grained, Contents read/write) pour publier des recettes dans le catalogue. */
     val githubToken: String = "",
+    /** Nom affiché comme auteur des commits de publication (plusieurs personnes peuvent partager un token). */
+    val contributorName: String = "",
     /** Ids des recettes modifiées localement et pas encore publiées : la sync ne les écrase pas. */
     val dirtyRecipeIds: Set<Long> = emptySet(),
 )
@@ -60,6 +62,7 @@ class SettingsRepository(private val context: Context) {
         val CATALOG_LAST_SYNC = longPreferencesKey("catalog_last_sync")
         val CATALOG_AUTO_SYNC = booleanPreferencesKey("catalog_auto_sync")
         val GITHUB_TOKEN = stringPreferencesKey("github_token")
+        val CONTRIBUTOR_NAME = stringPreferencesKey("contributor_name")
         val DIRTY_RECIPES = stringSetPreferencesKey("dirty_recipes")
     }
 
@@ -75,6 +78,7 @@ class SettingsRepository(private val context: Context) {
             catalogLastSync = p[Keys.CATALOG_LAST_SYNC] ?: 0L,
             catalogAutoSync = p[Keys.CATALOG_AUTO_SYNC] ?: true,
             githubToken = p[Keys.GITHUB_TOKEN] ?: "",
+            contributorName = p[Keys.CONTRIBUTOR_NAME] ?: "",
             dirtyRecipeIds = p[Keys.DIRTY_RECIPES]?.mapNotNull { it.toLongOrNull() }?.toSet() ?: emptySet(),
         )
     }
@@ -87,6 +91,7 @@ class SettingsRepository(private val context: Context) {
     suspend fun setCatalogUrl(value: String) = context.dataStore.edit { it[Keys.CATALOG_URL] = value.trim() }
     suspend fun setCatalogAutoSync(value: Boolean) = context.dataStore.edit { it[Keys.CATALOG_AUTO_SYNC] = value }
     suspend fun setGithubToken(value: String) = context.dataStore.edit { it[Keys.GITHUB_TOKEN] = value.trim() }
+    suspend fun setContributorName(value: String) = context.dataStore.edit { it[Keys.CONTRIBUTOR_NAME] = value.trim() }
     suspend fun setRecipeDirty(id: Long, dirty: Boolean) = context.dataStore.edit {
         val cur = it[Keys.DIRTY_RECIPES] ?: emptySet()
         it[Keys.DIRTY_RECIPES] = if (dirty) cur + id.toString() else cur - id.toString()

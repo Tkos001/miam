@@ -91,6 +91,8 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
     var syncing by remember { mutableStateOf(false) }
     var token by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(settings.githubToken) { if (token == null) token = settings.githubToken }
+    var contributor by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(settings.contributorName) { if (contributor == null) contributor = settings.contributorName }
     var checkingUpdate by remember { mutableStateOf(false) }
     var updateInfo by remember { mutableStateOf<AppUpdate.Info?>(null) }
     val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
@@ -232,10 +234,23 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 )
+                OutlinedTextField(
+                    value = contributor ?: "",
+                    onValueChange = { contributor = it },
+                    label = { Text("Ton prénom (auteur des publications)") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                )
                 Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(
-                        onClick = { scope.launch { repository.settings.setGithubToken(token ?: ""); snackbar.showSnackbar(if ((token ?: "").isBlank()) "Token supprimé" else "Token enregistré") } },
-                        enabled = (token ?: "") != settings.githubToken,
+                        onClick = {
+                            scope.launch {
+                                repository.settings.setGithubToken(token ?: "")
+                                repository.settings.setContributorName(contributor ?: "")
+                                snackbar.showSnackbar("Enregistré")
+                            }
+                        },
+                        enabled = (token ?: "") != settings.githubToken || (contributor ?: "") != settings.contributorName,
                     ) { Text("Enregistrer") }
                     OutlinedButton(
                         onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/settings/personal-access-tokens/new"))) },

@@ -245,7 +245,7 @@ class MiamRepository(private val context: Context) {
         require(s.githubToken.isNotBlank()) { "Aucun token GitHub : renseigne-le dans Paramètres → Contribuer au catalogue" }
         val d = recipeDao.getWithDetails(recipeId) ?: error("Recette introuvable")
         val url = catalogUrl(s)
-        val r = com.tkos.miam.data.catalog.CatalogPublisher.publish(d, url, s.githubToken)
+        val r = com.tkos.miam.data.catalog.CatalogPublisher.publish(d, url, s.githubToken, s.contributorName)
         if (d.recipe.remoteId != r.remoteId || d.recipe.sourceUrl != url) {
             recipeDao.updateRecipe(d.recipe.copy(remoteId = r.remoteId, sourceUrl = url))
         }

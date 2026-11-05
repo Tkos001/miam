@@ -39,7 +39,10 @@ object CatalogPublisher {
     internal class ContentResponse(val sha: String = "", val content: String = "", val encoding: String = "")
 
     @Serializable
-    internal class PutBody(val message: String, val content: String, val branch: String, val sha: String? = null)
+    internal class GitUser(val name: String, val email: String)
+
+    @Serializable
+    internal class PutBody(val message: String, val content: String, val branch: String, val sha: String? = null, val author: GitUser? = null)
 
     private fun api(target: Target, path: String) =
         "https://api.github.com/repos/${target.owner}/${target.repo}/contents/$path"
@@ -84,12 +87,12 @@ object CatalogPublisher {
         }
     }
 
-    private fun putFile(target: Target, path: String, token: String, bytes: ByteArray, sha: String?, message: String) {
+    private fun putFile(target: Target, path: String, token: String, bytes: ByteArray, sha: String?, message: String, author: GitUser? = null) {
         val conn = open(api(target, path), token, "PUT")
         conn.doOutput = true
         conn.setRequestProperty("Content-Type", "application/json")
         try {
-            val body = json.encodeToString(PutBody.serializer(), PutBody(message, Base64.encodeToString(bytes, Base64.NO_WRAP), target.branch, sha))
+            val body = json.encodeToString(PutBody.serializer(), PutBody(message, Base64.encodeToString(bytes, Base64.NO_WRAP), target.branch, sha, author))
             conn.outputStream.use { it.write(body.toByteArray(Charsets.UTF_8)) }
             val code = conn.responseCode
             val resp = readBody(conn)
@@ -123,9 +126,11 @@ object CatalogPublisher {
      * incrémente `version`, et envoie la photo locale si elle n'est pas déjà une image du catalogue.
      * Le fichier est relu juste avant l'écriture : les publications sur des recettes différentes ne s'écrasent pas.
      */
-    suspend fun publish(d: RecipeWithDetails, catalogUrl: String, token: String): Result = withContext(Dispatchers.IO) {
+    suspend fun publish(d: RecipeWithDetails, catalogUrl: String, token: String, contributor: String = ""): Result = withContext(Dispatchers.IO) {
         val target = targetOf(catalogUrl) ?: error("L'URL du catalogue doit être une URL raw.githubusercontent.com")
         val key = ShoppingAggregator.normalizeName(d.recipe.name)
+        val author = contributor.trim().takeIf { it.isNotBlank() }?.let { GitUser(it, slugOf(it) + "@miam.app") }
+        val by = author?.let { " par ${it.name}" } ?: ""
 
         for (attempt in 1..3) {
             val (bytes, sha) = getFile(target, target.path, token) ?: (null to null)
@@ -148,7 +153,7 @@ object CatalogPublisher {
                 encodeImage(localPhoto)?.let { img ->
                     val imgPath = "${target.imagesDir}/$remoteId.jpg"
                     val cur = runCatching { getFile(target, imgPath, token) }.getOrNull()
-                    putFile(target, imgPath, token, img, cur?.second, "Miam : photo de « ${d.recipe.name} »")
+                    putFile(target, imgPath, token, img, cur?.second, "Miam : photo de « ${d.recipe.name} »$by", author)
                     imageUrl = target.rawUrl(imgPath)
                 }
             }
@@ -166,7 +171,7 @@ object CatalogPublisher {
             val text = json.encodeToString(CatalogFile.serializer(), updated) + "\n"
             try {
                 putFile(target, target.path, token, text.toByteArray(Charsets.UTF_8), sha,
-                    "Miam : « ${d.recipe.name} » publiée depuis l'app (catalogue v${updated.version})")
+                    "Miam : « ${d.recipe.name} » publiée$by (catalogue v${updated.version})", author)
                 return@withContext Result(remoteId, updated.version, imageUrl)
             } catch (e: IllegalStateException) {
                 if (attempt < 3 && e.message?.startsWith("Conflit") == true) continue

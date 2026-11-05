@@ -85,6 +85,8 @@ Paramètres → « Contribuer au catalogue » → token GitHub fine-grained (dé
 permission *Contents : Read and write*). Ensuite, menu « ⋮ » d'une recette → « Publier dans le
 catalogue » : l'app relit `data/recipes.json`, remplace/ajoute l'entrée (clé `remoteId`, sinon nom),
 incrémente `version`, envoie la photo locale dans `data/images/<remoteId>.jpg` et commite.
+Plusieurs personnes peuvent partager un token (un token par téléphone, révocable séparément) : le
+champ « prénom » des paramètres devient l'auteur des commits.
 Une recette modifiée dans l'app n'est plus écrasée par la sync tant qu'elle n'est pas publiée
 (badge « Modifiée ici, pas encore publiée »).
 
