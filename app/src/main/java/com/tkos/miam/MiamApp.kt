@@ -5,6 +5,7 @@ import com.tkos.miam.data.MiamRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class MiamApp : Application() {
@@ -13,6 +14,11 @@ class MiamApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        appScope.launch { repository.seedIfNeeded() }
+        appScope.launch {
+            repository.seedIfNeeded()
+            // Sync silencieuse du catalogue de recettes + vérification de mise à jour de l'app.
+            if (repository.settings.settings.first().catalogAutoSync) repository.syncCatalog(force = false)
+            repository.checkAppUpdate()
+        }
     }
 }

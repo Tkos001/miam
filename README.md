@@ -15,8 +15,12 @@ automatiquement la liste de courses.
   rayon ou liste plate, cases à cocher, rubrique « Autres articles » hors plats, partage / copie.
 - **15 plats français de base** insérés au premier lancement, restaurables depuis les paramètres.
 - **Thèmes** : suivre le système, clair, sombre, mauve sombre, rouge sombre.
-- **Trouver des recettes** : affiche le site configuré dans les paramètres (site dédié à venir,
-  champs `sourceUrl` / `remoteId` déjà prévus dans le modèle pour l'import).
+- **Catalogue de recettes versionné dans ce dépôt** (`data/recipes.json`) : l'app le télécharge au
+  lancement et intègre les nouvelles recettes sans rebuild. Mise à jour forcée depuis Paramètres ou
+  « Trouver des recettes ».
+- **Mise à jour de l'app** : vérification de la dernière release GitHub au lancement, bannière sur
+  l'accueil + bouton « Télécharger » (APK `miam-latest.apk`).
+- **Trouver des recettes** : peut aussi afficher un site configuré dans les paramètres.
 - **Export / import JSON** (plats, planning, articles « Autres »). Tout est stocké en local
   (Room + DataStore), pas de compte, pas de réseau requis.
 
@@ -55,6 +59,20 @@ app/src/main/java/com/tkos/miam/
     ├── components/ Composants réutilisables
     └── screens/    Accueil, plats, fiche, édition, planning, courses, paramètres, recherche
 ```
+
+## Ajouter une recette au catalogue
+
+1. Éditer `data/recipes.json` : ajouter un objet dans `recipes` avec un `remoteId` unique et stable
+   (slug, ex. `butternut-farcie-boeuf`). Même structure qu'une recette de l'export ci-dessous.
+2. Incrémenter `version` (sinon l'app considère le catalogue inchangé au lancement).
+3. Commit + push sur `main`. L'app récupère le fichier via
+   `https://raw.githubusercontent.com/Tkos001/miam/main/data/recipes.json` (cache CDN ~5 min ;
+   « Mettre à jour maintenant » le contourne).
+
+Règles de fusion côté app : une recette est reconnue par son `remoteId` (à défaut par son nom si la
+recette locale n'a pas de `remoteId`). Favori, photo et id local sont conservés ; ingrédients et
+étapes sont remplacés. Une recette du catalogue supprimée localement revient à la prochaine montée
+de version.
 
 ## Format d'export JSON
 

@@ -5,6 +5,8 @@ import android.net.Uri
 import com.tkos.miam.data.backup.BackupCodec
 import com.tkos.miam.data.backup.BackupFile
 import com.tkos.miam.data.backup.PlanDto
+import com.tkos.miam.data.catalog.Catalog
+import com.tkos.miam.data.catalog.CatalogSyncResult
 import com.tkos.miam.data.db.MiamDatabase
 import com.tkos.miam.data.model.ExtraItem
 import com.tkos.miam.data.model.Ingredient
@@ -16,12 +18,16 @@ import com.tkos.miam.data.model.ShoppingCheck
 import com.tkos.miam.data.model.Slot
 import com.tkos.miam.data.model.Step
 import com.tkos.miam.data.seed.SeedRecipes
+import com.tkos.miam.data.settings.Settings
 import com.tkos.miam.data.settings.SettingsRepository
 import com.tkos.miam.data.shopping.ShoppingAggregator
 import com.tkos.miam.data.shopping.ShoppingLine
+import com.tkos.miam.data.update.AppUpdate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
@@ -141,6 +147,60 @@ class MiamRepository(private val context: Context) {
         }
         return added
     }
+
+    // ---------- Catalogue distant (recettes dans le dépôt git) ----------
+
+    /** Dernière info de mise à jour de l'app trouvée (null = pas vérifié ou à jour). */
+    private val _availableUpdate = MutableStateFlow<AppUpdate.Info?>(null)
+    val availableUpdate: StateFlow<AppUpdate.Info?> = _availableUpdate
+
+    fun catalogUrl(s: Settings): String = s.catalogUrl.trim().ifBlank { Catalog.DEFAULT_URL }
+
+    /**
+     * Télécharge le catalogue et intègre les recettes.
+     * - `force = false` : ne fait rien si la version distante n'est pas plus récente que la version locale.
+     * - `force = true` : réapplique tout le catalogue (et contourne le cache CDN).
+     * Les recettes sont identifiées par `remoteId` ; à défaut, une recette locale de même nom est rattachée.
+     * Favoris, photo et id locaux sont conservés ; ingrédients et étapes sont remplacés.
+     */
+    suspend fun syncCatalog(force: Boolean): CatalogSyncResult {
+        val s = settings.settings.first()
+        val url = catalogUrl(s)
+        val file = try {
+            Catalog.fetch(url, bustCache = force)
+        } catch (e: Exception) {
+            return CatalogSyncResult.Failed(e.message ?: e.javaClass.simpleName)
+        }
+        if (!force && file.version <= s.catalogVersion) return CatalogSyncResult.UpToDate(file.version)
+
+        val byName = recipeDao.getAllWithDetails().associateBy { ShoppingAggregator.normalizeName(it.recipe.name) }.toMutableMap()
+        var added = 0
+        var updated = 0
+        for (dto in file.recipes) {
+            val remoteId = dto.remoteId?.trim().takeUnless { it.isNullOrBlank() } ?: continue
+            val (recipe, ings, steps) = BackupCodec.fromDto(dto.copy(remoteId = remoteId, sourceUrl = url))
+            val existing = recipeDao.getByRemoteId(remoteId)
+                ?: byName[ShoppingAggregator.normalizeName(dto.name)]?.recipe?.takeIf { it.remoteId == null }
+            val toSave = if (existing != null) {
+                updated++
+                recipe.copy(
+                    id = existing.id, imagePath = existing.imagePath, isFavorite = existing.isFavorite,
+                    isBuiltIn = existing.isBuiltIn, createdAt = existing.createdAt,
+                )
+            } else {
+                added++
+                recipe
+            }
+            val id = recipeDao.upsertFull(toSave, ings, steps)
+            recipeDao.getWithDetails(id)?.let { byName[ShoppingAggregator.normalizeName(it.recipe.name)] = it }
+        }
+        settings.setCatalogSynced(file.version, System.currentTimeMillis())
+        return CatalogSyncResult.Updated(file.version, added, updated)
+    }
+
+    /** Vérifie la dernière release GitHub ; mémorise le résultat pour l'afficher sur l'accueil. */
+    suspend fun checkAppUpdate(): Result<AppUpdate.Info> = runCatching { AppUpdate.check() }
+        .onSuccess { _availableUpdate.value = it.takeIf { info -> info.isNewer } }
 
     // ---------- Export / import ----------
     suspend fun exportBackup(): String {

@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.SystemUpdate
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -45,6 +46,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -89,6 +93,8 @@ fun HomeScreen(
     val lines by repository.shoppingLines(shopping.first, shopping.second).collectAsStateWithLifecycle(initialValue = emptyList())
     val extrasCount by repository.extrasUncheckedCount.collectAsStateWithLifecycle(initialValue = 0)
     val toBuy = lines.count { !it.checked } + extrasCount
+    val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -129,6 +135,23 @@ fun HomeScreen(
                 style = MaterialTheme.typography.headlineMedium,
                 modifier = Modifier.padding(top = 4.dp),
             )
+
+            // ---- Mise à jour disponible ----
+            availableUpdate?.let { info ->
+                Card(
+                    modifier = Modifier.fillMaxWidth().clickable { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(info.downloadUrl))) },
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+                ) {
+                    Row(Modifier.padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Default.SystemUpdate, contentDescription = null, tint = MaterialTheme.colorScheme.onPrimaryContainer)
+                        Spacer(Modifier.width(12.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text("Miam ${info.latest} disponible", fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                            Text("Touche pour télécharger l'APK (installée : ${info.installed})", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                        }
+                    }
+                }
+            }
 
             // ---- Chiffres ----
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {

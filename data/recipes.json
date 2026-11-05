@@ -1,0 +1,36 @@
+{
+  "format": "miam-catalog",
+  "version": 1,
+  "updatedAt": "2026-11-05",
+  "recipes": [
+    {
+      "remoteId": "butternut-farcie-boeuf",
+      "name": "Courge butternut farcie au bœuf haché",
+      "description": "Demi-courges rôties, garnies de bœuf haché aux oignons et tomate, gratinées au four.",
+      "prepMinutes": 15,
+      "cookMinutes": 55,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "ingredients": [
+        { "name": "Courge butternut", "quantity": 2, "unit": "PIECE", "aisle": "FRUITS_LEGUMES" },
+        { "name": "Bœuf haché", "quantity": 800, "unit": "G", "aisle": "BOUCHERIE" },
+        { "name": "Oignon", "quantity": 2, "unit": "PIECE", "aisle": "FRUITS_LEGUMES" },
+        { "name": "Ail", "quantity": 3, "unit": "GOUSSE", "aisle": "FRUITS_LEGUMES" },
+        { "name": "Tomates concassées", "quantity": 400, "unit": "G", "aisle": "EPICERIE" },
+        { "name": "Gruyère râpé", "quantity": 150, "unit": "G", "aisle": "FRAIS" },
+        { "name": "Huile d'olive", "quantity": 3, "unit": "CAS", "aisle": "EPICERIE" },
+        { "name": "Cumin", "quantity": 2, "unit": "CAC", "aisle": "EPICERIE" },
+        { "name": "Sel", "quantity": null, "unit": "NONE", "aisle": "EPICERIE" },
+        { "name": "Poivre", "quantity": null, "unit": "NONE", "aisle": "EPICERIE" }
+      ],
+      "steps": [
+        "Préchauffer le four à 200 °C. Couper les butternuts en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
+        "Enfourner chair vers le haut 30 à 35 min, jusqu'à ce qu'une lame s'enfonce sans résistance.",
+        "Pendant ce temps, émincer oignons et ail et les faire revenir 5 min dans le reste d'huile. Ajouter le bœuf haché, cuire 6 à 8 min en émiettant.",
+        "Ajouter les tomates concassées, le cumin, sel et poivre. Laisser réduire 5 min à feu moyen.",
+        "Creuser la chair des courges cuites en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
+        "Garnir les demi-courges, couvrir de gruyère râpé, remettre 15 min au four jusqu'à ce que le dessus gratine."
+      ]
+    }
+  ]
+}

@@ -24,8 +24,12 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.FileDownload
 import androidx.compose.material.icons.filled.FileUpload
 import androidx.compose.material.icons.filled.Restore
+import androidx.compose.material.icons.filled.Sync
+import androidx.compose.material.icons.filled.SystemUpdate
 import androidx.compose.material3.Card
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -53,13 +57,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.BuildConfig
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.ui.platform.LocalContext
 import com.tkos.miam.data.MiamRepository
+import com.tkos.miam.data.catalog.Catalog
+import com.tkos.miam.data.catalog.CatalogSyncResult
+import com.tkos.miam.data.update.AppUpdate
 import com.tkos.miam.data.settings.AppTheme
 import com.tkos.miam.data.settings.Settings
 import com.tkos.miam.ui.components.ConfirmDialog
 import com.tkos.miam.ui.components.Stepper
 import kotlinx.coroutines.launch
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,6 +83,14 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
     var url by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(settings.recipesUrl) { if (url == null) url = settings.recipesUrl }
     var confirmImport by remember { mutableStateOf<android.net.Uri?>(null) }
+    val context = LocalContext.current
+    var catalogUrl by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(settings.catalogUrl) { if (catalogUrl == null) catalogUrl = settings.catalogUrl }
+    var syncing by remember { mutableStateOf(false) }
+    var checkingUpdate by remember { mutableStateOf(false) }
+    var updateInfo by remember { mutableStateOf<AppUpdate.Info?>(null) }
+    val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
+    LaunchedEffect(availableUpdate) { if (updateInfo == null) updateInfo = availableUpdate }
 
     val exporter = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/json")) { uri ->
         if (uri != null) scope.launch {
@@ -134,6 +155,108 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     }
                     Stepper(value = settings.defaultServings, onValueChange = { scope.launch { repository.settings.setDefaultServings(it) } })
                 }
+            }
+
+            // ---- Catalogue de recettes (dépôt git) ----
+            Section("Catalogue de recettes") {
+                val last = settings.catalogLastSync.takeIf { it > 0 }?.let {
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(Instant.ofEpochMilli(it).atZone(ZoneId.systemDefault()))
+                }
+                Text(
+                    if (last == null) "Jamais synchronisé" else "Version ${settings.catalogVersion} · synchronisé le $last",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Button(
+                        onClick = {
+                            syncing = true
+                            scope.launch {
+                                val msg = when (val r = repository.syncCatalog(force = true)) {
+                                    is CatalogSyncResult.Updated -> "Catalogue v${r.version} : ${r.added} ajouté(s), ${r.updated} mis à jour"
+                                    is CatalogSyncResult.UpToDate -> "Catalogue déjà à jour (v${r.version})"
+                                    is CatalogSyncResult.Failed -> "Échec : ${r.message}"
+                                }
+                                syncing = false
+                                snackbar.showSnackbar(msg)
+                            }
+                        },
+                        enabled = !syncing,
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        if (syncing) CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp, color = MaterialTheme.colorScheme.onPrimary)
+                        else Icon(Icons.Default.Sync, contentDescription = null)
+                        Spacer(Modifier.width(8.dp)); Text("Mettre à jour maintenant")
+                    }
+                }
+                HorizontalDivider(Modifier.padding(vertical = 8.dp))
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text("Synchroniser au lancement", style = MaterialTheme.typography.bodyLarge)
+                        Text("Récupère les nouvelles recettes si le catalogue a changé", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    Switch(checked = settings.catalogAutoSync, onCheckedChange = { scope.launch { repository.settings.setCatalogAutoSync(it) } })
+                }
+                OutlinedTextField(
+                    value = catalogUrl ?: "",
+                    onValueChange = { catalogUrl = it },
+                    label = { Text("URL du catalogue (vide = dépôt Miam)") },
+                    placeholder = { Text(Catalog.DEFAULT_URL) },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                )
+                OutlinedButton(
+                    onClick = { scope.launch { repository.settings.setCatalogUrl(catalogUrl ?: ""); snackbar.showSnackbar("Adresse du catalogue enregistrée") } },
+                    enabled = (catalogUrl ?: "") != settings.catalogUrl,
+                    modifier = Modifier.padding(top = 6.dp),
+                ) { Text("Enregistrer l'adresse") }
+            }
+
+            // ---- Mise à jour de l'app ----
+            Section("Mise à jour de l'app") {
+                val info = updateInfo
+                Text(
+                    when {
+                        info == null -> "Version installée : ${AppUpdate.installedVersion}"
+                        info.isNewer -> "Nouvelle version disponible : ${info.latest} (installée : ${info.installed})"
+                        else -> "Tu as la dernière version (${info.installed})"
+                    },
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = if (info?.isNewer == true) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = {
+                            checkingUpdate = true
+                            scope.launch {
+                                repository.checkAppUpdate()
+                                    .onSuccess { updateInfo = it }
+                                    .onFailure { snackbar.showSnackbar("Vérification impossible : ${it.message}") }
+                                checkingUpdate = false
+                            }
+                        },
+                        enabled = !checkingUpdate,
+                        modifier = Modifier.weight(1f),
+                    ) {
+                        if (checkingUpdate) CircularProgressIndicator(Modifier.size(18.dp), strokeWidth = 2.dp)
+                        else Icon(Icons.Default.SystemUpdate, contentDescription = null)
+                        Spacer(Modifier.width(8.dp)); Text("Vérifier")
+                    }
+                    if (info?.isNewer == true) {
+                        Button(
+                            onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(info.downloadUrl))) },
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            Icon(Icons.Default.FileDownload, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Télécharger")
+                        }
+                    }
+                }
+                Text(
+                    "L'APK se télécharge depuis la dernière release GitHub ; Android demande ensuite confirmation pour l'installer par-dessus.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
             }
 
             // ---- Trouver des recettes ----
