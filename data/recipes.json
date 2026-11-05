@@ -1,39 +1,39 @@
 {
   "format": "miam-catalog",
-  "version": 4,
+  "version": 5,
   "updatedAt": "2026-11-05",
   "recipes": [
     {
       "remoteId": "butternut-farcie-boeuf",
       "name": "Courge butternut farcie au bœuf haché",
-      "description": "Demi-courges rôties, garnies de bœuf haché aux oignons et à la crème épaisse, gratinées au four.",
+      "description": "Une grosse butternut coupée en deux, une moitié par personne, garnie de 500 g de bœuf haché à la crème et bien gratinée.",
       "prepMinutes": 15,
-      "cookMinutes": 55,
-      "servings": 4,
+      "cookMinutes": 60,
+      "servings": 2,
       "cuisine": "FRANCAISE",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
       "ingredients": [
         {
           "name": "Courge butternut",
-          "quantity": 2,
+          "quantity": 1,
           "unit": "PIECE",
           "aisle": "FRUITS_LEGUMES"
         },
         {
           "name": "Bœuf haché",
-          "quantity": 800,
+          "quantity": 1000,
           "unit": "G",
           "aisle": "BOUCHERIE"
         },
         {
           "name": "Oignon",
-          "quantity": 2,
+          "quantity": 1,
           "unit": "PIECE",
           "aisle": "FRUITS_LEGUMES"
         },
         {
           "name": "Ail",
-          "quantity": 3,
+          "quantity": 2,
           "unit": "GOUSSE",
           "aisle": "FRUITS_LEGUMES"
         },
@@ -45,19 +45,19 @@
         },
         {
           "name": "Gruyère râpé",
-          "quantity": 150,
+          "quantity": 200,
           "unit": "G",
           "aisle": "FRAIS"
         },
         {
           "name": "Huile d'olive",
-          "quantity": 3,
+          "quantity": 2,
           "unit": "CAS",
           "aisle": "EPICERIE"
         },
         {
           "name": "Cumin",
-          "quantity": 2,
+          "quantity": 1,
           "unit": "CAC",
           "aisle": "EPICERIE"
         },
@@ -75,12 +75,13 @@
         }
       ],
       "steps": [
-        "Préchauffer le four à 200 °C. Couper les butternuts en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
-        "Enfourner chair vers le haut 30 à 35 min, jusqu'à ce qu'une lame s'enfonce sans résistance.",
-        "Pendant ce temps, émincer oignons et ail et les faire revenir 5 min dans le reste d'huile. Ajouter le bœuf haché, cuire 6 à 8 min en émiettant.",
+        "Préchauffer le four à 200 °C. Couper la grosse butternut en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
+        "Enfourner chair vers le haut 35 à 40 min, jusqu'à ce qu'une lame s'enfonce sans résistance.",
+        "Pendant ce temps, émincer l'oignon et l'ail et les faire revenir 5 min dans le reste d'huile. Ajouter le kilo de bœuf haché, cuire 8 à 10 min en émiettant.",
         "Baisser le feu, ajouter la crème épaisse, le cumin, sel et poivre. Laisser épaissir 2 à 3 min en remuant, sans faire bouillir.",
-        "Creuser la chair des courges cuites en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
-        "Garnir les demi-courges, couvrir de gruyère râpé, remettre 15 min au four jusqu'à ce que le dessus gratine."
+        "Creuser la chair des deux moitiés en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
+        "Garnir chaque moitié avec la moitié de la farce (environ 500 g) en tassant bien, elle doit déborder un peu. Couvrir généreusement de gruyère râpé.",
+        "Remettre 15 à 20 min au four, en finissant 2 à 3 min sous le gril si besoin, jusqu'à ce que le fromage soit bien gratiné."
       ]
     }
   ],
