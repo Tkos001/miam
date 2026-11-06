@@ -296,17 +296,15 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                         else Icon(Icons.Default.SystemUpdate, contentDescription = null)
                         Spacer(Modifier.width(8.dp)); Text("Vérifier")
                     }
-                    if (info?.isNewer == true) {
-                        Button(
-                            onClick = { context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(info.downloadUrl))) },
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            Icon(Icons.Default.FileDownload, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Télécharger")
-                        }
-                    }
+                }
+                if (info?.isNewer == true) {
+                    com.tkos.miam.ui.components.UpdateButton(info, Modifier.padding(top = 8.dp))
                 }
                 Text(
-                    "L'APK se télécharge depuis la dernière release GitHub ; Android demande ensuite confirmation pour l'installer par-dessus.",
+                    if (com.tkos.miam.data.update.AppInstaller.isSelfInstaller(context) && android.os.Build.VERSION.SDK_INT >= 31)
+                        "Mise à jour installée directement par Miam, sans confirmation. L'app se ferme à la fin : rouvre-la."
+                    else
+                        "La première fois, Android demande d'autoriser Miam à installer des applis, puis une confirmation. Ensuite (Android 12+), les mises à jour s'installent sans rien demander.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 4.dp),

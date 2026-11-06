@@ -13,10 +13,10 @@ def i(name, qty, unit, aisle):
     return {"name": name, "quantity": qty, "unit": unit, "aisle": aisle}
 
 
-def r(slug, name, desc, prep, cook, ings, steps, cuisine="FRANCAISE"):
+def r(slug, name, desc, prep, cook, ings, steps, cuisine="FRANCAISE", protein="AUTRE"):
     return {
         "remoteId": slug, "name": name, "description": desc,
-        "prepMinutes": prep, "cookMinutes": cook, "servings": 4, "cuisine": cuisine,
+        "prepMinutes": prep, "cookMinutes": cook, "servings": 4, "cuisine": cuisine, "protein": protein,
         "imageUrl": IMG + slug + ".jpg", "ingredients": ings, "steps": steps,
     }
 

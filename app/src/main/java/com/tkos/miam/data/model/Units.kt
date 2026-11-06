@@ -67,6 +67,22 @@ enum class Cuisine(val label: String, val emoji: String) {
     }
 }
 
+/** Protéine / base du plat, pour filtrer (« ce soir, du poisson »). */
+enum class Protein(val label: String, val emoji: String) {
+    BOEUF("Bœuf", "🐄"),
+    PORC("Porc", "🐖"),
+    VOLAILLE("Volaille", "🐔"),
+    VEAU("Veau", "🐮"),
+    AGNEAU("Agneau", "🐑"),
+    POISSON("Poisson", "🐟"),
+    VEGETARIEN("Végétarien", "🥬"),
+    AUTRE("Autre", "🍽️");
+
+    companion object {
+        fun fromName(name: String?): Protein = entries.firstOrNull { it.name == name } ?: AUTRE
+    }
+}
+
 enum class Slot(val label: String) {
     MIDI("Midi"),
     SOIR("Soir");

@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.Cuisine
+import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.ui.components.EmptyState
 import com.tkos.miam.ui.components.RecipeImage
@@ -70,13 +71,16 @@ fun RecipeListScreen(
     var query by rememberSaveable { mutableStateOf("") }
     var onlyFav by rememberSaveable { mutableStateOf(favoritesOnly) }
     var cuisine by rememberSaveable { mutableStateOf<String?>(null) }
+    var protein by rememberSaveable { mutableStateOf<String?>(null) }
 
     val filtered = all.filter { r ->
         (!onlyFav || r.isFavorite) &&
             (cuisine == null || r.cuisine == cuisine) &&
+            (protein == null || r.protein == protein) &&
             (query.isBlank() || norm(r.name).contains(norm(query)) || norm(r.description).contains(norm(query)))
     }
     val usedCuisines = all.map { it.cuisineEnum }.distinct()
+    val usedProteins = Protein.entries.filter { p -> p != Protein.AUTRE && all.any { it.protein == p.name } }
 
     Scaffold(
         topBar = {
@@ -113,6 +117,15 @@ fun RecipeListScreen(
                         label = { Text("Favoris") },
                         leadingIcon = { Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp)) },
                     )
+                }
+                usedProteins.forEach { p ->
+                    item(key = "p_" + p.name) {
+                        FilterChip(
+                            selected = protein == p.name,
+                            onClick = { protein = if (protein == p.name) null else p.name },
+                            label = { Text("${p.emoji} ${p.label}") },
+                        )
+                    }
                 }
                 if (usedCuisines.size > 1) {
                     usedCuisines.forEach { c ->
@@ -189,6 +202,10 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit
                     Spacer(Modifier.width(10.dp))
                 }
                 Text("${recipe.servings} pers.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                if (recipe.proteinEnum != Protein.AUTRE) {
+                    Spacer(Modifier.width(6.dp))
+                    Text(recipe.proteinEnum.emoji, style = MaterialTheme.typography.bodySmall)
+                }
                 if (recipe.cuisineEnum != Cuisine.FRANCAISE) {
                     Spacer(Modifier.width(6.dp))
                     Text(recipe.cuisineEnum.emoji, style = MaterialTheme.typography.bodySmall)

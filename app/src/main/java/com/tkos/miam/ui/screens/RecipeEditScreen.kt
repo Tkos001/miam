@@ -63,6 +63,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.Aisle
 import com.tkos.miam.data.model.Cuisine
+import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.model.MeasureUnit
 import com.tkos.miam.ui.components.DropdownField
 import com.tkos.miam.ui.components.RecipeImage
@@ -217,6 +218,15 @@ fun RecipeEditScreen(
                     options = Cuisine.entries,
                     optionLabel = { "${it.emoji} ${it.label}" },
                     onSelected = { vm.cuisine = it },
+                )
+            }
+            item {
+                DropdownField(
+                    label = "Viande / base du plat",
+                    value = vm.protein,
+                    options = Protein.entries,
+                    optionLabel = { "${it.emoji} ${it.label}" },
+                    onSelected = { vm.protein = it },
                 )
             }
 

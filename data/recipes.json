@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 7,
+  "version": 8,
   "updatedAt": "2026-11-06",
   "recipes": [
     {
@@ -82,7 +82,8 @@
         "Creuser la chair des deux moitiés en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
         "Garnir chaque moitié avec la moitié de la farce (environ 500 g) en tassant bien, elle doit déborder un peu. Couvrir généreusement de gruyère râpé.",
         "Remettre 15 à 20 min au four, en finissant 2 à 3 min sous le gril si besoin, jusqu'à ce que le fromage soit bien gratiné."
-      ]
+      ],
+      "protein": "BOEUF"
     },
     {
       "remoteId": "lasagnes-boeuf",
@@ -196,7 +197,8 @@
         "Béchamel : faire fondre le beurre, ajouter la farine, cuire 1 min. Verser le lait petit à petit en fouettant jusqu'à épaississement. Muscade, sel, poivre.",
         "Four à 180 °C. Dans un plat beurré : une louche de béchamel, plaques, bolognaise, béchamel, gruyère. Répéter jusqu'en haut, finir par béchamel, gruyère et parmesan.",
         "Enfourner 40 min jusqu'à ce que le dessus soit bien doré. Laisser reposer 10 min avant de couper."
-      ]
+      ],
+      "protein": "BOEUF"
     },
     {
       "remoteId": "tourte-pomme-de-terre-saucisse-comte",
@@ -280,7 +282,8 @@
         "Faire fondre l'oignon émincé dans le beurre. Mélanger la crème avec muscade, sel, poivre.",
         "Four à 200 °C. Foncer un moule à tarte avec la première pâte. Alterner pommes de terre, oignons, saucisse, comté, un peu de crème. Terminer par crème et comté.",
         "Couvrir avec la seconde pâte, souder les bords, faire une cheminée au centre, dorer au jaune d'œuf. Enfourner 35 à 40 min jusqu'à belle coloration."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "pates-carbonara",
@@ -346,7 +349,8 @@
         "Pendant ce temps, faire dorer les lardons à sec dans une poêle, feu moyen, 5 min. Couper le feu.",
         "Fouetter jaunes, œuf entier, pecorino, parmesan et beaucoup de poivre dans un saladier.",
         "Égoutter les pâtes, les verser dans la poêle hors du feu avec les lardons, ajouter le mélange aux œufs et un peu d'eau de cuisson, mélanger vite jusqu'à une sauce nappante. Servir aussitôt."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "paupiettes-porc-veau",
@@ -430,7 +434,8 @@
         "Dans la même cocotte, faire revenir échalotes émincées et champignons en lamelles 5 min. Déglacer au vin blanc, laisser réduire de moitié.",
         "Remettre les paupiettes, ajouter 10 cl d'eau, couvrir et laisser mijoter 25 min à feu doux en les retournant à mi-cuisson.",
         "Sortir les paupiettes, ajouter crème et moutarde dans la sauce, faire épaissir 3 min, rectifier l'assaisonnement. Servir avec riz, purée ou tagliatelles."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "poulet-basquaise",
@@ -513,7 +518,8 @@
         "Faire dorer les cuisses salées et poivrées dans l'huile, 10 min. Réserver.",
         "Faire revenir oignons et poivrons en lanières 10 min, ajouter l'ail, les tomates, le thym et le piment.",
         "Remettre le poulet, couvrir, laisser mijoter 30 min à feu doux. Découvrir les 10 dernières minutes pour épaissir la sauce. Servir avec du riz."
-      ]
+      ],
+      "protein": "VOLAILLE"
     },
     {
       "remoteId": "saumon-four-legumes",
@@ -590,7 +596,8 @@
         "Four à 200 °C. Pommes de terre en quartiers avec 2 c. à s. d'huile, sel, herbes : 20 min sur la plaque.",
         "Ajouter courgettes en rondelles, tomates cerises, ail écrasé, puis poser les pavés de saumon salés, poivrés, arrosés du reste d'huile et de jus de citron.",
         "Remettre 15 min : le saumon doit rester nacré au centre. Servir avec des quartiers de citron."
-      ]
+      ],
+      "protein": "POISSON"
     },
     {
       "remoteId": "chili-con-carne",
@@ -685,7 +692,8 @@
         "Faire revenir oignons, ail et poivron en dés 5 min dans l'huile. Ajouter le bœuf, cuire 8 min en émiettant.",
         "Ajouter épices et concentré, mélanger 1 min, puis les tomates. Saler, mijoter 25 min à découvert.",
         "Ajouter les haricots égouttés et rincés, cuire encore 10 min. Servir sur du riz, avec crème ou cheddar râpé selon l'envie."
-      ]
+      ],
+      "protein": "BOEUF"
     },
     {
       "remoteId": "gratin-courgettes-chevre",
@@ -762,7 +770,8 @@
         "Four à 180 °C. Courgettes en rondelles fines, sautées 8 min dans l'huile avec l'ail pour les dessécher.",
         "Fouetter œufs, crème, chèvre écrasé, menthe ciselée, sel, poivre. Mélanger aux courgettes.",
         "Verser dans un plat, couvrir de gruyère, enfourner 25 à 30 min jusqu'à ce que ce soit pris et doré."
-      ]
+      ],
+      "protein": "VEGETARIEN"
     },
     {
       "remoteId": "riz-cantonais",
@@ -833,7 +842,8 @@
         "Cuire le riz la veille ou le laisser bien refroidir. Cuire les petits pois 3 min à l'eau bouillante.",
         "Dans un wok très chaud, brouiller les œufs battus dans 1 c. à s. d'huile, réserver.",
         "Faire sauter le riz dans le reste d'huile 3 min en remuant, ajouter jambon en dés, petits pois, œufs, oignons nouveaux émincés, soja et sésame. Sauter 2 min. Poivrer."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "boulettes-boeuf-sauce-tomate",
@@ -929,7 +939,8 @@
         "Les dorer dans 2 c. à s. d'huile 6 min en les roulant. Réserver.",
         "Dans la même sauteuse, faire fondre le reste d'oignon et d'ail, ajouter les tomates, saler. Remettre les boulettes, couvrir, mijoter 20 min. Ajouter le basilic.",
         "Servir avec les spaghetti cuits al dente."
-      ]
+      ],
+      "protein": "BOEUF"
     },
     {
       "remoteId": "curry-poulet-coco",
@@ -1012,7 +1023,8 @@
         "Faire revenir l'oignon émincé, l'ail et le gingembre râpé 3 min dans l'huile. Ajouter le curry, 30 s.",
         "Ajouter le poulet en morceaux, le faire dorer 5 min. Verser tomates et lait de coco, saler, mijoter 20 min à feu doux.",
         "Servir sur le riz cuit, parsemé de coriandre."
-      ]
+      ],
+      "protein": "VOLAILLE"
     },
     {
       "remoteId": "gratin-pates-jambon",
@@ -1083,7 +1095,8 @@
         "Cuire les coquillettes 2 min de moins que le paquet. Four à 200 °C.",
         "Béchamel : beurre fondu, farine, 1 min ; lait petit à petit en fouettant jusqu'à épaississement ; muscade, sel, poivre, la moitié du gruyère.",
         "Mélanger pâtes, jambon en dés et béchamel, verser dans un plat, couvrir du reste de gruyère, enfourner 20 min."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "escalopes-milanaise",
@@ -1166,7 +1179,8 @@
         "Aplatir les escalopes entre deux feuilles de film. Trois assiettes : farine ; œufs battus ; chapelure mélangée au parmesan.",
         "Passer chaque escalope farine, œuf, chapelure en appuyant bien.",
         "Cuire les spaghetti, réchauffer le coulis salé. Frire les escalopes 3 à 4 min par face dans l'huile chaude. Servir avec un quartier de citron."
-      ]
+      ],
+      "protein": "VOLAILLE"
     },
     {
       "remoteId": "wok-boeuf-legumes",
@@ -1255,7 +1269,8 @@
         "Mélanger soja, miel, maïzena et 5 cl d'eau. Cuire les nouilles, égoutter.",
         "Wok très chaud : saisir le bœuf en lamelles 2 min, réserver. Sauter carottes en bâtonnets, brocoli en petits bouquets et poivron 5 min avec l'ail.",
         "Remettre le bœuf, verser la sauce, ajouter les nouilles, mélanger 2 min. Oignons nouveaux et sésame au moment de servir."
-      ]
+      ],
+      "protein": "BOEUF"
     },
     {
       "remoteId": "flammekueche",
@@ -1320,7 +1335,8 @@
         "Four au maximum (250 °C ou plus), plaque dedans pour préchauffer. Mélanger fromage blanc, crème, muscade, sel, poivre.",
         "Étaler les pâtes très finement, tartiner du mélange, répartir oignons émincés fins et lardons.",
         "Enfourner sur la plaque chaude 10 à 12 min jusqu'à bords dorés. Servir aussitôt."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "galettes-sarrasin-complete",
@@ -1379,7 +1395,8 @@
         "Pâte : mélanger farine, sel, 1 œuf et l'eau petit à petit jusqu'à une pâte lisse. Laisser reposer 1 h si possible.",
         "Cuire une louche de pâte dans une poêle beurrée très chaude, 1 min par face. Faire 4 galettes.",
         "Galette dans la poêle : emmental, tranche de jambon, casser un œuf au centre, couvrir 3 min, replier les bords en carré."
-      ]
+      ],
+      "protein": "PORC"
     },
     {
       "remoteId": "cordon-bleu-maison-puree",
@@ -1468,7 +1485,8 @@
         "Purée : pommes de terre pelées cuites 20 min à l'eau salée, écrasées avec beurre et lait chaud, sel, poivre.",
         "Aplatir les escalopes, poser jambon et emmental, rouler ou replier, fermer avec un cure-dent.",
         "Paner farine, œuf, chapelure. Cuire 5 min par face à feu moyen dans l'huile, le fromage doit couler."
-      ]
+      ],
+      "protein": "VOLAILLE"
     },
     {
       "remoteId": "poisson-pane-maison-haricots",
@@ -1557,7 +1575,8 @@
         "Four à 220 °C. Couper le cabillaud en bâtonnets épais, saler. Paner farine, œuf, chapelure. Poser sur une plaque huilée, arroser d'un filet d'huile.",
         "Enfourner 15 min en retournant à mi-cuisson.",
         "Haricots : 8 min à l'eau bouillante salée, égoutter, sauter 2 min au beurre avec ail et persil hachés. Servir avec le citron."
-      ]
+      ],
+      "protein": "POISSON"
     },
     {
       "remoteId": "risotto-champignons",
@@ -1646,7 +1665,8 @@
         "Sauter les champignons émincés dans l'huile à feu vif 6 min, saler, réserver. Garder le bouillon chaud.",
         "Fondre l'oignon et l'ail hachés dans la moitié du beurre, ajouter le riz, nacrer 2 min, déglacer au vin.",
         "Ajouter le bouillon louche par louche en remuant, 18 min. Hors du feu : champignons, parmesan, reste de beurre, poivre, persil. Couvrir 2 min, servir."
-      ]
+      ],
+      "protein": "VEGETARIEN"
     },
     {
       "remoteId": "tomates-farcies",
@@ -1741,7 +1761,8 @@
         "Four à 180 °C. Décalotter les tomates, les vider à la cuillère (garder la pulpe), saler l'intérieur, retourner 10 min.",
         "Farce : pain trempé dans le lait essoré, chair à saucisse, bœuf, oignon et ail hachés, persil, œuf, sel, poivre.",
         "Riz cru et pulpe hachée au fond d'un plat huilé avec 20 cl d'eau. Poser les tomates garnies, remettre les chapeaux. Enfourner 50 à 60 min."
-      ]
+      ],
+      "protein": "PORC"
     }
   ],
   "images": {

@@ -245,6 +245,7 @@ fun RecipeDetailScreen(
                     }
                     Row(Modifier.padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         InfoChip("${d.recipe.cuisineEnum.emoji} ${d.recipe.cuisineEnum.label}")
+                        if (d.recipe.proteinEnum != com.tkos.miam.data.model.Protein.AUTRE) InfoChip("${d.recipe.proteinEnum.emoji} ${d.recipe.proteinEnum.label}")
                         d.recipe.prepMinutes?.let { InfoChip("Prépa ${it} min") }
                         d.recipe.cookMinutes?.let { InfoChip("Cuisson ${it} min") }
                     }

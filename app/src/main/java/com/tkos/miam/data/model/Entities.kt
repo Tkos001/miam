@@ -21,6 +21,8 @@ data class Recipe(
     val servings: Int = 4,
     val isFavorite: Boolean = false,
     val cuisine: String = Cuisine.FRANCAISE.name,
+    /** Protéine principale (bœuf, porc, volaille, poisson, végétarien…). */
+    val protein: String = Protein.AUTRE.name,
     /** Vrai pour les recettes de base fournies avec l'app. */
     val isBuiltIn: Boolean = false,
     /** Prévu pour l'import depuis le futur site de recettes. */
@@ -29,6 +31,7 @@ data class Recipe(
     val createdAt: Long = System.currentTimeMillis(),
 ) {
     val cuisineEnum: Cuisine get() = Cuisine.fromName(cuisine)
+    val proteinEnum: Protein get() = Protein.fromName(protein)
 }
 
 @Entity(

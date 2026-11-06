@@ -19,7 +19,10 @@ automatiquement la liste de courses.
   lancement et intègre les nouvelles recettes sans rebuild. Mise à jour forcée depuis Paramètres ou
   « Trouver des recettes ».
 - **Mise à jour de l'app** : vérification de la dernière release GitHub au lancement, bannière sur
-  l'accueil + bouton « Télécharger » (APK `miam-latest.apk`).
+  l'accueil + bouton « Installer » : l'APK est téléchargé dans l'app et installé via PackageInstaller.
+  Première fois : autoriser Miam à installer des applis + confirmation ; ensuite, sur Android 12+,
+  Miam est l'installateur de lui-même et la mise à jour passe sans confirmation
+  (`UPDATE_PACKAGES_WITHOUT_USER_ACTION`). L'app se ferme à la fin, à rouvrir.
 - **Trouver des recettes** : peut aussi afficher un site configuré dans les paramètres.
 - **Export / import JSON** (plats, planning, articles « Autres »). Tout est stocké en local
   (Room + DataStore), pas de compte, pas de réseau requis.
@@ -121,4 +124,5 @@ de version.
 
 Unités : `G KG ML CL L CAC CAS PIECE TRANCHE GOUSSE PINCEE BOTTE BOITE SACHET NONE`.
 Rayons : `FRUITS_LEGUMES BOUCHERIE FRAIS EPICERIE BOULANGERIE SURGELES BOISSONS AUTRE`.
+Protéine (`protein`) : `BOEUF PORC VOLAILLE VEAU AGNEAU POISSON VEGETARIEN AUTRE` (filtre dans « Mes plats »).
 Ce format servira aussi à l'import depuis le futur site de recettes.

@@ -32,6 +32,7 @@ data class RecipeDto(
     val servings: Int = 4,
     val isFavorite: Boolean = false,
     val cuisine: String = "FRANCAISE",
+    val protein: String = "AUTRE",
     val sourceUrl: String? = null,
     val remoteId: String? = null,
     /** Image distante (catalogue) : téléchargée à la sync, jamais utilisée pour l'export local. */
@@ -70,6 +71,7 @@ object BackupCodec {
         servings = d.recipe.servings,
         isFavorite = d.recipe.isFavorite,
         cuisine = d.recipe.cuisine,
+        protein = d.recipe.protein,
         sourceUrl = d.recipe.sourceUrl,
         remoteId = d.recipe.remoteId,
         ingredients = d.sortedIngredients.map { IngredientDto(it.name, it.quantity, it.unit, it.aisle) },
@@ -80,7 +82,7 @@ object BackupCodec {
         Recipe(
             name = dto.name, description = dto.description, prepMinutes = dto.prepMinutes,
             cookMinutes = dto.cookMinutes, servings = dto.servings, isFavorite = dto.isFavorite,
-            cuisine = dto.cuisine, sourceUrl = dto.sourceUrl, remoteId = dto.remoteId,
+            cuisine = dto.cuisine, protein = dto.protein, sourceUrl = dto.sourceUrl, remoteId = dto.remoteId,
         ),
         dto.ingredients.map { Ingredient(name = it.name, quantity = it.quantity, unit = it.unit, aisle = it.aisle) },
         dto.steps.map { Step(text = it) },

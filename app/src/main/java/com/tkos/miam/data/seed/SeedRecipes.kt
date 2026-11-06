@@ -7,6 +7,7 @@ import com.tkos.miam.data.model.Aisle.EPICERIE
 import com.tkos.miam.data.model.Aisle.FRAIS
 import com.tkos.miam.data.model.Aisle.FRUITS_LEGUMES
 import com.tkos.miam.data.model.Cuisine
+import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.model.Ingredient
 import com.tkos.miam.data.model.MeasureUnit
 import com.tkos.miam.data.model.MeasureUnit.BOITE
@@ -42,10 +43,11 @@ object SeedRecipes {
         cook: Int,
         ingredients: List<Ingredient>,
         steps: List<String>,
+        protein: Protein = Protein.AUTRE,
     ) = SeedRecipe(
         recipe = Recipe(
             name = name, description = description, prepMinutes = prep, cookMinutes = cook,
-            servings = 4, cuisine = Cuisine.FRANCAISE.name, isBuiltIn = true,
+            servings = 4, cuisine = Cuisine.FRANCAISE.name, protein = protein.name, isBuiltIn = true,
         ),
         ingredients = ingredients,
         steps = steps.map { Step(text = it) },
@@ -73,7 +75,7 @@ object SeedRecipes {
                 "Ajouter les tomates concassées et le concentré, saler, poivrer. Laisser mijoter 30 min à feu doux.",
                 "Cuire les spaghetti dans un grand volume d'eau salée selon le paquet.",
                 "Servir les pâtes nappées de sauce avec le parmesan.",
-            )),
+            ), protein = Protein.BOEUF),
         r("Gratin dauphinois", "Pommes de terre fondantes à la crème.", 20, 75,
             listOf(
                 ing("Pommes de terre", 1.2, KG, FRUITS_LEGUMES),
@@ -91,7 +93,7 @@ object SeedRecipes {
                 "Mélanger crème, lait, sel, poivre et muscade.",
                 "Disposer les pommes de terre en couches, verser le mélange crème-lait.",
                 "Enfourner 1 h 15 jusqu'à ce que le dessus soit doré et les pommes de terre fondantes.",
-            )),
+            ), protein = Protein.VEGETARIEN),
         r("Quiche lorraine", "Lardons, œufs, crème : la vraie.", 15, 35,
             listOf(
                 ing("Pâte brisée", 1.0, PIECE, FRAIS),
@@ -108,7 +110,7 @@ object SeedRecipes {
                 "Battre les œufs avec la crème, le lait, le poivre et la muscade.",
                 "Répartir les lardons sur la pâte, verser l'appareil.",
                 "Enfourner 35 min jusqu'à ce que la quiche soit dorée et prise.",
-            )),
+            ), protein = Protein.PORC),
         r("Poulet rôti et pommes de terre", "Le dimanche midi.", 15, 80,
             listOf(
                 ing("Poulet fermier", 1.0, PIECE, BOUCHERIE),
@@ -126,7 +128,7 @@ object SeedRecipes {
                 "Éplucher les pommes de terre, les couper en quartiers, les mélanger avec l'huile, le reste d'ail et du sel.",
                 "Disposer les pommes de terre autour du poulet.",
                 "Enfourner 1 h 20 en arrosant toutes les 20 min. Laisser reposer 10 min avant de découper.",
-            )),
+            ), protein = Protein.VOLAILLE),
         r("Bœuf bourguignon", "Mijoté au vin rouge, encore meilleur réchauffé.", 30, 180,
             listOf(
                 ing("Bœuf à braiser (paleron, gîte)", 1.2, KG, BOUCHERIE),
@@ -149,7 +151,7 @@ object SeedRecipes {
                 "Verser le vin et le bouillon à hauteur, ajouter le bouquet garni, saler, poivrer.",
                 "Couvrir et laisser mijoter 2 h 30 à feu très doux.",
                 "Ajouter les champignons émincés et poursuivre 30 min.",
-            )),
+            ), protein = Protein.BOEUF),
         r("Blanquette de veau", "Douce, crémeuse, avec du riz.", 20, 90,
             listOf(
                 ing("Épaule de veau", 1.0, KG, BOUCHERIE),
@@ -172,7 +174,7 @@ object SeedRecipes {
                 "Préparer un roux avec beurre et farine, mouiller avec 50 cl de bouillon de cuisson, laisser épaissir.",
                 "Hors du feu, ajouter crème, jaune d'œuf et jus de citron. Napper la viande et les légumes.",
                 "Servir avec le riz.",
-            )),
+            ), protein = Protein.VEAU),
         r("Croque-monsieur", "Rapide et tout le monde aime.", 10, 10,
             listOf(
                 ing("Pain de mie", 8.0, TRANCHE, BOULANGERIE),
@@ -187,7 +189,7 @@ object SeedRecipes {
                 "Mélanger la crème avec une pincée de muscade, en tartiner l'intérieur.",
                 "Garnir de jambon et d'emmental, refermer.",
                 "Cuire à la poêle ou au four à 200 °C 10 min jusqu'à ce que le fromage fonde et que le pain dore.",
-            )),
+            ), protein = Protein.PORC),
         r("Hachis parmentier", "Purée maison gratinée sur viande hachée.", 25, 40,
             listOf(
                 ing("Bœuf haché", 600.0, G, BOUCHERIE),
@@ -206,7 +208,7 @@ object SeedRecipes {
                 "Faire revenir l'oignon et l'ail émincés, ajouter la viande, saler, poivrer, cuire 10 min. Ajouter le persil.",
                 "Étaler la viande dans un plat, couvrir de purée, parsemer de gruyère.",
                 "Gratiner 20 min à 200 °C.",
-            )),
+            ), protein = Protein.BOEUF),
         r("Ratatouille", "Légumes d'été mijotés, chaud ou froid.", 20, 45,
             listOf(
                 ing("Aubergine", 2.0, PIECE, FRUITS_LEGUMES),
@@ -225,7 +227,7 @@ object SeedRecipes {
                 "Faire revenir séparément aubergines, courgettes et poivrons dans l'huile d'olive, réserver.",
                 "Dans la même cocotte, faire fondre oignons et ail, ajouter les tomates et les herbes.",
                 "Remettre tous les légumes, saler, poivrer, laisser mijoter 30 min à couvert.",
-            )),
+            ), protein = Protein.VEGETARIEN),
         r("Tartiflette", "Reblochon, lardons, pommes de terre.", 20, 40,
             listOf(
                 ing("Pommes de terre", 1.0, KG, FRUITS_LEGUMES),
@@ -242,7 +244,7 @@ object SeedRecipes {
                 "Mélanger pommes de terre, lardons-oignons et crème dans un plat. Poivrer.",
                 "Poser le reblochon coupé en deux dans l'épaisseur, croûte vers le haut.",
                 "Enfourner 20 min à 200 °C.",
-            )),
+            ), protein = Protein.PORC),
         r("Soupe à l'oignon gratinée", "Réconfort d'hiver.", 15, 50,
             listOf(
                 ing("Oignon", 6.0, PIECE, FRUITS_LEGUMES),
@@ -260,7 +262,7 @@ object SeedRecipes {
                 "Saupoudrer de farine, mouiller avec le vin puis le bouillon. Saler, poivrer, laisser mijoter 20 min.",
                 "Répartir dans des bols allant au four, poser une tranche de pain, couvrir de gruyère.",
                 "Gratiner sous le gril 5 min.",
-            )),
+            ), protein = Protein.VEGETARIEN),
         r("Steak haché, frites maison, salade", "Simple et efficace.", 15, 30,
             listOf(
                 ing("Steak haché", 4.0, PIECE, BOUCHERIE),
@@ -278,7 +280,7 @@ object SeedRecipes {
                 "Première cuisson des frites 6 min à 150 °C, égoutter. Deuxième cuisson 3 min à 180 °C, saler.",
                 "Préparer la vinaigrette : moutarde, vinaigre, sel, poivre, huile d'olive.",
                 "Cuire les steaks à la poêle bien chaude 2 à 3 min par face.",
-            )),
+            ), protein = Protein.BOEUF),
         r("Omelette aux fines herbes", "Dîner en 10 minutes.", 5, 8,
             listOf(
                 ing("Œufs", 8.0, PIECE, FRAIS),
@@ -293,7 +295,7 @@ object SeedRecipes {
                 "Battre les œufs avec le lait, les herbes ciselées, sel et poivre.",
                 "Faire fondre le beurre dans une poêle chaude, verser les œufs.",
                 "Ramener les bords vers le centre avec une spatule, plier quand le dessus est encore baveux.",
-            )),
+            ), protein = Protein.VEGETARIEN),
         r("Pot-au-feu", "Le grand plat familial, pour plusieurs repas.", 20, 180,
             listOf(
                 ing("Bœuf pour pot-au-feu (gîte, plat de côte, macreuse)", 1.5, KG, BOUCHERIE),
@@ -314,7 +316,7 @@ object SeedRecipes {
                 "Ajouter l'oignon piqué des clous de girofle, le bouquet garni et le gros sel. Frémir 2 h.",
                 "Ajouter carottes, poireaux, navets, cuire 45 min. Ajouter pommes de terre et os à moelle, cuire 30 min.",
                 "Servir le bouillon à part, puis viande et légumes avec moutarde et cornichons.",
-            )),
+            ), protein = Protein.BOEUF),
         r("Crêpes", "Sucrées ou salées, la pâte de base.", 10, 20,
             listOf(
                 ing("Farine", 250.0, G, EPICERIE),
@@ -329,6 +331,6 @@ object SeedRecipes {
                 "Mélanger farine, sucre, sucre vanillé et sel. Creuser un puits, ajouter les œufs.",
                 "Verser le lait petit à petit en fouettant, puis le beurre fondu. Laisser reposer 30 min.",
                 "Cuire dans une poêle chaude légèrement beurrée, 1 min par face.",
-            )),
+            ), protein = Protein.VEGETARIEN),
     )
 }

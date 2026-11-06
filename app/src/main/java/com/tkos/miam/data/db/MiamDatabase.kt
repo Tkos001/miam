@@ -16,7 +16,7 @@ import com.tkos.miam.data.model.Step
 
 @Database(
     entities = [Recipe::class, Ingredient::class, Step::class, PlanEntry::class, ExtraItem::class, ShoppingCheck::class, RecipePhoto::class],
-    version = 2,
+    version = 3,
     exportSchema = true,
 )
 abstract class MiamDatabase : RoomDatabase() {
@@ -46,9 +46,15 @@ abstract class MiamDatabase : RoomDatabase() {
             }
         }
 
+        private val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE recipes ADD COLUMN protein TEXT NOT NULL DEFAULT 'AUTRE'")
+            }
+        }
+
         fun get(context: Context): MiamDatabase = instance ?: synchronized(this) {
             instance ?: Room.databaseBuilder(context.applicationContext, MiamDatabase::class.java, "miam.db")
-                .addMigrations(MIGRATION_1_2)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                 .fallbackToDestructiveMigrationOnDowngrade()
                 .build()
                 .also { instance = it }
