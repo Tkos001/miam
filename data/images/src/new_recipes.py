@@ -230,6 +230,105 @@ NEW += [
     ]),
 ]
 
+NEW += [
+    r("poulet-miel-sesame", "Poulet au miel et sésame, riz jasmin", "Hauts de cuisse laqués au miel-soja, graines de sésame, riz parfumé.", 10, 25, [
+        i("Hauts de cuisse de poulet désossés", 700, "G", BO), i("Miel", 3, "CAS", EP), i("Sauce soja", 4, "CAS", EP), i("Ail", 2, "GOUSSE", FL),
+        i("Gingembre frais", 15, "G", FL), i("Vinaigre de riz", 1, "CAS", EP), i("Graines de sésame", 2, "CAS", EP), i("Riz jasmin", 300, "G", EP),
+        i("Oignon nouveau", 3, "PIECE", FL), i("Huile", 2, "CAS", EP),
+    ], [
+        "Mélanger miel, soja, ail et gingembre râpés, vinaigre. Cuire le riz.",
+        "Dorer le poulet en morceaux dans l'huile 8 min à feu vif. Verser la sauce, laisser laquer 5 min en remuant jusqu'à ce qu'elle nappe.",
+        "Servir sur le riz, parsemer de sésame et d'oignons nouveaux émincés.",
+    ], "AUTRE", "VOLAILLE"),
+
+    r("moussaka", "Moussaka", "Aubergines, agneau haché à la tomate et à la cannelle, béchamel gratinée.", 30, 60, [
+        i("Aubergine", 3, "PIECE", FL), i("Agneau haché", 500, "G", BO), i("Oignon", 1, "PIECE", FL), i("Ail", 2, "GOUSSE", FL),
+        i("Tomates concassées", 400, "G", EP), i("Cannelle", 1, "CAC", EP), i("Beurre", 50, "G", FR), i("Farine", 50, "G", EP),
+        i("Lait", 60, "CL", FR), i("Œuf", 1, "PIECE", FR), i("Parmesan râpé", 50, "G", FR), i("Huile d'olive", 6, "CAS", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Aubergines en tranches de 1 cm, huilées, salées, rôties 20 min à 220 °C.",
+        "Faire revenir oignon et ail, ajouter l'agneau, dorer 8 min, puis tomates, cannelle, sel, poivre ; mijoter 15 min.",
+        "Béchamel épaisse (beurre, farine, lait), hors du feu ajouter l'œuf et le parmesan. Monter aubergines / viande / aubergines / béchamel. Four 180 °C, 35 min.",
+    ], "AUTRE", "AGNEAU"),
+
+    r("filet-mignon-moutarde", "Filet mignon de porc à la moutarde", "Filet mignon rôti, sauce crème-moutarde, pommes de terre sautées.", 15, 40, [
+        i("Filet mignon de porc", 700, "G", BO), i("Moutarde à l'ancienne", 2, "CAS", EP), i("Moutarde forte", 1, "CAS", EP),
+        i("Crème fraîche épaisse", 20, "CL", FR), i("Échalote", 2, "PIECE", FL), i("Vin blanc sec", 10, "CL", "BOISSONS"),
+        i("Pommes de terre", 800, "G", FL), i("Beurre", 40, "G", FR), i("Huile", 2, "CAS", EP), i("Thym", 2, "PINCEE", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Four à 200 °C. Saisir le filet mignon salé, poivré sur toutes les faces dans beurre et huile. Enfourner 20 min dans la cocotte avec le thym.",
+        "Pommes de terre en cubes sautées 20 min dans une poêle avec un peu de beurre et d'huile.",
+        "Réserver la viande sous une feuille d'alu. Dans la cocotte : échalotes 2 min, vin blanc réduit de moitié, crème et moutardes, 3 min. Trancher et napper.",
+    ], "FRANCAISE", "PORC"),
+
+    r("gratin-poisson-poireaux", "Gratin de poisson aux poireaux", "Filets de poisson blanc, fondue de poireaux à la crème, chapelure dorée.", 20, 35, [
+        i("Filets de poisson blanc", 600, "G", BO), i("Poireau", 4, "PIECE", FL), i("Crème fraîche épaisse", 25, "CL", FR),
+        i("Beurre", 40, "G", FR), i("Chapelure", 40, "G", EP), i("Gruyère râpé", 60, "G", FR), i("Citron", 1, "PIECE", FL),
+        i("Noix de muscade", 1, "PINCEE", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Poireaux émincés fondus 15 min au beurre à couvert, ajouter la crème, muscade, sel, poivre.",
+        "Four à 200 °C. Fondue de poireaux dans un plat, poisson en morceaux salés et arrosés de citron par-dessus, couvrir du reste de fondue.",
+        "Chapelure et gruyère sur le dessus, enfourner 20 min.",
+    ], "FRANCAISE", "POISSON"),
+
+    r("dahl-lentilles-corail", "Dahl de lentilles corail", "Lentilles corail au lait de coco et épices, riz basmati. Végétarien et rapide.", 10, 25, [
+        i("Lentilles corail", 300, "G", EP), i("Lait de coco", 40, "CL", EP), i("Tomates concassées", 400, "G", EP), i("Oignon", 1, "PIECE", FL),
+        i("Ail", 2, "GOUSSE", FL), i("Gingembre frais", 20, "G", FL), i("Curry en poudre", 1, "CAS", EP), i("Cumin", 1, "CAC", EP),
+        i("Curcuma", 1, "CAC", EP), i("Riz basmati", 250, "G", EP), i("Huile", 2, "CAS", EP), i("Coriandre", 6, "PIECE", FL), i("Sel", None, "NONE", EP),
+    ], [
+        "Fondre oignon, ail, gingembre hachés dans l'huile 3 min, ajouter les épices 30 s.",
+        "Ajouter lentilles rincées, tomates, lait de coco et 30 cl d'eau. Saler, mijoter 20 min en remuant : les lentilles doivent fondre.",
+        "Servir avec le riz et la coriandre.",
+    ], "INDIENNE", "VEGETARIEN"),
+
+    r("burgers-maison", "Burgers maison et potatoes", "Steaks hachés, cheddar, pain brioché, sauce maison, potatoes au four.", 25, 30, [
+        i("Bœuf haché", 600, "G", BO), i("Pain à burger", 4, "PIECE", BL), i("Cheddar", 4, "TRANCHE", FR), i("Tomate", 2, "PIECE", FL),
+        i("Oignon rouge", 1, "PIECE", FL), i("Salade", 4, "PIECE", FL), i("Cornichons", 8, "PIECE", EP), i("Mayonnaise", 3, "CAS", EP),
+        i("Ketchup", 2, "CAS", EP), i("Pommes de terre", 800, "G", FL), i("Paprika", 1, "CAC", EP), i("Huile d'olive", 3, "CAS", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Four à 220 °C. Pommes de terre en quartiers, huile, paprika, sel : 30 min sur une plaque.",
+        "Former 4 steaks de 150 g, saler, poivrer. Sauce : mayonnaise, ketchup, cornichons hachés.",
+        "Griller les steaks 3 min par face, poser le cheddar la dernière minute. Toaster les pains. Monter : sauce, salade, steak, tomate, oignon.",
+    ], "AMERICAINE", "BOEUF"),
+
+    r("navarin-agneau", "Navarin d'agneau printanier", "Épaule d'agneau mijotée avec carottes, navets, petits pois et pommes de terre.", 25, 90, [
+        i("Épaule d'agneau en morceaux", 1, "KG", BO), i("Carotte", 4, "PIECE", FL), i("Navet", 3, "PIECE", FL), i("Pommes de terre", 500, "G", FL),
+        i("Petits pois surgelés", 200, "G", SU), i("Oignon", 1, "PIECE", FL), i("Ail", 2, "GOUSSE", FL), i("Concentré de tomate", 1, "CAS", EP),
+        i("Farine", 1, "CAS", EP), i("Bouillon de volaille", 75, "CL", EP), i("Thym", 2, "PINCEE", EP), i("Huile", 2, "CAS", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Dorer l'agneau salé, poivré dans l'huile par petites quantités. Ajouter oignon et ail, singer avec la farine, ajouter le concentré, mouiller au bouillon, thym. Couvrir, mijoter 1 h.",
+        "Ajouter carottes, navets et pommes de terre en morceaux, 25 min. Petits pois les 5 dernières minutes.",
+    ], "FRANCAISE", "AGNEAU"),
+
+    r("quiche-saumon-epinards", "Quiche saumon et épinards", "Pâte brisée, saumon frais, épinards, appareil crème-œufs.", 20, 40, [
+        i("Pâte brisée", 1, "PIECE", FR), i("Pavé de saumon", 300, "G", BO), i("Épinards frais", 300, "G", FL), i("Œuf", 3, "PIECE", FR),
+        i("Crème fraîche épaisse", 20, "CL", FR), i("Lait", 10, "CL", FR), i("Gruyère râpé", 80, "G", FR), i("Noix de muscade", 1, "PINCEE", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Four à 180 °C. Épinards tombés 3 min dans une poêle, bien essorés. Saumon en dés.",
+        "Foncer le moule, répartir épinards et saumon. Fouetter œufs, crème, lait, muscade, sel, poivre, verser. Gruyère dessus.",
+        "Enfourner 35 à 40 min.",
+    ], "FRANCAISE", "POISSON"),
+
+    r("saute-veau-marengo", "Sauté de veau Marengo", "Veau mijoté à la tomate, champignons et vin blanc, tagliatelles.", 20, 75, [
+        i("Sauté de veau", 1, "KG", BO), i("Champignons de Paris", 250, "G", FL), i("Oignon", 1, "PIECE", FL), i("Ail", 2, "GOUSSE", FL),
+        i("Tomates concassées", 400, "G", EP), i("Concentré de tomate", 1, "CAS", EP), i("Vin blanc sec", 15, "CL", "BOISSONS"),
+        i("Farine", 1, "CAS", EP), i("Tagliatelles", 400, "G", EP), i("Huile d'olive", 2, "CAS", EP), i("Thym", 2, "PINCEE", EP), i("Sel", None, "NONE", EP), i("Poivre", None, "NONE", EP),
+    ], [
+        "Dorer le veau dans l'huile, ajouter oignon et ail, saupoudrer de farine, déglacer au vin blanc.",
+        "Ajouter tomates, concentré, thym, sel, poivre. Couvrir, mijoter 1 h. Ajouter les champignons émincés, 15 min de plus.",
+        "Servir avec les tagliatelles.",
+    ], "FRANCAISE", "VEAU"),
+
+    r("gnocchis-poelees-sauge", "Gnocchis poêlés beurre-sauge et parmesan", "Gnocchis dorés au beurre noisette, sauge croustillante, parmesan. 15 minutes.", 5, 10, [
+        i("Gnocchis", 800, "G", FR), i("Beurre", 80, "G", FR), i("Sauge", 12, "PIECE", FL), i("Parmesan râpé", 60, "G", FR),
+        i("Ail", 1, "GOUSSE", FL), i("Poivre", None, "NONE", EP), i("Sel", None, "NONE", EP),
+    ], [
+        "Plonger les gnocchis 2 min dans l'eau bouillante salée, égoutter dès qu'ils remontent.",
+        "Fondre le beurre avec l'ail écrasé et la sauge jusqu'à couleur noisette, retirer l'ail. Ajouter les gnocchis, dorer 5 min sans trop remuer.",
+        "Poivrer, parmesan, servir aussitôt.",
+    ], "ITALIENNE", "VEGETARIEN"),
+]
+
 d = json.load(open(CAT))
 have = {x["remoteId"] for x in d["recipes"]}
 added = [x for x in NEW if x["remoteId"] not in have]
