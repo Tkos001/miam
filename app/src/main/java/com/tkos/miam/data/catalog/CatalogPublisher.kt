@@ -28,7 +28,8 @@ object CatalogPublisher {
         fun rawUrl(p: String) = "https://raw.githubusercontent.com/$owner/$repo/$branch/$p"
     }
 
-    data class Result(val remoteId: String, val version: Int, val imageUrl: String?)
+    /** `publishedPhotos` : chemin local → index dans la liste d'images du catalogue (0 = illustration principale). */
+    data class Result(val remoteId: String, val version: Int, val imageUrl: String?, val publishedPhotos: Map<String, Int> = emptyMap())
 
     private val RAW = Regex("^https://raw\\.githubusercontent\\.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
     private val json = Json { prettyPrint = true; ignoreUnknownKeys = true; encodeDefaults = true; explicitNulls = false }
@@ -146,19 +147,24 @@ object CatalogPublisher {
                 s
             }
 
-            // Photo : envoyée si c'est une photo locale (pas une image déjà descendue du catalogue).
-            val localPhoto = d.recipe.imagePath?.takeIf { !File(it).name.startsWith("catalog-") }
-            var imageUrl = existing?.imageUrl ?: catalog.images.entries.firstOrNull { ShoppingAggregator.normalizeName(it.key) == key }?.value
-            if (localPhoto != null) {
-                encodeImage(localPhoto)?.let { img ->
-                    val imgPath = "${target.imagesDir}/$remoteId.jpg"
-                    val cur = runCatching { getFile(target, imgPath, token) }.getOrNull()
-                    putFile(target, imgPath, token, img, cur?.second, "Miam : photo de « ${d.recipe.name} »$by", author)
-                    imageUrl = target.rawUrl(imgPath)
-                }
+            // Images : les illustrations déjà dans le catalogue sont conservées, les photos perso sont envoyées à la suite.
+            val catalogUrls = (listOfNotNull(existing?.imageUrl) + (existing?.imageUrls ?: emptyList()))
+                .ifEmpty { listOfNotNull(catalog.images.entries.firstOrNull { ShoppingAggregator.normalizeName(it.key) == key }?.value) }
+                .toMutableList()
+            val published = mutableMapOf<String, Int>()
+            for (ph in d.gallery.filter { !it.isCatalog }) {
+                val img = encodeImage(ph.path) ?: continue
+                val index = catalogUrls.size
+                val imgPath = "${target.imagesDir}/$remoteId" + (if (index == 0) "" else "-$index") + ".jpg"
+                val cur = runCatching { getFile(target, imgPath, token) }.getOrNull()
+                putFile(target, imgPath, token, img, cur?.second, "Miam : photo de « ${d.recipe.name} »$by", author)
+                catalogUrls.add(target.rawUrl(imgPath))
+                published[ph.path] = index
             }
+            val imageUrl = catalogUrls.firstOrNull()
+            val imageUrls = catalogUrls.drop(1)
 
-            val dto: RecipeDto = BackupCodec.toDto(d).copy(isFavorite = false, sourceUrl = null, remoteId = remoteId, imageUrl = imageUrl)
+            val dto: RecipeDto = BackupCodec.toDto(d).copy(isFavorite = false, sourceUrl = null, remoteId = remoteId, imageUrl = imageUrl, imageUrls = imageUrls)
             val recipes = catalog.recipes.filterNot { it === existing }.toMutableList()
             val idx = catalog.recipes.indexOf(existing)
             if (idx >= 0) recipes.add(idx, dto) else recipes.add(dto)
@@ -172,7 +178,7 @@ object CatalogPublisher {
             try {
                 putFile(target, target.path, token, text.toByteArray(Charsets.UTF_8), sha,
                     "Miam : « ${d.recipe.name} » publiée$by (catalogue v${updated.version})", author)
-                return@withContext Result(remoteId, updated.version, imageUrl)
+                return@withContext Result(remoteId, updated.version, imageUrl, published)
             } catch (e: IllegalStateException) {
                 if (attempt < 3 && e.message?.startsWith("Conflit") == true) continue
                 throw e

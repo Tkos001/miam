@@ -12,7 +12,9 @@ import com.tkos.miam.data.model.ExtraItem
 import com.tkos.miam.data.model.Ingredient
 import com.tkos.miam.data.model.PlanEntry
 import com.tkos.miam.data.model.PlanEntryWithRecipe
+import com.tkos.miam.data.model.PhotoSource
 import com.tkos.miam.data.model.Recipe
+import com.tkos.miam.data.model.RecipePhoto
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.ShoppingCheck
 import com.tkos.miam.data.model.Slot
@@ -54,7 +56,8 @@ class MiamRepository(private val context: Context) {
     suspend fun getRecipe(id: Long): RecipeWithDetails? = recipeDao.getWithDetails(id)
 
     suspend fun saveRecipe(recipe: Recipe, ingredients: List<Ingredient>, steps: List<Step>): Long {
-        val id = recipeDao.upsertFull(recipe, ingredients, steps)
+        val cover = if (recipe.id != 0L) recipeDao.getById(recipe.id)?.imagePath else null
+        val id = recipeDao.upsertFull(recipe.copy(imagePath = cover), ingredients, steps)
         // Modifiée dans l'app : la sync du catalogue ne doit plus l'écraser tant qu'elle n'est pas publiée.
         if (recipe.id != 0L) settings.setRecipeDirty(id, true)
         return id
@@ -63,6 +66,7 @@ class MiamRepository(private val context: Context) {
     suspend fun setFavorite(id: Long, favorite: Boolean) = recipeDao.setFavorite(id, favorite)
 
     suspend fun deleteRecipe(id: Long) {
+        recipeDao.getPhotos(id).forEach { deleteImage(it.path) }
         recipeDao.getById(id)?.imagePath?.let { deleteImage(it) }
         recipeDao.deleteRecipe(id)
         settings.setRecipeDirty(id, false)
@@ -71,10 +75,22 @@ class MiamRepository(private val context: Context) {
     /** Duplique une recette (utile pour adapter une recette de base). */
     suspend fun duplicateRecipe(id: Long): Long? {
         val d = recipeDao.getWithDetails(id) ?: return null
-        return recipeDao.upsertFull(
-            d.recipe.copy(id = 0, name = d.recipe.name + " (copie)", isBuiltIn = false, isFavorite = false, createdAt = System.currentTimeMillis()),
+        val newId = recipeDao.upsertFull(
+            d.recipe.copy(id = 0, name = d.recipe.name + " (copie)", imagePath = null, remoteId = null, sourceUrl = null,
+                isBuiltIn = false, isFavorite = false, createdAt = System.currentTimeMillis()),
             d.sortedIngredients, d.sortedSteps,
         )
+        withContext(Dispatchers.IO) {
+            for (ph in d.gallery) {
+                val src = File(ph.path); if (!src.exists()) continue
+                val dst = File(File(context.filesDir, "images").apply { mkdirs() }, "${UUID.randomUUID()}.jpg")
+                runCatching { src.copyTo(dst) }.onSuccess {
+                    recipeDao.insertPhoto(RecipePhoto(recipeId = newId, path = dst.absolutePath, source = PhotoSource.USER.name, position = ph.position))
+                    if (ph.path == d.recipe.imagePath) recipeDao.setCover(newId, dst.absolutePath)
+                }
+            }
+        }
+        return newId
     }
 
     // ---------- Planning (le « panier ») ----------
@@ -114,6 +130,28 @@ class MiamRepository(private val context: Context) {
     suspend fun updateExtra(item: ExtraItem) = shoppingDao.updateExtra(item)
     suspend fun deleteExtra(item: ExtraItem) = shoppingDao.deleteExtra(item)
     suspend fun deleteCheckedExtras() = shoppingDao.deleteCheckedExtras()
+
+    // ---------- Photos (galerie) ----------
+    fun photos(recipeId: Long): Flow<List<RecipePhoto>> = recipeDao.observePhotos(recipeId)
+
+    /** Ajoute une photo choisie par l'utilisateur. Ne marque PAS la recette comme modifiée (les photos ne bloquent pas la sync). */
+    suspend fun addPhoto(recipeId: Long, uri: Uri): RecipePhoto? {
+        val path = importImage(uri) ?: return null
+        val pos = (recipeDao.getPhotos(recipeId).maxOfOrNull { it.position } ?: -1) + 1
+        val photo = RecipePhoto(recipeId = recipeId, path = path, source = PhotoSource.USER.name, position = pos)
+        val id = recipeDao.insertPhoto(photo)
+        if (recipeDao.getById(recipeId)?.imagePath == null) recipeDao.setCover(recipeId, path)
+        return photo.copy(id = id)
+    }
+
+    suspend fun removePhoto(photo: RecipePhoto) {
+        recipeDao.deletePhoto(photo.id)
+        deleteImage(photo.path)
+        val recipe = recipeDao.getById(photo.recipeId) ?: return
+        if (recipe.imagePath == photo.path) recipeDao.setCover(photo.recipeId, recipeDao.getPhotos(photo.recipeId).firstOrNull()?.path)
+    }
+
+    suspend fun setCover(recipeId: Long, path: String) = recipeDao.setCover(recipeId, path)
 
     // ---------- Images ----------
     /** Copie une image choisie par l'utilisateur dans le stockage interne, retourne le chemin. */
@@ -188,8 +226,9 @@ class MiamRepository(private val context: Context) {
             val existing = recipeDao.getByRemoteId(remoteId)
                 ?: byName[ShoppingAggregator.normalizeName(dto.name)]?.recipe?.takeIf { it.remoteId == null }
             if (existing != null && existing.id in dirty) {
-                // Modifiée localement, non publiée : on rattache l'id distant mais on garde le contenu local.
+                // Modifiée localement, non publiée : on rattache l'id distant, on garde le contenu local, on met à jour les images.
                 if (existing.remoteId != remoteId) recipeDao.updateRecipe(existing.copy(remoteId = remoteId, sourceUrl = url))
+                applyCatalogImages(existing.id, remoteId, dto.imageUrl, dto.imageUrls, force)
                 continue
             }
             val toSave = if (existing != null) {
@@ -203,37 +242,58 @@ class MiamRepository(private val context: Context) {
                 recipe
             }
             val id = recipeDao.upsertFull(toSave, ings, steps)
-            applyCatalogImage(id, remoteId, dto.imageUrl, force)
+            applyCatalogImages(id, remoteId, dto.imageUrl, dto.imageUrls, force)
             recipeDao.getWithDetails(id)?.let { byName[ShoppingAggregator.normalizeName(it.recipe.name)] = it }
         }
         // Illustrations des recettes locales (plats de base) désignées par leur nom.
         for ((name, imageUrl) in file.images) {
             val local = byName[ShoppingAggregator.normalizeName(name)]?.recipe ?: continue
-            applyCatalogImage(local.id, "img-" + ShoppingAggregator.normalizeName(name), imageUrl, force)
+            applyCatalogImages(local.id, "img-" + ShoppingAggregator.normalizeName(name), imageUrl, emptyList(), force)
         }
         settings.setCatalogSynced(file.version, System.currentTimeMillis())
         return CatalogSyncResult.Updated(file.version, added, updated)
     }
 
     /**
-     * Télécharge l'image du catalogue dans le stockage interne (`images/catalog-<remoteId>.jpg`)
-     * et l'associe à la recette. Une photo choisie par l'utilisateur n'est jamais écrasée.
-     * Échec réseau = silencieux (la recette reste sans image, réessayé à la prochaine sync).
+     * Télécharge les images du catalogue (illustration + photos publiées) dans `images/catalog-<remoteId>[-N].jpg`
+     * et les ajoute à la galerie de la recette (source CATALOG). Les photos perso ne sont jamais touchées.
+     * La couverture n'est définie que si la recette n'en a pas. Échec réseau = silencieux, réessayé à la prochaine sync.
      */
-    private suspend fun applyCatalogImage(recipeId: Long, remoteId: String, imageUrl: String?, force: Boolean) {
-        if (imageUrl.isNullOrBlank()) return
-        val recipe = recipeDao.getById(recipeId) ?: return
-        val current = recipe.imagePath
-        val isCatalogImage = current == null || File(current).name.startsWith("catalog-") || !File(current).exists()
-        if (!isCatalogImage) return
+    private suspend fun applyCatalogImages(recipeId: Long, remoteId: String, imageUrl: String?, imageUrls: List<String>, force: Boolean) {
+        val urls = (listOfNotNull(imageUrl) + imageUrls).filter { it.isNotBlank() }.distinct()
+        if (urls.isEmpty()) return
         val dir = File(context.filesDir, "images").apply { mkdirs() }
         val safe = remoteId.replace(Regex("[^A-Za-z0-9._-]"), "_")
-        val dest = File(dir, "catalog-$safe.jpg")
-        if (dest.exists() && !force && current == dest.absolutePath) return
-        withContext(Dispatchers.IO) {
-            runCatching { com.tkos.miam.data.catalog.Http.download(imageUrl, dest) }
-                .onSuccess { recipeDao.updateRecipe(recipe.copy(imagePath = dest.absolutePath)) }
+        urls.forEachIndexed { n, u ->
+            val dest = File(dir, if (n == 0) "catalog-$safe.jpg" else "catalog-$safe-$n.jpg")
+            val known = recipeDao.getPhoto(recipeId, dest.absolutePath)
+            if (known != null && dest.exists() && !force) return@forEachIndexed
+            val ok = dest.exists() && !force || withContext(Dispatchers.IO) { runCatching { com.tkos.miam.data.catalog.Http.download(u, dest) }.isSuccess }
+            if (!ok) return@forEachIndexed
+            if (known == null) recipeDao.insertPhoto(RecipePhoto(recipeId = recipeId, path = dest.absolutePath, source = PhotoSource.CATALOG.name, position = n))
+            val recipe = recipeDao.getById(recipeId) ?: return
+            if (recipe.imagePath == null || !File(recipe.imagePath).exists()) recipeDao.setCover(recipeId, dest.absolutePath)
         }
+    }
+
+    /**
+     * Abandonne les modifications locales d'une recette et reprend la version du catalogue
+     * (ingrédients, étapes, infos). Photos perso et favori conservés.
+     */
+    suspend fun revertToCatalog(recipeId: Long): kotlin.Result<String> = runCatching {
+        val s = settings.settings.first()
+        val local = recipeDao.getById(recipeId) ?: error("Recette introuvable")
+        val remoteId = local.remoteId ?: error("Cette recette ne vient pas du catalogue")
+        val file = Catalog.fetch(catalogUrl(s), bustCache = true)
+        val dto = file.recipes.firstOrNull { it.remoteId == remoteId } ?: error("Recette absente du catalogue")
+        val (recipe, ings, steps) = BackupCodec.fromDto(dto.copy(sourceUrl = catalogUrl(s)))
+        recipeDao.upsertFull(
+            recipe.copy(id = local.id, imagePath = local.imagePath, isFavorite = local.isFavorite, isBuiltIn = local.isBuiltIn, createdAt = local.createdAt),
+            ings, steps,
+        )
+        settings.setRecipeDirty(recipeId, false)
+        applyCatalogImages(recipeId, remoteId, dto.imageUrl, dto.imageUrls, false)
+        "Version du catalogue restaurée"
     }
 
     /**
@@ -248,6 +308,18 @@ class MiamRepository(private val context: Context) {
         val r = com.tkos.miam.data.catalog.CatalogPublisher.publish(d, url, s.githubToken, s.contributorName)
         if (d.recipe.remoteId != r.remoteId || d.recipe.sourceUrl != url) {
             recipeDao.updateRecipe(d.recipe.copy(remoteId = r.remoteId, sourceUrl = url))
+        }
+        // Les photos perso publiées deviennent des images du catalogue (même nom de fichier que la sync), pour ne pas les dupliquer.
+        val dir = File(context.filesDir, "images")
+        val safe = r.remoteId.replace(Regex("[^A-Za-z0-9._-]"), "_")
+        for ((localPath, index) in r.publishedPhotos) {
+            val photo = recipeDao.getPhoto(recipeId, localPath) ?: continue
+            val dest = File(dir, if (index == 0) "catalog-$safe.jpg" else "catalog-$safe-$index.jpg")
+            if (File(localPath).renameTo(dest) || runCatching { File(localPath).copyTo(dest, overwrite = true); File(localPath).delete() }.isSuccess) {
+                recipeDao.deletePhoto(photo.id)
+                recipeDao.insertPhoto(photo.copy(id = 0, path = dest.absolutePath, source = PhotoSource.CATALOG.name, position = index))
+                if (recipeDao.getById(recipeId)?.imagePath == localPath) recipeDao.setCover(recipeId, dest.absolutePath)
+            }
         }
         settings.setRecipeDirty(recipeId, false)
         settings.setCatalogSynced(r.version, System.currentTimeMillis())

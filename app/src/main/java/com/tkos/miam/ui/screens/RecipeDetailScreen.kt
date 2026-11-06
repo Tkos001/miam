@@ -23,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.CalendarMonth
 import androidx.compose.material.icons.filled.CloudUpload
+import androidx.compose.material.icons.filled.Restore
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -163,6 +164,16 @@ fun RecipeDetailScreen(
                                     }
                                 },
                             )
+                            if (d.recipe.id in appSettings.dirtyRecipeIds && d.recipe.remoteId != null) {
+                                DropdownMenuItem(
+                                    text = { Text("Reprendre la version du catalogue") },
+                                    leadingIcon = { Icon(Icons.Default.Restore, contentDescription = null) },
+                                    onClick = {
+                                        menuOpen = false
+                                        scope.launch { snackbar.showSnackbar(repository.revertToCatalog(d.recipe.id).getOrElse { "Échec : ${it.message}" }) }
+                                    },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text("Supprimer", color = MaterialTheme.colorScheme.error) },
                                 leadingIcon = { Icon(Icons.Default.Delete, contentDescription = null, tint = MaterialTheme.colorScheme.error) },
@@ -187,8 +198,38 @@ fun RecipeDetailScreen(
             contentPadding = PaddingValues(bottom = padding.calculateBottomPadding() + 96.dp),
         ) {
             item {
-                // ---- Carte « header » : image + titre ----
-                RecipeImage(d.recipe.imagePath, Modifier.fillMaxWidth().height(260.dp), fallbackIconSize = 64)
+                // ---- Carte « header » : galerie (illustration du catalogue + photos perso) + titre ----
+                val gallery = d.gallery.filter { java.io.File(it.path).exists() }
+                if (gallery.size <= 1) {
+                    RecipeImage(gallery.firstOrNull()?.path ?: d.recipe.imagePath, Modifier.fillMaxWidth().height(260.dp), fallbackIconSize = 64)
+                } else {
+                    val pager = rememberPagerState(pageCount = { gallery.size })
+                    Box(Modifier.fillMaxWidth().height(260.dp)) {
+                        HorizontalPager(state = pager, modifier = Modifier.fillMaxSize()) { page ->
+                            RecipeImage(gallery[page].path, Modifier.fillMaxSize(), fallbackIconSize = 64)
+                        }
+                        Row(
+                            Modifier.align(Alignment.BottomCenter).padding(bottom = 10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                        ) {
+                            repeat(gallery.size) { i ->
+                                Box(
+                                    Modifier.size(if (i == pager.currentPage) 10.dp else 7.dp)
+                                        .clip(androidx.compose.foundation.shape.CircleShape)
+                                        .background(if (i == pager.currentPage) Color.White else Color.White.copy(alpha = 0.55f))
+                                )
+                            }
+                        }
+                        val label = if (gallery[pager.currentPage].isCatalog) "Illustration" else "Photo"
+                        Text(
+                            label,
+                            style = MaterialTheme.typography.labelSmall,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.TopEnd).padding(10.dp)
+                                .clip(MaterialTheme.shapes.small).background(Color.Black.copy(alpha = 0.4f)).padding(horizontal = 8.dp, vertical = 3.dp),
+                        )
+                    }
+                }
                 Column(Modifier.padding(horizontal = 20.dp)) {
                     Text(d.recipe.name, style = MaterialTheme.typography.headlineMedium, modifier = Modifier.padding(top = 16.dp))
                     if (d.recipe.description.isNotBlank()) {

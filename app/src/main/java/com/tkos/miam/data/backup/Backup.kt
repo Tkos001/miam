@@ -36,6 +36,8 @@ data class RecipeDto(
     val remoteId: String? = null,
     /** Image distante (catalogue) : téléchargée à la sync, jamais utilisée pour l'export local. */
     val imageUrl: String? = null,
+    /** Photos supplémentaires (galerie), publiées depuis l'app. */
+    val imageUrls: List<String> = emptyList(),
     val ingredients: List<IngredientDto> = emptyList(),
     val steps: List<String> = emptyList(),
 )

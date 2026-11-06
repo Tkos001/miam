@@ -12,6 +12,7 @@ import com.tkos.miam.data.model.Ingredient
 import com.tkos.miam.data.model.PlanEntry
 import com.tkos.miam.data.model.PlanEntryWithRecipe
 import com.tkos.miam.data.model.Recipe
+import com.tkos.miam.data.model.RecipePhoto
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.ShoppingCheck
 import com.tkos.miam.data.model.Step
@@ -78,6 +79,28 @@ interface RecipeDao {
 
     @Query("DELETE FROM steps WHERE recipeId = :recipeId")
     suspend fun deleteStepsOf(recipeId: Long)
+
+    // ---- Photos ----
+    @Query("SELECT * FROM recipe_photos WHERE recipeId = :recipeId ORDER BY position, createdAt")
+    fun observePhotos(recipeId: Long): Flow<List<RecipePhoto>>
+
+    @Query("SELECT * FROM recipe_photos WHERE recipeId = :recipeId ORDER BY position, createdAt")
+    suspend fun getPhotos(recipeId: Long): List<RecipePhoto>
+
+    @Query("SELECT * FROM recipe_photos WHERE recipeId = :recipeId AND path = :path LIMIT 1")
+    suspend fun getPhoto(recipeId: Long, path: String): RecipePhoto?
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertPhoto(photo: RecipePhoto): Long
+
+    @Update
+    suspend fun updatePhoto(photo: RecipePhoto)
+
+    @Query("DELETE FROM recipe_photos WHERE id = :id")
+    suspend fun deletePhoto(id: Long)
+
+    @Query("UPDATE recipes SET imagePath = :path WHERE id = :id")
+    suspend fun setCover(id: Long, path: String?)
 
     /** Insère ou remplace une recette complète (ingrédients + étapes). Retourne l'id. */
     @Transaction

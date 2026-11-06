@@ -87,8 +87,14 @@ catalogue » : l'app relit `data/recipes.json`, remplace/ajoute l'entrée (clé 
 incrémente `version`, envoie la photo locale dans `data/images/<remoteId>.jpg` et commite.
 Plusieurs personnes peuvent partager un token (un token par téléphone, révocable séparément) : le
 champ « prénom » des paramètres devient l'auteur des commits.
+**Photos** : chaque recette a une galerie (table `recipe_photos`) : l'illustration du catalogue
+(`imageUrl`) et les photos publiées (`imageUrls`) sont descendues à la sync (source CATALOG), les photos
+prises sur le téléphone s'ajoutent à côté (source USER) sans rien écraser. ★ dans l'édition choisit la
+couverture affichée dans les listes. Ajouter ou retirer une photo ne marque pas la recette comme
+modifiée ; la publication envoie les photos perso dans `data/images/<remoteId>-N.jpg`.
 Une recette modifiée dans l'app n'est plus écrasée par la sync tant qu'elle n'est pas publiée
-(badge « Modifiée ici, pas encore publiée »).
+(badge « Modifiée ici, pas encore publiée ») ; le menu « ⋮ » propose alors « Reprendre la version du
+catalogue » pour abandonner les modifications locales.
 
 Règles de fusion côté app : une recette est reconnue par son `remoteId` (à défaut par son nom si la
 recette locale n'a pas de `remoteId`). Favori, photo et id local sont conservés ; ingrédients et

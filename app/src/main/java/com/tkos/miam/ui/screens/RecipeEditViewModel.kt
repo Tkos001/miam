@@ -43,7 +43,8 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
 
     var name by mutableStateOf("")
     var description by mutableStateOf("")
-    var imagePath by mutableStateOf<String?>(null)
+    /** Photos à ajouter après création (nouvelle recette uniquement). */
+    val pendingPhotos = mutableStateListOf<Uri>()
     var prepMinutes by mutableStateOf("")
     var cookMinutes by mutableStateOf("")
     var servings by mutableStateOf(4)
@@ -62,7 +63,6 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
                     original = d.recipe
                     name = d.recipe.name
                     description = d.recipe.description
-                    imagePath = d.recipe.imagePath
                     prepMinutes = d.recipe.prepMinutes?.toString() ?: ""
                     cookMinutes = d.recipe.cookMinutes?.toString() ?: ""
                     servings = d.recipe.servings
@@ -115,20 +115,15 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
         list.add(j, item)
     }
 
-    fun pickImage(uri: Uri) {
-        viewModelScope.launch {
-            val path = repository.importImage(uri)
-            if (path != null) {
-                imagePath?.takeIf { it != original?.imagePath }?.let { repository.deleteImage(it) }
-                imagePath = path
-            }
-        }
+    /** Ajoute une photo : immédiat pour une recette existante, différé à l'enregistrement pour une nouvelle. */
+    fun addPhoto(uri: Uri) {
+        if (recipeId != null) viewModelScope.launch { repository.addPhoto(recipeId, uri) }
+        else pendingPhotos.add(uri)
     }
 
-    fun removeImage() {
-        imagePath?.takeIf { it != original?.imagePath }?.let { repository.deleteImage(it) }
-        imagePath = null
-    }
+    fun removePendingPhoto(uri: Uri) { pendingPhotos.remove(uri) }
+    fun removePhoto(photo: com.tkos.miam.data.model.RecipePhoto) { viewModelScope.launch { repository.removePhoto(photo) } }
+    fun setCover(photo: com.tkos.miam.data.model.RecipePhoto) { viewModelScope.launch { repository.setCover(photo.recipeId, photo.path) } }
 
     fun save(onSaved: (Long) -> Unit) {
         if (name.isBlank()) { error = "Donne un nom au plat."; return }
@@ -140,17 +135,15 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
             val recipe = base.copy(
                 name = name.trim(),
                 description = description.trim(),
-                imagePath = imagePath,
                 prepMinutes = prepMinutes.trim().toIntOrNull(),
                 cookMinutes = cookMinutes.trim().toIntOrNull(),
                 servings = servings.coerceIn(1, 30),
                 cuisine = cuisine.name,
                 isBuiltIn = false,
             )
-            if (original?.imagePath != null && original?.imagePath != imagePath) {
-                repository.deleteImage(original!!.imagePath!!)
-            }
             val id = repository.saveRecipe(recipe, ings, sts)
+            for (uri in pendingPhotos) repository.addPhoto(id, uri)
+            pendingPhotos.clear()
             saving = false
             onSaved(id)
         }

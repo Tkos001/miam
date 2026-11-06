@@ -4,6 +4,15 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.clickable
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.ui.graphics.Color
+import androidx.compose.material.icons.filled.StarBorder
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -71,9 +80,13 @@ fun RecipeEditScreen(
         key = "edit_${recipeId ?: "new"}",
         factory = viewModelFactory { initializer { RecipeEditViewModel(repository, recipeId) } },
     )
-    val picker = rememberLauncherForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) vm.pickImage(uri)
+    val picker = rememberLauncherForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(10)) { uris ->
+        uris.forEach { vm.addPhoto(it) }
     }
+    val photos by (if (recipeId != null) repository.photos(recipeId) else kotlinx.coroutines.flow.flowOf(emptyList()))
+        .collectAsStateWithLifecycle(initialValue = emptyList())
+    val coverPath by (if (recipeId != null) repository.recipe(recipeId) else kotlinx.coroutines.flow.flowOf(null))
+        .collectAsStateWithLifecycle(initialValue = null)
     LaunchedEffect(vm.error) {
         if (vm.error != null) {
             kotlinx.coroutines.delay(2500)
@@ -101,30 +114,59 @@ fun RecipeEditScreen(
             contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            // ---- Image ----
+            // ---- Photos (galerie) ----
             item {
-                Box(
-                    Modifier
-                        .fillMaxWidth()
-                        .height(180.dp)
-                        .clip(MaterialTheme.shapes.large)
-                        .clickable { picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
-                ) {
-                    RecipeImage(vm.imagePath, Modifier.fillMaxSize(), fallbackIconSize = 48)
-                    Row(
-                        Modifier.align(Alignment.BottomEnd).padding(8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(6.dp),
-                    ) {
-                        if (vm.imagePath != null) {
-                            OutlinedButton(onClick = { vm.removeImage() }) { Text("Retirer") }
+                Text("Photos", style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 6.dp)) {
+                    items(photos, key = { it.id }) { ph ->
+                        val isCover = ph.path == coverPath?.recipe?.imagePath
+                        Box(Modifier.size(120.dp).clip(MaterialTheme.shapes.medium)) {
+                            RecipeImage(ph.path, Modifier.fillMaxSize(), fallbackIconSize = 32)
+                            Text(
+                                if (ph.isCatalog) "Illustration" else "Photo",
+                                style = MaterialTheme.typography.labelSmall, color = Color.White,
+                                modifier = Modifier.align(Alignment.TopStart).padding(6.dp)
+                                    .clip(MaterialTheme.shapes.extraSmall).background(Color.Black.copy(alpha = 0.45f)).padding(horizontal = 6.dp, vertical = 2.dp),
+                            )
+                            Row(Modifier.align(Alignment.BottomEnd).padding(4.dp)) {
+                                IconButton(onClick = { vm.setCover(ph) }, modifier = Modifier.size(30.dp)) {
+                                    Icon(if (isCover) Icons.Default.Star else Icons.Default.StarBorder, contentDescription = "Couverture", tint = Color(0xFFFFD54F))
+                                }
+                                if (!ph.isCatalog) {
+                                    IconButton(onClick = { vm.removePhoto(ph) }, modifier = Modifier.size(30.dp)) {
+                                        Icon(Icons.Default.Delete, contentDescription = "Retirer", tint = Color.White)
+                                    }
+                                }
+                            }
                         }
-                        Button(onClick = { picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }) {
-                            Icon(Icons.Default.AddAPhoto, contentDescription = null, modifier = Modifier.size(18.dp))
-                            Spacer(Modifier.width(6.dp))
-                            Text(if (vm.imagePath == null) "Photo" else "Changer")
+                    }
+                    items(vm.pendingPhotos, key = { it.toString() }) { uri ->
+                        Box(Modifier.size(120.dp).clip(MaterialTheme.shapes.medium)) {
+                            coil.compose.AsyncImage(model = uri, contentDescription = null, contentScale = androidx.compose.ui.layout.ContentScale.Crop, modifier = Modifier.fillMaxSize())
+                            IconButton(onClick = { vm.removePendingPhoto(uri) }, modifier = Modifier.align(Alignment.BottomEnd).padding(4.dp).size(30.dp)) {
+                                Icon(Icons.Default.Delete, contentDescription = "Retirer", tint = Color.White)
+                            }
+                        }
+                    }
+                    item {
+                        Box(
+                            Modifier.size(120.dp).clip(MaterialTheme.shapes.medium)
+                                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                                .clickable { picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                Icon(Icons.Default.AddAPhoto, contentDescription = null)
+                                Text("Ajouter", style = MaterialTheme.typography.labelMedium, modifier = Modifier.padding(top = 4.dp))
+                            }
                         }
                     }
                 }
+                Text(
+                    "L'illustration du catalogue reste ; tes photos s'ajoutent à côté. ★ = image affichée dans les listes.",
+                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 4.dp),
+                )
             }
             // ---- Infos ----
             item {

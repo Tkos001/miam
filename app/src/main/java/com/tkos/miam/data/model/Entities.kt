@@ -74,16 +74,49 @@ data class Step(
     val imagePath: String? = null,
 )
 
-/** Recette complète avec ses ingrédients et ses étapes. */
+/**
+ * Photo d'une recette (galerie). `source` = CATALOG (illustration descendue du catalogue, régénérée à la sync)
+ * ou USER (photo prise/choisie sur ce téléphone). Les deux coexistent : ajouter une photo n'enlève pas l'illustration.
+ */
+@Entity(
+    tableName = "recipe_photos",
+    foreignKeys = [ForeignKey(
+        entity = Recipe::class,
+        parentColumns = ["id"],
+        childColumns = ["recipeId"],
+        onDelete = ForeignKey.CASCADE,
+    )],
+    indices = [Index("recipeId"), Index(value = ["recipeId", "path"], unique = true)],
+)
+data class RecipePhoto(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val recipeId: Long,
+    val path: String,
+    val source: String = PhotoSource.USER.name,
+    val position: Int = 0,
+    val createdAt: Long = System.currentTimeMillis(),
+) {
+    val isCatalog: Boolean get() = source == PhotoSource.CATALOG.name
+}
+
+enum class PhotoSource { CATALOG, USER }
+
+/** Recette complète avec ses ingrédients, ses étapes et ses photos. */
 data class RecipeWithDetails(
     @Embedded val recipe: Recipe,
     @Relation(parentColumn = "id", entityColumn = "recipeId")
     val ingredients: List<Ingredient>,
     @Relation(parentColumn = "id", entityColumn = "recipeId")
     val steps: List<Step>,
+    @Relation(parentColumn = "id", entityColumn = "recipeId")
+    val photos: List<RecipePhoto> = emptyList(),
 ) {
     val sortedIngredients: List<Ingredient> get() = ingredients.sortedBy { it.position }
     val sortedSteps: List<Step> get() = steps.sortedBy { it.position }
+    /** Galerie : couverture d'abord, puis illustrations du catalogue, puis photos perso. */
+    val gallery: List<RecipePhoto> get() = photos.sortedWith(
+        compareBy<RecipePhoto> { it.path != recipe.imagePath }.thenBy { !it.isCatalog }.thenBy { it.position }.thenBy { it.createdAt }
+    )
 }
 
 /** Une case du planning : un plat prévu tel jour, midi ou soir, pour N personnes. */
