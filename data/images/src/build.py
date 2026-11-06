@@ -703,6 +703,227 @@ def boulettes_tomate():
     return s
 
 
+# ---------------------------------------------------------------- lot 3
+
+def curry_poulet_coco():
+    rng = random.Random(31)
+    s = bowl(560, 400, 280, 92, 190, "#E8DCC8", "#E6A23C")
+    s += '<ellipse cx="560" cy="392" rx="240" ry="66" fill="#EDB04A"/>'
+    for (x, y) in [(460, 390), (560, 375), (650, 395), (520, 420), (610, 425)]:
+        s += f'<rect x="{x-32}" y="{y-20}" width="64" height="40" rx="14" fill="#F3E3C5" stroke="#D8B98A" stroke-width="3"/>'
+    s += dots(rng, 560, 395, 220, 55, 14, 3, 6, ["#C8841E"])
+    s += '<path d="M 420 370 C 480 350 640 350 700 370" fill="none" stroke="#FFF6E0" stroke-width="10" opacity="0.7" stroke-linecap="round"/>'
+    s += herbs([(500, 365, -20), (620, 360, 30)], "#2F7A2A")
+    s += bowl(960, 520, 140, 45, 95, "#E8DCC8", "#FFFDF5")
+    s += '<g fill="#FFFDF5" stroke="#E6DDD0" stroke-width="1">'
+    for _ in range(45):
+        x, y = rng.uniform(850, 1070), rng.uniform(490, 545)
+        s += f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="9" ry="3.5" transform="rotate({rng.uniform(0,180):.0f} {x:.0f} {y:.0f})"/>'
+    s += '</g>'
+    s += steam(560, 240, 4, 60)
+    s += spoon(220, 330, -30)
+    return s
+
+
+def gratin_pates_jambon():
+    rng = random.Random(32)
+    s = dish()
+    s += '<rect x="262" y="320" width="676" height="236" rx="26" fill="#F3DDA0"/>'
+    s += '<g fill="#F7E7B0" stroke="#E0B95A" stroke-width="3">'
+    for _ in range(70):
+        x, y, rot = rng.uniform(280, 900), rng.uniform(330, 530), rng.uniform(0, 360)
+        s += f'<path d="M {x:.0f} {y:.0f} a 14 14 0 1 1 20 0" fill="none" stroke-width="10" transform="rotate({rot:.0f} {x+10:.0f} {y:.0f})"/>'
+    s += '</g>'
+    for _ in range(16):
+        x, y, rot = rng.uniform(290, 890), rng.uniform(340, 520), rng.uniform(0, 180)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="26" height="22" rx="4" fill="#F0A8A0" stroke="#D88A82" stroke-width="2" transform="rotate({rot:.0f} {x+13:.0f} {y+11:.0f})"/>'
+    s += '<path d="M 250 335 C 400 300 800 300 950 335 C 940 420 900 500 850 560 L 350 560 C 300 500 260 420 250 335 Z" fill="url(#cheese)" opacity="0.5"/>'
+    s += dots(rng, 600, 440, 300, 90, 26, 5, 10, ["#C8841E", "#B86A1E"])
+    s += steam(600, 250)
+    s += spoon(1060, 320, 28)
+    return s
+
+
+def escalopes_milanaise():
+    rng = random.Random(33)
+    s = plate(600, 450, 440, 250)
+    # spaghetti tomate à droite
+    s += '<ellipse cx="800" cy="470" rx="190" ry="110" fill="#F5D27E"/>'
+    s += '<g fill="none" stroke="#F2C86B" stroke-width="12" stroke-linecap="round">'
+    for i in range(30):
+        a = rng.uniform(0, 2 * math.pi)
+        x1, y1 = 800 + math.cos(a) * rng.uniform(60, 180), 470 + math.sin(a) * rng.uniform(40, 100)
+        s += f'<path d="M {x1:.0f} {y1:.0f} q {rng.uniform(-90,90):.0f} {rng.uniform(-60,60):.0f} {rng.uniform(-150,150):.0f} {rng.uniform(-90,90):.0f}"/>'
+    s += '</g>'
+    s += '<path d="M 700 460 C 720 410 820 400 880 430 C 920 460 880 520 820 525 C 760 528 690 510 700 460 Z" fill="#C9302C" opacity="0.9"/>'
+    s += herbs([(820, 420, 20)], "#2F7A2A")
+    # escalopes panées
+    for (x, y, r) in [(430, 430, -8), (520, 500, 6)]:
+        s += f'<g transform="rotate({r} {x} {y})"><ellipse cx="{x+6}" cy="{y+12}" rx="150" ry="85" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/>'
+        s += f'<path d="M {x-150} {y} C {x-140} {y-70} {x-40} {y-90} {x+40} {y-80} C {x+130} {y-70} {x+160} {y-20} {x+150} {y+30} C {x+140} {y+80} {x+40} {y+95} {x-50} {y+85} C {x-130} {y+75} {x-160} {y+50} {x-150} {y} Z" fill="url(#gold)" stroke="#B9802C" stroke-width="3"/>'
+        s += dots(rng, x, y, 130, 70, 40, 2, 5, ["#B9802C", "#FFF1B0", "#D9932B"]) + '</g>'
+    # citron
+    s += '<path d="M 300 580 A 55 55 0 0 1 355 525 L 355 580 Z" fill="#F9E05A" stroke="#D9B720" stroke-width="4"/><path d="M 310 576 A 45 45 0 0 1 351 535 L 351 576 Z" fill="#FFF6A8"/>'
+    s += steam(480, 300, 2, 70)
+    s += fork(1040, 290, 35)
+    return s
+
+
+def wok_boeuf():
+    rng = random.Random(34)
+    s = bowl(600, 400, 300, 95, 170, "#2A2A2A", "#3E2A1A")
+    # nouilles
+    s += '<g fill="none" stroke="#F1D27A" stroke-width="9" stroke-linecap="round">'
+    for i in range(40):
+        a = rng.uniform(0, 2 * math.pi)
+        x1, y1 = 600 + math.cos(a) * rng.uniform(80, 260), 395 + math.sin(a) * rng.uniform(30, 70)
+        s += f'<path d="M {x1:.0f} {y1:.0f} q {rng.uniform(-90,90):.0f} {rng.uniform(-50,50):.0f} {rng.uniform(-160,160):.0f} {rng.uniform(-60,60):.0f}"/>'
+    s += '</g>'
+    # légumes
+    for _ in range(10):
+        x, y, rot = rng.uniform(360, 840), rng.uniform(345, 440), rng.uniform(0, 180)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="46" height="14" rx="6" fill="#E3432C" stroke="#8E2E1E" stroke-width="2" transform="rotate({rot:.0f} {x+23:.0f} {y+7:.0f})"/>'
+    for _ in range(10):
+        x, y, rot = rng.uniform(360, 840), rng.uniform(345, 440), rng.uniform(0, 180)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="40" height="10" rx="5" fill="#F08A24" stroke="#C06010" stroke-width="2" transform="rotate({rot:.0f} {x+20:.0f} {y+5:.0f})"/>'
+    for _ in range(8):
+        x, y = rng.uniform(380, 820), rng.uniform(350, 430)
+        s += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="18" fill="#3F8A2E"/><circle cx="{x-6:.0f}" cy="{y-5:.0f}" r="9" fill="#5FAE45"/><rect x="{x-3:.0f}" y="{y+10:.0f}" width="6" height="12" fill="#A8C98A"/>'
+    # bœuf
+    for _ in range(12):
+        x, y, rot = rng.uniform(370, 830), rng.uniform(345, 440), rng.uniform(0, 180)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="44" height="20" rx="7" fill="url(#meat)" transform="rotate({rot:.0f} {x+22:.0f} {y+10:.0f})"/>'
+    s += dots(rng, 600, 395, 250, 55, 30, 2, 4, ["#FFF6D6"])  # sésame
+    s += steam(600, 240, 4, 60)
+    s += '<g stroke="#8B5A2B" stroke-width="12" stroke-linecap="round"><path d="M 960 250 L 1100 560"/><path d="M 1000 240 L 1130 550"/></g>'
+    return s
+
+
+def flammekueche():
+    rng = random.Random(35)
+    s = '<rect x="150" y="190" width="900" height="520" rx="18" fill="#8B5A2B" opacity="0.3" transform="translate(10 24)" filter="url(#soft)"/>'
+    s += '<rect x="150" y="190" width="900" height="520" rx="18" fill="#A9743E"/><rect x="165" y="205" width="870" height="490" rx="12" fill="#C8955A"/>'
+    s += '<g stroke="#A9743E" stroke-width="3" opacity="0.5"><path d="M 165 300 H 1035 M 165 400 H 1035 M 165 500 H 1035 M 165 600 H 1035"/></g>'
+    s += '<path d="M 230 260 C 420 220 800 220 980 270 C 1000 400 990 540 960 650 C 760 690 420 690 240 650 C 210 520 200 390 230 260 Z" fill="url(#gold)" stroke="#9C6420" stroke-width="5"/>'
+    s += '<path d="M 275 295 C 440 265 780 265 940 305 C 955 410 950 520 925 615 C 760 648 440 648 280 615 C 258 520 252 405 275 295 Z" fill="url(#cream)"/>'
+    for _ in range(40):
+        x, y, rot = rng.uniform(300, 900), rng.uniform(310, 600), rng.uniform(0, 180)
+        s += f'<path d="M {x:.0f} {y:.0f} a 16 16 0 0 1 32 0" fill="none" stroke="#E9D8BE" stroke-width="5" transform="rotate({rot:.0f} {x+16:.0f} {y:.0f})"/>'
+    for _ in range(30):
+        x, y, rot = rng.uniform(300, 900), rng.uniform(310, 600), rng.uniform(0, 180)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="30" height="14" rx="4" fill="#C96A58" stroke="#8E3B22" stroke-width="2" transform="rotate({rot:.0f} {x+15:.0f} {y+7:.0f})"/><rect x="{x+4:.0f}" y="{y+4:.0f}" width="22" height="4" rx="2" fill="#F3B8A8" transform="rotate({rot:.0f} {x+15:.0f} {y+7:.0f})"/>'
+    s += dots(rng, 600, 450, 330, 160, 20, 4, 8, ["#B86A1E", "#8B5A2B"])
+    s += '<g stroke="#5A3410" stroke-width="4" opacity="0.55"><path d="M 600 265 L 600 665 M 250 460 L 965 460"/></g>'
+    s += steam(600, 170, 3, 90)
+    return s
+
+
+def galettes_sarrasin():
+    rng = random.Random(36)
+    s = plate()
+    s += '<ellipse cx="600" cy="450" rx="300" ry="150" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/>'
+    # galette carrée repliée
+    s += '<path d="M 330 440 L 600 300 L 870 440 L 600 580 Z" fill="#6B4A2E"/>'
+    s += '<path d="M 330 440 L 600 300 L 870 440 L 600 580 Z" fill="none" stroke="#4A3220" stroke-width="4"/>'
+    s += dots(rng, 600, 440, 240, 120, 40, 2, 5, ["#4A3220", "#8B6A4A"])
+    # fenêtre centrale : jambon, fromage, œuf
+    s += '<path d="M 470 440 L 600 372 L 730 440 L 600 508 Z" fill="#F0A8A0" stroke="#6B4A2E" stroke-width="3"/>'
+    s += '<path d="M 500 440 L 600 388 L 700 440 L 600 492 Z" fill="url(#cheese)"/>'
+    s += '<ellipse cx="600" cy="440" rx="70" ry="42" fill="#FFFFFF"/><ellipse cx="600" cy="438" rx="28" ry="20" fill="#F5A623"/><circle cx="590" cy="432" r="7" fill="#FFD36B" opacity="0.8"/>'
+    # plis
+    s += '<g fill="none" stroke="#4A3220" stroke-width="3" opacity="0.6"><path d="M 470 440 L 330 440 M 600 372 L 600 300 M 730 440 L 870 440 M 600 508 L 600 580"/></g>'
+    s += '<g fill="#6DB35A" stroke="#3F8A2E" stroke-width="3"><path d="M 820 560 C 840 520 900 520 920 560 C 950 540 990 560 980 590 C 930 610 860 610 820 560 Z"/></g>'
+    s += steam(600, 230)
+    s += fork()
+    return s
+
+
+def cordon_bleu():
+    rng = random.Random(37)
+    s = plate(600, 450, 440, 250)
+    # purée
+    s += '<path d="M 680 470 C 700 400 860 380 920 440 C 950 500 880 560 800 560 C 720 560 660 530 680 470 Z" fill="#F7E7B0" stroke="#E0C070" stroke-width="3"/>'
+    s += '<g fill="none" stroke="#E0C070" stroke-width="4" stroke-linecap="round" opacity="0.8"><path d="M 720 450 C 760 480 800 440 840 470 M 740 500 C 780 530 820 490 870 520"/></g>'
+    s += '<rect x="780" y="440" width="50" height="20" rx="5" fill="#F7D96B"/>'
+    # cordons bleus
+    for (x, y, r) in [(420, 440, -10), (480, 530, 8)]:
+        s += f'<g transform="rotate({r} {x} {y})"><rect x="{x-140}" y="{y-50}" width="280" height="100" rx="40" fill="#8B5A2B" opacity="0.3" transform="translate(6 12)" filter="url(#soft)"/>'
+        s += f'<rect x="{x-140}" y="{y-50}" width="280" height="100" rx="40" fill="url(#gold)" stroke="#B9802C" stroke-width="3"/>'
+        s += dots(rng, x, y, 130, 42, 40, 2, 5, ["#B9802C", "#FFF1B0", "#D9932B"])
+        # tranche : jambon + fromage qui coule
+        s += f'<path d="M {x+120} {y-30} C {x+150} {y-20} {x+150} {y+20} {x+120} {y+30} Z" fill="#F0A8A0"/><path d="M {x+128} {y-14} C {x+160} {y-4} {x+160} {y+30} {x+140} {y+40} C {x+150} {y+20} {x+140} {y+6} {x+128} {y+14} Z" fill="url(#cheese)"/></g>'
+    s += '<g fill="#6DB35A" stroke="#3F8A2E" stroke-width="3"><path d="M 300 560 C 320 520 380 520 400 560 C 430 540 470 560 460 590 C 410 610 340 610 300 560 Z"/></g><circle cx="440" cy="600" r="12" fill="#C9302C"/>'
+    s += steam(560, 300, 2, 70)
+    s += fork(1040, 290, 35)
+    return s
+
+
+def poisson_pane():
+    rng = random.Random(38)
+    s = plate(600, 450, 440, 250)
+    # haricots verts
+    s += '<ellipse cx="790" cy="480" rx="150" ry="80" fill="#8B5A2B" opacity="0.25" filter="url(#soft)"/>'
+    s += '<g stroke-linecap="round" fill="none">'
+    for _ in range(34):
+        x, y, rot = rng.uniform(660, 880), rng.uniform(410, 540), rng.uniform(-30, 30)
+        s += f'<path d="M {x:.0f} {y:.0f} c 40 -12 90 -8 130 0" stroke="#3F8A2E" stroke-width="18" transform="rotate({rot:.0f} {x+65:.0f} {y:.0f})"/><path d="M {x:.0f} {y:.0f} c 40 -12 90 -8 130 0" stroke="#5FAE45" stroke-width="10" transform="rotate({rot:.0f} {x+65:.0f} {y:.0f})"/>'
+    s += '</g>'
+    s += dots(rng, 790, 475, 120, 60, 16, 3, 5, ["#2F7A2A", "#F3E3C5"])
+    # bâtonnets panés
+    for (x, y, r) in [(400, 420, -12), (440, 480, -6), (470, 540, 4)]:
+        s += f'<g transform="rotate({r} {x} {y})"><rect x="{x-130}" y="{y-26}" width="260" height="52" rx="14" fill="#8B5A2B" opacity="0.3" transform="translate(5 10)" filter="url(#soft)"/>'
+        s += f'<rect x="{x-130}" y="{y-26}" width="260" height="52" rx="14" fill="url(#gold)" stroke="#B9802C" stroke-width="3"/>'
+        s += dots(rng, x, y, 120, 20, 30, 2, 4, ["#B9802C", "#FFF1B0"])
+        s += f'<rect x="{x+118}" y="{y-16}" width="14" height="32" rx="4" fill="#FFFFFF"/></g>'
+    s += '<path d="M 920 380 A 50 50 0 0 1 970 330 L 970 380 Z" fill="#F9E05A" stroke="#D9B720" stroke-width="4"/><path d="M 928 376 A 42 42 0 0 1 966 338 L 966 376 Z" fill="#FFF6A8"/>'
+    s += steam(560, 300, 2, 70)
+    s += fork(1040, 290, 35)
+    return s
+
+
+def risotto():
+    rng = random.Random(39)
+    s = plate()
+    s += '<path d="M 330 440 C 330 350 440 300 600 300 C 760 300 870 350 870 440 C 870 530 760 580 600 580 C 440 580 330 530 330 440 Z" fill="#F3E6C2" stroke="#E0D0A0" stroke-width="3"/>'
+    s += '<g fill="#FFFBEF" stroke="#E6DDC0" stroke-width="1">'
+    for _ in range(160):
+        x, y = rng.uniform(350, 850), rng.uniform(320, 560)
+        if ((x-600)/270)**2 + ((y-440)/140)**2 > 1: continue
+        s += f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="8" ry="4.5" transform="rotate({rng.uniform(0,180):.0f} {x:.0f} {y:.0f})"/>'
+    s += '</g>'
+    for _ in range(14):
+        x, y = rng.uniform(400, 800), rng.uniform(350, 530)
+        s += f'<path d="M {x-18:.0f} {y+3:.0f} A 18 15 0 0 1 {x+18:.0f} {y+3:.0f} Z" fill="#B99A72" stroke="#8B6A4A" stroke-width="2"/><rect x="{x-5:.0f}" y="{y+3:.0f}" width="10" height="9" rx="3" fill="#D8C4A4"/>'
+    s += dots(rng, 600, 440, 250, 120, 20, 3, 6, ["#F5E27A"])  # parmesan
+    s += herbs([(520, 360, -20), (680, 500, 30), (600, 430, 60)], "#2F7A2A")
+    s += steam(600, 230)
+    s += spoon(1040, 320, 30)
+    return s
+
+
+def tomates_farcies():
+    rng = random.Random(40)
+    s = dish()
+    s += '<rect x="262" y="320" width="676" height="236" rx="26" fill="#F3E6C2"/>'
+    s += '<g fill="#FFFBEF">'
+    for _ in range(80):
+        x, y = rng.uniform(275, 925), rng.uniform(330, 545)
+        s += f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="7" ry="3.5" transform="rotate({rng.uniform(0,180):.0f} {x:.0f} {y:.0f})"/>'
+    s += '</g>'
+    for (x, y) in [(360, 440), (520, 420), (680, 440), (840, 420)]:
+        s += f'<ellipse cx="{x+4}" cy="{y+40}" rx="70" ry="36" fill="#5A2A1A" opacity="0.3" filter="url(#soft)"/>'
+        s += f'<circle cx="{x}" cy="{y}" r="68" fill="#C9302C"/><circle cx="{x}" cy="{y}" r="68" fill="none" stroke="#8E2E1E" stroke-width="3"/>'
+        s += f'<path d="M {x-40} {y-30} C {x-20} {y-50} {x+10} {y-52} {x+30} {y-40}" fill="none" stroke="#FFFFFF" stroke-width="7" opacity="0.4" stroke-linecap="round"/>'
+        # farce visible + chapeau décalé
+        s += f'<ellipse cx="{x}" cy="{y-20}" rx="46" ry="22" fill="url(#meat)"/>'
+        s += dots(rng, x, y-20, 36, 14, 8, 3, 5, ["#B0583A", "#F3D9A4"])
+        s += f'<ellipse cx="{x+24}" cy="{y-44}" rx="34" ry="16" fill="#C9302C" stroke="#8E2E1E" stroke-width="3" transform="rotate(-18 {x+24} {y-44})"/><circle cx="{x+30}" cy="{y-48}" r="5" fill="#3F8A2E"/>'
+    s += herbs([(440, 520, 20), (760, 520, -20)], "#2F7A2A")
+    s += steam(600, 250)
+    s += spoon(1060, 320, 28)
+    return s
+
+
 DISHES = {
     "spaghetti-bolognaise": spaghetti_bolognaise,
     "gratin-dauphinois": gratin_dauphinois,
@@ -729,6 +950,16 @@ DISHES = {
     "gratin-courgettes-chevre": gratin_courgettes,
     "riz-cantonais": riz_cantonais,
     "boulettes-boeuf-sauce-tomate": boulettes_tomate,
+    "curry-poulet-coco": curry_poulet_coco,
+    "gratin-pates-jambon": gratin_pates_jambon,
+    "escalopes-milanaise": escalopes_milanaise,
+    "wok-boeuf-legumes": wok_boeuf,
+    "flammekueche": flammekueche,
+    "galettes-sarrasin-complete": galettes_sarrasin,
+    "cordon-bleu-maison-puree": cordon_bleu,
+    "poisson-pane-maison-haricots": poisson_pane,
+    "risotto-champignons": risotto,
+    "tomates-farcies": tomates_farcies,
 }
 
 

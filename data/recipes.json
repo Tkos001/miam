@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 6,
+  "version": 7,
   "updatedAt": "2026-11-06",
   "recipes": [
     {
@@ -929,6 +929,818 @@
         "Les dorer dans 2 c. à s. d'huile 6 min en les roulant. Réserver.",
         "Dans la même sauteuse, faire fondre le reste d'oignon et d'ail, ajouter les tomates, saler. Remettre les boulettes, couvrir, mijoter 20 min. Ajouter le basilic.",
         "Servir avec les spaghetti cuits al dente."
+      ]
+    },
+    {
+      "remoteId": "curry-poulet-coco",
+      "name": "Curry de poulet au lait de coco",
+      "description": "Poulet mijoté dans une sauce coco-curry douce, avec du riz basmati.",
+      "prepMinutes": 15,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "INDIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/curry-poulet-coco.jpg",
+      "ingredients": [
+        {
+          "name": "Blanc de poulet",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Lait de coco",
+          "quantity": 40,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Gingembre frais",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Curry en poudre",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz basmati",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Coriandre",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire revenir l'oignon émincé, l'ail et le gingembre râpé 3 min dans l'huile. Ajouter le curry, 30 s.",
+        "Ajouter le poulet en morceaux, le faire dorer 5 min. Verser tomates et lait de coco, saler, mijoter 20 min à feu doux.",
+        "Servir sur le riz cuit, parsemé de coriandre."
+      ]
+    },
+    {
+      "remoteId": "gratin-pates-jambon",
+      "name": "Gratin de pâtes au jambon",
+      "description": "Coquillettes, jambon, béchamel et gruyère : le plat des soirs pressés.",
+      "prepMinutes": 10,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-pates-jambon.jpg",
+      "ingredients": [
+        {
+          "name": "Coquillettes",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 70,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les coquillettes 2 min de moins que le paquet. Four à 200 °C.",
+        "Béchamel : beurre fondu, farine, 1 min ; lait petit à petit en fouettant jusqu'à épaississement ; muscade, sel, poivre, la moitié du gruyère.",
+        "Mélanger pâtes, jambon en dés et béchamel, verser dans un plat, couvrir du reste de gruyère, enfourner 20 min."
+      ]
+    },
+    {
+      "remoteId": "escalopes-milanaise",
+      "name": "Escalopes de dinde à la milanaise",
+      "description": "Escalopes panées croustillantes, citron et spaghetti à la tomate.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/escalopes-milanaise.jpg",
+      "ingredients": [
+        {
+          "name": "Escalope de dinde",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Spaghetti",
+          "quantity": 320,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Coulis de tomate",
+          "quantity": 40,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 6,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Aplatir les escalopes entre deux feuilles de film. Trois assiettes : farine ; œufs battus ; chapelure mélangée au parmesan.",
+        "Passer chaque escalope farine, œuf, chapelure en appuyant bien.",
+        "Cuire les spaghetti, réchauffer le coulis salé. Frire les escalopes 3 à 4 min par face dans l'huile chaude. Servir avec un quartier de citron."
+      ]
+    },
+    {
+      "remoteId": "wok-boeuf-legumes",
+      "name": "Wok de bœuf aux légumes",
+      "description": "Lamelles de bœuf sautées, poivrons, brocoli, sauce soja-miel, nouilles.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/wok-boeuf-legumes.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf à fondue ou rumsteck",
+          "quantity": 500,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Nouilles chinoises",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Brocoli",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon nouveau",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sauce soja",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Miel",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Maïzena",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Graines de sésame",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Mélanger soja, miel, maïzena et 5 cl d'eau. Cuire les nouilles, égoutter.",
+        "Wok très chaud : saisir le bœuf en lamelles 2 min, réserver. Sauter carottes en bâtonnets, brocoli en petits bouquets et poivron 5 min avec l'ail.",
+        "Remettre le bœuf, verser la sauce, ajouter les nouilles, mélanger 2 min. Oignons nouveaux et sésame au moment de servir."
+      ]
+    },
+    {
+      "remoteId": "flammekueche",
+      "name": "Flammekueche",
+      "description": "Tarte flambée alsacienne : pâte fine, crème-fromage blanc, oignons et lardons.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/flammekueche.jpg",
+      "ingredients": [
+        {
+          "name": "Pâte à pizza",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Fromage blanc",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Lardons fumés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four au maximum (250 °C ou plus), plaque dedans pour préchauffer. Mélanger fromage blanc, crème, muscade, sel, poivre.",
+        "Étaler les pâtes très finement, tartiner du mélange, répartir oignons émincés fins et lardons.",
+        "Enfourner sur la plaque chaude 10 à 12 min jusqu'à bords dorés. Servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "galettes-sarrasin-complete",
+      "name": "Galettes de sarrasin complètes",
+      "description": "Galettes bretonnes jambon-œuf-fromage, pâte maison.",
+      "prepMinutes": 15,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/galettes-sarrasin-complete.jpg",
+      "ingredients": [
+        {
+          "name": "Farine de sarrasin",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 5,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Eau",
+          "quantity": 50,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Emmental râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre demi-sel",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sel",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Pâte : mélanger farine, sel, 1 œuf et l'eau petit à petit jusqu'à une pâte lisse. Laisser reposer 1 h si possible.",
+        "Cuire une louche de pâte dans une poêle beurrée très chaude, 1 min par face. Faire 4 galettes.",
+        "Galette dans la poêle : emmental, tranche de jambon, casser un œuf au centre, couvrir 3 min, replier les bords en carré."
+      ]
+    },
+    {
+      "remoteId": "cordon-bleu-maison-puree",
+      "name": "Cordons bleus maison et purée",
+      "description": "Escalopes de poulet roulées jambon-fromage, panées, purée maison.",
+      "prepMinutes": 25,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/cordon-bleu-maison-puree.jpg",
+      "ingredients": [
+        {
+          "name": "Escalope de poulet",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Emmental",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 120,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Lait",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Purée : pommes de terre pelées cuites 20 min à l'eau salée, écrasées avec beurre et lait chaud, sel, poivre.",
+        "Aplatir les escalopes, poser jambon et emmental, rouler ou replier, fermer avec un cure-dent.",
+        "Paner farine, œuf, chapelure. Cuire 5 min par face à feu moyen dans l'huile, le fromage doit couler."
+      ]
+    },
+    {
+      "remoteId": "poisson-pane-maison-haricots",
+      "name": "Poisson pané maison et haricots verts",
+      "description": "Cabillaud pané au four, haricots verts persillés, citron.",
+      "prepMinutes": 15,
+      "cookMinutes": 20,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poisson-pane-maison-haricots.jpg",
+      "ingredients": [
+        {
+          "name": "Dos de cabillaud",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 120,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Haricots verts",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Persil",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 220 °C. Couper le cabillaud en bâtonnets épais, saler. Paner farine, œuf, chapelure. Poser sur une plaque huilée, arroser d'un filet d'huile.",
+        "Enfourner 15 min en retournant à mi-cuisson.",
+        "Haricots : 8 min à l'eau bouillante salée, égoutter, sauter 2 min au beurre avec ail et persil hachés. Servir avec le citron."
+      ]
+    },
+    {
+      "remoteId": "risotto-champignons",
+      "name": "Risotto aux champignons",
+      "description": "Riz arborio crémeux, champignons de Paris, parmesan.",
+      "prepMinutes": 10,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/risotto-champignons.jpg",
+      "ingredients": [
+        {
+          "name": "Riz arborio",
+          "quantity": 320,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Bouillon de volaille",
+          "quantity": 1,
+          "unit": "L",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Sauter les champignons émincés dans l'huile à feu vif 6 min, saler, réserver. Garder le bouillon chaud.",
+        "Fondre l'oignon et l'ail hachés dans la moitié du beurre, ajouter le riz, nacrer 2 min, déglacer au vin.",
+        "Ajouter le bouillon louche par louche en remuant, 18 min. Hors du feu : champignons, parmesan, reste de beurre, poivre, persil. Couvrir 2 min, servir."
+      ]
+    },
+    {
+      "remoteId": "tomates-farcies",
+      "name": "Tomates farcies",
+      "description": "Grosses tomates garnies de chair à saucisse et bœuf, cuites sur un lit de riz.",
+      "prepMinutes": 25,
+      "cookMinutes": 60,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tomates-farcies.jpg",
+      "ingredients": [
+        {
+          "name": "Grosse tomate",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Chair à saucisse",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Bœuf haché",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Pain de mie",
+          "quantity": 2,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Persil",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Riz",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Décalotter les tomates, les vider à la cuillère (garder la pulpe), saler l'intérieur, retourner 10 min.",
+        "Farce : pain trempé dans le lait essoré, chair à saucisse, bœuf, oignon et ail hachés, persil, œuf, sel, poivre.",
+        "Riz cru et pulpe hachée au fond d'un plat huilé avec 20 cl d'eau. Poser les tomates garnies, remettre les chapeaux. Enfourner 50 à 60 min."
       ]
     }
   ],
