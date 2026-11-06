@@ -1,7 +1,7 @@
 {
   "format": "miam-catalog",
-  "version": 5,
-  "updatedAt": "2026-11-05",
+  "version": 6,
+  "updatedAt": "2026-11-06",
   "recipes": [
     {
       "remoteId": "butternut-farcie-boeuf",
@@ -82,6 +82,853 @@
         "Creuser la chair des deux moitiés en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
         "Garnir chaque moitié avec la moitié de la farce (environ 500 g) en tassant bien, elle doit déborder un peu. Couvrir généreusement de gruyère râpé.",
         "Remettre 15 à 20 min au four, en finissant 2 à 3 min sous le gril si besoin, jusqu'à ce que le fromage soit bien gratiné."
+      ]
+    },
+    {
+      "remoteId": "lasagnes-boeuf",
+      "name": "Lasagnes au bœuf",
+      "description": "Bolognaise maison, béchamel et plaques de lasagnes, gratinées au four.",
+      "prepMinutes": 30,
+      "cookMinutes": 60,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/lasagnes-boeuf.jpg",
+      "ingredients": [
+        {
+          "name": "Plaques de lasagnes",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 80,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Bolognaise : faire revenir oignon, ail et carotte émincés dans l'huile 5 min. Ajouter le bœuf, cuire 8 min en émiettant. Ajouter tomates et concentré, saler, poivrer, laisser mijoter 20 min.",
+        "Béchamel : faire fondre le beurre, ajouter la farine, cuire 1 min. Verser le lait petit à petit en fouettant jusqu'à épaississement. Muscade, sel, poivre.",
+        "Four à 180 °C. Dans un plat beurré : une louche de béchamel, plaques, bolognaise, béchamel, gruyère. Répéter jusqu'en haut, finir par béchamel, gruyère et parmesan.",
+        "Enfourner 40 min jusqu'à ce que le dessus soit bien doré. Laisser reposer 10 min avant de couper."
+      ]
+    },
+    {
+      "remoteId": "tourte-pomme-de-terre-saucisse-comte",
+      "name": "Tourte pommes de terre, saucisse fumée et comté",
+      "description": "Deux pâtes feuilletées, pommes de terre fondantes, saucisse de Morteau et comté.",
+      "prepMinutes": 25,
+      "cookMinutes": 55,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tourte-pomme-de-terre-saucisse-comte.jpg",
+      "ingredients": [
+        {
+          "name": "Pâte feuilletée",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Saucisse de Morteau",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Comté râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire la saucisse 25 min dans l'eau frémissante, la couper en rondelles. Cuire les pommes de terre pelées 15 min à l'eau salée, les couper en rondelles épaisses.",
+        "Faire fondre l'oignon émincé dans le beurre. Mélanger la crème avec muscade, sel, poivre.",
+        "Four à 200 °C. Foncer un moule à tarte avec la première pâte. Alterner pommes de terre, oignons, saucisse, comté, un peu de crème. Terminer par crème et comté.",
+        "Couvrir avec la seconde pâte, souder les bords, faire une cheminée au centre, dorer au jaune d'œuf. Enfourner 35 à 40 min jusqu'à belle coloration."
+      ]
+    },
+    {
+      "remoteId": "pates-carbonara",
+      "name": "Pâtes à la carbonara",
+      "description": "Guanciale ou lardons, jaunes d'œufs et pecorino : crémeux sans crème.",
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pates-carbonara.jpg",
+      "ingredients": [
+        {
+          "name": "Spaghetti",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lardons fumés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaune d'œuf",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Pecorino râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les pâtes al dente dans une grande casserole d'eau salée. Garder une louche d'eau de cuisson.",
+        "Pendant ce temps, faire dorer les lardons à sec dans une poêle, feu moyen, 5 min. Couper le feu.",
+        "Fouetter jaunes, œuf entier, pecorino, parmesan et beaucoup de poivre dans un saladier.",
+        "Égoutter les pâtes, les verser dans la poêle hors du feu avec les lardons, ajouter le mélange aux œufs et un peu d'eau de cuisson, mélanger vite jusqu'à une sauce nappante. Servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "paupiettes-porc-veau",
+      "name": "Paupiettes de porc et de veau à la crème",
+      "description": "Paupiettes dorées puis mijotées avec champignons, échalotes et crème.",
+      "prepMinutes": 15,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-veau.jpg",
+      "ingredients": [
+        {
+          "name": "Paupiettes de veau",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Paupiettes de porc",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Échalote",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire dorer les paupiettes sur toutes les faces dans beurre et huile, 8 min. Réserver.",
+        "Dans la même cocotte, faire revenir échalotes émincées et champignons en lamelles 5 min. Déglacer au vin blanc, laisser réduire de moitié.",
+        "Remettre les paupiettes, ajouter 10 cl d'eau, couvrir et laisser mijoter 25 min à feu doux en les retournant à mi-cuisson.",
+        "Sortir les paupiettes, ajouter crème et moutarde dans la sauce, faire épaissir 3 min, rectifier l'assaisonnement. Servir avec riz, purée ou tagliatelles."
+      ]
+    },
+    {
+      "remoteId": "poulet-basquaise",
+      "name": "Poulet basquaise",
+      "description": "Cuisses de poulet mijotées aux poivrons, tomates et piment d'Espelette.",
+      "prepMinutes": 15,
+      "cookMinutes": 50,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-basquaise.jpg",
+      "ingredients": [
+        {
+          "name": "Cuisses de poulet",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivron vert",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 3,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Piment d'Espelette",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 2,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire dorer les cuisses salées et poivrées dans l'huile, 10 min. Réserver.",
+        "Faire revenir oignons et poivrons en lanières 10 min, ajouter l'ail, les tomates, le thym et le piment.",
+        "Remettre le poulet, couvrir, laisser mijoter 30 min à feu doux. Découvrir les 10 dernières minutes pour épaissir la sauce. Servir avec du riz."
+      ]
+    },
+    {
+      "remoteId": "saumon-four-legumes",
+      "name": "Pavés de saumon au four et légumes rôtis",
+      "description": "Saumon, courgettes, tomates cerises et pommes de terre, tout sur une plaque.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saumon-four-legumes.jpg",
+      "ingredients": [
+        {
+          "name": "Pavés de saumon",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Courgette",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates cerises",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Herbes de Provence",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 200 °C. Pommes de terre en quartiers avec 2 c. à s. d'huile, sel, herbes : 20 min sur la plaque.",
+        "Ajouter courgettes en rondelles, tomates cerises, ail écrasé, puis poser les pavés de saumon salés, poivrés, arrosés du reste d'huile et de jus de citron.",
+        "Remettre 15 min : le saumon doit rester nacré au centre. Servir avec des quartiers de citron."
+      ]
+    },
+    {
+      "remoteId": "chili-con-carne",
+      "name": "Chili con carne",
+      "description": "Bœuf haché, haricots rouges, tomate et épices, à servir avec du riz.",
+      "prepMinutes": 15,
+      "cookMinutes": 45,
+      "servings": 4,
+      "cuisine": "AMERICAINE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/chili-con-carne.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Haricots rouges en boîte",
+          "quantity": 2,
+          "unit": "BOITE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 3,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 2,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Piment en poudre",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire revenir oignons, ail et poivron en dés 5 min dans l'huile. Ajouter le bœuf, cuire 8 min en émiettant.",
+        "Ajouter épices et concentré, mélanger 1 min, puis les tomates. Saler, mijoter 25 min à découvert.",
+        "Ajouter les haricots égouttés et rincés, cuire encore 10 min. Servir sur du riz, avec crème ou cheddar râpé selon l'envie."
+      ]
+    },
+    {
+      "remoteId": "gratin-courgettes-chevre",
+      "name": "Gratin de courgettes au chèvre",
+      "description": "Courgettes, crème, chèvre frais et menthe, léger et rapide.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-courgettes-chevre.jpg",
+      "ingredients": [
+        {
+          "name": "Courgette",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Chèvre frais",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Menthe",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Courgettes en rondelles fines, sautées 8 min dans l'huile avec l'ail pour les dessécher.",
+        "Fouetter œufs, crème, chèvre écrasé, menthe ciselée, sel, poivre. Mélanger aux courgettes.",
+        "Verser dans un plat, couvrir de gruyère, enfourner 25 à 30 min jusqu'à ce que ce soit pris et doré."
+      ]
+    },
+    {
+      "remoteId": "riz-cantonais",
+      "name": "Riz cantonais",
+      "description": "Riz sauté aux petits pois, jambon, œufs et sauce soja. Parfait pour un reste de riz.",
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-cantonais.jpg",
+      "ingredients": [
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Petits pois surgelés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "SURGELES"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon nouveau",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sauce soja",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile de sésame",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire le riz la veille ou le laisser bien refroidir. Cuire les petits pois 3 min à l'eau bouillante.",
+        "Dans un wok très chaud, brouiller les œufs battus dans 1 c. à s. d'huile, réserver.",
+        "Faire sauter le riz dans le reste d'huile 3 min en remuant, ajouter jambon en dés, petits pois, œufs, oignons nouveaux émincés, soja et sésame. Sauter 2 min. Poivrer."
+      ]
+    },
+    {
+      "remoteId": "boulettes-boeuf-sauce-tomate",
+      "name": "Boulettes de bœuf à la sauce tomate",
+      "description": "Boulettes moelleuses mijotées dans une sauce tomate à l'ail et au basilic.",
+      "prepMinutes": 20,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boulettes-boeuf-sauce-tomate.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Pain de mie",
+          "quantity": 2,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Basilic",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Spaghetti",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Tremper le pain dans le lait, l'essorer. Mélanger avec le bœuf, l'œuf, la moitié de l'oignon haché, 1 gousse d'ail, le parmesan, sel, poivre. Former 16 boulettes.",
+        "Les dorer dans 2 c. à s. d'huile 6 min en les roulant. Réserver.",
+        "Dans la même sauteuse, faire fondre le reste d'oignon et d'ail, ajouter les tomates, saler. Remettre les boulettes, couvrir, mijoter 20 min. Ajouter le basilic.",
+        "Servir avec les spaghetti cuits al dente."
       ]
     }
   ],
