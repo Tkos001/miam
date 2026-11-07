@@ -44,6 +44,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -79,8 +80,9 @@ import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
+fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit, onOpenRecipe: (Long) -> Unit = {}) {
     val scope = rememberCoroutineScope()
+    val allRecipes by repository.recipes.collectAsStateWithLifecycle(initialValue = emptyList())
     val snackbar = remember { SnackbarHostState() }
     val settings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = Settings())
     var url by remember { mutableStateOf<String?>(null) }
@@ -331,12 +333,29 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     ) { Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Créer un token") }
                 }
                 if (settings.dirtyRecipeIds.isNotEmpty()) {
+                    val dirty = allRecipes.filter { it.id in settings.dirtyRecipeIds }
                     Text(
-                        "${settings.dirtyRecipeIds.size} recette(s) modifiée(s) ici et pas encore publiée(s) : la sync ne les écrase pas.",
+                        "${settings.dirtyRecipeIds.size} recette(s) modifiée(s) ici et pas encore publiée(s) : la sync ne les écrase pas. Touche pour ouvrir (menu ⋮ → Publier, ou Reprendre la version du catalogue).",
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(top = 8.dp),
                     )
+                    dirty.forEach { r ->
+                        Text(
+                            "✎ ${r.name}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.fillMaxWidth().clickable { onOpenRecipe(r.id) }.padding(vertical = 6.dp),
+                        )
+                    }
+                    val orphans = settings.dirtyRecipeIds.size - dirty.size
+                    if (orphans > 0) {
+                        Text(
+                            "$orphans entrée(s) correspondent à des recettes supprimées depuis.",
+                            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                        TextButton(onClick = { scope.launch { settings.dirtyRecipeIds.filter { id -> allRecipes.none { it.id == id } }.forEach { repository.settings.setRecipeDirty(it, false) } } }) { Text("Nettoyer") }
+                    }
                 }
             }
 

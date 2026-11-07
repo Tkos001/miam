@@ -73,9 +73,13 @@ fun RecipeListScreen(
     var cuisine by rememberSaveable { mutableStateOf<String?>(null) }
     var protein by rememberSaveable { mutableStateOf<String?>(null) }
     var kind by rememberSaveable { mutableStateOf<String?>(null) }
+    var onlyDirty by rememberSaveable { mutableStateOf(false) }
+    val appSettings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = com.tkos.miam.data.settings.Settings())
+    val dirtyIds = appSettings.dirtyRecipeIds
 
     val filtered = all.filter { r ->
         (!onlyFav || r.isFavorite) &&
+            (!onlyDirty || r.id in dirtyIds) &&
             (cuisine == null || r.cuisine == cuisine) &&
             (protein == null || r.protein == protein) &&
             (kind == null || r.kind == kind) &&
@@ -120,6 +124,15 @@ fun RecipeListScreen(
                         label = { Text("Favoris") },
                         leadingIcon = { Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp)) },
                     )
+                }
+                if (dirtyIds.isNotEmpty()) {
+                    item(key = "dirty") {
+                        FilterChip(
+                            selected = onlyDirty,
+                            onClick = { onlyDirty = !onlyDirty },
+                            label = { Text("✎ Modifiées ici (${all.count { it.id in dirtyIds }})") },
+                        )
+                    }
                 }
                 if (usedKinds.size > 1) {
                     usedKinds.forEach { k ->
@@ -171,6 +184,7 @@ fun RecipeListScreen(
                             recipe = r,
                             onClick = { onOpenRecipe(r.id) },
                             onToggleFavorite = { scope.launch { repository.setFavorite(r.id, !r.isFavorite) } },
+                            modified = r.id in dirtyIds,
                         )
                     }
                 }
@@ -183,7 +197,7 @@ private fun norm(s: String): String =
     Normalizer.normalize(s.lowercase(), Normalizer.Form.NFD).replace(Regex("\\p{M}+"), "")
 
 @Composable
-fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit) {
+fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit, modified: Boolean = false) {
     Card(
         modifier = Modifier.clickable(onClick = onClick),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
@@ -223,6 +237,10 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit
                 if (recipe.kindEnum != RecipeKind.PLAT) {
                     Spacer(Modifier.width(6.dp))
                     Text(recipe.kindEnum.emoji, style = MaterialTheme.typography.bodySmall)
+                }
+                if (modified) {
+                    Spacer(Modifier.width(6.dp))
+                    Text("✎", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.primary)
                 }
                 Spacer(Modifier.width(6.dp))
                 Text(recipe.cuisineEnum.emoji, style = MaterialTheme.typography.bodySmall)

@@ -133,7 +133,7 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
             )
         }
         composable(Routes.SETTINGS) {
-            SettingsScreen(repository = repository, onBack = { navController.popBackStack() })
+            SettingsScreen(repository = repository, onBack = { navController.popBackStack() }, onOpenRecipe = { navController.navigate(Routes.recipe(it)) })
         }
         composable(Routes.FIND) {
             FindRecipesScreen(
