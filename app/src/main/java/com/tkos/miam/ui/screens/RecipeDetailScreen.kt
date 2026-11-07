@@ -5,6 +5,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -69,6 +71,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
+import com.tkos.miam.data.model.Allergen
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.Slot
 import com.tkos.miam.data.shopping.ShoppingAggregator
@@ -79,7 +82,7 @@ import com.tkos.miam.ui.components.Stepper
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun RecipeDetailScreen(
     repository: MiamRepository,
@@ -107,6 +110,8 @@ fun RecipeDetailScreen(
     }
 
     var servings by rememberSaveable(d.recipe.id) { mutableIntStateOf(d.recipe.servings) }
+    var showAllergens by rememberSaveable { mutableStateOf(false) }
+    val allergens = remember(d.ingredients) { Allergen.detect(d.ingredients.map { it.name }) }
     val ratio = servings.toDouble() / d.recipe.servings.coerceAtLeast(1)
 
     Scaffold(
@@ -243,12 +248,22 @@ fun RecipeDetailScreen(
                             modifier = Modifier.padding(top = 6.dp),
                         )
                     }
-                    Row(Modifier.padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FlowRow(
+                        Modifier.padding(top = 12.dp).fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
                         InfoChip("👥 ${d.recipe.servings} pers.")
                         InfoChip("${d.recipe.cuisineEnum.emoji} ${d.recipe.cuisineEnum.label}")
                         if (d.recipe.proteinEnum != com.tkos.miam.data.model.Protein.AUTRE) InfoChip("${d.recipe.proteinEnum.emoji} ${d.recipe.proteinEnum.label}")
                         d.recipe.prepMinutes?.let { InfoChip("Prépa ${it} min") }
                         d.recipe.cookMinutes?.let { InfoChip("Cuisson ${it} min") }
+                    }
+                    TextButton(onClick = { showAllergens = true }, contentPadding = PaddingValues(horizontal = 0.dp)) {
+                        Text(
+                            if (allergens.isEmpty()) "Allergènes : aucun détecté"
+                            else "Allergènes (${allergens.size}) : " + allergens.keys.joinToString(" ") { it.emoji },
+                        )
                     }
                 }
             }
@@ -382,6 +397,8 @@ fun RecipeDetailScreen(
         )
     }
 
+    if (showAllergens) AllergensDialog(allergens, onDismiss = { showAllergens = false })
+
     if (showPlanDialog) {
         PlanRecipeDialog(
             recipeName = d.recipe.name,
@@ -397,6 +414,34 @@ fun RecipeDetailScreen(
             },
         )
     }
+}
+
+@Composable
+private fun AllergensDialog(allergens: Map<Allergen, List<String>>, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = { TextButton(onClick = onDismiss) { Text("Fermer") } },
+        title = { Text("Allergènes") },
+        text = {
+            Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                if (allergens.isEmpty()) {
+                    Text("Aucun des 14 allergènes à déclaration obligatoire n'a été repéré dans les ingrédients.")
+                } else {
+                    allergens.forEach { (a, ings) ->
+                        Column {
+                            Text("${a.emoji} ${a.label}", style = MaterialTheme.typography.titleSmall)
+                            Text(ings.distinct().joinToString(", "), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                }
+                Text(
+                    "Détection automatique d'après le nom des ingrédients. Les produits transformés (bouillon, charcuterie, sauces, pâtes toutes prêtes) peuvent en contenir d'autres : vérifier les étiquettes.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        },
+    )
 }
 
 @Composable
