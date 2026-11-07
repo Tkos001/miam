@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 15,
+  "version": 16,
   "updatedAt": "2026-11-07",
   "recipes": [
     {
@@ -2831,6 +2831,99 @@
         "Montage à l'envers : chemiser le moule de rhodoïd si nécessaire. Verser la mousse dans le moule, remonter la mousse sur les bords, puis déposer le disque dacquoise-croustillant, face croustillant contre la mousse. Appuyer légèrement et lisser.",
         "Placer au congélateur au minimum 8 h. Démouler le gâteau encore congelé, le retourner sur son plat de service et laisser décongeler 6 à 8 h au réfrigérateur avant dégustation."
       ]
+    },
+    {
+      "remoteId": "blanquette-de-veau",
+      "name": "Blanquette de veau",
+      "description": "Douce, crémeuse, avec du riz.",
+      "prepMinutes": 20,
+      "cookMinutes": 90,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "VEAU",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
+      "ingredients": [
+        {
+          "name": "Épaule de veau",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poireau",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaune d'œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Citron",
+          "quantity": 0.5,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Bouquet garni",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Mettre la viande en morceaux dans une cocotte, couvrir d'eau froide, porter à ébullition et écumer.",
+        "Ajouter carottes, oignon, poireau et bouquet garni. Saler. Laisser frémir 1 h 15.",
+        "Faire sauter les champignons au beurre.",
+        "Préparer un roux avec beurre et farine, mouiller avec 50 cl de bouillon de cuisson, laisser épaissir.",
+        "Hors du feu, ajouter crème, jaune d'œuf et jus de citron. Napper la viande et les légumes.",
+        "Servir avec le riz."
+      ]
     }
   ],
   "images": {
@@ -2839,7 +2932,6 @@
     "Quiche lorraine": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-lorraine.jpg",
     "Poulet rôti et pommes de terre": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-roti-pommes-de-terre.jpg",
     "Bœuf bourguignon": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boeuf-bourguignon.jpg",
-    "Blanquette de veau": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
     "Croque-monsieur": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/croque-monsieur.jpg",
     "Hachis parmentier": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/hachis-parmentier.jpg",
     "Ratatouille": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/ratatouille.jpg",
