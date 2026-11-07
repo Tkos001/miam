@@ -155,6 +155,25 @@ fun ReceiptScreen(
             info?.let {
                 Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
             }
+            if (rawLines.isNotEmpty() && !busy) {
+                // Sans clé API : passer par l'appli IA de l'utilisateur (abonnement), aller-retour par le presse-papiers.
+                Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = { scope.launch { shareText(context, "Ticket à interpréter", repository.receiptPromptForManual(rawLines)) } },
+                        modifier = Modifier.weight(1f),
+                    ) { Text("Envoyer à mon appli IA") }
+                    OutlinedButton(
+                        onClick = {
+                            scope.launch {
+                                val parsed = runCatching { repository.parseReceiptAnswer(pasteText(context)) }.getOrNull()
+                                if (parsed.isNullOrEmpty()) snackbar.showSnackbar("Rien de lisible dans le presse-papiers : copie la réponse JSON de l'IA d'abord.")
+                                else { items.clear(); items.addAll(parsed); info = "${parsed.size} ligne(s) collées depuis l'IA. Vérifie puis valide." }
+                            }
+                        },
+                        modifier = Modifier.weight(1f),
+                    ) { Text("Coller sa réponse") }
+                }
+            }
             if (items.isEmpty() && !busy) {
                 Column(Modifier.fillMaxWidth().padding(32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                     Text("🧾", style = MaterialTheme.typography.headlineLarge)

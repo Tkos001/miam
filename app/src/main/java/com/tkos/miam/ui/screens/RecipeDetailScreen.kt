@@ -537,3 +537,8 @@ fun copyText(context: android.content.Context, label: String, text: String) {
     val cm = context.getSystemService(android.content.ClipboardManager::class.java)
     cm.setPrimaryClip(android.content.ClipData.newPlainText(label, text))
 }
+
+fun pasteText(context: android.content.Context): String {
+    val cm = context.getSystemService(android.content.ClipboardManager::class.java)
+    return cm.primaryClip?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.coerceToText(context)?.toString() ?: ""
+}

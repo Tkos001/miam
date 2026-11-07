@@ -26,6 +26,7 @@ import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -42,6 +43,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
@@ -65,6 +67,7 @@ fun AssistantScreen(
     onOpenRecipe: (Long) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val snackbar = remember { SnackbarHostState() }
     val settings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = Settings())
     val stockCount by repository.stockCount.collectAsStateWithLifecycle(initialValue = 0)
@@ -129,6 +132,29 @@ fun AssistantScreen(
                     else { Icon(Icons.Default.AutoAwesome, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Proposer des recettes") }
                 }
                 error?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(top = 6.dp)) }
+                // Sans clé : la même demande part vers l'appli IA de l'utilisateur (Claude, ChatGPT…), la réponse revient par le presse-papiers.
+                Text(
+                    if (configured) "Ou avec ton abonnement, sans clé :" else "Sans clé API, avec ton abonnement Claude / ChatGPT :",
+                    style = MaterialTheme.typography.labelLarge, modifier = Modifier.padding(top = 14.dp),
+                )
+                Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = { scope.launch { shareText(context, "Demande de recette", repository.recipePromptForManual(request, useStock)) } },
+                        modifier = Modifier.weight(1f),
+                    ) { Text("Envoyer à mon appli IA") }
+                    OutlinedButton(
+                        onClick = {
+                            val parsed = runCatching { repository.parseRecipeAnswer(pasteText(context)) }.getOrNull()
+                            if (parsed.isNullOrEmpty()) scope.launch { snackbar.showSnackbar("Rien de lisible dans le presse-papiers : copie la réponse JSON de l'IA d'abord.") }
+                            else { results = parsed; error = null }
+                        },
+                        modifier = Modifier.weight(1f),
+                    ) { Text("Coller sa réponse") }
+                }
+                Text(
+                    "Dans l'appli IA : envoie le texte tel quel, puis copie sa réponse (le bloc JSON) et reviens ici.",
+                    style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp),
+                )
             }
             items(results, key = { it.name }) { r ->
                 RecipeProposal(

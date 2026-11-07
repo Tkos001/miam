@@ -230,6 +230,30 @@ class MiamRepository(private val context: Context) {
         return ReceiptResult(ReceiptParser.parse(lines, names, aisles), lines, false, null)
     }
 
+    /** Texte complet à coller dans une appli IA (abonnement, sans clé) : consignes + lignes du ticket. */
+    suspend fun receiptPromptForManual(rawLines: List<String>): String {
+        val (names, _) = knownIngredients()
+        return ReceiptParser.llmSystemPrompt(names) + "\n\nTicket :\n" + rawLines.joinToString("\n")
+    }
+
+    /** Réponse collée depuis l'appli IA → lignes à relire (rayons complétés depuis les ingrédients connus). */
+    suspend fun parseReceiptAnswer(text: String): List<ReceiptItem> {
+        val (_, aisles) = knownIngredients()
+        return ReceiptParser.parseLlm(text).map {
+            val k = ShoppingAggregator.normalizeName(it.name)
+            if (it.aisleEnum == Aisle.AUTRE && aisles[k] != null) it.copy(aisle = aisles[k]!!.name) else it
+        }
+    }
+
+    /** Texte complet à coller dans une appli IA pour obtenir des recettes au format de l'app. */
+    suspend fun recipePromptForManual(request: String, useStock: Boolean): String {
+        val stock = if (useStock) stockDao.getAll() else emptyList()
+        val existing = recipeDao.getAllWithDetails().map { it.recipe.name }
+        return RecipeAssistant.systemPrompt() + "\n\n" + RecipeAssistant.userPrompt(request, stock, useStock, existing)
+    }
+
+    fun parseRecipeAnswer(text: String): List<RecipeDto> = RecipeAssistant.parse(text)
+
     /** Entre en stock les lignes validées par l'utilisateur. Retourne le nombre d'articles. */
     suspend fun addReceiptToStock(items: List<ReceiptItem>): Int {
         var n = 0
