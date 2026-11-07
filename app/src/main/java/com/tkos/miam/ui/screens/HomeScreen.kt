@@ -170,27 +170,20 @@ fun HomeScreen(
             }
 
             // ---- Favoris ----
-            val carousel = if (favorites.isNotEmpty()) favorites else recipes.take(8)
-            if (carousel.isNotEmpty()) {
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(if (favorites.isNotEmpty()) "Plats favoris" else "Quelques plats", style = MaterialTheme.typography.titleMedium)
-                    Text(
-                        "Tout voir",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.clickable { if (favorites.isNotEmpty()) onOpenFavorites() else onOpenRecipes() },
-                    )
-                }
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(10.dp),
-                    contentPadding = PaddingValues(bottom = 4.dp),
-                ) {
-                    items(carousel, key = { it.id }) { r -> MiniRecipeCard(r) { onOpenRecipe(r.id) } }
-                }
+            if (favorites.isNotEmpty()) {
+                RecipeStrip(title = "Plats favoris", recipes = favorites, onSeeAll = onOpenFavorites, onOpenRecipe = onOpenRecipe)
+            }
+
+            // ---- Suggestions : des plats hors favoris, tirés au sort, stables sur la journée ----
+            val suggestions = remember(recipes, favorites) {
+                val favIds = favorites.map { it.id }.toSet()
+                val pool = recipes.filter { it.id !in favIds }
+                val mains = pool.filter { it.kindEnum == com.tkos.miam.data.model.RecipeKind.PLAT }
+                val seed = java.time.LocalDate.now().toEpochDay().toInt()
+                (mains.ifEmpty { pool }).shuffled(kotlin.random.Random(seed)).take(8)
+            }
+            if (suggestions.isNotEmpty()) {
+                RecipeStrip(title = if (favorites.isEmpty()) "Quelques plats" else "Suggestions du jour", recipes = suggestions, onSeeAll = onOpenRecipes, onOpenRecipe = onOpenRecipe)
             }
             Spacer(Modifier.height(16.dp))
         }
@@ -290,6 +283,29 @@ private fun NextMealsCard(meals: List<MealWithRecipe>, onOpenMeals: () -> Unit, 
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun RecipeStrip(title: String, recipes: List<Recipe>, onSeeAll: () -> Unit, onOpenRecipe: (Long) -> Unit) {
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(title, style = MaterialTheme.typography.titleMedium)
+        Text(
+            "Tout voir",
+            style = MaterialTheme.typography.labelLarge,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.clickable(onClick = onSeeAll),
+        )
+    }
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        contentPadding = PaddingValues(bottom = 4.dp),
+    ) {
+        items(recipes, key = { it.id }) { r -> MiniRecipeCard(r) { onOpenRecipe(r.id) } }
     }
 }
 
