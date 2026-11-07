@@ -1,15 +1,23 @@
 #!/usr/bin/env python3
-"""Vérifie le catalogue avant commit. Usage : python3 data/check.py
+"""Vérifie le catalogue avant commit. Usage : python3 data/check.py [--base REF] [--fix]
 
-Contrôle : JSON valide, format, version incrémentée par rapport à HEAD, remoteId uniques et en slug,
-champs obligatoires, enums connus de l'app, image présente dans data/images/ et imageUrl cohérente,
-noms de la carte `images` existants dans data/images/. Code retour 1 si une erreur bloque.
+Contrôle : JSON valide, format, version incrémentée par rapport à REF (défaut : HEAD, ou HEAD~1 si le
+fichier est identique à HEAD), remoteId uniques et en slug, champs obligatoires, enums connus de l'app,
+image présente dans data/images/ et imageUrl cohérente, noms de la carte `images` existants dans
+data/images/. Code retour 1 si une erreur bloque.
+
+--fix : renseigne imageUrl pour les recettes dont data/images/<remoteId>.jpg existe, et si quelque chose
+a changé, incrémente version et met updatedAt à aujourd'hui (utilisé par le workflow CI).
 """
+import datetime
 import json
 import os
 import re
 import subprocess
 import sys
+
+FIX = "--fix" in sys.argv
+BASE = sys.argv[sys.argv.index("--base") + 1] if "--base" in sys.argv else None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CAT = os.path.join(ROOT, "data", "recipes.json")
@@ -39,16 +47,40 @@ version = cat.get("version")
 if not isinstance(version, int):
     err("version doit être un entier")
 
-# version par rapport au dernier commit
+# --fix : imageUrl manquantes dont le JPG existe
+changed = False
+if FIX:
+    for r in cat.get("recipes", []):
+        rid = r.get("remoteId")
+        if rid and not r.get("imageUrl") and os.path.exists(os.path.join(IMG_DIR, rid + ".jpg")):
+            r["imageUrl"] = IMG_URL + rid + ".jpg"
+            print("fix    : imageUrl renseignée pour", rid)
+            changed = True
+    if changed and isinstance(version, int):
+        version = cat["version"] = version + 1
+        cat["updatedAt"] = datetime.date.today().isoformat()
+        with open(CAT, "w", encoding="utf-8") as f:
+            json.dump(cat, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+        print("fix    : catalogue passé en v", version)
+
+# version par rapport au commit de référence
+def git_show(ref):
+    return subprocess.run(["git", "show", f"{ref}:data/recipes.json"], cwd=ROOT, capture_output=True, text=True, check=True).stdout
+
 try:
-    head = subprocess.run(["git", "show", "HEAD:data/recipes.json"], cwd=ROOT, capture_output=True, text=True, check=True).stdout
-    head_version = json.loads(head).get("version")
-    head_ids = {r.get("remoteId") for r in json.loads(head).get("recipes", [])}
-    if isinstance(version, int) and version <= head_version and head != open(CAT, encoding="utf-8").read():
-        err(f"version non incrémentée (HEAD = {head_version}, fichier = {version}) : l'app ne verra pas le changement")
+    current = open(CAT, encoding="utf-8").read()
+    ref = BASE or "HEAD"
+    base = git_show(ref)
+    if BASE is None and base == current:
+        ref, base = "HEAD~1", git_show("HEAD~1")
+    base_version = json.loads(base).get("version")
+    head_ids = {r.get("remoteId") for r in json.loads(base).get("recipes", [])}
+    if isinstance(version, int) and version <= base_version and base != current:
+        err(f"version non incrémentée ({ref} = {base_version}, fichier = {version}) : l'app ne verra pas le changement")
 except Exception:  # noqa: BLE001
     head_ids = set()
-    warn("impossible de comparer avec HEAD (pas de git ?)")
+    warn(f"impossible de comparer avec {BASE or 'HEAD'} (pas de git ?)")
 
 recipes = cat.get("recipes", [])
 seen = set()

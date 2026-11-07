@@ -17,7 +17,22 @@ absents de ce fichier) **+ les recettes du catalogue**. 32 recettes ici = 47 dan
 6. `python3 data/check.py` → doit afficher `OK`.
 7. Commit (`recipes.json`, `build.py`, le `.svg` et le `.jpg`) et push sur `main`.
 
-Une recette sans étape 2-4 s'affiche **sans image** dans l'app. Ne pas sauter ces étapes.
+Une recette sans étape 2 s'affiche **sans image** dans l'app. Ne pas la sauter.
+
+### Sans environnement local (édition via l'API GitHub, ChatGPT, éditeur web)
+
+Les étapes 3, 4 et 6 sont faites par le workflow **Catalogue** (`.github/workflows/catalogue.yml`) à chaque
+push sur `main` touchant `data/recipes.json` ou `data/images/src/` :
+
+1. il lance `build.py --missing` : génère le JPG de tout `remoteId` présent dans `DISHES` sans image ;
+2. il lance `check.py --fix` : renseigne `imageUrl`, incrémente `version` si nécessaire, valide le tout ;
+3. il commite le résultat sur `main` (« Catalogue vN : illustrations générées (CI) »).
+
+Donc, sans pouvoir exécuter de script, il suffit de : écrire la recette dans `recipes.json` (sans `imageUrl`
+ou avec, au choix), ajouter la fonction de dessin dans `build.py` et l'enregistrer dans `DISHES`, incrémenter
+`version`, pousser. Puis regarder l'onglet *Actions* → run « Catalogue » : vert = publié ; rouge = le résumé
+du run liste les erreurs de `check.py` à corriger (enum inconnu, `remoteId` en double, fonction absente…).
+Le workflow ne corrige jamais le contenu d'une recette, seulement l'image et la version.
 
 ## 1. La recette
 
@@ -107,10 +122,11 @@ proche et copier sa manière de faire : ombre portée `filter="url(#soft)"` à o
 morceaux, reflet blanc à opacité 0.4 sur le dessus. Le résultat doit être lisible en vignette 200 px :
 3 à 6 gros éléments valent mieux que 30 petits.
 
-Générer et regarder le résultat :
+Générer et regarder le résultat (en local ; sinon le workflow Catalogue le fait au push) :
 
 ```
 python3 data/images/src/build.py paupiettes-porc-ail-creme
+python3 data/images/src/build.py --missing      # tout ce qui n'a pas encore de JPG
 ```
 
 Prérequis : `rsvg-convert` (paquet `librsvg2-bin`) et Pillow (`pip install pillow`). Le script écrit
@@ -123,6 +139,8 @@ Sans argument il régénère **toutes** les images : inutile et à éviter dans 
   jour » et ignore le changement. `updatedAt` : date ISO du jour.
 - `python3 data/check.py` contrôle tout ce qui précède (JSON, enums, doublons, image présente, version
   incrémentée par rapport au dernier commit). Ne pas pousser tant qu'il n'affiche pas `OK`.
+  Options : `--base REF` (commit de comparaison), `--fix` (renseigne `imageUrl` quand le JPG existe et
+  incrémente `version` si quelque chose a changé). Le workflow Catalogue l'exécute aussi après chaque push.
 
 ## 4. Commit
 

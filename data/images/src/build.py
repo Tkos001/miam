@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Génère les illustrations flat des plats (SVG -> JPG 1200x800).
 
-Usage : python3 data/images/src/build.py [slug ...]
+Usage : python3 data/images/src/build.py [--missing] [slug ...]
+  sans argument : régénère tout ; --missing : seulement les plats de DISHES sans JPG dans data/images/.
 Nécessite rsvg-convert et Pillow.
 """
 import math
@@ -1223,6 +1224,16 @@ def build(slug):
 
 
 if __name__ == "__main__":
-    for slug in (sys.argv[1:] or DISHES):
+    args = sys.argv[1:]
+    if "--missing" in args:
+        args.remove("--missing")
+        slugs = [s for s in (args or DISHES) if not os.path.exists(os.path.join(OUT, s + ".jpg"))]
+    else:
+        slugs = args or list(DISHES)
+    for slug in slugs:
+        if slug not in DISHES:
+            sys.exit(f"inconnu : {slug} (pas de fonction dans DISHES)")
         build(slug)
         print("ok", slug)
+    if not slugs:
+        print("rien à générer")

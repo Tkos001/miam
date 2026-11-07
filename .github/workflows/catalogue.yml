@@ -1,0 +1,60 @@
+name: Catalogue
+
+# Vérifie data/recipes.json à chaque push et génère les illustrations manquantes
+# (fonction présente dans data/images/src/build.py mais JPG absent), puis les commite.
+# Permet de contribuer sans environnement local : il suffit d'éditer recipes.json et build.py.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'data/recipes.json'
+      - 'data/images/src/**'
+      - 'data/check.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalogue
+  cancel-in-progress: false
+
+jobs:
+  catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Outils (rsvg-convert, Pillow)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q librsvg2-bin
+          python3 -m pip install --quiet pillow
+
+      - name: Illustrations manquantes
+        run: python3 data/images/src/build.py --missing
+
+      - name: Vérification du catalogue
+        id: check
+        run: |
+          BASE="${{ github.event.before }}"
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null || [ "$BASE" = "0000000000000000000000000000000000000000" ]; then
+            BASE=HEAD~1
+          fi
+          python3 data/check.py --fix --base "$BASE" | tee check.log
+          test "${PIPESTATUS[0]}" -eq 0
+          { echo '```'; cat check.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit des fichiers générés
+        run: |
+          git add data/recipes.json data/images/*.jpg data/images/src/*.svg
+          if git diff --cached --quiet; then
+            echo "rien à committer"
+            exit 0
+          fi
+          VERSION=$(python3 -c "import json;print(json.load(open('data/recipes.json'))['version'])")
+          git -c user.name="miam-bot" -c user.email="actions@github.com" \
+            commit -m "Catalogue v${VERSION} : illustrations générées (CI)"
+          git push
