@@ -123,7 +123,11 @@ try:
         ref, base = "HEAD~1", git_show("HEAD~1")
     base_version = json.loads(base).get("version")
     head_ids = {r.get("remoteId") for r in json.loads(base).get("recipes", [])}
-    if isinstance(version, int) and version <= base_version and base != current:
+    def content(c):  # contenu utile, hors version/updatedAt et hors mise en forme
+        c = canonical(json.loads(c) if isinstance(c, str) else c)
+        c.pop("version", None); c.pop("updatedAt", None)
+        return json.dumps(c, sort_keys=True, ensure_ascii=False)
+    if isinstance(version, int) and version <= base_version and content(base) != content(current):
         err(f"version non incrémentée ({ref} = {base_version}, fichier = {version}) : l'app ne verra pas le changement")
 except Exception:  # noqa: BLE001
     head_ids = set()
