@@ -6,8 +6,10 @@ fichier est identique à HEAD), remoteId uniques et en slug, champs obligatoires
 image présente dans data/images/ et imageUrl cohérente, noms de la carte `images` existants dans
 data/images/. Code retour 1 si une erreur bloque.
 
---fix : renseigne imageUrl pour les recettes dont data/images/<remoteId>.jpg existe, et si quelque chose
-a changé, incrémente version et met updatedAt à aujourd'hui (utilisé par le workflow CI).
+--fix : renseigne imageUrl pour les recettes dont data/images/<remoteId>.jpg existe (si quelque chose a
+changé, incrémente version et met updatedAt à aujourd'hui), puis normalise le fichier : ordre des clés,
+indentation 2, quantités entières sans « .0 », champs par défaut retirés (isFavorite false, imageUrls vide,
+sourceUrl). La normalisation seule ne change pas la version. Utilisé par le workflow CI.
 """
 import datetime
 import json
@@ -47,7 +49,49 @@ version = cat.get("version")
 if not isinstance(version, int):
     err("version doit être un entier")
 
-# --fix : imageUrl manquantes dont le JPG existe
+RECIPE_KEYS = ["remoteId", "name", "description", "prepMinutes", "cookMinutes", "servings", "cuisine", "protein",
+               "imageUrl", "imageUrls", "ingredients", "steps"]
+ING_KEYS = ["name", "quantity", "unit", "aisle"]
+
+
+def _num(v):
+    return int(v) if isinstance(v, float) and v.is_integer() and abs(v) < 1e15 else v
+
+
+def _ordered(d, keys):
+    out = {k: d[k] for k in keys if k in d}
+    out.update({k: v for k, v in d.items() if k not in out})
+    return out
+
+
+def canonical(cat):
+    """Forme de référence du catalogue (celle que tout contributeur doit produire)."""
+    recipes = []
+    for r in cat.get("recipes", []):
+        r = dict(r)
+        r.pop("isFavorite", None)
+        r.pop("sourceUrl", None)
+        if not r.get("imageUrls"):
+            r.pop("imageUrls", None)
+        if r.get("imageUrl") is None:
+            r.pop("imageUrl", None)
+        ings = []
+        for ing in r.get("ingredients", []):
+            ing = dict(ing)
+            ing["quantity"] = _num(ing.get("quantity"))
+            ings.append(_ordered(ing, ING_KEYS))
+        r["ingredients"] = ings
+        recipes.append(_ordered(r, RECIPE_KEYS))
+    out = {"format": cat.get("format"), "version": cat.get("version"), "updatedAt": cat.get("updatedAt"), "recipes": recipes}
+    out["images"] = cat.get("images", {})
+    return out
+
+
+def dumps(cat):
+    return json.dumps(cat, ensure_ascii=False, indent=2) + "\n"
+
+
+# --fix : imageUrl manquantes dont le JPG existe, puis normalisation
 changed = False
 if FIX:
     for r in cat.get("recipes", []):
@@ -59,10 +103,13 @@ if FIX:
     if changed and isinstance(version, int):
         version = cat["version"] = version + 1
         cat["updatedAt"] = datetime.date.today().isoformat()
-        with open(CAT, "w", encoding="utf-8") as f:
-            json.dump(cat, f, ensure_ascii=False, indent=2)
-            f.write("\n")
         print("fix    : catalogue passé en v", version)
+    cat = canonical(cat)
+    text = dumps(cat)
+    if text != open(CAT, encoding="utf-8").read():
+        with open(CAT, "w", encoding="utf-8") as f:
+            f.write(text)
+        print("fix    : fichier normalisé (ordre des clés, indentation, quantités)")
 
 # version par rapport au commit de référence
 def git_show(ref):

@@ -76,6 +76,10 @@ Règles :
   - `cuisine` : `FRANCAISE ITALIENNE INDIENNE THAI JAPONAISE AMERICAINE AUTRE`
   - `protein` : `BOEUF PORC VOLAILLE VEAU AGNEAU POISSON VEGETARIEN AUTRE`
 - Français, apostrophes typographiques ou droites indifférentes, unités de cuisson en « °C ».
+- Forme du fichier : indentation 2 espaces, clés dans l'ordre de l'exemple ci-dessus, quantités entières sans
+  `.0`, pas de `isFavorite` / `sourceUrl` / `imageUrls` vide. `check.py --fix` (et donc la CI) remet le fichier
+  dans cette forme ; l'app publie déjà comme ça. Ne pas reformater le fichier autrement : un diff de 5 000
+  lignes pour une recette rend l'historique illisible et provoque des conflits entre contributeurs.
 
 Pour un lot de plusieurs recettes, `data/images/src/new_recipes.py` montre un générateur en Python
 (fonctions `r()` / `i()`) qui écrit directement dans le catalogue.

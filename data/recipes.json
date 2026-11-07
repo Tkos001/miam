@@ -1,2865 +1,2853 @@
 {
-    "format": "miam-catalog",
-    "version": 15,
-    "updatedAt": "2026-11-07",
-    "recipes": [
+  "format": "miam-catalog",
+  "version": 15,
+  "updatedAt": "2026-11-07",
+  "recipes": [
+    {
+      "remoteId": "butternut-farcie-boeuf",
+      "name": "Courge butternut farcie au bœuf haché",
+      "description": "Une grosse butternut coupée en deux, une moitié par personne, garnie de 500 g de bœuf haché à la crème et bien gratinée.",
+      "prepMinutes": 15,
+      "cookMinutes": 60,
+      "servings": 2,
+      "cuisine": "FRANCAISE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
+      "ingredients": [
         {
-            "name": "Courge butternut farcie au bœuf haché",
-            "description": "Une grosse butternut coupée en deux, une moitié par personne, garnie de 500 g de bœuf haché à la crème et bien gratinée.",
-            "prepMinutes": 15,
-            "cookMinutes": 60,
-            "servings": 2,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "BOEUF",
-            "remoteId": "butternut-farcie-boeuf",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Courge butternut",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 1000.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Cumin",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Préchauffer le four à 200 °C. Couper la grosse butternut en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
-                "Enfourner chair vers le haut 35 à 40 min, jusqu'à ce qu'une lame s'enfonce sans résistance.",
-                "Pendant ce temps, émincer l'oignon et l'ail et les faire revenir 5 min dans le reste d'huile. Ajouter le kilo de bœuf haché, cuire 8 à 10 min en émiettant.",
-                "Baisser le feu, ajouter la crème épaisse, le cumin, sel et poivre. Laisser épaissir 2 à 3 min en remuant, sans faire bouillir.",
-                "Creuser la chair des deux moitiés en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
-                "Garnir chaque moitié avec la moitié de la farce (environ 500 g) en tassant bien, elle doit déborder un peu. Couvrir généreusement de gruyère râpé.",
-                "Remettre 15 à 20 min au four, en finissant 2 à 3 min sous le gril si besoin, jusqu'à ce que le fromage soit bien gratiné."
-            ]
+          "name": "Courge butternut",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
         },
         {
-            "name": "Lasagnes au bœuf",
-            "description": "Bolognaise maison, béchamel et plaques de lasagnes, gratinées au four.",
-            "prepMinutes": 30,
-            "cookMinutes": 60,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "BOEUF",
-            "remoteId": "lasagnes-boeuf",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/lasagnes-boeuf.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Plaques de lasagnes",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Carotte",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Concentré de tomate",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 80.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Bolognaise : faire revenir oignon, ail et carotte émincés dans l'huile 5 min. Ajouter le bœuf, cuire 8 min en émiettant. Ajouter tomates et concentré, saler, poivrer, laisser mijoter 20 min.",
-                "Béchamel : faire fondre le beurre, ajouter la farine, cuire 1 min. Verser le lait petit à petit en fouettant jusqu'à épaississement. Muscade, sel, poivre.",
-                "Four à 180 °C. Dans un plat beurré : une louche de béchamel, plaques, bolognaise, béchamel, gruyère. Répéter jusqu'en haut, finir par béchamel, gruyère et parmesan.",
-                "Enfourner 40 min jusqu'à ce que le dessus soit bien doré. Laisser reposer 10 min avant de couper."
-            ]
+          "name": "Bœuf haché",
+          "quantity": 1000,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
         },
         {
-            "name": "Tourte pommes de terre, saucisse fumée et comté",
-            "description": "Deux pâtes feuilletées, pommes de terre fondantes, saucisse de Morteau et comté.",
-            "prepMinutes": 25,
-            "cookMinutes": 55,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "tourte-pomme-de-terre-saucisse-comte",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tourte-pomme-de-terre-saucisse-comte.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Pâte feuilletée",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Saucisse de Morteau",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Comté râpé",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 20.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Cuire la saucisse 25 min dans l'eau frémissante, la couper en rondelles. Cuire les pommes de terre pelées 15 min à l'eau salée, les couper en rondelles épaisses.",
-                "Faire fondre l'oignon émincé dans le beurre. Mélanger la crème avec muscade, sel, poivre.",
-                "Four à 200 °C. Foncer un moule à tarte avec la première pâte. Alterner pommes de terre, oignons, saucisse, comté, un peu de crème. Terminer par crème et comté.",
-                "Couvrir avec la seconde pâte, souder les bords, faire une cheminée au centre, dorer au jaune d'œuf. Enfourner 35 à 40 min jusqu'à belle coloration."
-            ]
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
         },
         {
-            "name": "Pâtes à la carbonara",
-            "description": "Guanciale ou lardons, jaunes d'œufs et pecorino : crémeux sans crème.",
-            "prepMinutes": 10,
-            "cookMinutes": 15,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "PORC",
-            "remoteId": "pates-carbonara",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pates-carbonara.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Spaghetti",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lardons fumés",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Jaune d'œuf",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Pecorino râpé",
-                    "quantity": 80.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Cuire les pâtes al dente dans une grande casserole d'eau salée. Garder une louche d'eau de cuisson.",
-                "Pendant ce temps, faire dorer les lardons à sec dans une poêle, feu moyen, 5 min. Couper le feu.",
-                "Fouetter jaunes, œuf entier, pecorino, parmesan et beaucoup de poivre dans un saladier.",
-                "Égoutter les pâtes, les verser dans la poêle hors du feu avec les lardons, ajouter le mélange aux œufs et un peu d'eau de cuisson, mélanger vite jusqu'à une sauce nappante. Servir aussitôt."
-            ]
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
         },
         {
-            "name": "Paupiettes de porc et de veau à la crème",
-            "description": "Paupiettes dorées puis mijotées avec champignons, échalotes et crème.",
-            "prepMinutes": 15,
-            "cookMinutes": 40,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "paupiettes-porc-veau",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-veau.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Paupiettes de veau",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Paupiettes de porc",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Champignons de Paris",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Échalote",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Vin blanc sec",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "BOISSONS"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Moutarde",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 30.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Faire dorer les paupiettes sur toutes les faces dans beurre et huile, 8 min. Réserver.",
-                "Dans la même cocotte, faire revenir échalotes émincées et champignons en lamelles 5 min. Déglacer au vin blanc, laisser réduire de moitié.",
-                "Remettre les paupiettes, ajouter 10 cl d'eau, couvrir et laisser mijoter 25 min à feu doux en les retournant à mi-cuisson.",
-                "Sortir les paupiettes, ajouter crème et moutarde dans la sauce, faire épaissir 3 min, rectifier l'assaisonnement. Servir avec riz, purée ou tagliatelles."
-            ]
+          "name": "Crème fraîche épaisse",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
         },
         {
-            "name": "Poulet basquaise",
-            "description": "Cuisses de poulet mijotées aux poivrons, tomates et piment d'Espelette.",
-            "prepMinutes": 15,
-            "cookMinutes": 50,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "VOLAILLE",
-            "remoteId": "poulet-basquaise",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-basquaise.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Cuisses de poulet",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Poivron rouge",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Poivron vert",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 3.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Piment d'Espelette",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Thym",
-                    "quantity": 2.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Faire dorer les cuisses salées et poivrées dans l'huile, 10 min. Réserver.",
-                "Faire revenir oignons et poivrons en lanières 10 min, ajouter l'ail, les tomates, le thym et le piment.",
-                "Remettre le poulet, couvrir, laisser mijoter 30 min à feu doux. Découvrir les 10 dernières minutes pour épaissir la sauce. Servir avec du riz."
-            ]
+          "name": "Gruyère râpé",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
         },
         {
-            "name": "Pavés de saumon au four et légumes rôtis",
-            "description": "Saumon, courgettes, tomates cerises et pommes de terre, tout sur une plaque.",
-            "prepMinutes": 15,
-            "cookMinutes": 35,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "POISSON",
-            "remoteId": "saumon-four-legumes",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saumon-four-legumes.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Pavés de saumon",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Courgette",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Tomates cerises",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Citron",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 4.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Herbes de Provence",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 200 °C. Pommes de terre en quartiers avec 2 c. à s. d'huile, sel, herbes : 20 min sur la plaque.",
-                "Ajouter courgettes en rondelles, tomates cerises, ail écrasé, puis poser les pavés de saumon salés, poivrés, arrosés du reste d'huile et de jus de citron.",
-                "Remettre 15 min : le saumon doit rester nacré au centre. Servir avec des quartiers de citron."
-            ]
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
         },
         {
-            "name": "Chili con carne",
-            "description": "Bœuf haché, haricots rouges, tomate et épices, à servir avec du riz.",
-            "prepMinutes": 15,
-            "cookMinutes": 45,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AMERICAINE",
-            "protein": "BOEUF",
-            "remoteId": "chili-con-carne",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/chili-con-carne.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Haricots rouges en boîte",
-                    "quantity": 2.0,
-                    "unit": "BOITE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 3.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Poivron rouge",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Cumin",
-                    "quantity": 2.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Paprika",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Piment en poudre",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Concentré de tomate",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Riz",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Faire revenir oignons, ail et poivron en dés 5 min dans l'huile. Ajouter le bœuf, cuire 8 min en émiettant.",
-                "Ajouter épices et concentré, mélanger 1 min, puis les tomates. Saler, mijoter 25 min à découvert.",
-                "Ajouter les haricots égouttés et rincés, cuire encore 10 min. Servir sur du riz, avec crème ou cheddar râpé selon l'envie."
-            ]
+          "name": "Cumin",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
         },
         {
-            "name": "Gratin de courgettes au chèvre",
-            "description": "Courgettes, crème, chèvre frais et menthe, léger et rapide.",
-            "prepMinutes": 15,
-            "cookMinutes": 35,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "VEGETARIEN",
-            "remoteId": "gratin-courgettes-chevre",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-courgettes-chevre.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Courgette",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Chèvre frais",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 80.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 1.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Menthe",
-                    "quantity": 6.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 180 °C. Courgettes en rondelles fines, sautées 8 min dans l'huile avec l'ail pour les dessécher.",
-                "Fouetter œufs, crème, chèvre écrasé, menthe ciselée, sel, poivre. Mélanger aux courgettes.",
-                "Verser dans un plat, couvrir de gruyère, enfourner 25 à 30 min jusqu'à ce que ce soit pris et doré."
-            ]
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
         },
         {
-            "name": "Riz cantonais",
-            "description": "Riz sauté aux petits pois, jambon, œufs et sauce soja. Parfait pour un reste de riz.",
-            "prepMinutes": 10,
-            "cookMinutes": 15,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AUTRE",
-            "protein": "PORC",
-            "remoteId": "riz-cantonais",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-cantonais.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Riz",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Jambon blanc",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Petits pois surgelés",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "SURGELES"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Oignon nouveau",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sauce soja",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile de sésame",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Cuire le riz la veille ou le laisser bien refroidir. Cuire les petits pois 3 min à l'eau bouillante.",
-                "Dans un wok très chaud, brouiller les œufs battus dans 1 c. à s. d'huile, réserver.",
-                "Faire sauter le riz dans le reste d'huile 3 min en remuant, ajouter jambon en dés, petits pois, œufs, oignons nouveaux émincés, soja et sésame. Sauter 2 min. Poivrer."
-            ]
-        },
-        {
-            "name": "Boulettes de bœuf à la sauce tomate",
-            "description": "Boulettes moelleuses mijotées dans une sauce tomate à l'ail et au basilic.",
-            "prepMinutes": 20,
-            "cookMinutes": 35,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "BOEUF",
-            "remoteId": "boulettes-boeuf-sauce-tomate",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boulettes-boeuf-sauce-tomate.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Pain de mie",
-                    "quantity": 2.0,
-                    "unit": "TRANCHE",
-                    "aisle": "BOULANGERIE"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Basilic",
-                    "quantity": 8.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Spaghetti",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Tremper le pain dans le lait, l'essorer. Mélanger avec le bœuf, l'œuf, la moitié de l'oignon haché, 1 gousse d'ail, le parmesan, sel, poivre. Former 16 boulettes.",
-                "Les dorer dans 2 c. à s. d'huile 6 min en les roulant. Réserver.",
-                "Dans la même sauteuse, faire fondre le reste d'oignon et d'ail, ajouter les tomates, saler. Remettre les boulettes, couvrir, mijoter 20 min. Ajouter le basilic.",
-                "Servir avec les spaghetti cuits al dente."
-            ]
-        },
-        {
-            "name": "Curry de poulet au lait de coco",
-            "description": "Poulet mijoté dans une sauce coco-curry douce, avec du riz basmati.",
-            "prepMinutes": 15,
-            "cookMinutes": 30,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "INDIENNE",
-            "protein": "VOLAILLE",
-            "remoteId": "curry-poulet-coco",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/curry-poulet-coco.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Blanc de poulet",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Lait de coco",
-                    "quantity": 40.0,
-                    "unit": "CL",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Gingembre frais",
-                    "quantity": 20.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Curry en poudre",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Riz basmati",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Coriandre",
-                    "quantity": 6.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Faire revenir l'oignon émincé, l'ail et le gingembre râpé 3 min dans l'huile. Ajouter le curry, 30 s.",
-                "Ajouter le poulet en morceaux, le faire dorer 5 min. Verser tomates et lait de coco, saler, mijoter 20 min à feu doux.",
-                "Servir sur le riz cuit, parsemé de coriandre."
-            ]
-        },
-        {
-            "name": "Gratin de pâtes au jambon",
-            "description": "Coquillettes, jambon, béchamel et gruyère : le plat des soirs pressés.",
-            "prepMinutes": 10,
-            "cookMinutes": 35,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "gratin-pates-jambon",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-pates-jambon.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Coquillettes",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Jambon blanc",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 70.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Cuire les coquillettes 2 min de moins que le paquet. Four à 200 °C.",
-                "Béchamel : beurre fondu, farine, 1 min ; lait petit à petit en fouettant jusqu'à épaississement ; muscade, sel, poivre, la moitié du gruyère.",
-                "Mélanger pâtes, jambon en dés et béchamel, verser dans un plat, couvrir du reste de gruyère, enfourner 20 min."
-            ]
-        },
-        {
-            "name": "Escalopes de dinde à la milanaise",
-            "description": "Escalopes panées croustillantes, citron et spaghetti à la tomate.",
-            "prepMinutes": 20,
-            "cookMinutes": 15,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "VOLAILLE",
-            "remoteId": "escalopes-milanaise",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/escalopes-milanaise.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Escalope de dinde",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Chapelure",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Citron",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Spaghetti",
-                    "quantity": 320.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Coulis de tomate",
-                    "quantity": 40.0,
-                    "unit": "CL",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 6.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Aplatir les escalopes entre deux feuilles de film. Trois assiettes : farine ; œufs battus ; chapelure mélangée au parmesan.",
-                "Passer chaque escalope farine, œuf, chapelure en appuyant bien.",
-                "Cuire les spaghetti, réchauffer le coulis salé. Frire les escalopes 3 à 4 min par face dans l'huile chaude. Servir avec un quartier de citron."
-            ]
-        },
-        {
-            "name": "Wok de bœuf aux légumes",
-            "description": "Lamelles de bœuf sautées, poivrons, brocoli, sauce soja-miel, nouilles.",
-            "prepMinutes": 20,
-            "cookMinutes": 15,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AUTRE",
-            "protein": "BOEUF",
-            "remoteId": "wok-boeuf-legumes",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/wok-boeuf-legumes.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Bœuf à fondue ou rumsteck",
-                    "quantity": 500.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Nouilles chinoises",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivron rouge",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Brocoli",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Carotte",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon nouveau",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sauce soja",
-                    "quantity": 4.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Miel",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Maïzena",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Graines de sésame",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Mélanger soja, miel, maïzena et 5 cl d'eau. Cuire les nouilles, égoutter.",
-                "Wok très chaud : saisir le bœuf en lamelles 2 min, réserver. Sauter carottes en bâtonnets, brocoli en petits bouquets et poivron 5 min avec l'ail.",
-                "Remettre le bœuf, verser la sauce, ajouter les nouilles, mélanger 2 min. Oignons nouveaux et sésame au moment de servir."
-            ]
-        },
-        {
-            "name": "Flammekueche",
-            "description": "Tarte flambée alsacienne : pâte fine, crème-fromage blanc, oignons et lardons.",
-            "prepMinutes": 20,
-            "cookMinutes": 15,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "flammekueche",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/flammekueche.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Pâte à pizza",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Fromage blanc",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Lardons fumés",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four au maximum (250 °C ou plus), plaque dedans pour préchauffer. Mélanger fromage blanc, crème, muscade, sel, poivre.",
-                "Étaler les pâtes très finement, tartiner du mélange, répartir oignons émincés fins et lardons.",
-                "Enfourner sur la plaque chaude 10 à 12 min jusqu'à bords dorés. Servir aussitôt."
-            ]
-        },
-        {
-            "name": "Galettes de sarrasin complètes",
-            "description": "Galettes bretonnes jambon-œuf-fromage, pâte maison.",
-            "prepMinutes": 15,
-            "cookMinutes": 25,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "galettes-sarrasin-complete",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/galettes-sarrasin-complete.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Farine de sarrasin",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 5.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Eau",
-                    "quantity": 50.0,
-                    "unit": "CL",
-                    "aisle": "BOISSONS"
-                },
-                {
-                    "name": "Jambon blanc",
-                    "quantity": 4.0,
-                    "unit": "TRANCHE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Emmental râpé",
-                    "quantity": 150.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre demi-sel",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Sel",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Pâte : mélanger farine, sel, 1 œuf et l'eau petit à petit jusqu'à une pâte lisse. Laisser reposer 1 h si possible.",
-                "Cuire une louche de pâte dans une poêle beurrée très chaude, 1 min par face. Faire 4 galettes.",
-                "Galette dans la poêle : emmental, tranche de jambon, casser un œuf au centre, couvrir 3 min, replier les bords en carré."
-            ]
-        },
-        {
-            "name": "Cordons bleus maison et purée",
-            "description": "Escalopes de poulet roulées jambon-fromage, panées, purée maison.",
-            "prepMinutes": 25,
-            "cookMinutes": 30,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "VOLAILLE",
-            "remoteId": "cordon-bleu-maison-puree",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/cordon-bleu-maison-puree.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Escalope de poulet",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Jambon blanc",
-                    "quantity": 4.0,
-                    "unit": "TRANCHE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Emmental",
-                    "quantity": 4.0,
-                    "unit": "TRANCHE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Chapelure",
-                    "quantity": 120.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 1.0,
-                    "unit": "KG",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 15.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 4.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Purée : pommes de terre pelées cuites 20 min à l'eau salée, écrasées avec beurre et lait chaud, sel, poivre.",
-                "Aplatir les escalopes, poser jambon et emmental, rouler ou replier, fermer avec un cure-dent.",
-                "Paner farine, œuf, chapelure. Cuire 5 min par face à feu moyen dans l'huile, le fromage doit couler."
-            ]
-        },
-        {
-            "name": "Poisson pané maison et haricots verts",
-            "description": "Cabillaud pané au four, haricots verts persillés, citron.",
-            "prepMinutes": 15,
-            "cookMinutes": 20,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "POISSON",
-            "remoteId": "poisson-pane-maison-haricots",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poisson-pane-maison-haricots.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Dos de cabillaud",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Chapelure",
-                    "quantity": 120.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Haricots verts",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 1.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Persil",
-                    "quantity": 6.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Citron",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 30.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 220 °C. Couper le cabillaud en bâtonnets épais, saler. Paner farine, œuf, chapelure. Poser sur une plaque huilée, arroser d'un filet d'huile.",
-                "Enfourner 15 min en retournant à mi-cuisson.",
-                "Haricots : 8 min à l'eau bouillante salée, égoutter, sauter 2 min au beurre avec ail et persil hachés. Servir avec le citron."
-            ]
-        },
-        {
-            "name": "Risotto aux champignons",
-            "description": "Riz arborio crémeux, champignons de Paris, parmesan.",
-            "prepMinutes": 10,
-            "cookMinutes": 30,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "VEGETARIEN",
-            "remoteId": "risotto-champignons",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/risotto-champignons.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Riz arborio",
-                    "quantity": 320.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Champignons de Paris",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 1.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Vin blanc sec",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "BOISSONS"
-                },
-                {
-                    "name": "Bouillon de volaille",
-                    "quantity": 1.0,
-                    "unit": "L",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 80.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Persil",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Sauter les champignons émincés dans l'huile à feu vif 6 min, saler, réserver. Garder le bouillon chaud.",
-                "Fondre l'oignon et l'ail hachés dans la moitié du beurre, ajouter le riz, nacrer 2 min, déglacer au vin.",
-                "Ajouter le bouillon louche par louche en remuant, 18 min. Hors du feu : champignons, parmesan, reste de beurre, poivre, persil. Couvrir 2 min, servir."
-            ]
-        },
-        {
-            "name": "Tomates farcies",
-            "description": "Grosses tomates garnies de chair à saucisse et bœuf, cuites sur un lit de riz.",
-            "prepMinutes": 25,
-            "cookMinutes": 60,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "tomates-farcies",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tomates-farcies.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Grosse tomate",
-                    "quantity": 8.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Chair à saucisse",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Pain de mie",
-                    "quantity": 2.0,
-                    "unit": "TRANCHE",
-                    "aisle": "BOULANGERIE"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Persil",
-                    "quantity": 8.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Riz",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 180 °C. Décalotter les tomates, les vider à la cuillère (garder la pulpe), saler l'intérieur, retourner 10 min.",
-                "Farce : pain trempé dans le lait essoré, chair à saucisse, bœuf, oignon et ail hachés, persil, œuf, sel, poivre.",
-                "Riz cru et pulpe hachée au fond d'un plat huilé avec 20 cl d'eau. Poser les tomates garnies, remettre les chapeaux. Enfourner 50 à 60 min."
-            ]
-        },
-        {
-            "name": "Poulet au miel et sésame, riz jasmin",
-            "description": "Hauts de cuisse laqués au miel-soja, graines de sésame, riz parfumé.",
-            "prepMinutes": 10,
-            "cookMinutes": 25,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AUTRE",
-            "protein": "VOLAILLE",
-            "remoteId": "poulet-miel-sesame",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-miel-sesame.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Hauts de cuisse de poulet désossés",
-                    "quantity": 700.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Miel",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sauce soja",
-                    "quantity": 4.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Gingembre frais",
-                    "quantity": 15.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Vinaigre de riz",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Graines de sésame",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Riz jasmin",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Oignon nouveau",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Mélanger miel, soja, ail et gingembre râpés, vinaigre. Cuire le riz.",
-                "Dorer le poulet en morceaux dans l'huile 8 min à feu vif. Verser la sauce, laisser laquer 5 min en remuant jusqu'à ce qu'elle nappe.",
-                "Servir sur le riz, parsemer de sésame et d'oignons nouveaux émincés."
-            ]
-        },
-        {
-            "name": "Moussaka",
-            "description": "Aubergines, agneau haché à la tomate et à la cannelle, béchamel gratinée.",
-            "prepMinutes": 30,
-            "cookMinutes": 60,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AUTRE",
-            "protein": "BOEUF",
-            "remoteId": "moussaka",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/moussaka.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Aubergine",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Agneau haché",
-                    "quantity": 500.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Cannelle",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 60.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 50.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 6.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Aubergines en tranches de 1 cm, huilées, salées, rôties 20 min à 220 °C.",
-                "Faire revenir oignon et ail, ajouter l'agneau, dorer 8 min, puis tomates, cannelle, sel, poivre ; mijoter 15 min.",
-                "Béchamel épaisse (beurre, farine, lait), hors du feu ajouter l'œuf et le parmesan. Monter aubergines / viande / aubergines / béchamel. Four 180 °C, 35 min."
-            ]
-        },
-        {
-            "name": "Filet mignon de porc à la moutarde",
-            "description": "Filet mignon rôti, sauce crème-moutarde, pommes de terre sautées.",
-            "prepMinutes": 15,
-            "cookMinutes": 40,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "filet-mignon-moutarde",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/filet-mignon-moutarde.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Filet mignon de porc",
-                    "quantity": 700.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Moutarde à l'ancienne",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Moutarde forte",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Échalote",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Vin blanc sec",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "BOISSONS"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Thym",
-                    "quantity": 2.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 200 °C. Saisir le filet mignon salé, poivré sur toutes les faces dans beurre et huile. Enfourner 20 min dans la cocotte avec le thym.",
-                "Pommes de terre en cubes sautées 20 min dans une poêle avec un peu de beurre et d'huile.",
-                "Réserver la viande sous une feuille d'alu. Dans la cocotte : échalotes 2 min, vin blanc réduit de moitié, crème et moutardes, 3 min. Trancher et napper."
-            ]
-        },
-        {
-            "name": "Gratin de poisson aux poireaux",
-            "description": "Filets de poisson blanc, fondue de poireaux à la crème, chapelure dorée.",
-            "prepMinutes": 20,
-            "cookMinutes": 35,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "POISSON",
-            "remoteId": "gratin-poisson-poireaux",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-poisson-poireaux.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Filets de poisson blanc",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Poireau",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 25.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Chapelure",
-                    "quantity": 40.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Citron",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Poireaux émincés fondus 15 min au beurre à couvert, ajouter la crème, muscade, sel, poivre.",
-                "Four à 200 °C. Fondue de poireaux dans un plat, poisson en morceaux salés et arrosés de citron par-dessus, couvrir du reste de fondue.",
-                "Chapelure et gruyère sur le dessus, enfourner 20 min."
-            ]
-        },
-        {
-            "name": "Dahl de lentilles corail",
-            "description": "Lentilles corail au lait de coco et épices, riz basmati. Végétarien et rapide.",
-            "prepMinutes": 10,
-            "cookMinutes": 25,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "INDIENNE",
-            "protein": "VEGETARIEN",
-            "remoteId": "dahl-lentilles-corail",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/dahl-lentilles-corail.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Lentilles corail",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lait de coco",
-                    "quantity": 40.0,
-                    "unit": "CL",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Gingembre frais",
-                    "quantity": 20.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Curry en poudre",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Cumin",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Curcuma",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Riz basmati",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Coriandre",
-                    "quantity": 6.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Fondre oignon, ail, gingembre hachés dans l'huile 3 min, ajouter les épices 30 s.",
-                "Ajouter lentilles rincées, tomates, lait de coco et 30 cl d'eau. Saler, mijoter 20 min en remuant : les lentilles doivent fondre.",
-                "Servir avec le riz et la coriandre."
-            ]
-        },
-        {
-            "name": "Burgers maison et potatoes",
-            "description": "Steaks hachés, cheddar, pain brioché, sauce maison, potatoes au four.",
-            "prepMinutes": 25,
-            "cookMinutes": 30,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "AMERICAINE",
-            "protein": "BOEUF",
-            "remoteId": "burgers-maison",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/burgers-maison.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Bœuf haché",
-                    "quantity": 600.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Pain à burger",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOULANGERIE"
-                },
-                {
-                    "name": "Cheddar",
-                    "quantity": 4.0,
-                    "unit": "TRANCHE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Tomate",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon rouge",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Salade",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Cornichons",
-                    "quantity": 8.0,
-                    "unit": "PIECE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Mayonnaise",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Ketchup",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Paprika",
-                    "quantity": 1.0,
-                    "unit": "CAC",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 3.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 220 °C. Pommes de terre en quartiers, huile, paprika, sel : 30 min sur une plaque.",
-                "Former 4 steaks de 150 g, saler, poivrer. Sauce : mayonnaise, ketchup, cornichons hachés.",
-                "Griller les steaks 3 min par face, poser le cheddar la dernière minute. Toaster les pains. Monter : sauce, salade, steak, tomate, oignon."
-            ]
-        },
-        {
-            "name": "Navarin d'agneau printanier",
-            "description": "Épaule d'agneau mijotée avec carottes, navets, petits pois et pommes de terre.",
-            "prepMinutes": 25,
-            "cookMinutes": 90,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "AGNEAU",
-            "remoteId": "navarin-agneau",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/navarin-agneau.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Épaule d'agneau en morceaux",
-                    "quantity": 1.0,
-                    "unit": "KG",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Carotte",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Navet",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Pommes de terre",
-                    "quantity": 500.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Petits pois surgelés",
-                    "quantity": 200.0,
-                    "unit": "G",
-                    "aisle": "SURGELES"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Concentré de tomate",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Bouillon de volaille",
-                    "quantity": 75.0,
-                    "unit": "CL",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Thym",
-                    "quantity": 2.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Dorer l'agneau salé, poivré dans l'huile par petites quantités. Ajouter oignon et ail, singer avec la farine, ajouter le concentré, mouiller au bouillon, thym. Couvrir, mijoter 1 h.",
-                "Ajouter carottes, navets et pommes de terre en morceaux, 25 min. Petits pois les 5 dernières minutes."
-            ]
-        },
-        {
-            "name": "Quiche saumon et épinards",
-            "description": "Pâte brisée, saumon frais, épinards, appareil crème-œufs.",
-            "prepMinutes": 20,
-            "cookMinutes": 40,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "POISSON",
-            "remoteId": "quiche-saumon-epinards",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-saumon-epinards.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Pâte brisée",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Pavé de saumon",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Épinards frais",
-                    "quantity": 300.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Œuf",
-                    "quantity": 3.0,
-                    "unit": "PIECE",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Crème fraîche épaisse",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Lait",
-                    "quantity": 10.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Gruyère râpé",
-                    "quantity": 80.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Noix de muscade",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Four à 180 °C. Épinards tombés 3 min dans une poêle, bien essorés. Saumon en dés.",
-                "Foncer le moule, répartir épinards et saumon. Fouetter œufs, crème, lait, muscade, sel, poivre, verser. Gruyère dessus.",
-                "Enfourner 35 à 40 min."
-            ]
-        },
-        {
-            "name": "Sauté de veau Marengo",
-            "description": "Veau mijoté à la tomate, champignons et vin blanc, tagliatelles.",
-            "prepMinutes": 20,
-            "cookMinutes": 75,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "VEAU",
-            "remoteId": "saute-veau-marengo",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saute-veau-marengo.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Sauté de veau",
-                    "quantity": 1.0,
-                    "unit": "KG",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Champignons de Paris",
-                    "quantity": 250.0,
-                    "unit": "G",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 1.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 2.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Tomates concassées",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Concentré de tomate",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Vin blanc sec",
-                    "quantity": 15.0,
-                    "unit": "CL",
-                    "aisle": "BOISSONS"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Tagliatelles",
-                    "quantity": 400.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Huile d'olive",
-                    "quantity": 2.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Thym",
-                    "quantity": 2.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Dorer le veau dans l'huile, ajouter oignon et ail, saupoudrer de farine, déglacer au vin blanc.",
-                "Ajouter tomates, concentré, thym, sel, poivre. Couvrir, mijoter 1 h. Ajouter les champignons émincés, 15 min de plus.",
-                "Servir avec les tagliatelles."
-            ]
-        },
-        {
-            "name": "Gnocchis poêlés beurre-sauge et parmesan",
-            "description": "Gnocchis dorés au beurre noisette, sauge croustillante, parmesan. 15 minutes.",
-            "prepMinutes": 5,
-            "cookMinutes": 10,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "ITALIENNE",
-            "protein": "VEGETARIEN",
-            "remoteId": "gnocchis-poelees-sauge",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gnocchis-poelees-sauge.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Gnocchis",
-                    "quantity": 800.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 80.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Sauge",
-                    "quantity": 12.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Parmesan râpé",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 1.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Plonger les gnocchis 2 min dans l'eau bouillante salée, égoutter dès qu'ils remontent.",
-                "Fondre le beurre avec l'ail écrasé et la sauge jusqu'à couleur noisette, retirer l'ail. Ajouter les gnocchis, dorer 5 min sans trop remuer.",
-                "Poivrer, parmesan, servir aussitôt."
-            ]
-        },
-        {
-            "name": "Paupiettes de porc à l’ail et à la crème",
-            "description": "Paupiettes de porc dorées puis mijotées avec des oignons, 5 à 6 gousses d’ail et une sauce onctueuse à la crème et à la moutarde.",
-            "prepMinutes": 10,
-            "cookMinutes": 40,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "PORC",
-            "remoteId": "paupiettes-porc-ail-creme",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Paupiettes de porc",
-                    "quantity": 4.0,
-                    "unit": "PIECE",
-                    "aisle": "BOUCHERIE"
-                },
-                {
-                    "name": "Ail",
-                    "quantity": 6.0,
-                    "unit": "GOUSSE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Oignon",
-                    "quantity": 2.0,
-                    "unit": "PIECE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Crème fraîche",
-                    "quantity": 20.0,
-                    "unit": "CL",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Bouillon de volaille",
-                    "quantity": 15.0,
-                    "unit": "CL",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Moutarde",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Beurre",
-                    "quantity": 10.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Huile d’olive",
-                    "quantity": 1.0,
-                    "unit": "CAS",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Thym",
-                    "quantity": 1.0,
-                    "unit": "PINCEE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Persil frais",
-                    "quantity": 1.0,
-                    "unit": "BOTTE",
-                    "aisle": "FRUITS_LEGUMES"
-                },
-                {
-                    "name": "Sel",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Poivre",
-                    "unit": "NONE",
-                    "aisle": "EPICERIE"
-                }
-            ],
-            "steps": [
-                "Dans une cocotte, faire chauffer le beurre et l’huile. Faire dorer les paupiettes sur toutes leurs faces pendant 5 à 8 minutes, puis les réserver.",
-                "Émincer les oignons et hacher finement l’ail. Faire revenir les oignons dans la cocotte, puis ajouter l’ail pendant 1 minute.",
-                "Verser le bouillon de volaille et gratter les sucs au fond de la cocotte.",
-                "Remettre les paupiettes, ajouter le thym, saler et poivrer. Couvrir et laisser mijoter à feu doux 30 à 35 minutes en retournant les paupiettes à mi-cuisson.",
-                "Ajouter la crème fraîche et la moutarde. Laisser réduire 5 minutes à découvert jusqu’à obtenir une sauce onctueuse.",
-                "Parsemer de persil frais. Pour une sauce encore plus aillée, ajouter 1 à 2 gousses d’ail écrasées dans la crème en fin de cuisson."
-            ]
-        },
-        {
-            "name": "Trianon (Royal chocolat)",
-            "description": "Dacquoise noisette, croustillant praliné aux crêpes dentelle et mousse légère au chocolat noir Inaya 65 %.",
-            "prepMinutes": 60,
-            "cookMinutes": 18,
-            "servings": 4,
-            "isFavorite": false,
-            "cuisine": "FRANCAISE",
-            "protein": "AUTRE",
-            "remoteId": "trianon",
-            "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/trianon.jpg",
-            "imageUrls": [],
-            "ingredients": [
-                {
-                    "name": "Blancs d'œufs",
-                    "quantity": 90.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Poudre de noisettes",
-                    "quantity": 75.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sucre glace",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Sucre",
-                    "quantity": 65.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Farine",
-                    "quantity": 12.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Praliné",
-                    "quantity": 105.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Chocolat au lait",
-                    "quantity": 53.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Crêpes dentelle",
-                    "quantity": 53.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Chocolat noir Inaya 65 %",
-                    "quantity": 280.0,
-                    "unit": "G",
-                    "aisle": "EPICERIE"
-                },
-                {
-                    "name": "Lait entier",
-                    "quantity": 300.0,
-                    "unit": "ML",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Crème entière liquide",
-                    "quantity": 300.0,
-                    "unit": "ML",
-                    "aisle": "FRAIS"
-                },
-                {
-                    "name": "Jaunes d'œufs",
-                    "quantity": 60.0,
-                    "unit": "G",
-                    "aisle": "FRAIS"
-                }
-            ],
-            "steps": [
-                "Dacquoise noisette : préchauffer le four à 180 °C. Monter les blancs en neige en ajoutant progressivement les 30 g de sucre. Mélanger la poudre de noisettes, le sucre glace et la farine, puis incorporer délicatement aux blancs.",
-                "Étaler la dacquoise en un disque adapté au moule ou au cercle. Cuire 15 à 18 min à 180 °C : le biscuit doit être légèrement doré. Laisser refroidir complètement.",
-                "Croustillant praliné : faire fondre le chocolat au lait, mélanger avec le praliné puis incorporer les crêpes dentelle émiettées. Étaler régulièrement sur la dacquoise refroidie et réserver au frais pour faire prendre.",
-                "Mousse chocolat : chauffer le lait. Fouetter les jaunes avec les 35 g de sucre restants, verser progressivement le lait chaud dessus puis remettre à cuire à feu doux en remuant jusqu'à 82–84 °C, sans faire bouillir.",
-                "Verser la crème anglaise chaude sur le chocolat noir Inaya 65 % haché. Mélanger jusqu'à obtenir une ganache lisse et laisser redescendre autour de 35 °C. Monter la crème liquide bien froide en texture souple, puis l'incorporer délicatement à la préparation chocolatée.",
-                "Montage à l'envers : chemiser le moule de rhodoïd si nécessaire. Verser la mousse dans le moule, remonter la mousse sur les bords, puis déposer le disque dacquoise-croustillant, face croustillant contre la mousse. Appuyer légèrement et lisser.",
-                "Placer au congélateur au minimum 8 h. Démouler le gâteau encore congelé, le retourner sur son plat de service et laisser décongeler 6 à 8 h au réfrigérateur avant dégustation."
-            ]
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
         }
-    ],
-    "images": {
-        "Spaghetti bolognaise": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/spaghetti-bolognaise.jpg",
-        "Gratin dauphinois": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-dauphinois.jpg",
-        "Quiche lorraine": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-lorraine.jpg",
-        "Poulet rôti et pommes de terre": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-roti-pommes-de-terre.jpg",
-        "Bœuf bourguignon": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boeuf-bourguignon.jpg",
-        "Blanquette de veau": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
-        "Croque-monsieur": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/croque-monsieur.jpg",
-        "Hachis parmentier": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/hachis-parmentier.jpg",
-        "Ratatouille": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/ratatouille.jpg",
-        "Tartiflette": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tartiflette.jpg",
-        "Soupe à l'oignon gratinée": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/soupe-oignon-gratinee.jpg",
-        "Steak haché, frites maison, salade": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/steak-hache-frites-salade.jpg",
-        "Omelette aux fines herbes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/omelette-fines-herbes.jpg",
-        "Pot-au-feu": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pot-au-feu.jpg",
-        "Crêpes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/crepes.jpg"
+      ],
+      "steps": [
+        "Préchauffer le four à 200 °C. Couper la grosse butternut en deux dans la longueur, retirer les graines à la cuillère, badigeonner la chair d'huile d'olive, saler.",
+        "Enfourner chair vers le haut 35 à 40 min, jusqu'à ce qu'une lame s'enfonce sans résistance.",
+        "Pendant ce temps, émincer l'oignon et l'ail et les faire revenir 5 min dans le reste d'huile. Ajouter le kilo de bœuf haché, cuire 8 à 10 min en émiettant.",
+        "Baisser le feu, ajouter la crème épaisse, le cumin, sel et poivre. Laisser épaissir 2 à 3 min en remuant, sans faire bouillir.",
+        "Creuser la chair des deux moitiés en laissant 1 cm sur les bords, l'écraser grossièrement et la mélanger à la viande.",
+        "Garnir chaque moitié avec la moitié de la farce (environ 500 g) en tassant bien, elle doit déborder un peu. Couvrir généreusement de gruyère râpé.",
+        "Remettre 15 à 20 min au four, en finissant 2 à 3 min sous le gril si besoin, jusqu'à ce que le fromage soit bien gratiné."
+      ]
+    },
+    {
+      "remoteId": "lasagnes-boeuf",
+      "name": "Lasagnes au bœuf",
+      "description": "Bolognaise maison, béchamel et plaques de lasagnes, gratinées au four.",
+      "prepMinutes": 30,
+      "cookMinutes": 60,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/lasagnes-boeuf.jpg",
+      "ingredients": [
+        {
+          "name": "Plaques de lasagnes",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 80,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Bolognaise : faire revenir oignon, ail et carotte émincés dans l'huile 5 min. Ajouter le bœuf, cuire 8 min en émiettant. Ajouter tomates et concentré, saler, poivrer, laisser mijoter 20 min.",
+        "Béchamel : faire fondre le beurre, ajouter la farine, cuire 1 min. Verser le lait petit à petit en fouettant jusqu'à épaississement. Muscade, sel, poivre.",
+        "Four à 180 °C. Dans un plat beurré : une louche de béchamel, plaques, bolognaise, béchamel, gruyère. Répéter jusqu'en haut, finir par béchamel, gruyère et parmesan.",
+        "Enfourner 40 min jusqu'à ce que le dessus soit bien doré. Laisser reposer 10 min avant de couper."
+      ]
+    },
+    {
+      "remoteId": "tourte-pomme-de-terre-saucisse-comte",
+      "name": "Tourte pommes de terre, saucisse fumée et comté",
+      "description": "Deux pâtes feuilletées, pommes de terre fondantes, saucisse de Morteau et comté.",
+      "prepMinutes": 25,
+      "cookMinutes": 55,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tourte-pomme-de-terre-saucisse-comte.jpg",
+      "ingredients": [
+        {
+          "name": "Pâte feuilletée",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Saucisse de Morteau",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Comté râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire la saucisse 25 min dans l'eau frémissante, la couper en rondelles. Cuire les pommes de terre pelées 15 min à l'eau salée, les couper en rondelles épaisses.",
+        "Faire fondre l'oignon émincé dans le beurre. Mélanger la crème avec muscade, sel, poivre.",
+        "Four à 200 °C. Foncer un moule à tarte avec la première pâte. Alterner pommes de terre, oignons, saucisse, comté, un peu de crème. Terminer par crème et comté.",
+        "Couvrir avec la seconde pâte, souder les bords, faire une cheminée au centre, dorer au jaune d'œuf. Enfourner 35 à 40 min jusqu'à belle coloration."
+      ]
+    },
+    {
+      "remoteId": "pates-carbonara",
+      "name": "Pâtes à la carbonara",
+      "description": "Guanciale ou lardons, jaunes d'œufs et pecorino : crémeux sans crème.",
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pates-carbonara.jpg",
+      "ingredients": [
+        {
+          "name": "Spaghetti",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lardons fumés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaune d'œuf",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Pecorino râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les pâtes al dente dans une grande casserole d'eau salée. Garder une louche d'eau de cuisson.",
+        "Pendant ce temps, faire dorer les lardons à sec dans une poêle, feu moyen, 5 min. Couper le feu.",
+        "Fouetter jaunes, œuf entier, pecorino, parmesan et beaucoup de poivre dans un saladier.",
+        "Égoutter les pâtes, les verser dans la poêle hors du feu avec les lardons, ajouter le mélange aux œufs et un peu d'eau de cuisson, mélanger vite jusqu'à une sauce nappante. Servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "paupiettes-porc-veau",
+      "name": "Paupiettes de porc et de veau à la crème",
+      "description": "Paupiettes dorées puis mijotées avec champignons, échalotes et crème.",
+      "prepMinutes": 15,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-veau.jpg",
+      "ingredients": [
+        {
+          "name": "Paupiettes de veau",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Paupiettes de porc",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Échalote",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire dorer les paupiettes sur toutes les faces dans beurre et huile, 8 min. Réserver.",
+        "Dans la même cocotte, faire revenir échalotes émincées et champignons en lamelles 5 min. Déglacer au vin blanc, laisser réduire de moitié.",
+        "Remettre les paupiettes, ajouter 10 cl d'eau, couvrir et laisser mijoter 25 min à feu doux en les retournant à mi-cuisson.",
+        "Sortir les paupiettes, ajouter crème et moutarde dans la sauce, faire épaissir 3 min, rectifier l'assaisonnement. Servir avec riz, purée ou tagliatelles."
+      ]
+    },
+    {
+      "remoteId": "poulet-basquaise",
+      "name": "Poulet basquaise",
+      "description": "Cuisses de poulet mijotées aux poivrons, tomates et piment d'Espelette.",
+      "prepMinutes": 15,
+      "cookMinutes": 50,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "VOLAILLE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-basquaise.jpg",
+      "ingredients": [
+        {
+          "name": "Cuisses de poulet",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivron vert",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 3,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Piment d'Espelette",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 2,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire dorer les cuisses salées et poivrées dans l'huile, 10 min. Réserver.",
+        "Faire revenir oignons et poivrons en lanières 10 min, ajouter l'ail, les tomates, le thym et le piment.",
+        "Remettre le poulet, couvrir, laisser mijoter 30 min à feu doux. Découvrir les 10 dernières minutes pour épaissir la sauce. Servir avec du riz."
+      ]
+    },
+    {
+      "remoteId": "saumon-four-legumes",
+      "name": "Pavés de saumon au four et légumes rôtis",
+      "description": "Saumon, courgettes, tomates cerises et pommes de terre, tout sur une plaque.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "POISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saumon-four-legumes.jpg",
+      "ingredients": [
+        {
+          "name": "Pavés de saumon",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Courgette",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates cerises",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Herbes de Provence",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 200 °C. Pommes de terre en quartiers avec 2 c. à s. d'huile, sel, herbes : 20 min sur la plaque.",
+        "Ajouter courgettes en rondelles, tomates cerises, ail écrasé, puis poser les pavés de saumon salés, poivrés, arrosés du reste d'huile et de jus de citron.",
+        "Remettre 15 min : le saumon doit rester nacré au centre. Servir avec des quartiers de citron."
+      ]
+    },
+    {
+      "remoteId": "chili-con-carne",
+      "name": "Chili con carne",
+      "description": "Bœuf haché, haricots rouges, tomate et épices, à servir avec du riz.",
+      "prepMinutes": 15,
+      "cookMinutes": 45,
+      "servings": 4,
+      "cuisine": "AMERICAINE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/chili-con-carne.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Haricots rouges en boîte",
+          "quantity": 2,
+          "unit": "BOITE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 3,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 2,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Piment en poudre",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire revenir oignons, ail et poivron en dés 5 min dans l'huile. Ajouter le bœuf, cuire 8 min en émiettant.",
+        "Ajouter épices et concentré, mélanger 1 min, puis les tomates. Saler, mijoter 25 min à découvert.",
+        "Ajouter les haricots égouttés et rincés, cuire encore 10 min. Servir sur du riz, avec crème ou cheddar râpé selon l'envie."
+      ]
+    },
+    {
+      "remoteId": "gratin-courgettes-chevre",
+      "name": "Gratin de courgettes au chèvre",
+      "description": "Courgettes, crème, chèvre frais et menthe, léger et rapide.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "VEGETARIEN",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-courgettes-chevre.jpg",
+      "ingredients": [
+        {
+          "name": "Courgette",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Chèvre frais",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Menthe",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Courgettes en rondelles fines, sautées 8 min dans l'huile avec l'ail pour les dessécher.",
+        "Fouetter œufs, crème, chèvre écrasé, menthe ciselée, sel, poivre. Mélanger aux courgettes.",
+        "Verser dans un plat, couvrir de gruyère, enfourner 25 à 30 min jusqu'à ce que ce soit pris et doré."
+      ]
+    },
+    {
+      "remoteId": "riz-cantonais",
+      "name": "Riz cantonais",
+      "description": "Riz sauté aux petits pois, jambon, œufs et sauce soja. Parfait pour un reste de riz.",
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-cantonais.jpg",
+      "ingredients": [
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Petits pois surgelés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "SURGELES"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon nouveau",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sauce soja",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile de sésame",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire le riz la veille ou le laisser bien refroidir. Cuire les petits pois 3 min à l'eau bouillante.",
+        "Dans un wok très chaud, brouiller les œufs battus dans 1 c. à s. d'huile, réserver.",
+        "Faire sauter le riz dans le reste d'huile 3 min en remuant, ajouter jambon en dés, petits pois, œufs, oignons nouveaux émincés, soja et sésame. Sauter 2 min. Poivrer."
+      ]
+    },
+    {
+      "remoteId": "boulettes-boeuf-sauce-tomate",
+      "name": "Boulettes de bœuf à la sauce tomate",
+      "description": "Boulettes moelleuses mijotées dans une sauce tomate à l'ail et au basilic.",
+      "prepMinutes": 20,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boulettes-boeuf-sauce-tomate.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Pain de mie",
+          "quantity": 2,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Basilic",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Spaghetti",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Tremper le pain dans le lait, l'essorer. Mélanger avec le bœuf, l'œuf, la moitié de l'oignon haché, 1 gousse d'ail, le parmesan, sel, poivre. Former 16 boulettes.",
+        "Les dorer dans 2 c. à s. d'huile 6 min en les roulant. Réserver.",
+        "Dans la même sauteuse, faire fondre le reste d'oignon et d'ail, ajouter les tomates, saler. Remettre les boulettes, couvrir, mijoter 20 min. Ajouter le basilic.",
+        "Servir avec les spaghetti cuits al dente."
+      ]
+    },
+    {
+      "remoteId": "curry-poulet-coco",
+      "name": "Curry de poulet au lait de coco",
+      "description": "Poulet mijoté dans une sauce coco-curry douce, avec du riz basmati.",
+      "prepMinutes": 15,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "INDIENNE",
+      "protein": "VOLAILLE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/curry-poulet-coco.jpg",
+      "ingredients": [
+        {
+          "name": "Blanc de poulet",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Lait de coco",
+          "quantity": 40,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Gingembre frais",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Curry en poudre",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz basmati",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Coriandre",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire revenir l'oignon émincé, l'ail et le gingembre râpé 3 min dans l'huile. Ajouter le curry, 30 s.",
+        "Ajouter le poulet en morceaux, le faire dorer 5 min. Verser tomates et lait de coco, saler, mijoter 20 min à feu doux.",
+        "Servir sur le riz cuit, parsemé de coriandre."
+      ]
+    },
+    {
+      "remoteId": "gratin-pates-jambon",
+      "name": "Gratin de pâtes au jambon",
+      "description": "Coquillettes, jambon, béchamel et gruyère : le plat des soirs pressés.",
+      "prepMinutes": 10,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-pates-jambon.jpg",
+      "ingredients": [
+        {
+          "name": "Coquillettes",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 70,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les coquillettes 2 min de moins que le paquet. Four à 200 °C.",
+        "Béchamel : beurre fondu, farine, 1 min ; lait petit à petit en fouettant jusqu'à épaississement ; muscade, sel, poivre, la moitié du gruyère.",
+        "Mélanger pâtes, jambon en dés et béchamel, verser dans un plat, couvrir du reste de gruyère, enfourner 20 min."
+      ]
+    },
+    {
+      "remoteId": "escalopes-milanaise",
+      "name": "Escalopes de dinde à la milanaise",
+      "description": "Escalopes panées croustillantes, citron et spaghetti à la tomate.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "VOLAILLE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/escalopes-milanaise.jpg",
+      "ingredients": [
+        {
+          "name": "Escalope de dinde",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Spaghetti",
+          "quantity": 320,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Coulis de tomate",
+          "quantity": 40,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 6,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Aplatir les escalopes entre deux feuilles de film. Trois assiettes : farine ; œufs battus ; chapelure mélangée au parmesan.",
+        "Passer chaque escalope farine, œuf, chapelure en appuyant bien.",
+        "Cuire les spaghetti, réchauffer le coulis salé. Frire les escalopes 3 à 4 min par face dans l'huile chaude. Servir avec un quartier de citron."
+      ]
+    },
+    {
+      "remoteId": "wok-boeuf-legumes",
+      "name": "Wok de bœuf aux légumes",
+      "description": "Lamelles de bœuf sautées, poivrons, brocoli, sauce soja-miel, nouilles.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/wok-boeuf-legumes.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf à fondue ou rumsteck",
+          "quantity": 500,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Nouilles chinoises",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Brocoli",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon nouveau",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sauce soja",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Miel",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Maïzena",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Graines de sésame",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Mélanger soja, miel, maïzena et 5 cl d'eau. Cuire les nouilles, égoutter.",
+        "Wok très chaud : saisir le bœuf en lamelles 2 min, réserver. Sauter carottes en bâtonnets, brocoli en petits bouquets et poivron 5 min avec l'ail.",
+        "Remettre le bœuf, verser la sauce, ajouter les nouilles, mélanger 2 min. Oignons nouveaux et sésame au moment de servir."
+      ]
+    },
+    {
+      "remoteId": "flammekueche",
+      "name": "Flammekueche",
+      "description": "Tarte flambée alsacienne : pâte fine, crème-fromage blanc, oignons et lardons.",
+      "prepMinutes": 20,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/flammekueche.jpg",
+      "ingredients": [
+        {
+          "name": "Pâte à pizza",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Fromage blanc",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Lardons fumés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four au maximum (250 °C ou plus), plaque dedans pour préchauffer. Mélanger fromage blanc, crème, muscade, sel, poivre.",
+        "Étaler les pâtes très finement, tartiner du mélange, répartir oignons émincés fins et lardons.",
+        "Enfourner sur la plaque chaude 10 à 12 min jusqu'à bords dorés. Servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "galettes-sarrasin-complete",
+      "name": "Galettes de sarrasin complètes",
+      "description": "Galettes bretonnes jambon-œuf-fromage, pâte maison.",
+      "prepMinutes": 15,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/galettes-sarrasin-complete.jpg",
+      "ingredients": [
+        {
+          "name": "Farine de sarrasin",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 5,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Eau",
+          "quantity": 50,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Emmental râpé",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre demi-sel",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sel",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Pâte : mélanger farine, sel, 1 œuf et l'eau petit à petit jusqu'à une pâte lisse. Laisser reposer 1 h si possible.",
+        "Cuire une louche de pâte dans une poêle beurrée très chaude, 1 min par face. Faire 4 galettes.",
+        "Galette dans la poêle : emmental, tranche de jambon, casser un œuf au centre, couvrir 3 min, replier les bords en carré."
+      ]
+    },
+    {
+      "remoteId": "cordon-bleu-maison-puree",
+      "name": "Cordons bleus maison et purée",
+      "description": "Escalopes de poulet roulées jambon-fromage, panées, purée maison.",
+      "prepMinutes": 25,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "VOLAILLE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/cordon-bleu-maison-puree.jpg",
+      "ingredients": [
+        {
+          "name": "Escalope de poulet",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Jambon blanc",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Emmental",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 120,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Lait",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Purée : pommes de terre pelées cuites 20 min à l'eau salée, écrasées avec beurre et lait chaud, sel, poivre.",
+        "Aplatir les escalopes, poser jambon et emmental, rouler ou replier, fermer avec un cure-dent.",
+        "Paner farine, œuf, chapelure. Cuire 5 min par face à feu moyen dans l'huile, le fromage doit couler."
+      ]
+    },
+    {
+      "remoteId": "poisson-pane-maison-haricots",
+      "name": "Poisson pané maison et haricots verts",
+      "description": "Cabillaud pané au four, haricots verts persillés, citron.",
+      "prepMinutes": 15,
+      "cookMinutes": 20,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "POISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poisson-pane-maison-haricots.jpg",
+      "ingredients": [
+        {
+          "name": "Dos de cabillaud",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 120,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Haricots verts",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Persil",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 220 °C. Couper le cabillaud en bâtonnets épais, saler. Paner farine, œuf, chapelure. Poser sur une plaque huilée, arroser d'un filet d'huile.",
+        "Enfourner 15 min en retournant à mi-cuisson.",
+        "Haricots : 8 min à l'eau bouillante salée, égoutter, sauter 2 min au beurre avec ail et persil hachés. Servir avec le citron."
+      ]
+    },
+    {
+      "remoteId": "risotto-champignons",
+      "name": "Risotto aux champignons",
+      "description": "Riz arborio crémeux, champignons de Paris, parmesan.",
+      "prepMinutes": 10,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "VEGETARIEN",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/risotto-champignons.jpg",
+      "ingredients": [
+        {
+          "name": "Riz arborio",
+          "quantity": 320,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Bouillon de volaille",
+          "quantity": 1,
+          "unit": "L",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Sauter les champignons émincés dans l'huile à feu vif 6 min, saler, réserver. Garder le bouillon chaud.",
+        "Fondre l'oignon et l'ail hachés dans la moitié du beurre, ajouter le riz, nacrer 2 min, déglacer au vin.",
+        "Ajouter le bouillon louche par louche en remuant, 18 min. Hors du feu : champignons, parmesan, reste de beurre, poivre, persil. Couvrir 2 min, servir."
+      ]
+    },
+    {
+      "remoteId": "tomates-farcies",
+      "name": "Tomates farcies",
+      "description": "Grosses tomates garnies de chair à saucisse et bœuf, cuites sur un lit de riz.",
+      "prepMinutes": 25,
+      "cookMinutes": 60,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tomates-farcies.jpg",
+      "ingredients": [
+        {
+          "name": "Grosse tomate",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Chair à saucisse",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Bœuf haché",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Pain de mie",
+          "quantity": 2,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Persil",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Riz",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Décalotter les tomates, les vider à la cuillère (garder la pulpe), saler l'intérieur, retourner 10 min.",
+        "Farce : pain trempé dans le lait essoré, chair à saucisse, bœuf, oignon et ail hachés, persil, œuf, sel, poivre.",
+        "Riz cru et pulpe hachée au fond d'un plat huilé avec 20 cl d'eau. Poser les tomates garnies, remettre les chapeaux. Enfourner 50 à 60 min."
+      ]
+    },
+    {
+      "remoteId": "poulet-miel-sesame",
+      "name": "Poulet au miel et sésame, riz jasmin",
+      "description": "Hauts de cuisse laqués au miel-soja, graines de sésame, riz parfumé.",
+      "prepMinutes": 10,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "protein": "VOLAILLE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-miel-sesame.jpg",
+      "ingredients": [
+        {
+          "name": "Hauts de cuisse de poulet désossés",
+          "quantity": 700,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Miel",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sauce soja",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Gingembre frais",
+          "quantity": 15,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vinaigre de riz",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Graines de sésame",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz jasmin",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon nouveau",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Mélanger miel, soja, ail et gingembre râpés, vinaigre. Cuire le riz.",
+        "Dorer le poulet en morceaux dans l'huile 8 min à feu vif. Verser la sauce, laisser laquer 5 min en remuant jusqu'à ce qu'elle nappe.",
+        "Servir sur le riz, parsemer de sésame et d'oignons nouveaux émincés."
+      ]
+    },
+    {
+      "remoteId": "moussaka",
+      "name": "Moussaka",
+      "description": "Aubergines, agneau haché à la tomate et à la cannelle, béchamel gratinée.",
+      "prepMinutes": 30,
+      "cookMinutes": 60,
+      "servings": 4,
+      "cuisine": "AUTRE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/moussaka.jpg",
+      "ingredients": [
+        {
+          "name": "Aubergine",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Agneau haché",
+          "quantity": 500,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Cannelle",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 60,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 6,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Aubergines en tranches de 1 cm, huilées, salées, rôties 20 min à 220 °C.",
+        "Faire revenir oignon et ail, ajouter l'agneau, dorer 8 min, puis tomates, cannelle, sel, poivre ; mijoter 15 min.",
+        "Béchamel épaisse (beurre, farine, lait), hors du feu ajouter l'œuf et le parmesan. Monter aubergines / viande / aubergines / béchamel. Four 180 °C, 35 min."
+      ]
+    },
+    {
+      "remoteId": "filet-mignon-moutarde",
+      "name": "Filet mignon de porc à la moutarde",
+      "description": "Filet mignon rôti, sauce crème-moutarde, pommes de terre sautées.",
+      "prepMinutes": 15,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/filet-mignon-moutarde.jpg",
+      "ingredients": [
+        {
+          "name": "Filet mignon de porc",
+          "quantity": 700,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Moutarde à l'ancienne",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Moutarde forte",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Échalote",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 2,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 200 °C. Saisir le filet mignon salé, poivré sur toutes les faces dans beurre et huile. Enfourner 20 min dans la cocotte avec le thym.",
+        "Pommes de terre en cubes sautées 20 min dans une poêle avec un peu de beurre et d'huile.",
+        "Réserver la viande sous une feuille d'alu. Dans la cocotte : échalotes 2 min, vin blanc réduit de moitié, crème et moutardes, 3 min. Trancher et napper."
+      ]
+    },
+    {
+      "remoteId": "gratin-poisson-poireaux",
+      "name": "Gratin de poisson aux poireaux",
+      "description": "Filets de poisson blanc, fondue de poireaux à la crème, chapelure dorée.",
+      "prepMinutes": 20,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "POISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-poisson-poireaux.jpg",
+      "ingredients": [
+        {
+          "name": "Filets de poisson blanc",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Poireau",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 25,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Chapelure",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Poireaux émincés fondus 15 min au beurre à couvert, ajouter la crème, muscade, sel, poivre.",
+        "Four à 200 °C. Fondue de poireaux dans un plat, poisson en morceaux salés et arrosés de citron par-dessus, couvrir du reste de fondue.",
+        "Chapelure et gruyère sur le dessus, enfourner 20 min."
+      ]
+    },
+    {
+      "remoteId": "dahl-lentilles-corail",
+      "name": "Dahl de lentilles corail",
+      "description": "Lentilles corail au lait de coco et épices, riz basmati. Végétarien et rapide.",
+      "prepMinutes": 10,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "INDIENNE",
+      "protein": "VEGETARIEN",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/dahl-lentilles-corail.jpg",
+      "ingredients": [
+        {
+          "name": "Lentilles corail",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait de coco",
+          "quantity": 40,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Gingembre frais",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Curry en poudre",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Cumin",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Curcuma",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Riz basmati",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Coriandre",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Fondre oignon, ail, gingembre hachés dans l'huile 3 min, ajouter les épices 30 s.",
+        "Ajouter lentilles rincées, tomates, lait de coco et 30 cl d'eau. Saler, mijoter 20 min en remuant : les lentilles doivent fondre.",
+        "Servir avec le riz et la coriandre."
+      ]
+    },
+    {
+      "remoteId": "burgers-maison",
+      "name": "Burgers maison et potatoes",
+      "description": "Steaks hachés, cheddar, pain brioché, sauce maison, potatoes au four.",
+      "prepMinutes": 25,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "AMERICAINE",
+      "protein": "BOEUF",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/burgers-maison.jpg",
+      "ingredients": [
+        {
+          "name": "Bœuf haché",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Pain à burger",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Cheddar",
+          "quantity": 4,
+          "unit": "TRANCHE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Tomate",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Salade",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Cornichons",
+          "quantity": 8,
+          "unit": "PIECE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Ketchup",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Paprika",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 220 °C. Pommes de terre en quartiers, huile, paprika, sel : 30 min sur une plaque.",
+        "Former 4 steaks de 150 g, saler, poivrer. Sauce : mayonnaise, ketchup, cornichons hachés.",
+        "Griller les steaks 3 min par face, poser le cheddar la dernière minute. Toaster les pains. Monter : sauce, salade, steak, tomate, oignon."
+      ]
+    },
+    {
+      "remoteId": "navarin-agneau",
+      "name": "Navarin d'agneau printanier",
+      "description": "Épaule d'agneau mijotée avec carottes, navets, petits pois et pommes de terre.",
+      "prepMinutes": 25,
+      "cookMinutes": 90,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AGNEAU",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/navarin-agneau.jpg",
+      "ingredients": [
+        {
+          "name": "Épaule d'agneau en morceaux",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Carotte",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Navet",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 500,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Petits pois surgelés",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "SURGELES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Bouillon de volaille",
+          "quantity": 75,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 2,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Dorer l'agneau salé, poivré dans l'huile par petites quantités. Ajouter oignon et ail, singer avec la farine, ajouter le concentré, mouiller au bouillon, thym. Couvrir, mijoter 1 h.",
+        "Ajouter carottes, navets et pommes de terre en morceaux, 25 min. Petits pois les 5 dernières minutes."
+      ]
+    },
+    {
+      "remoteId": "quiche-saumon-epinards",
+      "name": "Quiche saumon et épinards",
+      "description": "Pâte brisée, saumon frais, épinards, appareil crème-œufs.",
+      "prepMinutes": 20,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "POISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-saumon-epinards.jpg",
+      "ingredients": [
+        {
+          "name": "Pâte brisée",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Pavé de saumon",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Épinards frais",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche épaisse",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Lait",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Épinards tombés 3 min dans une poêle, bien essorés. Saumon en dés.",
+        "Foncer le moule, répartir épinards et saumon. Fouetter œufs, crème, lait, muscade, sel, poivre, verser. Gruyère dessus.",
+        "Enfourner 35 à 40 min."
+      ]
+    },
+    {
+      "remoteId": "saute-veau-marengo",
+      "name": "Sauté de veau Marengo",
+      "description": "Veau mijoté à la tomate, champignons et vin blanc, tagliatelles.",
+      "prepMinutes": 20,
+      "cookMinutes": 75,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "VEAU",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saute-veau-marengo.jpg",
+      "ingredients": [
+        {
+          "name": "Sauté de veau",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Champignons de Paris",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Tomates concassées",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Concentré de tomate",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Vin blanc sec",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "BOISSONS"
+        },
+        {
+          "name": "Farine",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Tagliatelles",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 2,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 2,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Dorer le veau dans l'huile, ajouter oignon et ail, saupoudrer de farine, déglacer au vin blanc.",
+        "Ajouter tomates, concentré, thym, sel, poivre. Couvrir, mijoter 1 h. Ajouter les champignons émincés, 15 min de plus.",
+        "Servir avec les tagliatelles."
+      ]
+    },
+    {
+      "remoteId": "gnocchis-poelees-sauge",
+      "name": "Gnocchis poêlés beurre-sauge et parmesan",
+      "description": "Gnocchis dorés au beurre noisette, sauge croustillante, parmesan. 15 minutes.",
+      "prepMinutes": 5,
+      "cookMinutes": 10,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "VEGETARIEN",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gnocchis-poelees-sauge.jpg",
+      "ingredients": [
+        {
+          "name": "Gnocchis",
+          "quantity": 800,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sauge",
+          "quantity": 12,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Parmesan râpé",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Ail",
+          "quantity": 1,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Plonger les gnocchis 2 min dans l'eau bouillante salée, égoutter dès qu'ils remontent.",
+        "Fondre le beurre avec l'ail écrasé et la sauge jusqu'à couleur noisette, retirer l'ail. Ajouter les gnocchis, dorer 5 min sans trop remuer.",
+        "Poivrer, parmesan, servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "paupiettes-porc-ail-creme",
+      "name": "Paupiettes de porc à l’ail et à la crème",
+      "description": "Paupiettes de porc dorées puis mijotées avec des oignons, 5 à 6 gousses d’ail et une sauce onctueuse à la crème et à la moutarde.",
+      "prepMinutes": 10,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg",
+      "ingredients": [
+        {
+          "name": "Paupiettes de porc",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Ail",
+          "quantity": 6,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Bouillon de volaille",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 10,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d’olive",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil frais",
+          "quantity": 1,
+          "unit": "BOTTE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Dans une cocotte, faire chauffer le beurre et l’huile. Faire dorer les paupiettes sur toutes leurs faces pendant 5 à 8 minutes, puis les réserver.",
+        "Émincer les oignons et hacher finement l’ail. Faire revenir les oignons dans la cocotte, puis ajouter l’ail pendant 1 minute.",
+        "Verser le bouillon de volaille et gratter les sucs au fond de la cocotte.",
+        "Remettre les paupiettes, ajouter le thym, saler et poivrer. Couvrir et laisser mijoter à feu doux 30 à 35 minutes en retournant les paupiettes à mi-cuisson.",
+        "Ajouter la crème fraîche et la moutarde. Laisser réduire 5 minutes à découvert jusqu’à obtenir une sauce onctueuse.",
+        "Parsemer de persil frais. Pour une sauce encore plus aillée, ajouter 1 à 2 gousses d’ail écrasées dans la crème en fin de cuisson."
+      ]
+    },
+    {
+      "remoteId": "trianon",
+      "name": "Trianon (Royal chocolat)",
+      "description": "Dacquoise noisette, croustillant praliné aux crêpes dentelle et mousse légère au chocolat noir Inaya 65 %.",
+      "prepMinutes": 60,
+      "cookMinutes": 18,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/trianon.jpg",
+      "ingredients": [
+        {
+          "name": "Blancs d'œufs",
+          "quantity": 90,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Poudre de noisettes",
+          "quantity": 75,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre glace",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 65,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 12,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Praliné",
+          "quantity": 105,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Chocolat au lait",
+          "quantity": 53,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Crêpes dentelle",
+          "quantity": 53,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Chocolat noir Inaya 65 %",
+          "quantity": 280,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait entier",
+          "quantity": 300,
+          "unit": "ML",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème entière liquide",
+          "quantity": 300,
+          "unit": "ML",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaunes d'œufs",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        }
+      ],
+      "steps": [
+        "Dacquoise noisette : préchauffer le four à 180 °C. Monter les blancs en neige en ajoutant progressivement les 30 g de sucre. Mélanger la poudre de noisettes, le sucre glace et la farine, puis incorporer délicatement aux blancs.",
+        "Étaler la dacquoise en un disque adapté au moule ou au cercle. Cuire 15 à 18 min à 180 °C : le biscuit doit être légèrement doré. Laisser refroidir complètement.",
+        "Croustillant praliné : faire fondre le chocolat au lait, mélanger avec le praliné puis incorporer les crêpes dentelle émiettées. Étaler régulièrement sur la dacquoise refroidie et réserver au frais pour faire prendre.",
+        "Mousse chocolat : chauffer le lait. Fouetter les jaunes avec les 35 g de sucre restants, verser progressivement le lait chaud dessus puis remettre à cuire à feu doux en remuant jusqu'à 82–84 °C, sans faire bouillir.",
+        "Verser la crème anglaise chaude sur le chocolat noir Inaya 65 % haché. Mélanger jusqu'à obtenir une ganache lisse et laisser redescendre autour de 35 °C. Monter la crème liquide bien froide en texture souple, puis l'incorporer délicatement à la préparation chocolatée.",
+        "Montage à l'envers : chemiser le moule de rhodoïd si nécessaire. Verser la mousse dans le moule, remonter la mousse sur les bords, puis déposer le disque dacquoise-croustillant, face croustillant contre la mousse. Appuyer légèrement et lisser.",
+        "Placer au congélateur au minimum 8 h. Démouler le gâteau encore congelé, le retourner sur son plat de service et laisser décongeler 6 à 8 h au réfrigérateur avant dégustation."
+      ]
     }
+  ],
+  "images": {
+    "Spaghetti bolognaise": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/spaghetti-bolognaise.jpg",
+    "Gratin dauphinois": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-dauphinois.jpg",
+    "Quiche lorraine": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-lorraine.jpg",
+    "Poulet rôti et pommes de terre": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-roti-pommes-de-terre.jpg",
+    "Bœuf bourguignon": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boeuf-bourguignon.jpg",
+    "Blanquette de veau": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
+    "Croque-monsieur": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/croque-monsieur.jpg",
+    "Hachis parmentier": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/hachis-parmentier.jpg",
+    "Ratatouille": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/ratatouille.jpg",
+    "Tartiflette": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tartiflette.jpg",
+    "Soupe à l'oignon gratinée": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/soupe-oignon-gratinee.jpg",
+    "Steak haché, frites maison, salade": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/steak-hache-frites-salade.jpg",
+    "Omelette aux fines herbes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/omelette-fines-herbes.jpg",
+    "Pot-au-feu": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pot-au-feu.jpg",
+    "Crêpes": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/crepes.jpg"
+  }
 }

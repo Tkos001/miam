@@ -34,6 +34,10 @@ object CatalogPublisher {
     private val RAW = Regex("^https://raw\\.githubusercontent\\.com/([^/]+)/([^/]+)/([^/]+)/(.+)$")
     private val json = Json { prettyPrint = true; ignoreUnknownKeys = true; encodeDefaults = true; explicitNulls = false }
 
+    /** Écriture du catalogue : indentation 2, même forme que data/check.py (évite de réécrire tout le fichier à chaque publication). */
+    @OptIn(kotlinx.serialization.ExperimentalSerializationApi::class)
+    private val catalogJson = Json { prettyPrint = true; prettyPrintIndent = "  "; ignoreUnknownKeys = true; encodeDefaults = true; explicitNulls = true }
+
     fun targetOf(catalogUrl: String): Target? = RAW.find(catalogUrl)?.destructured?.let { (o, r, b, p) -> Target(o, r, b, p) }
 
     @Serializable
@@ -174,7 +178,7 @@ object CatalogPublisher {
                 recipes = recipes,
                 images = catalog.images.filterKeys { ShoppingAggregator.normalizeName(it) != key },
             )
-            val text = json.encodeToString(CatalogFile.serializer(), updated) + "\n"
+            val text = catalogJson.encodeToString(CatalogFile.serializer(), updated) + "\n"
             try {
                 putFile(target, target.path, token, text.toByteArray(Charsets.UTF_8), sha,
                     "Miam : « ${d.recipe.name} » publiée$by (catalogue v${updated.version})", author)
