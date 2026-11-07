@@ -565,6 +565,45 @@ class MiamRepository(private val context: Context) {
     }
 
     /**
+     * Compare la recette locale à sa version dans le catalogue (lecture directe du dépôt).
+     * Retourne la liste des différences en clair, vide si identique.
+     */
+    suspend fun compareWithCatalog(recipeId: Long): kotlin.Result<List<String>> = runCatching {
+        val s = settings.settings.first()
+        val d = recipeDao.getWithDetails(recipeId) ?: error("Recette introuvable")
+        val remoteId = d.recipe.remoteId ?: error("Cette recette n'est pas dans le catalogue")
+        val file = Catalog.fetch(catalogUrl(s), bustCache = true)
+        val dto = file.recipes.firstOrNull { it.remoteId == remoteId } ?: error("Recette absente du catalogue (v${file.version})")
+        val diffs = mutableListOf<String>()
+        fun fmtQ(q: Double?, u: String) = ShoppingAggregator.formatIngredient(q, MeasureUnit.fromName(u)).ifBlank { "—" }
+        if (d.recipe.name.trim() != dto.name.trim()) diffs += "Nom : « ${dto.name} » → « ${d.recipe.name} »"
+        if (d.recipe.description.trim() != dto.description.trim()) diffs += "Description modifiée"
+        if (d.recipe.servings != dto.servings) diffs += "Personnes : ${dto.servings} → ${d.recipe.servings}"
+        if (d.recipe.prepMinutes != dto.prepMinutes) diffs += "Préparation : ${dto.prepMinutes ?: "—"} → ${d.recipe.prepMinutes ?: "—"} min"
+        if (d.recipe.cookMinutes != dto.cookMinutes) diffs += "Cuisson : ${dto.cookMinutes ?: "—"} → ${d.recipe.cookMinutes ?: "—"} min"
+        if (d.recipe.cuisine != dto.cuisine) diffs += "Cuisine : ${dto.cuisine} → ${d.recipe.cuisine}"
+        if (d.recipe.protein != dto.protein) diffs += "Viande / base : ${dto.protein} → ${d.recipe.protein}"
+        if (d.recipe.kind != dto.kind) diffs += "Type : ${dto.kind} → ${d.recipe.kind}"
+        val localIng = d.sortedIngredients.associateBy { ShoppingAggregator.normalizeName(it.name) }
+        val remoteIng = dto.ingredients.associateBy { ShoppingAggregator.normalizeName(it.name) }
+        for ((k, ri) in remoteIng) {
+            val li = localIng[k]
+            if (li == null) diffs += "Ingrédient retiré : ${ri.name} (${fmtQ(ri.quantity, ri.unit)})"
+            else if (li.quantity != ri.quantity || li.unit != ri.unit) diffs += "${ri.name} : ${fmtQ(ri.quantity, ri.unit)} → ${fmtQ(li.quantity, li.unit)}"
+            else if (li.aisle != ri.aisle) diffs += "${ri.name} : rayon ${ri.aisle} → ${li.aisle}"
+        }
+        for ((k, li) in localIng) if (k !in remoteIng) diffs += "Ingrédient ajouté : ${li.name} (${fmtQ(li.quantity, li.unit)})"
+        val ls = d.sortedSteps.map { it.text.trim() }
+        val rs = dto.steps.map { it.trim() }
+        if (ls != rs) {
+            if (ls.size != rs.size) diffs += "Étapes : ${rs.size} → ${ls.size}"
+            val changed = ls.zip(rs).withIndex().filter { it.value.first != it.value.second }.map { it.index + 1 }
+            if (changed.isNotEmpty()) diffs += "Étape(s) modifiée(s) : ${changed.joinToString(", ")}"
+        }
+        diffs
+    }
+
+    /**
      * Publie une recette dans le catalogue git (commit via l'API GitHub).
      * Nécessite le token configuré dans les paramètres. Retourne le message de résultat.
      */

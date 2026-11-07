@@ -55,6 +55,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -108,6 +109,15 @@ fun RecipeDetailScreen(
 
     var servings by rememberSaveable(d.recipe.id) { mutableIntStateOf(d.recipe.servings) }
     var showAllergens by rememberSaveable { mutableStateOf(false) }
+    var compareRequested by remember { mutableStateOf(false) }
+    var compareResult by remember { mutableStateOf<List<String>?>(null) }
+    var compareError by remember { mutableStateOf<String?>(null) }
+    LaunchedEffect(compareRequested) {
+        if (compareRequested) {
+            compareResult = null; compareError = null
+            repository.compareWithCatalog(recipeId).fold({ compareResult = it }, { compareError = it.message })
+        }
+    }
     val allergens = remember(d.ingredients) { Allergen.detect(d.ingredients.map { it.name }) }
     val ratio = servings.toDouble() / d.recipe.servings.coerceAtLeast(1)
 
@@ -167,6 +177,13 @@ fun RecipeDetailScreen(
                                     }
                                 },
                             )
+                            if (d.recipe.remoteId != null) {
+                                DropdownMenuItem(
+                                    text = { Text("Comparer avec le catalogue") },
+                                    leadingIcon = { Icon(Icons.Default.Restore, contentDescription = null) },
+                                    onClick = { menuOpen = false; compareRequested = true },
+                                )
+                            }
                             if (d.recipe.id in appSettings.dirtyRecipeIds && (d.recipe.remoteId != null || d.recipe.isBuiltIn)) {
                                 DropdownMenuItem(
                                     text = { Text(if (d.recipe.remoteId != null) "Reprendre la version du catalogue" else "Reprendre la version d'origine") },
@@ -252,14 +269,22 @@ fun RecipeDetailScreen(
                     if (d.recipe.description.isNotBlank()) {
                         Text(d.recipe.description, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 4.dp))
                     }
-                    if (d.recipe.id in appSettings.dirtyRecipeIds && (d.recipe.remoteId != null || d.recipe.isBuiltIn)) {
-                        Text(
-                            "Modifiée ici, pas encore publiée dans le catalogue",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.padding(top = 6.dp),
-                        )
+                    // Provenance et état par rapport au dépôt.
+                    val dirty = d.recipe.id in appSettings.dirtyRecipeIds
+                    val status = when {
+                        d.recipe.remoteId != null && dirty -> "✎ Modifiée ici · diffère du catalogue, pas encore publiée"
+                        d.recipe.remoteId != null -> "📦 Catalogue · identique à la version synchronisée (v${appSettings.catalogVersion})"
+                        d.recipe.isBuiltIn && dirty -> "✎ Plat de base modifié ici"
+                        d.recipe.isBuiltIn -> "Plat de base fourni avec l'app"
+                        dirty -> "✎ Créée ici, modifiée · pas dans le catalogue"
+                        else -> "Créée ici · pas dans le catalogue (⋮ → Publier pour la partager)"
                     }
+                    Text(
+                        status,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = if (dirty) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(top = 6.dp).then(if (d.recipe.remoteId != null) Modifier.clickable { compareRequested = true } else Modifier),
+                    )
                     FlowRow(
                         Modifier.padding(top = 12.dp).fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -410,6 +435,29 @@ fun RecipeDetailScreen(
     }
 
     if (showAllergens) AllergensDialog(allergens, onDismiss = { showAllergens = false })
+
+    if (compareRequested) {
+        AlertDialog(
+            onDismissRequest = { compareRequested = false },
+            confirmButton = { TextButton(onClick = { compareRequested = false }) { Text("Fermer") } },
+            title = { Text("Par rapport au catalogue") },
+            text = {
+                when {
+                    compareError != null -> Text("Impossible de comparer : $compareError")
+                    compareResult == null -> Text("Lecture du dépôt…")
+                    compareResult!!.isEmpty() -> Text("Identique à la version du dépôt.")
+                    else -> Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                        Text("${compareResult!!.size} différence(s) avec le dépôt :", style = MaterialTheme.typography.labelLarge)
+                        compareResult!!.forEach { Text("• $it", style = MaterialTheme.typography.bodyMedium) }
+                        Text(
+                            "⋮ → « Publier » envoie ta version ; « Reprendre la version du catalogue » l'abandonne.",
+                            style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                }
+            },
+        )
+    }
 
     if (showPlanDialog) {
         AddMealDialog(
