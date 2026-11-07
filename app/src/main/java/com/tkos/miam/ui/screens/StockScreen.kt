@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -31,6 +32,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -42,7 +45,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
@@ -66,12 +71,14 @@ fun StockScreen(
     onBack: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val snackbar = remember { SnackbarHostState() }
     val stock by repository.stock.collectAsStateWithLifecycle(initialValue = emptyList())
     var showAdd by remember { mutableStateOf(false) }
     var edit by remember { mutableStateOf<StockItem?>(null) }
     var confirmClear by remember { mutableStateOf(false) }
 
     Scaffold(
+        snackbarHost = { SnackbarHost(snackbar) },
         topBar = {
             TopAppBar(
                 title = { Text("En stock") },
@@ -123,8 +130,8 @@ fun StockScreen(
                             StockRow(
                                 item = item,
                                 onClick = { edit = item },
-                                onMinus = { scope.launch { adjust(repository, item, -1) } },
-                                onPlus = { scope.launch { adjust(repository, item, +1) } },
+                                onMinus = { scope.launch { adjust(repository, item, -1, snackbar) } },
+                                onPlus = { scope.launch { adjust(repository, item, +1, snackbar) } },
                                 onTogglePin = { scope.launch { repository.updateStockItem(item.copy(always = !item.always)) } },
                             )
                         }
@@ -189,10 +196,13 @@ private fun stepFor(item: StockItem): Double {
     }
 }
 
-private suspend fun adjust(repository: MiamRepository, item: StockItem, sign: Int) {
+/** « − » ne descend jamais sous zéro et ne supprime pas : à 0 l'article reste affiché « épuisé » (suppression via la fiche). */
+private suspend fun adjust(repository: MiamRepository, item: StockItem, sign: Int, snackbar: SnackbarHostState) {
     val q = item.quantity ?: return
-    val next = q + sign * stepFor(item)
-    if (next <= 1e-9) repository.deleteStockItem(item.id) else repository.updateStockItem(item.copy(quantity = next))
+    val next = (q + sign * stepFor(item)).coerceAtLeast(0.0)
+    if (next == q) return
+    repository.updateStockItem(item.copy(quantity = next))
+    if (next == 0.0) snackbar.showSnackbar("${item.name} épuisé : revient sur la liste de courses. Touche l'article pour le supprimer.")
 }
 
 @Composable
@@ -201,26 +211,33 @@ private fun StockRow(item: StockItem, onClick: () -> Unit, onMinus: () -> Unit, 
         Modifier.fillMaxWidth().clickable(onClick = onClick).padding(start = 16.dp, end = 4.dp, top = 2.dp, bottom = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
+        val empty = item.quantity != null && item.quantity <= 0.0 && !item.always
         Column(Modifier.weight(1f)) {
-            Text(item.name, style = MaterialTheme.typography.bodyLarge)
+            Text(item.name, style = MaterialTheme.typography.bodyLarge, color = if (empty) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface)
             Text(
                 when {
                     item.always -> "Basique : toujours considéré en stock"
                     item.quantity == null -> "Présent (sans quantité) · supprimer quand c'est fini"
-                    else -> "Touche pour corriger la quantité"
+                    empty -> "Épuisé · touche l'article pour le supprimer ou le recompléter"
+                    else -> "Touche le chiffre pour saisir la quantité"
                 },
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (empty) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
         if (item.quantity != null) {
-            FilledTonalIconButton(onClick = onMinus, modifier = Modifier.size(32.dp)) { Icon(Icons.Default.Remove, contentDescription = "Moins") }
+            FilledTonalIconButton(onClick = onMinus, enabled = item.quantity > 0.0, modifier = Modifier.size(32.dp)) { Icon(Icons.Default.Remove, contentDescription = "Moins") }
             Text(
-                item.quantityLabel,
+                if (empty) "0" else item.quantityLabel,
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.SemiBold,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.padding(horizontal = 8.dp),
+                color = if (empty) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .widthIn(min = 64.dp)
+                    .clip(MaterialTheme.shapes.small)
+                    .clickable(onClick = onClick)
+                    .padding(horizontal = 10.dp, vertical = 8.dp),
             )
             FilledTonalIconButton(onClick = onPlus, modifier = Modifier.size(32.dp)) { Icon(Icons.Default.Add, contentDescription = "Plus") }
         }

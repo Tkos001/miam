@@ -2,6 +2,8 @@ package com.tkos.miam.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -90,17 +92,43 @@ fun Stepper(
             modifier = Modifier.size(36.dp),
             colors = IconButtonDefaults.filledTonalIconButtonColors(),
         ) { Icon(Icons.Default.Remove, contentDescription = "Moins") }
+        var editing by remember { mutableStateOf(false) }
         Text(
             text = "$value$suffix",
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 12.dp),
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.small)
+                .clickable { editing = true }
+                .padding(horizontal = 14.dp, vertical = 6.dp),
         )
         FilledTonalIconButton(
             onClick = { if (value < max) onValueChange(value + 1) },
             enabled = value < max,
             modifier = Modifier.size(36.dp),
         ) { Icon(Icons.Default.Add, contentDescription = "Plus") }
+        if (editing) {
+            // Taper la valeur directement (appui sur le chiffre), sans passer par − / +.
+            var text by remember { mutableStateOf(value.toString()) }
+            val parsed = text.trim().toIntOrNull()?.takeIf { it in min..max }
+            AlertDialog(
+                onDismissRequest = { editing = false },
+                title = { Text("Valeur") },
+                text = {
+                    OutlinedTextField(
+                        value = text,
+                        onValueChange = { text = it.filter { c -> c.isDigit() } },
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        supportingText = { Text("Entre $min et $max") },
+                        isError = parsed == null,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                },
+                confirmButton = { TextButton(enabled = parsed != null, onClick = { parsed?.let(onValueChange); editing = false }) { Text("OK") } },
+                dismissButton = { TextButton(onClick = { editing = false }) { Text("Annuler") } },
+            )
+        }
     }
 }
 
