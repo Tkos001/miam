@@ -61,6 +61,8 @@ data class RecipeDto(
     val servings: Int = 4,
     val cuisine: String = "FRANCAISE",
     val protein: String = "AUTRE",
+    /** PLAT, ENTREE, ACCOMPAGNEMENT, DESSERT, PETIT_DEJEUNER, GOUTER, BOISSON. */
+    val kind: String = "PLAT",
     /** Image distante (catalogue) : téléchargée à la sync, jamais utilisée pour l'export local. */
     val imageUrl: String? = null,
     /** Photos supplémentaires (galerie), publiées depuis l'app. */
@@ -83,7 +85,7 @@ data class IngredientDto(
 data class PlanDto(val epochDay: Long, val slot: String, val recipeName: String, val servings: Int)
 
 @Serializable
-data class MealDto(val recipeName: String, val servings: Int = 4, val done: Boolean = false)
+data class MealDto(val recipeName: String, val servings: Int = 4, val done: Boolean = false, val sides: List<MealDto> = emptyList())
 
 /** Article du stock : `quantity` en unité de base de la famille (g, ml, pièce…). */
 @Serializable
@@ -107,6 +109,7 @@ object BackupCodec {
         isFavorite = d.recipe.isFavorite,
         cuisine = d.recipe.cuisine,
         protein = d.recipe.protein,
+        kind = d.recipe.kind,
         sourceUrl = d.recipe.sourceUrl,
         remoteId = d.recipe.remoteId,
         ingredients = d.sortedIngredients.map { IngredientDto(it.name, it.quantity, it.unit, it.aisle) },
@@ -117,7 +120,7 @@ object BackupCodec {
         Recipe(
             name = dto.name, description = dto.description, prepMinutes = dto.prepMinutes,
             cookMinutes = dto.cookMinutes, servings = dto.servings, isFavorite = dto.isFavorite,
-            cuisine = dto.cuisine, protein = dto.protein, sourceUrl = dto.sourceUrl, remoteId = dto.remoteId,
+            cuisine = dto.cuisine, protein = dto.protein, kind = dto.kind, sourceUrl = dto.sourceUrl, remoteId = dto.remoteId,
         ),
         dto.ingredients.map { Ingredient(name = it.name, quantity = it.quantity, unit = it.unit, aisle = it.aisle) },
         dto.steps.map { Step(text = it) },

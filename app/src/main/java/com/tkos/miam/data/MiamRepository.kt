@@ -105,16 +105,17 @@ class MiamRepository(private val context: Context) {
     val mealsTodo: Flow<List<MealWithRecipe>> = mealDao.observeTodo()
     val mealsTodoCount: Flow<Int> = mealDao.observeTodoCount()
 
-    suspend fun addMeal(recipeId: Long, servings: Int): Long =
-        mealDao.insert(Meal(recipeId = recipeId, servings = servings, position = mealDao.maxPosition() + 1))
+    /** Ajoute un repas principal, ou (avec `parentId`) une entrée / un accompagnement / un dessert rattaché à un repas. */
+    suspend fun addMeal(recipeId: Long, servings: Int, parentId: Long? = null): Long =
+        mealDao.insert(Meal(recipeId = recipeId, servings = servings, position = mealDao.maxPosition() + 1, parentId = parentId))
 
     suspend fun updateMeal(meal: Meal) = mealDao.update(meal)
-    suspend fun removeMeal(id: Long) = mealDao.delete(id)
+    suspend fun removeMeal(id: Long) { mealDao.deleteChildren(id); mealDao.delete(id) }
     suspend fun deleteDoneMeals() = mealDao.deleteDone()
 
     /** Monte (`-1`) ou descend (`+1`) un repas dans la liste des repas à faire. */
     suspend fun moveMeal(id: Long, delta: Int) {
-        val todo = mealDao.getAll().filter { !it.meal.done }.map { it.meal }
+        val todo = mealDao.getAll().filter { !it.meal.done && it.meal.parentId == null }.map { it.meal }
         val idx = todo.indexOfFirst { it.id == id }
         val other = idx + delta
         if (idx < 0 || other !in todo.indices) return
@@ -128,6 +129,8 @@ class MiamRepository(private val context: Context) {
      */
     suspend fun setMealDone(id: Long, done: Boolean) {
         val m = mealDao.get(id) ?: return
+        // Un repas principal entraîne ses accompagnements.
+        for (c in mealDao.children(id)) setMealDone(c.meal.id, done)
         if (m.meal.done == done) return
         val d = recipeDao.getWithDetails(m.meal.recipeId)
         if (d != null) {
@@ -455,7 +458,10 @@ class MiamRepository(private val context: Context) {
         return BackupCodec.encode(
             BackupFile(
                 recipes = recipes.map { BackupCodec.toDto(it) },
-                meals = meals.map { MealDto(it.recipe.name, it.meal.servings, it.meal.done) },
+                meals = meals.filter { it.meal.parentId == null }.map { p ->
+                    MealDto(p.recipe.name, p.meal.servings, p.meal.done,
+                        meals.filter { it.meal.parentId == p.meal.id }.map { MealDto(it.recipe.name, it.meal.servings, it.meal.done) })
+                },
                 extras = extras.map { BackupCodec.toDto(it) },
                 stock = stock.map { StockDto(it.name, it.quantity, it.family, it.aisle, it.always) },
             )
@@ -486,8 +492,13 @@ class MiamRepository(private val context: Context) {
         val legacy = file.plan.sortedWith(compareBy({ it.epochDay }, { it.slot })).map { MealDto(it.recipeName, it.servings, false) }
         for (m in file.meals + legacy) {
             val rid = byName[ShoppingAggregator.normalizeName(m.recipeName)]?.recipe?.id ?: continue
-            mealDao.insert(Meal(recipeId = rid, servings = m.servings, position = mealDao.maxPosition() + 1, done = m.done,
+            val pid = mealDao.insert(Meal(recipeId = rid, servings = m.servings, position = mealDao.maxPosition() + 1, done = m.done,
                 doneAt = if (m.done) System.currentTimeMillis() else null))
+            for (sd in m.sides) {
+                val sid = byName[ShoppingAggregator.normalizeName(sd.recipeName)]?.recipe?.id ?: continue
+                mealDao.insert(Meal(recipeId = sid, servings = sd.servings, position = mealDao.maxPosition() + 1, done = m.done,
+                    doneAt = if (m.done) System.currentTimeMillis() else null, parentId = pid))
+            }
         }
         for (e in file.extras) shoppingDao.insertExtra(BackupCodec.fromDto(e))
         for (st in file.stock) {

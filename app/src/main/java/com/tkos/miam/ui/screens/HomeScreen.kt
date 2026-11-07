@@ -81,7 +81,8 @@ fun HomeScreen(
     val favorites by repository.favorites.collectAsStateWithLifecycle(initialValue = emptyList())
     val recipes by repository.recipes.collectAsStateWithLifecycle(initialValue = emptyList())
 
-    val mealsTodo by repository.mealsTodo.collectAsStateWithLifecycle(initialValue = emptyList())
+    val allTodo by repository.mealsTodo.collectAsStateWithLifecycle(initialValue = emptyList())
+    val mealsTodo = allTodo.filter { it.meal.parentId == null }
 
     val lines by repository.shoppingLines.collectAsStateWithLifecycle(initialValue = emptyList())
     val extrasCount by repository.extrasUncheckedCount.collectAsStateWithLifecycle(initialValue = 0)

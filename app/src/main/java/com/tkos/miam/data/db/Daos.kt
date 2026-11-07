@@ -133,8 +133,15 @@ interface MealDao {
     @Query("SELECT * FROM meals WHERE id = :id")
     suspend fun get(id: Long): MealWithRecipe?
 
-    @Query("SELECT COUNT(*) FROM meals WHERE done = 0")
+    @Query("SELECT COUNT(*) FROM meals WHERE done = 0 AND parentId IS NULL")
     fun observeTodoCount(): Flow<Int>
+
+    @Transaction
+    @Query("SELECT * FROM meals WHERE parentId = :parentId ORDER BY position ASC, id ASC")
+    suspend fun children(parentId: Long): List<MealWithRecipe>
+
+    @Query("DELETE FROM meals WHERE parentId = :parentId")
+    suspend fun deleteChildren(parentId: Long)
 
     @Query("SELECT COALESCE(MAX(position), 0) FROM meals")
     suspend fun maxPosition(): Int

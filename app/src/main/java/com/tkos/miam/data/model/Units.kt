@@ -83,3 +83,21 @@ enum class Protein(val label: String, val emoji: String) {
     }
 }
 
+
+/** Type de recette : plat complet, ou ce qui l'accompagne / le remplace (petit-déj, dessert…). */
+enum class RecipeKind(val label: String, val emoji: String) {
+    PLAT("Plat", "🍽️"),
+    ENTREE("Entrée", "🥗"),
+    ACCOMPAGNEMENT("Accompagnement", "🍚"),
+    DESSERT("Dessert", "🍮"),
+    PETIT_DEJEUNER("Petit-déj", "🥣"),
+    GOUTER("Goûter / en-cas", "🍪"),
+    BOISSON("Boisson", "☕");
+
+    /** Se rattache à un plat dans la liste des repas (entrée, accompagnement, dessert). */
+    val isSide: Boolean get() = this == ENTREE || this == ACCOMPAGNEMENT || this == DESSERT
+
+    companion object {
+        fun fromName(name: String?): RecipeKind = entries.firstOrNull { it.name == name } ?: PLAT
+    }
+}

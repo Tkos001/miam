@@ -64,6 +64,7 @@ import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.Aisle
 import com.tkos.miam.data.model.Cuisine
 import com.tkos.miam.data.model.Protein
+import com.tkos.miam.data.model.RecipeKind
 import com.tkos.miam.data.model.MeasureUnit
 import com.tkos.miam.ui.components.DropdownField
 import com.tkos.miam.ui.components.RecipeImage
@@ -210,6 +211,15 @@ fun RecipeEditScreen(
                     }
                     Stepper(value = vm.servings, onValueChange = { vm.servings = it })
                 }
+            }
+            item {
+                DropdownField(
+                    label = "Type",
+                    value = vm.kind,
+                    options = RecipeKind.entries,
+                    optionLabel = { "${it.emoji} ${it.label}" },
+                    onSelected = { vm.kind = it },
+                )
             }
             item {
                 DropdownField(

@@ -23,6 +23,8 @@ data class Recipe(
     val cuisine: String = Cuisine.FRANCAISE.name,
     /** Protéine principale (bœuf, porc, volaille, poisson, végétarien…). */
     val protein: String = Protein.AUTRE.name,
+    /** Plat, entrée, accompagnement, dessert, petit-déj… */
+    val kind: String = RecipeKind.PLAT.name,
     /** Vrai pour les recettes de base fournies avec l'app. */
     val isBuiltIn: Boolean = false,
     /** Prévu pour l'import depuis le futur site de recettes. */
@@ -32,6 +34,7 @@ data class Recipe(
 ) {
     val cuisineEnum: Cuisine get() = Cuisine.fromName(cuisine)
     val proteinEnum: Protein get() = Protein.fromName(protein)
+    val kindEnum: RecipeKind get() = RecipeKind.fromName(kind)
 }
 
 @Entity(
@@ -143,6 +146,8 @@ data class Meal(
     val done: Boolean = false,
     val doneAt: Long? = null,
     val createdAt: Long = System.currentTimeMillis(),
+    /** Repas principal auquel celui-ci est rattaché (entrée, accompagnement, dessert) ; null = repas principal. */
+    val parentId: Long? = null,
 )
 
 data class MealWithRecipe(

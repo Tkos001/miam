@@ -13,6 +13,7 @@ import com.tkos.miam.data.model.Cuisine
 import com.tkos.miam.data.model.Ingredient
 import com.tkos.miam.data.model.MeasureUnit
 import com.tkos.miam.data.model.Protein
+import com.tkos.miam.data.model.RecipeKind
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.data.model.Step
 import kotlinx.coroutines.flow.first
@@ -51,6 +52,7 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
     var servings by mutableStateOf(4)
     var cuisine by mutableStateOf(Cuisine.FRANCAISE)
     var protein by mutableStateOf(Protein.AUTRE)
+    var kind by mutableStateOf(RecipeKind.PLAT)
     val ingredients = mutableStateListOf<IngredientDraft>()
     val steps = mutableStateListOf<StepDraft>()
     var error by mutableStateOf<String?>(null)
@@ -70,6 +72,7 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
                     servings = d.recipe.servings
                     cuisine = d.recipe.cuisineEnum
                     protein = d.recipe.proteinEnum
+                    kind = d.recipe.kindEnum
                     ingredients.addAll(d.sortedIngredients.map {
                         IngredientDraft(
                             name = it.name,
@@ -143,6 +146,7 @@ class RecipeEditViewModel(private val repository: MiamRepository, private val re
                 servings = servings.coerceIn(1, 30),
                 cuisine = cuisine.name,
                 protein = protein.name,
+                kind = kind.name,
                 isBuiltIn = false,
             )
             val id = repository.saveRecipe(recipe, ings, sts)

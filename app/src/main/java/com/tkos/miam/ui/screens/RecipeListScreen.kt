@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.Protein
+import com.tkos.miam.data.model.RecipeKind
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.ui.components.EmptyState
 import com.tkos.miam.ui.components.RecipeImage
@@ -71,15 +72,18 @@ fun RecipeListScreen(
     var onlyFav by rememberSaveable { mutableStateOf(favoritesOnly) }
     var cuisine by rememberSaveable { mutableStateOf<String?>(null) }
     var protein by rememberSaveable { mutableStateOf<String?>(null) }
+    var kind by rememberSaveable { mutableStateOf<String?>(null) }
 
     val filtered = all.filter { r ->
         (!onlyFav || r.isFavorite) &&
             (cuisine == null || r.cuisine == cuisine) &&
             (protein == null || r.protein == protein) &&
+            (kind == null || r.kind == kind) &&
             (query.isBlank() || norm(r.name).contains(norm(query)) || norm(r.description).contains(norm(query)))
     }
     val usedCuisines = all.map { it.cuisineEnum }.distinct()
     val usedProteins = Protein.entries.filter { p -> p != Protein.AUTRE && all.any { it.protein == p.name } }
+    val usedKinds = RecipeKind.entries.filter { k -> all.any { it.kind == k.name } }
 
     Scaffold(
         topBar = {
@@ -116,6 +120,17 @@ fun RecipeListScreen(
                         label = { Text("Favoris") },
                         leadingIcon = { Icon(Icons.Default.Favorite, contentDescription = null, modifier = Modifier.size(16.dp)) },
                     )
+                }
+                if (usedKinds.size > 1) {
+                    usedKinds.forEach { k ->
+                        item(key = "k_" + k.name) {
+                            FilterChip(
+                                selected = kind == k.name,
+                                onClick = { kind = if (kind == k.name) null else k.name },
+                                label = { Text("${k.emoji} ${k.label}") },
+                            )
+                        }
+                    }
                 }
                 usedProteins.forEach { p ->
                     item(key = "p_" + p.name) {
@@ -204,6 +219,10 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit
                 if (recipe.proteinEnum != Protein.AUTRE) {
                     Spacer(Modifier.width(6.dp))
                     Text(recipe.proteinEnum.emoji, style = MaterialTheme.typography.bodySmall)
+                }
+                if (recipe.kindEnum != RecipeKind.PLAT) {
+                    Spacer(Modifier.width(6.dp))
+                    Text(recipe.kindEnum.emoji, style = MaterialTheme.typography.bodySmall)
                 }
                 Spacer(Modifier.width(6.dp))
                 Text(recipe.cuisineEnum.emoji, style = MaterialTheme.typography.bodySmall)

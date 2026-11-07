@@ -17,7 +17,7 @@ import com.tkos.miam.data.model.Step
 
 @Database(
     entities = [Recipe::class, Ingredient::class, Step::class, Meal::class, StockItem::class, ExtraItem::class, ShoppingCheck::class, RecipePhoto::class],
-    version = 4,
+    version = 5,
     exportSchema = true,
 )
 abstract class MiamDatabase : RoomDatabase() {
@@ -82,9 +82,17 @@ abstract class MiamDatabase : RoomDatabase() {
             }
         }
 
+        /** v4 → v5 : type de recette (plat, entrée, dessert…) ; accompagnements rattachés à un repas. */
+        private val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("ALTER TABLE recipes ADD COLUMN kind TEXT NOT NULL DEFAULT 'PLAT'")
+                db.execSQL("ALTER TABLE meals ADD COLUMN parentId INTEGER")
+            }
+        }
+
         fun get(context: Context): MiamDatabase = instance ?: synchronized(this) {
             instance ?: Room.databaseBuilder(context.applicationContext, MiamDatabase::class.java, "miam.db")
-                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
+                .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4, MIGRATION_4_5)
                 .fallbackToDestructiveMigrationOnDowngrade()
                 .build()
                 .also { instance = it }

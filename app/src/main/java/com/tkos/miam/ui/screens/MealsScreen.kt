@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -20,12 +21,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
@@ -59,6 +62,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.MealWithRecipe
 import com.tkos.miam.data.model.Recipe
+import com.tkos.miam.data.model.RecipeKind
 import com.tkos.miam.ui.components.ConfirmDialog
 import com.tkos.miam.ui.components.RecipeImage
 import com.tkos.miam.ui.components.Stepper
@@ -84,11 +88,14 @@ fun MealsScreen(
     val settings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = com.tkos.miam.data.settings.Settings())
 
     var showPicker by remember { mutableStateOf(false) }
+    var sideFor by remember { mutableStateOf<MealWithRecipe?>(null) }
     var editMeal by remember { mutableStateOf<MealWithRecipe?>(null) }
     var confirmClearDone by remember { mutableStateOf(false) }
 
-    val todo = meals.filter { !it.meal.done }
-    val done = meals.filter { it.meal.done }
+    val parents = meals.filter { it.meal.parentId == null }
+    val sidesOf: (Long) -> List<MealWithRecipe> = { pid -> meals.filter { it.meal.parentId == pid } }
+    val todo = parents.filter { !it.meal.done }
+    val done = parents.filter { it.meal.done }
 
     Scaffold(
         snackbarHost = { SnackbarHost(snackbar) },
@@ -151,12 +158,15 @@ fun MealsScreen(
                     val idx = todo.indexOf(m)
                     MealRow(
                         m = m,
+                        sides = sidesOf(m.meal.id),
                         canUp = idx > 0,
                         canDown = idx < todo.lastIndex,
                         onCheck = { scope.launch { repository.setMealDone(m.meal.id, true); snackbar.showSnackbar("« ${m.recipe.name} » mangé : ingrédients retirés du stock") } },
                         onClick = { editMeal = m },
                         onUp = { scope.launch { repository.moveMeal(m.meal.id, -1) } },
                         onDown = { scope.launch { repository.moveMeal(m.meal.id, +1) } },
+                        onAddSide = { sideFor = m },
+                        onRemoveSide = { side -> scope.launch { repository.removeMeal(side.meal.id) } },
                     )
                 }
                 if (done.isNotEmpty()) {
@@ -164,10 +174,13 @@ fun MealsScreen(
                     items(done, key = { it.meal.id }) { m ->
                         MealRow(
                             m = m,
+                            sides = sidesOf(m.meal.id),
                             canUp = false, canDown = false,
                             onCheck = { scope.launch { repository.setMealDone(m.meal.id, false) } },
                             onClick = { editMeal = m },
                             onUp = {}, onDown = {},
+                            onAddSide = null,
+                            onRemoveSide = {},
                         )
                     }
                 }
@@ -185,6 +198,20 @@ fun MealsScreen(
                 showPicker = false
                 scope.launch { repository.addMeal(recipe.id, pers) }
             },
+        )
+    }
+
+    sideFor?.let { parent ->
+        RecipePickerSheet(
+            title = "Avec « ${parent.recipe.name} »",
+            recipes = recipes,
+            defaultServings = parent.meal.servings,
+            onDismiss = { sideFor = null },
+            onPick = { recipe, pers ->
+                sideFor = null
+                scope.launch { repository.addMeal(recipe.id, pers, parentId = parent.meal.id) }
+            },
+            preferKinds = listOf(RecipeKind.ACCOMPAGNEMENT, RecipeKind.ENTREE, RecipeKind.DESSERT),
         )
     }
 
@@ -244,42 +271,76 @@ private fun Header(title: String, trailing: String) {
 @Composable
 private fun MealRow(
     m: MealWithRecipe,
+    sides: List<MealWithRecipe>,
     canUp: Boolean,
     canDown: Boolean,
     onCheck: () -> Unit,
     onClick: () -> Unit,
     onUp: () -> Unit,
     onDown: () -> Unit,
+    onAddSide: (() -> Unit)?,
+    onRemoveSide: (MealWithRecipe) -> Unit,
 ) {
     val done = m.meal.done
-    Row(
-        Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
-            .padding(start = 4.dp, end = 4.dp, top = 2.dp, bottom = 2.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Checkbox(checked = done, onCheckedChange = { onCheck() })
-        RecipeImage(m.recipe.imagePath, Modifier.size(44.dp).clip(MaterialTheme.shapes.small), fallbackIconSize = 20)
-        Spacer(Modifier.width(12.dp))
-        Column(Modifier.weight(1f)) {
-            Text(
-                m.recipe.name,
-                style = MaterialTheme.typography.bodyLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                textDecoration = if (done) TextDecoration.LineThrough else null,
-                color = if (done) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
-            )
-            Text(
-                "${m.meal.servings} pers." + (if (m.recipe.proteinEnum != com.tkos.miam.data.model.Protein.AUTRE) "  ${m.recipe.proteinEnum.emoji}" else ""),
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
+    Column(Modifier.fillMaxWidth()) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .clickable(onClick = onClick)
+                .padding(start = 4.dp, end = 4.dp, top = 2.dp, bottom = 2.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Checkbox(checked = done, onCheckedChange = { onCheck() })
+            RecipeImage(m.recipe.imagePath, Modifier.size(44.dp).clip(MaterialTheme.shapes.small), fallbackIconSize = 20)
+            Spacer(Modifier.width(12.dp))
+            Column(Modifier.weight(1f)) {
+                Text(
+                    m.recipe.name,
+                    style = MaterialTheme.typography.bodyLarge,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    textDecoration = if (done) TextDecoration.LineThrough else null,
+                    color = if (done) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurface,
+                )
+                Text(
+                    "${m.meal.servings} pers." +
+                        (if (m.recipe.proteinEnum != com.tkos.miam.data.model.Protein.AUTRE) "  ${m.recipe.proteinEnum.emoji}" else "") +
+                        (if (m.recipe.kindEnum != RecipeKind.PLAT) "  ${m.recipe.kindEnum.emoji} ${m.recipe.kindEnum.label}" else ""),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            if (!done) {
+                IconButton(onClick = onUp, enabled = canUp) { Icon(Icons.Default.KeyboardArrowUp, contentDescription = "Monter") }
+                IconButton(onClick = onDown, enabled = canDown) { Icon(Icons.Default.KeyboardArrowDown, contentDescription = "Descendre") }
+            }
         }
-        if (!done) {
-            IconButton(onClick = onUp, enabled = canUp) { Icon(Icons.Default.KeyboardArrowUp, contentDescription = "Monter") }
-            IconButton(onClick = onDown, enabled = canDown) { Icon(Icons.Default.KeyboardArrowDown, contentDescription = "Descendre") }
+        // Entrée / accompagnement / dessert rattachés : mangés avec le plat.
+        sides.forEach { s ->
+            Row(
+                Modifier.fillMaxWidth().padding(start = 64.dp, end = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    "${s.recipe.kindEnum.emoji} ${s.recipe.name} · ${s.meal.servings} pers.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textDecoration = if (done) TextDecoration.LineThrough else null,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.weight(1f),
+                )
+                if (!done) IconButton(onClick = { onRemoveSide(s) }, modifier = Modifier.size(32.dp)) {
+                    Icon(Icons.Default.Close, contentDescription = "Retirer", tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(16.dp))
+                }
+            }
+        }
+        if (onAddSide != null) {
+            TextButton(onClick = onAddSide, modifier = Modifier.padding(start = 56.dp)) {
+                Icon(Icons.Default.Add, contentDescription = null, modifier = Modifier.size(16.dp))
+                Spacer(Modifier.width(4.dp))
+                Text(if (sides.isEmpty()) "Entrée, accompagnement, dessert…" else "Ajouter", style = MaterialTheme.typography.labelMedium)
+            }
         }
     }
 }
@@ -293,12 +354,19 @@ fun RecipePickerSheet(
     defaultServings: Int,
     onDismiss: () -> Unit,
     onPick: (Recipe, Int) -> Unit,
+    /** Types proposés en premier (ex. accompagnements quand on complète un plat) ; les autres restent accessibles. */
+    preferKinds: List<RecipeKind> = emptyList(),
 ) {
     val sheet = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     var query by remember { mutableStateOf("") }
     var pers by remember { mutableIntStateOf(defaultServings) }
-    val filtered = recipes.filter { query.isBlank() || norm(it.name).contains(norm(query)) }
-        .sortedWith(compareByDescending<Recipe> { it.isFavorite }.thenBy { it.name.lowercase() })
+    var kindFilter by remember { mutableStateOf<RecipeKind?>(null) }
+    val usedKinds = RecipeKind.entries.filter { k -> recipes.any { it.kind == k.name } }
+    val filtered = recipes.filter { (query.isBlank() || norm(it.name).contains(norm(query))) && (kindFilter == null || it.kind == kindFilter!!.name) }
+        .sortedWith(
+            compareBy<Recipe> { r -> preferKinds.indexOf(r.kindEnum).let { if (it < 0) preferKinds.size else it } }
+                .thenByDescending { it.isFavorite }.thenBy { it.name.lowercase() }
+        )
 
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = sheet) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
@@ -318,12 +386,23 @@ fun RecipePickerSheet(
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
             )
+            if (usedKinds.size > 1) {
+                LazyRow(Modifier.padding(top = 8.dp), horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    items(usedKinds, key = { it.name }) { k ->
+                        FilterChip(
+                            selected = kindFilter == k,
+                            onClick = { kindFilter = if (kindFilter == k) null else k },
+                            label = { Text("${k.emoji} ${k.label}") },
+                        )
+                    }
+                }
+            }
             HorizontalDivider(Modifier.padding(vertical = 8.dp))
             LazyColumn(Modifier.fillMaxWidth().height(420.dp), contentPadding = PaddingValues(bottom = 32.dp)) {
                 items(filtered, key = { it.id }) { r ->
                     ListItem(
                         headlineContent = { Text(r.name) },
-                        supportingContent = { Text("${r.servings} pers. · ${r.cuisineEnum.label}") },
+                        supportingContent = { Text("${r.servings} pers. · ${r.cuisineEnum.label}" + (if (r.kindEnum != RecipeKind.PLAT) " · ${r.kindEnum.label}" else "")) },
                         leadingContent = { RecipeImage(r.imagePath, Modifier.size(44.dp).clip(MaterialTheme.shapes.small), fallbackIconSize = 20) },
                         trailingContent = { if (r.isFavorite) Text("💛") },
                         modifier = Modifier.clickable { onPick(r, pers) },
