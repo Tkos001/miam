@@ -1161,7 +1161,33 @@ def paupiettes_ail_creme():
     return s
 
 
+
+def trianon():
+    rng = random.Random(72)
+    s = plate(600, 470, 440, 245)
+    # gâteau rond : mousse chocolat, croustillant praliné et dacquoise
+    s += '<ellipse cx="570" cy="555" rx="300" ry="72" fill="#5A3425" opacity="0.22" filter="url(#soft)"/>'
+    s += '<path d="M 300 380 C 300 325 430 285 590 285 C 750 285 880 325 880 380 L 880 485 C 880 540 750 580 590 580 C 430 580 300 540 300 485 Z" fill="#4A251D" stroke="#321811" stroke-width="5"/>'
+    s += '<path d="M 300 455 C 430 495 750 495 880 455 L 880 485 C 880 540 750 580 590 580 C 430 580 300 540 300 485 Z" fill="#D6A15B" stroke="#B77A36" stroke-width="3"/>'
+    s += '<path d="M 300 430 C 430 470 750 470 880 430 L 880 455 C 750 495 430 495 300 455 Z" fill="#A96A32" stroke="#7B451F" stroke-width="3"/>'
+    s += '<ellipse cx="590" cy="380" rx="290" ry="105" fill="#3A1D19" stroke="#29120F" stroke-width="5"/>'
+    s += '<ellipse cx="590" cy="370" rx="270" ry="88" fill="#512820"/>'
+    s += '<path d="M 390 360 C 470 310 670 300 780 350" fill="none" stroke="#8B5140" stroke-width="12" stroke-linecap="round" opacity="0.65"/>'
+    # éclats de noisette et copeaux de chocolat
+    s += dots(rng, 590, 370, 220, 60, 28, 3, 6, ["#D6A15B", "#E8C58D", "#8B5A2B"])
+    s += '<g fill="#F2D6A2"><path d="M 470 330 l 34 -12 l 12 8 l -30 15 Z"/><path d="M 650 390 l 38 -10 l 10 9 l -34 14 Z"/><path d="M 730 340 l 26 -12 l 9 8 l -24 13 Z"/></g>'
+    # petite part dressée à droite
+    s += '<path d="M 850 485 L 1010 540 L 1010 585 L 850 530 Z" fill="#4A251D" stroke="#321811" stroke-width="4"/>'
+    s += '<path d="M 850 530 L 1010 585 L 1010 610 L 850 555 Z" fill="#D6A15B" stroke="#B77A36" stroke-width="3"/>'
+    s += '<path d="M 850 510 L 1010 565 L 1010 585 L 850 530 Z" fill="#A96A32" stroke="#7B451F" stroke-width="3"/>'
+    s += '<path d="M 850 485 L 1010 540 L 930 445 Z" fill="#512820" stroke="#321811" stroke-width="4"/>'
+    s += steam(590, 235, 2, 65)
+    s += fork(1040, 300, 28)
+    return s
+
+
 DISHES = {
+    "trianon": trianon,
     "spaghetti-bolognaise": spaghetti_bolognaise,
     "gratin-dauphinois": gratin_dauphinois,
     "quiche-lorraine": quiche_lorraine,

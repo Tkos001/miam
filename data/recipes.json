@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 13,
+  "version": 14,
   "updatedAt": "2026-11-07",
   "recipes": [
     {
@@ -2737,6 +2737,100 @@
       ],
       "protein": "PORC",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg"
+    },
+    {
+      "remoteId": "trianon",
+      "name": "Trianon (Royal chocolat)",
+      "description": "Dacquoise noisette, croustillant praliné aux crêpes dentelle et mousse légère au chocolat noir Inaya 65 %.",
+      "prepMinutes": 60,
+      "cookMinutes": 18,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/trianon.jpg",
+      "ingredients": [
+        {
+          "name": "Blancs d'œufs",
+          "quantity": 90,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Poudre de noisettes",
+          "quantity": 75,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre glace",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 65,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 12,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Praliné",
+          "quantity": 105,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Chocolat au lait",
+          "quantity": 53,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Crêpes dentelle",
+          "quantity": 53,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Chocolat noir Inaya 65 %",
+          "quantity": 280,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait entier",
+          "quantity": 300,
+          "unit": "ML",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème entière liquide",
+          "quantity": 300,
+          "unit": "ML",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaunes d'œufs",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        }
+      ],
+      "steps": [
+        "Dacquoise noisette : préchauffer le four à 180 °C. Monter les blancs en neige en ajoutant progressivement les 30 g de sucre. Mélanger la poudre de noisettes, le sucre glace et la farine, puis incorporer délicatement aux blancs.",
+        "Étaler la dacquoise en un disque adapté au moule ou au cercle. Cuire 15 à 18 min à 180 °C : le biscuit doit être légèrement doré. Laisser refroidir complètement.",
+        "Croustillant praliné : faire fondre le chocolat au lait, mélanger avec le praliné puis incorporer les crêpes dentelle émiettées. Étaler régulièrement sur la dacquoise refroidie et réserver au frais pour faire prendre.",
+        "Mousse chocolat : chauffer le lait. Fouetter les jaunes avec les 35 g de sucre restants, verser progressivement le lait chaud dessus puis remettre à cuire à feu doux en remuant jusqu'à 82–84 °C, sans faire bouillir.",
+        "Verser la crème anglaise chaude sur le chocolat noir Inaya 65 % haché. Mélanger jusqu'à obtenir une ganache lisse et laisser redescendre autour de 35 °C. Monter la crème liquide bien froide en texture souple, puis l'incorporer délicatement à la préparation chocolatée.",
+        "Montage à l'envers : chemiser le moule de rhodoïd si nécessaire. Verser la mousse dans le moule, remonter la mousse sur les bords, puis déposer le disque dacquoise-croustillant, face croustillant contre la mousse. Appuyer légèrement et lisser.",
+        "Placer au congélateur au minimum 8 h. Démouler le gâteau encore congelé, le retourner sur son plat de service et laisser décongeler 6 à 8 h au réfrigérateur avant dégustation."
+      ]
     }
   ],
   "images": {
