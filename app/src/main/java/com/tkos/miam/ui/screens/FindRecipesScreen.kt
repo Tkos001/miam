@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Sync
 import androidx.compose.material3.Button
@@ -52,7 +53,7 @@ import com.tkos.miam.data.settings.Settings
 @SuppressLint("SetJavaScriptEnabled")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FindRecipesScreen(repository: MiamRepository, onBack: () -> Unit, onOpenSettings: () -> Unit) {
+fun FindRecipesScreen(repository: MiamRepository, onBack: () -> Unit, onOpenSettings: () -> Unit, onOpenAssistant: () -> Unit) {
     val settings by repository.settings.settings.collectAsStateWithLifecycle(initialValue = Settings())
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
@@ -109,6 +110,9 @@ fun FindRecipesScreen(repository: MiamRepository, onBack: () -> Unit, onOpenSett
                     modifier = Modifier.padding(top = 20.dp),
                 ) {
                     Icon(Icons.Default.Sync, contentDescription = null); Spacer(Modifier.width(8.dp)); Text(if (syncing) "Mise à jour…" else "Mettre à jour les recettes")
+                }
+                Button(onClick = onOpenAssistant, modifier = Modifier.padding(top = 8.dp)) {
+                    Icon(Icons.Default.AutoAwesome, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Demander une recette à l'assistant")
                 }
                 OutlinedButton(onClick = onOpenSettings, modifier = Modifier.padding(top = 8.dp)) {
                     Icon(Icons.Default.Settings, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Configurer un site de recettes")
