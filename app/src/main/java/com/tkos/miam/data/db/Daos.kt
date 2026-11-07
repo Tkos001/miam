@@ -9,12 +9,13 @@ import androidx.room.Transaction
 import androidx.room.Update
 import com.tkos.miam.data.model.ExtraItem
 import com.tkos.miam.data.model.Ingredient
-import com.tkos.miam.data.model.PlanEntry
-import com.tkos.miam.data.model.PlanEntryWithRecipe
+import com.tkos.miam.data.model.Meal
+import com.tkos.miam.data.model.MealWithRecipe
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.data.model.RecipePhoto
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.ShoppingCheck
+import com.tkos.miam.data.model.StockItem
 import com.tkos.miam.data.model.Step
 import kotlinx.coroutines.flow.Flow
 
@@ -115,35 +116,72 @@ interface RecipeDao {
 }
 
 @Dao
-interface PlanDao {
+interface MealDao {
     @Transaction
-    @Query("SELECT * FROM plan_entries WHERE epochDay BETWEEN :from AND :to ORDER BY epochDay, slot")
-    fun observeRange(from: Long, to: Long): Flow<List<PlanEntryWithRecipe>>
+    @Query("SELECT * FROM meals ORDER BY done ASC, position ASC, id ASC")
+    fun observeAll(): Flow<List<MealWithRecipe>>
 
     @Transaction
-    @Query("SELECT * FROM plan_entries ORDER BY epochDay, slot")
-    fun observeAll(): Flow<List<PlanEntryWithRecipe>>
+    @Query("SELECT * FROM meals ORDER BY done ASC, position ASC, id ASC")
+    suspend fun getAll(): List<MealWithRecipe>
 
     @Transaction
-    @Query("SELECT * FROM plan_entries ORDER BY epochDay, slot")
-    suspend fun getAll(): List<PlanEntryWithRecipe>
+    @Query("SELECT * FROM meals WHERE done = 0 ORDER BY position ASC, id ASC")
+    fun observeTodo(): Flow<List<MealWithRecipe>>
 
-    @Query("SELECT COUNT(*) FROM plan_entries WHERE epochDay BETWEEN :from AND :to")
-    fun observeCountInRange(from: Long, to: Long): Flow<Int>
+    @Transaction
+    @Query("SELECT * FROM meals WHERE id = :id")
+    suspend fun get(id: Long): MealWithRecipe?
+
+    @Query("SELECT COUNT(*) FROM meals WHERE done = 0")
+    fun observeTodoCount(): Flow<Int>
+
+    @Query("SELECT COALESCE(MAX(position), 0) FROM meals")
+    suspend fun maxPosition(): Int
 
     @Insert
-    suspend fun insert(entry: PlanEntry): Long
+    suspend fun insert(meal: Meal): Long
 
     @Update
-    suspend fun update(entry: PlanEntry)
+    suspend fun update(meal: Meal)
 
-    @Query("DELETE FROM plan_entries WHERE id = :id")
+    @Query("DELETE FROM meals WHERE id = :id")
     suspend fun delete(id: Long)
 
-    @Query("DELETE FROM plan_entries WHERE epochDay BETWEEN :from AND :to")
-    suspend fun deleteRange(from: Long, to: Long)
+    @Query("DELETE FROM meals WHERE done = 1")
+    suspend fun deleteDone()
 
-    @Query("DELETE FROM plan_entries")
+    @Query("DELETE FROM meals")
+    suspend fun deleteAll()
+}
+
+@Dao
+interface StockDao {
+    @Query("SELECT * FROM stock_items ORDER BY aisle, name COLLATE NOCASE")
+    fun observeAll(): Flow<List<StockItem>>
+
+    @Query("SELECT * FROM stock_items")
+    suspend fun getAll(): List<StockItem>
+
+    @Query("SELECT * FROM stock_items WHERE `key` = :key LIMIT 1")
+    suspend fun getByKey(key: String): StockItem?
+
+    @Query("SELECT COUNT(*) FROM stock_items")
+    fun observeCount(): Flow<Int>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(item: StockItem): Long
+
+    @Update
+    suspend fun update(item: StockItem)
+
+    @Query("DELETE FROM stock_items WHERE id = :id")
+    suspend fun delete(id: Long)
+
+    @Query("DELETE FROM stock_items WHERE `key` = :key")
+    suspend fun deleteByKey(key: String)
+
+    @Query("DELETE FROM stock_items")
     suspend fun deleteAll()
 }
 

@@ -15,20 +15,22 @@ import androidx.navigation.navArgument
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.ui.screens.FindRecipesScreen
 import com.tkos.miam.ui.screens.HomeScreen
-import com.tkos.miam.ui.screens.PlannerScreen
+import com.tkos.miam.ui.screens.MealsScreen
 import com.tkos.miam.ui.screens.RecipeDetailScreen
 import com.tkos.miam.ui.screens.RecipeEditScreen
 import com.tkos.miam.ui.screens.RecipeListScreen
 import com.tkos.miam.ui.screens.SettingsScreen
 import com.tkos.miam.ui.screens.ShoppingScreen
+import com.tkos.miam.ui.screens.StockScreen
 
 object Routes {
     const val HOME = "home"
     const val RECIPES = "recipes?favorites={favorites}"
     const val RECIPE = "recipe/{id}"
     const val EDIT = "edit/{id}"
-    const val PLANNER = "planner"
+    const val MEALS = "meals"
     const val SHOPPING = "shopping"
+    const val STOCK = "stock"
     const val SETTINGS = "settings"
     const val FIND = "find"
 
@@ -53,7 +55,7 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
                 repository = repository,
                 onOpenRecipes = { navController.navigate(Routes.recipes(false)) },
                 onOpenFavorites = { navController.navigate(Routes.recipes(true)) },
-                onOpenPlanner = { navController.navigate(Routes.PLANNER) },
+                onOpenPlanner = { navController.navigate(Routes.MEALS) },
                 onOpenShopping = { navController.navigate(Routes.SHOPPING) },
                 onOpenFind = { navController.navigate(Routes.FIND) },
                 onOpenSettings = { navController.navigate(Routes.SETTINGS) },
@@ -80,7 +82,7 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
                 recipeId = id,
                 onBack = { navController.popBackStack() },
                 onEdit = { navController.navigate(Routes.edit(id)) },
-                onOpenPlanner = { navController.navigate(Routes.PLANNER) },
+                onOpenPlanner = { navController.navigate(Routes.MEALS) },
             )
         }
         composable(Routes.EDIT, arguments = listOf(navArgument("id") { type = NavType.LongType; defaultValue = -1L })) { entry ->
@@ -95,8 +97,8 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
                 },
             )
         }
-        composable(Routes.PLANNER) {
-            PlannerScreen(
+        composable(Routes.MEALS) {
+            MealsScreen(
                 repository = repository,
                 onBack = { navController.popBackStack() },
                 onOpenRecipe = { navController.navigate(Routes.recipe(it)) },
@@ -107,8 +109,12 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
             ShoppingScreen(
                 repository = repository,
                 onBack = { navController.popBackStack() },
-                onOpenPlanner = { navController.navigate(Routes.PLANNER) },
+                onOpenMeals = { navController.navigate(Routes.MEALS) },
+                onOpenStock = { navController.navigate(Routes.STOCK) },
             )
+        }
+        composable(Routes.STOCK) {
+            StockScreen(repository = repository, onBack = { navController.popBackStack() })
         }
         composable(Routes.SETTINGS) {
             SettingsScreen(repository = repository, onBack = { navController.popBackStack() })

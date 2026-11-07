@@ -22,7 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Search
@@ -59,10 +59,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.R
 import com.tkos.miam.data.MiamRepository
-import com.tkos.miam.data.model.PlanEntryWithRecipe
+import com.tkos.miam.data.model.MealWithRecipe
 import com.tkos.miam.data.model.Recipe
-import com.tkos.miam.data.model.Slot
-import com.tkos.miam.ui.DateUtil
 import com.tkos.miam.ui.components.RecipeImage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -83,16 +81,11 @@ fun HomeScreen(
     val favorites by repository.favorites.collectAsStateWithLifecycle(initialValue = emptyList())
     val recipes by repository.recipes.collectAsStateWithLifecycle(initialValue = emptyList())
 
-    val today = remember { DateUtil.today() }
-    val week = remember { DateUtil.weekWindow(DateUtil.startOfWeek(today)) }
-    val planThisWeek by repository.planCount(week.first, week.second).collectAsStateWithLifecycle(initialValue = 0)
-    val todayEntries by repository.planRange(today.toEpochDay(), today.toEpochDay())
-        .collectAsStateWithLifecycle(initialValue = emptyList())
+    val mealsTodo by repository.mealsTodo.collectAsStateWithLifecycle(initialValue = emptyList())
 
-    val shopping = remember { DateUtil.shoppingWindow() }
-    val lines by repository.shoppingLines(shopping.first, shopping.second).collectAsStateWithLifecycle(initialValue = emptyList())
+    val lines by repository.shoppingLines.collectAsStateWithLifecycle(initialValue = emptyList())
     val extrasCount by repository.extrasUncheckedCount.collectAsStateWithLifecycle(initialValue = 0)
-    val toBuy = lines.count { !it.checked } + extrasCount
+    val toBuy = lines.count { !it.isDone } + extrasCount
     val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
@@ -159,19 +152,19 @@ fun HomeScreen(
                 StatCard("Favoris", favoriteCount.toString(), Icons.Default.Favorite, Modifier.weight(1f), onOpenFavorites)
             }
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                StatCard("Repas prévus", "$planThisWeek", Icons.Default.CalendarMonth, Modifier.weight(1f), onOpenPlanner, "cette semaine")
+                StatCard("Repas à faire", "${mealsTodo.size}", Icons.Default.RestaurantMenu, Modifier.weight(1f), onOpenPlanner, "dans ma liste")
                 StatCard("À acheter", toBuy.toString(), Icons.Default.ShoppingCart, Modifier.weight(1f), onOpenShopping, "articles")
             }
 
-            // ---- Aujourd'hui ----
-            TodayCard(todayEntries, onOpenPlanner, onOpenRecipe)
+            // ---- Prochains repas ----
+            NextMealsCard(mealsTodo, onOpenPlanner, onOpenRecipe)
 
             // ---- Navigation rapide ----
             Text("Navigation", style = MaterialTheme.typography.titleMedium)
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 NavTile("Mes plats", Icons.Default.MenuBook, Modifier.weight(1f), onOpenRecipes)
                 NavTile("Favoris", Icons.Default.Favorite, Modifier.weight(1f), onOpenFavorites)
-                NavTile("Planning", Icons.Default.CalendarMonth, Modifier.weight(1f), onOpenPlanner)
+                NavTile("Mes repas", Icons.Default.RestaurantMenu, Modifier.weight(1f), onOpenPlanner)
             }
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 NavTile("Ma liste", Icons.Default.ShoppingCart, Modifier.weight(1f), onOpenShopping)
@@ -262,48 +255,41 @@ private fun NavTile(label: String, icon: ImageVector, modifier: Modifier = Modif
 }
 
 @Composable
-private fun TodayCard(entries: List<PlanEntryWithRecipe>, onOpenPlanner: () -> Unit, onOpenRecipe: (Long) -> Unit) {
+private fun NextMealsCard(meals: List<MealWithRecipe>, onOpenMeals: () -> Unit, onOpenRecipe: (Long) -> Unit) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().clickable(onClick = onOpenMeals),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.secondaryContainer),
     ) {
         Column(Modifier.padding(16.dp)) {
-            Text("Aujourd'hui", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSecondaryContainer)
-            if (entries.isEmpty()) {
+            Text("Prochains repas", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSecondaryContainer)
+            if (meals.isEmpty()) {
                 Text(
-                    "Rien de prévu. Ajoute des plats au planning pour générer ta liste de courses.",
+                    "Rien de prévu. Ajoute des repas à faire : leurs ingrédients font la liste de courses.",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                     modifier = Modifier.padding(top = 6.dp),
                 )
-                FilledTonalButton(onClick = onOpenPlanner, modifier = Modifier.padding(top = 10.dp)) {
-                    Icon(Icons.Default.CalendarMonth, contentDescription = null, modifier = Modifier.size(18.dp))
+                FilledTonalButton(onClick = onOpenMeals, modifier = Modifier.padding(top = 10.dp)) {
+                    Icon(Icons.Default.RestaurantMenu, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(6.dp))
-                    Text("Planifier la semaine")
+                    Text("Choisir mes repas")
                 }
             } else {
-                Slot.entries.forEach { slot ->
-                    val forSlot = entries.filter { it.entry.slotEnum == slot }
-                    if (forSlot.isNotEmpty()) {
-                        Row(Modifier.padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Text(
-                                slot.label,
-                                style = MaterialTheme.typography.labelLarge,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
-                                modifier = Modifier.width(48.dp),
-                            )
-                            Column {
-                                forSlot.forEach { e ->
-                                    Text(
-                                        "${e.recipe.name} · ${e.entry.servings} pers.",
-                                        style = MaterialTheme.typography.bodyLarge,
-                                        color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                        modifier = Modifier.clickable { onOpenRecipe(e.recipe.id) },
-                                    )
-                                }
-                            }
-                        }
-                    }
+                meals.take(4).forEach { m ->
+                    Text(
+                        "${m.recipe.name} · ${m.meal.servings} pers.",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(top = 6.dp).clickable { onOpenRecipe(m.recipe.id) },
+                    )
+                }
+                if (meals.size > 4) {
+                    Text(
+                        "+ ${meals.size - 4} autres",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.7f),
+                        modifier = Modifier.padding(top = 6.dp),
+                    )
                 }
             }
         }

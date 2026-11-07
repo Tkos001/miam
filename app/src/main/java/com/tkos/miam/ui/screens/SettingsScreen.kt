@@ -157,7 +157,7 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                 Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Column(Modifier.weight(1f)) {
                         Text("Personnes par défaut", style = MaterialTheme.typography.bodyLarge)
-                        Text("Proposé lors de l'ajout d'un plat au planning", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text("Proposé lors de l'ajout d'un repas", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     Stepper(value = settings.defaultServings, onValueChange = { scope.launch { repository.settings.setDefaultServings(it) } })
                 }
@@ -353,7 +353,7 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     Icon(Icons.Default.Restore, contentDescription = null); Spacer(Modifier.width(8.dp)); Text("Restaurer les plats de base")
                 }
                 Text(
-                    "L'export contient plats, planning et articles « Autres ». Les photos ne sont pas exportées.",
+                    "L'export contient plats, repas, stock et articles « Autres ». Les photos ne sont pas exportées.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 4.dp),
@@ -372,7 +372,7 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
     confirmImport?.let { uri ->
         ConfirmDialog(
             title = "Importer ce fichier ?",
-            text = "Les plats portant le même nom seront remplacés, les autres ajoutés. Le planning et les articles du fichier sont ajoutés.",
+            text = "Les plats portant le même nom seront remplacés, les autres ajoutés. Les repas, le stock et les articles du fichier sont ajoutés.",
             confirmLabel = "Importer",
             onConfirm = {
                 scope.launch {

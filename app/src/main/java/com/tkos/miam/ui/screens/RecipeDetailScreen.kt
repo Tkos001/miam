@@ -23,7 +23,7 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.CloudUpload
 import androidx.compose.material.icons.filled.Restore
 import androidx.compose.material.icons.filled.ContentCopy
@@ -73,14 +73,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
 import com.tkos.miam.data.model.Allergen
 import com.tkos.miam.data.model.RecipeWithDetails
-import com.tkos.miam.data.model.Slot
 import com.tkos.miam.data.shopping.ShoppingAggregator
-import com.tkos.miam.ui.DateUtil
 import com.tkos.miam.ui.components.ConfirmDialog
 import com.tkos.miam.ui.components.RecipeImage
 import com.tkos.miam.ui.components.Stepper
 import kotlinx.coroutines.launch
-import java.time.LocalDate
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -193,8 +190,8 @@ fun RecipeDetailScreen(
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 onClick = { showPlanDialog = true },
-                icon = { Icon(Icons.Default.CalendarMonth, contentDescription = null) },
-                text = { Text("Planifier") },
+                icon = { Icon(Icons.Default.RestaurantMenu, contentDescription = null) },
+                text = { Text("À manger") },
             )
         },
     ) { padding ->
@@ -400,15 +397,15 @@ fun RecipeDetailScreen(
     if (showAllergens) AllergensDialog(allergens, onDismiss = { showAllergens = false })
 
     if (showPlanDialog) {
-        PlanRecipeDialog(
+        AddMealDialog(
             recipeName = d.recipe.name,
             defaultServings = servings,
             onDismiss = { showPlanDialog = false },
-            onConfirm = { date, slot, pers ->
+            onConfirm = { pers ->
                 showPlanDialog = false
                 scope.launch {
-                    repository.addToPlan(date.toEpochDay(), slot, d.recipe.id, pers)
-                    val res = snackbar.showSnackbar("Ajouté : ${DateUtil.relativeDay(date)} ${slot.label.lowercase()}", actionLabel = "Voir")
+                    repository.addMeal(d.recipe.id, pers)
+                    val res = snackbar.showSnackbar("Ajouté à mes repas ($pers pers.)", actionLabel = "Voir")
                     if (res == androidx.compose.material3.SnackbarResult.ActionPerformed) onOpenPlanner()
                 }
             },
@@ -478,49 +475,32 @@ private fun StepIllustration(index: Int, total: Int) {
     }
 }
 
-/** Dialogue « Planifier » : jour (7 prochains jours), midi/soir, nombre de personnes. */
+/** Dialogue « À manger » : nombre de personnes, puis le plat rejoint la liste des repas. */
 @Composable
-fun PlanRecipeDialog(
+fun AddMealDialog(
     recipeName: String,
     defaultServings: Int,
     onDismiss: () -> Unit,
-    onConfirm: (LocalDate, Slot, Int) -> Unit,
+    onConfirm: (Int) -> Unit,
 ) {
-    val today = remember { DateUtil.today() }
-    val days = remember { (0..13).map { today.plusDays(it.toLong()) } }
-    var date by remember { mutableStateOf(today) }
-    var slot by remember { mutableStateOf(Slot.SOIR) }
     var pers by remember { mutableIntStateOf(defaultServings) }
-
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Planifier « $recipeName »") },
+        title = { Text("« $recipeName » à manger") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                Text("Jour", style = MaterialTheme.typography.labelLarge)
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    items(days.size) { i ->
-                        val dd = days[i]
-                        FilterChip(
-                            selected = dd == date,
-                            onClick = { date = dd },
-                            label = { Text(if (i == 0) "Auj." else if (i == 1) "Demain" else "${DateUtil.dayShort(dd)} ${dd.dayOfMonth}") },
-                        )
-                    }
-                }
-                Text("Moment", style = MaterialTheme.typography.labelLarge)
-                Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    Slot.entries.forEach { s ->
-                        FilterChip(selected = slot == s, onClick = { slot = s }, label = { Text(s.label) })
-                    }
-                }
+                Text(
+                    "Le plat rejoint ta liste de repas ; ses ingrédients s'ajoutent à la liste de courses, moins ce que tu as en stock.",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     Text("Personnes", style = MaterialTheme.typography.labelLarge)
                     Stepper(value = pers, onValueChange = { pers = it })
                 }
             }
         },
-        confirmButton = { Button(onClick = { onConfirm(date, slot, pers) }) { Text("Ajouter") } },
+        confirmButton = { Button(onClick = { onConfirm(pers) }) { Text("Ajouter") } },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Annuler") } },
     )
 }

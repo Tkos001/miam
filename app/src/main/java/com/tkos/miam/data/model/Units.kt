@@ -83,11 +83,3 @@ enum class Protein(val label: String, val emoji: String) {
     }
 }
 
-enum class Slot(val label: String) {
-    MIDI("Midi"),
-    SOIR("Soir");
-
-    companion object {
-        fun fromName(name: String?): Slot = entries.firstOrNull { it.name == name } ?: SOIR
-    }
-}

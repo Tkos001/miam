@@ -122,33 +122,57 @@ data class RecipeWithDetails(
     )
 }
 
-/** Une case du planning : un plat prévu tel jour, midi ou soir, pour N personnes. */
+/** Un repas à faire : un plat de la « liste des repas », pour N personnes, coché quand il est mangé / fini. */
 @Entity(
-    tableName = "plan_entries",
+    tableName = "meals",
     foreignKeys = [ForeignKey(
         entity = Recipe::class,
         parentColumns = ["id"],
         childColumns = ["recipeId"],
         onDelete = ForeignKey.CASCADE,
     )],
-    indices = [Index("recipeId"), Index("epochDay")],
+    indices = [Index("recipeId")],
 )
-data class PlanEntry(
+data class Meal(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    /** Jour en nombre de jours depuis 1970-01-01 (LocalDate.toEpochDay). */
-    val epochDay: Long,
-    val slot: String = Slot.SOIR.name,
     val recipeId: Long,
     val servings: Int = 4,
-) {
-    val slotEnum: Slot get() = Slot.fromName(slot)
-}
+    /** Ordre dans la liste (croissant). */
+    val position: Int = 0,
+    /** Mangé / fini de préparer : ses ingrédients ont été retirés du stock. */
+    val done: Boolean = false,
+    val doneAt: Long? = null,
+    val createdAt: Long = System.currentTimeMillis(),
+)
 
-data class PlanEntryWithRecipe(
-    @Embedded val entry: PlanEntry,
+data class MealWithRecipe(
+    @Embedded val meal: Meal,
     @Relation(parentColumn = "recipeId", entityColumn = "id")
     val recipe: Recipe,
 )
+
+/**
+ * Ce qu'il y a à la maison. Clé = nom normalisé + famille d'unité (comme les lignes de courses).
+ * `quantity` est en unité de base de la famille (g, ml, pièce…) ; null = « présent, sans quantité »
+ * (une bouteille d'huile, un pot de sel) : couvre toute demande tant que l'article est là.
+ * `always` = basique de placard : jamais remis sur la liste tant qu'il est en stock, même à 0.
+ */
+@Entity(tableName = "stock_items", indices = [Index(value = ["key"], unique = true)])
+data class StockItem(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @ColumnInfo(name = "key") val key: String,
+    val name: String,
+    val quantity: Double? = null,
+    val family: String = UnitFamily.NONE.name,
+    val aisle: String = Aisle.AUTRE.name,
+    val always: Boolean = false,
+    val updatedAt: Long = System.currentTimeMillis(),
+) {
+    val familyEnum: UnitFamily get() = UnitFamily.entries.firstOrNull { it.name == family } ?: UnitFamily.NONE
+    val aisleEnum: Aisle get() = Aisle.fromName(aisle)
+    /** « 5 L », « 800 g », « 6 »… ; vide si sans quantité. */
+    val quantityLabel: String get() = com.tkos.miam.data.shopping.ShoppingAggregator.formatQuantity(quantity, familyEnum)
+}
 
 /** Article ajouté à la main dans la liste de courses, hors plats (rubrique « Autres »). */
 @Entity(tableName = "extra_items")

@@ -4,20 +4,24 @@ import android.content.Context
 import android.net.Uri
 import com.tkos.miam.data.backup.BackupCodec
 import com.tkos.miam.data.backup.BackupFile
-import com.tkos.miam.data.backup.PlanDto
+import com.tkos.miam.data.backup.MealDto
+import com.tkos.miam.data.backup.StockDto
 import com.tkos.miam.data.catalog.Catalog
 import com.tkos.miam.data.catalog.CatalogSyncResult
 import com.tkos.miam.data.db.MiamDatabase
+import com.tkos.miam.data.model.UnitFamily
+import com.tkos.miam.data.model.MeasureUnit
+import com.tkos.miam.data.model.Aisle
 import com.tkos.miam.data.model.ExtraItem
 import com.tkos.miam.data.model.Ingredient
-import com.tkos.miam.data.model.PlanEntry
-import com.tkos.miam.data.model.PlanEntryWithRecipe
+import com.tkos.miam.data.model.Meal
+import com.tkos.miam.data.model.MealWithRecipe
 import com.tkos.miam.data.model.PhotoSource
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.data.model.RecipePhoto
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.ShoppingCheck
-import com.tkos.miam.data.model.Slot
+import com.tkos.miam.data.model.StockItem
 import com.tkos.miam.data.model.Step
 import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.seed.SeedRecipes
@@ -25,6 +29,7 @@ import com.tkos.miam.data.settings.Settings
 import com.tkos.miam.data.settings.SettingsRepository
 import com.tkos.miam.data.shopping.ShoppingAggregator
 import com.tkos.miam.data.shopping.ShoppingLine
+import com.tkos.miam.data.shopping.StockLevel
 import com.tkos.miam.data.update.AppUpdate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,7 +48,8 @@ import java.util.UUID
 class MiamRepository(private val context: Context) {
     private val db = MiamDatabase.get(context)
     private val recipeDao = db.recipeDao()
-    private val planDao = db.planDao()
+    private val mealDao = db.mealDao()
+    private val stockDao = db.stockDao()
     private val shoppingDao = db.shoppingDao()
     val settings = SettingsRepository(context)
 
@@ -94,33 +100,125 @@ class MiamRepository(private val context: Context) {
         return newId
     }
 
-    // ---------- Planning (le « panier ») ----------
-    fun planRange(from: Long, to: Long): Flow<List<PlanEntryWithRecipe>> = planDao.observeRange(from, to)
-    val planAll: Flow<List<PlanEntryWithRecipe>> = planDao.observeAll()
-    fun planCount(from: Long, to: Long): Flow<Int> = planDao.observeCountInRange(from, to)
+    // ---------- Repas à faire (la « liste des repas ») ----------
+    val meals: Flow<List<MealWithRecipe>> = mealDao.observeAll()
+    val mealsTodo: Flow<List<MealWithRecipe>> = mealDao.observeTodo()
+    val mealsTodoCount: Flow<Int> = mealDao.observeTodoCount()
 
-    suspend fun addToPlan(epochDay: Long, slot: Slot, recipeId: Long, servings: Int) =
-        planDao.insert(PlanEntry(epochDay = epochDay, slot = slot.name, recipeId = recipeId, servings = servings))
+    suspend fun addMeal(recipeId: Long, servings: Int): Long =
+        mealDao.insert(Meal(recipeId = recipeId, servings = servings, position = mealDao.maxPosition() + 1))
 
-    suspend fun updatePlanEntry(entry: PlanEntry) = planDao.update(entry)
-    suspend fun removeFromPlan(id: Long) = planDao.delete(id)
-    suspend fun clearPlan(from: Long, to: Long) = planDao.deleteRange(from, to)
+    suspend fun updateMeal(meal: Meal) = mealDao.update(meal)
+    suspend fun removeMeal(id: Long) = mealDao.delete(id)
+    suspend fun deleteDoneMeals() = mealDao.deleteDone()
+
+    /** Monte (`-1`) ou descend (`+1`) un repas dans la liste des repas à faire. */
+    suspend fun moveMeal(id: Long, delta: Int) {
+        val todo = mealDao.getAll().filter { !it.meal.done }.map { it.meal }
+        val idx = todo.indexOfFirst { it.id == id }
+        val other = idx + delta
+        if (idx < 0 || other !in todo.indices) return
+        val reordered = todo.toMutableList().also { val m = it.removeAt(idx); it.add(other, m) }
+        reordered.forEachIndexed { pos, m -> if (m.position != pos) mealDao.update(m.copy(position = pos)) }
+    }
+
+    /**
+     * Coche / décoche « mangé ». Coché : les ingrédients du repas (à l'échelle) sont retirés du stock ;
+     * décoché : ils y sont remis (approximation : on ne sait pas ce qui a vraiment été consommé).
+     */
+    suspend fun setMealDone(id: Long, done: Boolean) {
+        val m = mealDao.get(id) ?: return
+        if (m.meal.done == done) return
+        val d = recipeDao.getWithDetails(m.meal.recipeId)
+        if (d != null) {
+            for (n in ShoppingAggregator.needsOf(d, m.meal.servings)) {
+                if (done) consumeFromStock(n.key, n.baseQuantity) else addToStock(n.key, n.name, n.baseQuantity, n.family, n.aisle)
+            }
+        }
+        mealDao.update(m.meal.copy(done = done, doneAt = if (done) System.currentTimeMillis() else null))
+    }
+
+    // ---------- Stock (ce qu'il y a à la maison, local au téléphone) ----------
+    val stock: Flow<List<StockItem>> = stockDao.observeAll()
+    val stockCount: Flow<Int> = stockDao.observeCount()
+
+    /** Ajoute `baseQuantity` à l'article (créé au besoin). Familles « présence » (huile, sel…) : sans quantité. */
+    suspend fun addToStock(key: String, name: String, baseQuantity: Double?, family: UnitFamily, aisle: Aisle) {
+        val presence = ShoppingAggregator.isPresenceFamily(family)
+        val existing = stockDao.getByKey(key)
+        val now = System.currentTimeMillis()
+        if (existing == null) {
+            stockDao.upsert(StockItem(key = key, name = name.replaceFirstChar { it.titlecase(java.util.Locale.FRENCH) },
+                quantity = if (presence) null else baseQuantity, family = family.name, aisle = aisle.name, updatedAt = now))
+        } else {
+            val q = if (presence || baseQuantity == null) existing.quantity
+                    else if (existing.quantity == null) baseQuantity else existing.quantity + baseQuantity
+            stockDao.update(existing.copy(quantity = q, aisle = if (existing.aisleEnum == Aisle.AUTRE) aisle.name else existing.aisle, updatedAt = now))
+        }
+    }
+
+    /**
+     * Retire `baseQuantity` du stock. Un article `always` n'est jamais retiré ; un article sans quantité
+     * reste tel quel (on ne sait pas le décompter) ; à 0 ou moins, l'article disparaît.
+     */
+    suspend fun consumeFromStock(key: String, baseQuantity: Double?) {
+        val item = stockDao.getByKey(key) ?: return
+        if (item.always || item.quantity == null || baseQuantity == null) return
+        val rest = item.quantity - baseQuantity
+        if (rest <= 1e-9) stockDao.delete(item.id) else stockDao.update(item.copy(quantity = rest, updatedAt = System.currentTimeMillis()))
+    }
+
+    suspend fun updateStockItem(item: StockItem) = stockDao.update(item.copy(updatedAt = System.currentTimeMillis()))
+    suspend fun deleteStockItem(id: Long) = stockDao.delete(id)
+    suspend fun deleteStockByKey(key: String) = stockDao.deleteByKey(key)
+    suspend fun clearStock() = stockDao.deleteAll()
+
+    suspend fun addStockManually(name: String, quantity: Double?, unit: MeasureUnit, aisle: Aisle, always: Boolean) {
+        val key = ShoppingAggregator.keyOf(name, unit.family)
+        addToStock(key, name, quantity?.let { it * unit.factor }, unit.family, aisle)
+        if (always) stockDao.getByKey(key)?.let { stockDao.update(it.copy(always = true)) }
+    }
 
     // ---------- Liste de courses ----------
     val extras: Flow<List<ExtraItem>> = shoppingDao.observeExtras()
     val extrasUncheckedCount: Flow<Int> = shoppingDao.observeExtrasUncheckedCount()
 
-    /** Lignes agrégées à partir de TOUT le planning (toutes les cases non passées depuis aujourd'hui incluses). */
+    /** Lignes agrégées : besoins de tous les repas à faire, moins le stock. */
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun shoppingLines(from: Long, to: Long): Flow<List<ShoppingLine>> =
-        planDao.observeRange(from, to).flatMapLatest { entries ->
-            // Recharger les détails à chaque changement de recettes ou de planning.
+    val shoppingLines: Flow<List<ShoppingLine>> =
+        mealDao.observeTodo().flatMapLatest { meals ->
+            // Recharger les détails à chaque changement de recettes ou de repas.
             recipeDao.observeAll().flatMapLatest {
-                flow { emit(entries.map { it.entry.recipeId }.distinct().mapNotNull { recipeDao.getWithDetails(it) }.associateBy { it.recipe.id }) }
-            }.combine(shoppingDao.observeChecks()) { details, checks ->
-                ShoppingAggregator.aggregate(entries, details, checks.filter { it.checked }.map { it.key }.toSet())
-            }
+                flow { emit(meals.map { it.meal.recipeId }.distinct().mapNotNull { recipeDao.getWithDetails(it) }.associateBy { it.recipe.id }) }
+            }.combine(shoppingDao.observeChecks()) { details, checks -> details to checks.filter { it.checked }.map { it.key }.toSet() }
+                .combine(stockDao.observeAll()) { (details, checked), stock ->
+                    ShoppingAggregator.aggregate(meals, details, checked, stock.associate { it.key to StockLevel(it.quantity, it.always) })
+                }
         }
+
+    /**
+     * « Courses terminées » : tout ce qui est coché entre dans le stock (la quantité restante à acheter,
+     * telle qu'affichée), les coches sont effacées, les articles « Autres » cochés sont retirés de la liste.
+     * Retourne le nombre d'articles entrés en stock.
+     */
+    suspend fun finishShopping(): Int {
+        val lines = shoppingLines.first()
+        var n = 0
+        for (l in lines) {
+            if (!l.checked || l.inStock) continue
+            addToStock(l.key, l.name, l.toBuy, l.family, l.aisle)
+            n++
+        }
+        for (e in shoppingDao.getExtras()) {
+            if (!e.checked) continue
+            val unit = e.unitEnum
+            addToStock(ShoppingAggregator.keyOf(e.name, unit.family), e.name, e.quantity?.let { it * unit.factor }, unit.family, e.aisleEnum)
+            shoppingDao.deleteExtra(e)
+            n++
+        }
+        shoppingDao.clearChecks()
+        return n
+    }
 
     suspend fun setLineChecked(key: String, checked: Boolean) {
         if (checked) shoppingDao.upsertCheck(ShoppingCheck(key, true)) else shoppingDao.deleteCheck(key)
@@ -351,13 +449,15 @@ class MiamRepository(private val context: Context) {
     // ---------- Export / import ----------
     suspend fun exportBackup(): String {
         val recipes = recipeDao.getAllWithDetails()
-        val plan = planDao.getAll()
+        val meals = mealDao.getAll()
         val extras = shoppingDao.getExtras()
+        val stock = stockDao.getAll()
         return BackupCodec.encode(
             BackupFile(
                 recipes = recipes.map { BackupCodec.toDto(it) },
-                plan = plan.map { PlanDto(it.entry.epochDay, it.entry.slot, it.recipe.name, it.entry.servings) },
+                meals = meals.map { MealDto(it.recipe.name, it.meal.servings, it.meal.done) },
                 extras = extras.map { BackupCodec.toDto(it) },
+                stock = stock.map { StockDto(it.name, it.quantity, it.family, it.aisle, it.always) },
             )
         )
     }
@@ -366,9 +466,10 @@ class MiamRepository(private val context: Context) {
     suspend fun importBackup(text: String, replaceAll: Boolean): Int {
         val file = BackupCodec.decode(text)
         if (replaceAll) {
-            planDao.deleteAll()
+            mealDao.deleteAll()
             shoppingDao.deleteAllExtras()
             shoppingDao.clearChecks()
+            stockDao.deleteAll()
             recipeDao.deleteAllRecipes()
         }
         val byName = recipeDao.getAllWithDetails().associateBy { ShoppingAggregator.normalizeName(it.recipe.name) }.toMutableMap()
@@ -381,11 +482,20 @@ class MiamRepository(private val context: Context) {
             recipeDao.getWithDetails(id)?.let { byName[ShoppingAggregator.normalizeName(it.recipe.name)] = it }
             count++
         }
-        for (p in file.plan) {
-            val rid = byName[ShoppingAggregator.normalizeName(p.recipeName)]?.recipe?.id ?: continue
-            planDao.insert(BackupCodec.fromDto(p, rid))
+        // Repas (nouveau format) + anciennes cases de planning (format d'avant), dans l'ordre du fichier.
+        val legacy = file.plan.sortedWith(compareBy({ it.epochDay }, { it.slot })).map { MealDto(it.recipeName, it.servings, false) }
+        for (m in file.meals + legacy) {
+            val rid = byName[ShoppingAggregator.normalizeName(m.recipeName)]?.recipe?.id ?: continue
+            mealDao.insert(Meal(recipeId = rid, servings = m.servings, position = mealDao.maxPosition() + 1, done = m.done,
+                doneAt = if (m.done) System.currentTimeMillis() else null))
         }
         for (e in file.extras) shoppingDao.insertExtra(BackupCodec.fromDto(e))
+        for (st in file.stock) {
+            val fam = UnitFamily.entries.firstOrNull { it.name == st.family } ?: UnitFamily.NONE
+            val key = ShoppingAggregator.keyOf(st.name, fam)
+            addToStock(key, st.name, st.quantity, fam, Aisle.fromName(st.aisle))
+            if (st.always) stockDao.getByKey(key)?.let { stockDao.update(it.copy(always = true)) }
+        }
         return count
     }
 

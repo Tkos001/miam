@@ -2,7 +2,6 @@ package com.tkos.miam.data.backup
 
 import com.tkos.miam.data.model.ExtraItem
 import com.tkos.miam.data.model.Ingredient
-import com.tkos.miam.data.model.PlanEntry
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.Step
@@ -36,13 +35,18 @@ object QuantitySerializer : KSerializer<Double> {
  * Même format prévu pour l'import depuis le futur site de recettes.
  */
 @Serializable
+@OptIn(ExperimentalSerializationApi::class)
 data class BackupFile(
     val format: String = "miam-backup",
     val version: Int = 1,
     val exportedAt: Long = System.currentTimeMillis(),
     val recipes: List<RecipeDto> = emptyList(),
-    val plan: List<PlanDto> = emptyList(),
+    /** Repas à faire / mangés (liste ordonnée). */
+    val meals: List<MealDto> = emptyList(),
+    /** Ancien format (planning daté) : encore lu à l'import, plus écrit. */
+    @EncodeDefault(EncodeDefault.Mode.NEVER) val plan: List<PlanDto> = emptyList(),
     val extras: List<ExtraDto> = emptyList(),
+    val stock: List<StockDto> = emptyList(),
 )
 
 @Serializable
@@ -77,6 +81,13 @@ data class IngredientDto(
 
 @Serializable
 data class PlanDto(val epochDay: Long, val slot: String, val recipeName: String, val servings: Int)
+
+@Serializable
+data class MealDto(val recipeName: String, val servings: Int = 4, val done: Boolean = false)
+
+/** Article du stock : `quantity` en unité de base de la famille (g, ml, pièce…). */
+@Serializable
+data class StockDto(val name: String, val quantity: Double? = null, val family: String = "NONE", val aisle: String = "AUTRE", val always: Boolean = false)
 
 @Serializable
 data class ExtraDto(val name: String, val quantity: Double? = null, val unit: String = "NONE", val aisle: String = "AUTRE")
@@ -115,5 +126,4 @@ object BackupCodec {
     fun toDto(e: ExtraItem) = ExtraDto(e.name, e.quantity, e.unit, e.aisle)
     fun fromDto(dto: ExtraDto) = ExtraItem(name = dto.name, quantity = dto.quantity, unit = dto.unit, aisle = dto.aisle)
 
-    fun fromDto(dto: PlanDto, recipeId: Long) = PlanEntry(epochDay = dto.epochDay, slot = dto.slot, recipeId = recipeId, servings = dto.servings)
 }
