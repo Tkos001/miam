@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 16,
+  "version": 17,
   "updatedAt": "2026-11-07",
   "recipes": [
     {
@@ -2744,7 +2744,7 @@
       "description": "Dacquoise noisette, croustillant praliné aux crêpes dentelle et mousse légère au chocolat noir Inaya 65 %.",
       "prepMinutes": 60,
       "cookMinutes": 18,
-      "servings": 4,
+      "servings": 8,
       "cuisine": "FRANCAISE",
       "protein": "AUTRE",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/trianon.jpg",
