@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+<defs>
+  <radialGradient id="bg" cx="50%" cy="45%" r="70%"><stop offset="0%" stop-color="#FFF4E3"/><stop offset="100%" stop-color="#F0D8B8"/></radialGradient>
+  <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="100%" stop-color="#ECE6DC"/></linearGradient>
+  <linearGradient id="cheese" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF1B0"/><stop offset="100%" stop-color="#F2C84B"/></linearGradient>
+  <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F4C65A"/><stop offset="100%" stop-color="#D9932B"/></linearGradient>
+  <linearGradient id="brown" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A3552E"/><stop offset="100%" stop-color="#6E3119"/></linearGradient>
+  <linearGradient id="meat" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#9A4A2B"/><stop offset="100%" stop-color="#5E2A14"/></linearGradient>
+  <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFFBEF"/><stop offset="100%" stop-color="#F2E6C8"/></linearGradient>
+  <linearGradient id="ceramic" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F7F1E7"/><stop offset="100%" stop-color="#D8CFC0"/></linearGradient>
+  <linearGradient id="pot" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C2452F"/><stop offset="100%" stop-color="#7E2318"/></linearGradient>
+  <linearGradient id="potblue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4B6FA3"/><stop offset="100%" stop-color="#2E4669"/></linearGradient>
+  <linearGradient id="broth" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E7B45C"/><stop offset="100%" stop-color="#C98A2E"/></linearGradient>
+  <linearGradient id="wine" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6B2A2A"/><stop offset="100%" stop-color="#3E1414"/></linearGradient>
+  <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+</defs>
+<rect width="1200" height="800" fill="url(#bg)"/><g opacity="0.08" fill="#A5602A"><rect x="0" y="0" width="1200" height="40"/><rect x="0" y="760" width="1200" height="40"/></g><ellipse cx="610" cy="590" rx="260" ry="90" fill="#8B5A2B" opacity="0.28" filter="url(#soft)"/>
+<ellipse cx="600" cy="560" rx="260" ry="90" fill="url(#plate)"/>
+<ellipse cx="600" cy="560" rx="260" ry="90" fill="none" stroke="#D9CFC1" stroke-width="4"/>
+<ellipse cx="600" cy="560" rx="195" ry="45" fill="none" stroke="#E6DDD0" stroke-width="3"/><ellipse cx="610" cy="578" rx="120" ry="40" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/><path d="M 730 440 C 840 420 840 570 730 560" fill="none" stroke="#FFFFFF" stroke-width="34" stroke-linecap="round"/><path d="M 480 380 L 500 550 A 100 28 0 0 0 700 550 L 720 380 Z" fill="#FFFFFF"/><ellipse cx="600" cy="380" rx="120" ry="40" fill="#FFFFFF" stroke="#C9BDA8" stroke-width="4"/><ellipse cx="600" cy="380" rx="98" ry="24" fill="#3B1F0E"/><ellipse cx="600" cy="380" rx="100" ry="26" fill="#4A2612"/><ellipse cx="600" cy="376" rx="70" ry="16" fill="#8B5A2B" opacity="0.7"/><g fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.55"><path d="M 570.0 310 C 550.0 280 590.0 260 570.0 230"/><path d="M 630.0 310 C 610.0 280 650.0 260 630.0 230"/></g><g fill="url(#brown)"><ellipse cx="330" cy="560" rx="22" ry="14" transform="rotate(-30 330 560)"/><ellipse cx="370" cy="590" rx="22" ry="14" transform="rotate(20 370 590)"/><ellipse cx="880" cy="600" rx="22" ry="14" transform="rotate(-10 880 600)"/></g><g stroke="#3B1F0E" stroke-width="3"><path d="M 330 548 L 330 572 M 370 578 L 370 602 M 880 588 L 880 612"/></g><g transform="translate(820 520) rotate(70)" fill="#C8CCD2" stroke="#9AA0A8" stroke-width="3">
+<rect x="-9" y="-10" width="18" height="290" rx="9"/><ellipse cx="0" cy="-60" rx="34" ry="52"/></g></svg>

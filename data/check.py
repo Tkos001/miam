@@ -30,6 +30,7 @@ UNITS = {"G", "KG", "ML", "CL", "L", "CAC", "CAS", "PIECE", "TRANCHE", "GOUSSE",
 AISLES = {"FRUITS_LEGUMES", "BOUCHERIE", "FRAIS", "EPICERIE", "BOULANGERIE", "SURGELES", "BOISSONS", "AUTRE"}
 CUISINES = {"FRANCAISE", "ITALIENNE", "INDIENNE", "THAI", "JAPONAISE", "AMERICAINE", "AUTRE"}
 PROTEINS = {"BOEUF", "PORC", "VOLAILLE", "VEAU", "AGNEAU", "POISSON", "VEGETARIEN", "AUTRE"}
+KINDS = {"PLAT", "ENTREE", "ACCOMPAGNEMENT", "DESSERT", "PETIT_DEJEUNER", "GOUTER", "BOISSON"}
 SLUG = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 errors, warnings = [], []
@@ -49,7 +50,7 @@ version = cat.get("version")
 if not isinstance(version, int):
     err("version doit être un entier")
 
-RECIPE_KEYS = ["remoteId", "name", "description", "prepMinutes", "cookMinutes", "servings", "cuisine", "protein",
+RECIPE_KEYS = ["remoteId", "name", "description", "prepMinutes", "cookMinutes", "servings", "cuisine", "protein", "kind",
                "imageUrl", "imageUrls", "ingredients", "steps"]
 ING_KEYS = ["name", "quantity", "unit", "aisle"]
 
@@ -149,7 +150,9 @@ for i, r in enumerate(recipes):
     for k in ("prepMinutes", "cookMinutes", "servings"):
         if not isinstance(r.get(k), int):
             err(f"{tag} : {k} doit être un entier")
-    if r.get("servings") != 4:
+    if r.get("kind", "PLAT") not in KINDS:
+        err(f"{tag} : kind inconnu {r.get('kind')!r}")
+    if r.get("servings") != 4 and r.get("kind", "PLAT") not in ("PETIT_DEJEUNER", "GOUTER", "BOISSON"):
         warn(f"{tag} : servings = {r.get('servings')} (le catalogue est écrit pour 4)")
     if r.get("cuisine", "FRANCAISE") not in CUISINES:
         err(f"{tag} : cuisine inconnue {r.get('cuisine')!r}")

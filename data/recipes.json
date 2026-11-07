@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 17,
+  "version": 18,
   "updatedAt": "2026-11-07",
   "recipes": [
     {
@@ -12,6 +12,7 @@
       "servings": 2,
       "cuisine": "FRANCAISE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/butternut-farcie-boeuf.jpg",
       "ingredients": [
         {
@@ -94,6 +95,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/lasagnes-boeuf.jpg",
       "ingredients": [
         {
@@ -209,6 +211,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tourte-pomme-de-terre-saucisse-comte.jpg",
       "ingredients": [
         {
@@ -294,6 +297,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pates-carbonara.jpg",
       "ingredients": [
         {
@@ -361,6 +365,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-veau.jpg",
       "ingredients": [
         {
@@ -446,6 +451,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "VOLAILLE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-basquaise.jpg",
       "ingredients": [
         {
@@ -530,6 +536,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "POISSON",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saumon-four-legumes.jpg",
       "ingredients": [
         {
@@ -608,6 +615,7 @@
       "servings": 4,
       "cuisine": "AMERICAINE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/chili-con-carne.jpg",
       "ingredients": [
         {
@@ -704,6 +712,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "VEGETARIEN",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-courgettes-chevre.jpg",
       "ingredients": [
         {
@@ -782,6 +791,7 @@
       "servings": 4,
       "cuisine": "AUTRE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-cantonais.jpg",
       "ingredients": [
         {
@@ -854,6 +864,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/boulettes-boeuf-sauce-tomate.jpg",
       "ingredients": [
         {
@@ -951,6 +962,7 @@
       "servings": 4,
       "cuisine": "INDIENNE",
       "protein": "VOLAILLE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/curry-poulet-coco.jpg",
       "ingredients": [
         {
@@ -1035,6 +1047,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-pates-jambon.jpg",
       "ingredients": [
         {
@@ -1107,6 +1120,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "VOLAILLE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/escalopes-milanaise.jpg",
       "ingredients": [
         {
@@ -1191,6 +1205,7 @@
       "servings": 4,
       "cuisine": "AUTRE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/wok-boeuf-legumes.jpg",
       "ingredients": [
         {
@@ -1281,6 +1296,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/flammekueche.jpg",
       "ingredients": [
         {
@@ -1347,6 +1363,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/galettes-sarrasin-complete.jpg",
       "ingredients": [
         {
@@ -1407,6 +1424,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "VOLAILLE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/cordon-bleu-maison-puree.jpg",
       "ingredients": [
         {
@@ -1497,6 +1515,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "POISSON",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poisson-pane-maison-haricots.jpg",
       "ingredients": [
         {
@@ -1587,6 +1606,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "VEGETARIEN",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/risotto-champignons.jpg",
       "ingredients": [
         {
@@ -1677,6 +1697,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tomates-farcies.jpg",
       "ingredients": [
         {
@@ -1773,6 +1794,7 @@
       "servings": 4,
       "cuisine": "AUTRE",
       "protein": "VOLAILLE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/poulet-miel-sesame.jpg",
       "ingredients": [
         {
@@ -1851,6 +1873,7 @@
       "servings": 4,
       "cuisine": "AUTRE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/moussaka.jpg",
       "ingredients": [
         {
@@ -1953,6 +1976,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/filet-mignon-moutarde.jpg",
       "ingredients": [
         {
@@ -2043,6 +2067,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "POISSON",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gratin-poisson-poireaux.jpg",
       "ingredients": [
         {
@@ -2121,6 +2146,7 @@
       "servings": 4,
       "cuisine": "INDIENNE",
       "protein": "VEGETARIEN",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/dahl-lentilles-corail.jpg",
       "ingredients": [
         {
@@ -2217,6 +2243,7 @@
       "servings": 4,
       "cuisine": "AMERICAINE",
       "protein": "BOEUF",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/burgers-maison.jpg",
       "ingredients": [
         {
@@ -2319,6 +2346,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "AGNEAU",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/navarin-agneau.jpg",
       "ingredients": [
         {
@@ -2420,6 +2448,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "POISSON",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/quiche-saumon-epinards.jpg",
       "ingredients": [
         {
@@ -2498,6 +2527,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "VEAU",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/saute-veau-marengo.jpg",
       "ingredients": [
         {
@@ -2594,6 +2624,7 @@
       "servings": 4,
       "cuisine": "ITALIENNE",
       "protein": "VEGETARIEN",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gnocchis-poelees-sauge.jpg",
       "ingredients": [
         {
@@ -2654,6 +2685,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "PORC",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg",
       "ingredients": [
         {
@@ -2747,6 +2779,7 @@
       "servings": 8,
       "cuisine": "FRANCAISE",
       "protein": "AUTRE",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/trianon.jpg",
       "ingredients": [
         {
@@ -2841,6 +2874,7 @@
       "servings": 4,
       "cuisine": "FRANCAISE",
       "protein": "VEAU",
+      "kind": "PLAT",
       "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/blanquette-de-veau.jpg",
       "ingredients": [
         {
@@ -2923,6 +2957,1364 @@
         "Préparer un roux avec beurre et farine, mouiller avec 50 cl de bouillon de cuisson, laisser épaissir.",
         "Hors du feu, ajouter crème, jaune d'œuf et jus de citron. Napper la viande et les légumes.",
         "Servir avec le riz."
+      ]
+    },
+    {
+      "remoteId": "bol-de-lait",
+      "name": "Bol de lait",
+      "description": "Le bol du matin, nature, au cacao ou avec des céréales à côté.",
+      "prepMinutes": 1,
+      "cookMinutes": 2,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "PETIT_DEJEUNER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/bol-de-lait.jpg",
+      "ingredients": [
+        {
+          "name": "Lait",
+          "quantity": 25,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        }
+      ],
+      "steps": [
+        "Verser le lait dans un bol, le faire chauffer 1 min 30 au micro-ondes (ou le boire froid)."
+      ]
+    },
+    {
+      "remoteId": "bol-cereales-lait",
+      "name": "Bol de céréales au lait",
+      "description": "Céréales croustillantes et lait froid.",
+      "prepMinutes": 2,
+      "cookMinutes": 0,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "PETIT_DEJEUNER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/bol-cereales-lait.jpg",
+      "ingredients": [
+        {
+          "name": "Céréales",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        }
+      ],
+      "steps": [
+        "Verser les céréales dans un bol, ajouter le lait froid, manger tout de suite tant que ça croque."
+      ]
+    },
+    {
+      "remoteId": "chocolat-chaud",
+      "name": "Chocolat chaud",
+      "description": "Lait chaud, cacao et une pointe de sucre.",
+      "prepMinutes": 2,
+      "cookMinutes": 4,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "BOISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/chocolat-chaud.jpg",
+      "ingredients": [
+        {
+          "name": "Lait",
+          "quantity": 25,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Cacao en poudre non sucré",
+          "quantity": 2,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire chauffer le lait dans une casserole sans le faire bouillir.",
+        "Mélanger le cacao et le sucre avec 2 cuillères de lait chaud pour faire une pâte lisse, puis verser le reste du lait en fouettant.",
+        "Servir bien chaud."
+      ]
+    },
+    {
+      "remoteId": "tartines-beurre-confiture",
+      "name": "Tartines beurre et confiture",
+      "description": "Pain grillé, beurre et confiture.",
+      "prepMinutes": 3,
+      "cookMinutes": 3,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "PETIT_DEJEUNER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tartines-beurre-confiture.jpg",
+      "ingredients": [
+        {
+          "name": "Pain",
+          "quantity": 2,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 10,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Confiture",
+          "quantity": 2,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Griller les tranches de pain.",
+        "Beurrer puis étaler la confiture."
+      ]
+    },
+    {
+      "remoteId": "oeufs-brouilles",
+      "name": "Œufs brouillés",
+      "description": "Crémeux, cuits doucement au beurre.",
+      "prepMinutes": 3,
+      "cookMinutes": 5,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "PETIT_DEJEUNER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/oeufs-brouilles.jpg",
+      "ingredients": [
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 10,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Crème fraîche",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Ciboulette",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Pain",
+          "quantity": 1,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        }
+      ],
+      "steps": [
+        "Battre les œufs avec la crème, sel et poivre.",
+        "Faire fondre le beurre à feu doux, verser les œufs et remuer sans arrêt à la spatule jusqu'à ce qu'ils prennent en restant crémeux (3 à 4 min).",
+        "Retirer du feu juste avant la cuisson voulue, parsemer de ciboulette, servir avec le pain grillé."
+      ]
+    },
+    {
+      "remoteId": "pain-perdu",
+      "name": "Pain perdu",
+      "description": "Tranches de pain rassis trempées dans l'œuf et le lait, dorées au beurre.",
+      "prepMinutes": 10,
+      "cookMinutes": 10,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "GOUTER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pain-perdu.jpg",
+      "ingredients": [
+        {
+          "name": "Pain rassis",
+          "quantity": 8,
+          "unit": "TRANCHE",
+          "aisle": "BOULANGERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Lait",
+          "quantity": 25,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre vanillé",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Cannelle",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Battre les œufs avec le lait, le sucre, le sucre vanillé et la cannelle dans un plat creux.",
+        "Tremper chaque tranche 20 secondes de chaque côté.",
+        "Faire dorer au beurre à feu moyen 2 à 3 min par face. Servir chaud, saupoudré de sucre."
+      ]
+    },
+    {
+      "remoteId": "smoothie-banane",
+      "name": "Smoothie banane",
+      "description": "Banane, lait et miel mixés.",
+      "prepMinutes": 3,
+      "cookMinutes": 0,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "BOISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/smoothie-banane.jpg",
+      "ingredients": [
+        {
+          "name": "Banane",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Lait",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Miel",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Mixer la banane coupée en rondelles avec le lait et le miel 30 secondes. Ajouter 2 glaçons pour le servir frais."
+      ]
+    },
+    {
+      "remoteId": "yaourt-miel-granola",
+      "name": "Yaourt, miel et granola",
+      "description": "Un yaourt nature, du miel et du croquant.",
+      "prepMinutes": 2,
+      "cookMinutes": 0,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "GOUTER",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/yaourt-miel-granola.jpg",
+      "ingredients": [
+        {
+          "name": "Yaourt nature",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Miel",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Granola",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Verser le yaourt dans un bol, napper de miel, parsemer de granola."
+      ]
+    },
+    {
+      "remoteId": "cafe",
+      "name": "Café",
+      "description": "Un café filtre ou à la machine.",
+      "prepMinutes": 1,
+      "cookMinutes": 4,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "BOISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/cafe.jpg",
+      "ingredients": [
+        {
+          "name": "Café moulu",
+          "quantity": 7,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Préparer le café selon la machine (7 g pour une tasse de 12 cl). Sucre et lait selon goût."
+      ]
+    },
+    {
+      "remoteId": "the",
+      "name": "Thé",
+      "description": "Thé infusé, nature ou au citron.",
+      "prepMinutes": 1,
+      "cookMinutes": 4,
+      "servings": 1,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "BOISSON",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/the.jpg",
+      "ingredients": [
+        {
+          "name": "Thé",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Citron",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        }
+      ],
+      "steps": [
+        "Faire chauffer l'eau à 85 °C environ (frémissante, pas bouillante pour un thé vert). Infuser 3 à 4 min. Une rondelle de citron si envie."
+      ]
+    },
+    {
+      "remoteId": "riz-blanc",
+      "name": "Riz blanc",
+      "description": "Riz nature, l'accompagnement de base des currys, sautés et plats en sauce.",
+      "prepMinutes": 2,
+      "cookMinutes": 12,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-blanc.jpg",
+      "ingredients": [
+        {
+          "name": "Riz",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Rincer le riz à l'eau froide jusqu'à ce que l'eau soit claire.",
+        "Porter une grande casserole d'eau salée à ébullition, verser le riz, cuire 10 à 12 min à petits bouillons.",
+        "Égoutter, couvrir 2 min, égrener à la fourchette."
+      ]
+    },
+    {
+      "remoteId": "pates-au-beurre",
+      "name": "Pâtes au beurre",
+      "description": "Pâtes, beurre, fromage râpé : la valeur sûre des enfants.",
+      "prepMinutes": 2,
+      "cookMinutes": 10,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pates-au-beurre.jpg",
+      "ingredients": [
+        {
+          "name": "Pâtes",
+          "quantity": 400,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 40,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Gruyère râpé",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les pâtes dans un grand volume d'eau salée selon le paquet.",
+        "Égoutter en gardant une louche d'eau de cuisson, remettre dans la casserole avec le beurre et un peu d'eau, mélanger.",
+        "Servir avec le gruyère râpé."
+      ]
+    },
+    {
+      "remoteId": "puree-maison",
+      "name": "Purée maison",
+      "description": "Pommes de terre écrasées au lait et au beurre.",
+      "prepMinutes": 15,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/puree-maison.jpg",
+      "ingredients": [
+        {
+          "name": "Pommes de terre",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Lait",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 60,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Noix de muscade",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher les pommes de terre, les couper en morceaux, les cuire 20 à 25 min à l'eau salée (la pointe d'un couteau doit s'enfoncer sans résistance).",
+        "Égoutter, écraser au presse-purée (pas au mixeur : la purée devient collante).",
+        "Incorporer le beurre puis le lait chaud petit à petit. Muscade, sel, poivre."
+      ]
+    },
+    {
+      "remoteId": "pommes-de-terre-vapeur",
+      "name": "Pommes de terre vapeur",
+      "description": "Pommes de terre cuites à la vapeur, beurre et persil.",
+      "prepMinutes": 10,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/pommes-de-terre-vapeur.jpg",
+      "ingredients": [
+        {
+          "name": "Pommes de terre",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Persil",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher les pommes de terre, les couper en deux si elles sont grosses.",
+        "Cuire 20 à 25 min à la vapeur (ou à l'eau salée).",
+        "Servir avec une noix de beurre, du persil ciselé et du sel."
+      ]
+    },
+    {
+      "remoteId": "haricots-verts-persilles",
+      "name": "Haricots verts persillés",
+      "description": "Haricots verts sautés à l'ail et au persil.",
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/haricots-verts-persilles.jpg",
+      "ingredients": [
+        {
+          "name": "Haricots verts",
+          "quantity": 600,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Ail",
+          "quantity": 2,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 25,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Persil",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Équeuter les haricots (ou utiliser des surgelés), les cuire 8 à 10 min à l'eau bouillante salée, les égoutter.",
+        "Faire fondre le beurre dans une poêle, ajouter l'ail haché 30 secondes, puis les haricots 3 min en remuant.",
+        "Persil ciselé, sel, poivre."
+      ]
+    },
+    {
+      "remoteId": "salade-verte-vinaigrette",
+      "name": "Salade verte vinaigrette",
+      "description": "Une salade et une vraie vinaigrette à la moutarde.",
+      "prepMinutes": 8,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/salade-verte-vinaigrette.jpg",
+      "ingredients": [
+        {
+          "name": "Salade",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Vinaigre",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Laver et essorer la salade.",
+        "Vinaigrette : mélanger la moutarde, le vinaigre, sel et poivre, puis l'huile en fouettant.",
+        "Assaisonner au dernier moment."
+      ]
+    },
+    {
+      "remoteId": "semoule",
+      "name": "Semoule",
+      "description": "Semoule gonflée au beurre, pour les tajines, boulettes et brochettes.",
+      "prepMinutes": 2,
+      "cookMinutes": 8,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/semoule.jpg",
+      "ingredients": [
+        {
+          "name": "Semoule de blé",
+          "quantity": 300,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 25,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Verser la semoule dans un saladier avec le sel, ajouter le même volume d'eau bouillante, couvrir 5 min.",
+        "Ajouter le beurre, égrener à la fourchette."
+      ]
+    },
+    {
+      "remoteId": "legumes-rotis",
+      "name": "Légumes rôtis au four",
+      "description": "Courgettes, poivrons et oignon rouge rôtis à l'huile d'olive.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/legumes-rotis.jpg",
+      "ingredients": [
+        {
+          "name": "Courgette",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poivron rouge",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon rouge",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Herbes de Provence",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 200 °C. Couper les légumes en gros morceaux.",
+        "Les étaler sur une plaque, arroser d'huile, herbes, sel, poivre, mélanger.",
+        "Enfourner 30 à 35 min en remuant à mi-cuisson, jusqu'à ce que les bords caramélisent."
+      ]
+    },
+    {
+      "remoteId": "frites-maison",
+      "name": "Frites maison",
+      "description": "Frites en deux cuissons, croustillantes dehors, fondantes dedans.",
+      "prepMinutes": 15,
+      "cookMinutes": 25,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ACCOMPAGNEMENT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/frites-maison.jpg",
+      "ingredients": [
+        {
+          "name": "Pommes de terre",
+          "quantity": 1.2,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile de friture",
+          "quantity": 2,
+          "unit": "L",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher et tailler les pommes de terre en bâtonnets d'1 cm, les rincer et bien les sécher.",
+        "Première cuisson à 150 °C pendant 6 à 7 min : les frites doivent être molles et pâles. Égoutter.",
+        "Deuxième cuisson à 180 °C pendant 3 à 4 min jusqu'à coloration. Égoutter, saler, servir aussitôt."
+      ]
+    },
+    {
+      "remoteId": "carottes-rapees",
+      "name": "Carottes râpées",
+      "description": "Carottes râpées, citron, huile et persil.",
+      "prepMinutes": 10,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ENTREE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/carottes-rapees.jpg",
+      "ingredients": [
+        {
+          "name": "Carotte",
+          "quantity": 500,
+          "unit": "G",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAC",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher et râper les carottes.",
+        "Mélanger le jus du citron, la moutarde, sel, poivre, puis l'huile.",
+        "Mélanger aux carottes, ajouter le persil ciselé, laisser 10 min au frais."
+      ]
+    },
+    {
+      "remoteId": "tomates-mozzarella",
+      "name": "Tomates mozzarella",
+      "description": "Tomates, mozzarella, basilic, huile d'olive.",
+      "prepMinutes": 10,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "ITALIENNE",
+      "protein": "AUTRE",
+      "kind": "ENTREE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/tomates-mozzarella.jpg",
+      "ingredients": [
+        {
+          "name": "Tomate",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Mozzarella",
+          "quantity": 250,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Basilic",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Huile d'olive",
+          "quantity": 3,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Couper les tomates et la mozzarella en tranches.",
+        "Alterner sur un plat, arroser d'huile d'olive, parsemer de basilic, sel, poivre."
+      ]
+    },
+    {
+      "remoteId": "oeufs-mimosa",
+      "name": "Œufs mimosa",
+      "description": "Œufs durs garnis de leur jaune à la mayonnaise.",
+      "prepMinutes": 15,
+      "cookMinutes": 10,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ENTREE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/oeufs-mimosa.jpg",
+      "ingredients": [
+        {
+          "name": "Œuf",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Mayonnaise",
+          "quantity": 4,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Cuire les œufs 10 min dans l'eau bouillante, les refroidir, les écaler, les couper en deux.",
+        "Prélever les jaunes, en garder 2 pour le décor, écraser les autres avec la mayonnaise, sel, poivre.",
+        "Garnir les blancs, râper les jaunes réservés par-dessus, persil."
+      ]
+    },
+    {
+      "remoteId": "soupe-de-legumes",
+      "name": "Soupe de légumes",
+      "description": "Carottes, poireaux, pommes de terre, mixés.",
+      "prepMinutes": 15,
+      "cookMinutes": 30,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ENTREE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/soupe-de-legumes.jpg",
+      "ingredients": [
+        {
+          "name": "Carotte",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Poireau",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Pommes de terre",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Bouillon de légumes",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 20,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher et couper les légumes en morceaux.",
+        "Les faire revenir 5 min dans le beurre, couvrir d'1,5 L d'eau avec le bouillon cube, cuire 25 min.",
+        "Mixer, saler, poivrer. Une cuillère de crème au service si envie."
+      ]
+    },
+    {
+      "remoteId": "concombre-creme",
+      "name": "Concombre à la crème",
+      "description": "Concombre, crème fraîche, vinaigre et ciboulette.",
+      "prepMinutes": 10,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "ENTREE",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/concombre-creme.jpg",
+      "ingredients": [
+        {
+          "name": "Concombre",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Vinaigre",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Ciboulette",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher le concombre, le couper en fines rondelles, saler et laisser dégorger 15 min, puis égoutter.",
+        "Mélanger la crème, le vinaigre, la ciboulette ciselée, poivre. Mélanger au concombre, servir frais."
+      ]
+    },
+    {
+      "remoteId": "mousse-au-chocolat",
+      "name": "Mousse au chocolat",
+      "description": "Chocolat noir et œufs, rien d'autre.",
+      "prepMinutes": 20,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/mousse-au-chocolat.jpg",
+      "ingredients": [
+        {
+          "name": "Chocolat noir",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 6,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sel",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Faire fondre le chocolat au bain-marie, laisser tiédir.",
+        "Séparer les blancs des jaunes. Mélanger les jaunes au chocolat.",
+        "Monter les blancs en neige avec la pincée de sel, ajouter le sucre à la fin.",
+        "Incorporer délicatement les blancs au chocolat en soulevant la masse. Réfrigérer au moins 4 h."
+      ]
+    },
+    {
+      "remoteId": "compote-de-pommes",
+      "name": "Compote de pommes",
+      "description": "Pommes cuites à la casserole, un peu de sucre, une pointe de cannelle.",
+      "prepMinutes": 10,
+      "cookMinutes": 20,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/compote-de-pommes.jpg",
+      "ingredients": [
+        {
+          "name": "Pomme",
+          "quantity": 1,
+          "unit": "KG",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 30,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Cannelle",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher les pommes, les couper en morceaux.",
+        "Cuire à couvert 20 min à feu doux avec 3 cuillères d'eau, le sucre et la cannelle.",
+        "Écraser à la fourchette ou mixer. Tiède ou froide."
+      ]
+    },
+    {
+      "remoteId": "gateau-au-yaourt",
+      "name": "Gâteau au yaourt",
+      "description": "Le gâteau qui se mesure au pot de yaourt.",
+      "prepMinutes": 15,
+      "cookMinutes": 35,
+      "servings": 6,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/gateau-au-yaourt.jpg",
+      "ingredients": [
+        {
+          "name": "Yaourt nature",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 200,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Farine",
+          "quantity": 180,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Œuf",
+          "quantity": 3,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile",
+          "quantity": 10,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Levure chimique",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre vanillé",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Four à 180 °C. Mélanger le yaourt, les sucres et les œufs.",
+        "Ajouter la farine et la levure, puis l'huile. Lisser.",
+        "Verser dans un moule beurré, cuire 35 min. La lame d'un couteau doit ressortir sèche."
+      ]
+    },
+    {
+      "remoteId": "riz-au-lait",
+      "name": "Riz au lait",
+      "description": "Riz rond cuit lentement dans le lait vanillé.",
+      "prepMinutes": 5,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/riz-au-lait.jpg",
+      "ingredients": [
+        {
+          "name": "Riz rond",
+          "quantity": 150,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Lait",
+          "quantity": 1,
+          "unit": "L",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 80,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre vanillé",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Rincer le riz, le blanchir 2 min dans l'eau bouillante, égoutter.",
+        "Porter le lait à ébullition avec le sucre vanillé, ajouter le riz, cuire 35 à 40 min à feu très doux en remuant souvent.",
+        "Ajouter le sucre en fin de cuisson. Tiède ou froid."
+      ]
+    },
+    {
+      "remoteId": "salade-de-fruits",
+      "name": "Salade de fruits",
+      "description": "Fruits de saison coupés, jus de citron et un peu de sucre.",
+      "prepMinutes": 15,
+      "cookMinutes": 0,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/salade-de-fruits.jpg",
+      "ingredients": [
+        {
+          "name": "Pomme",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Banane",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Orange",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Kiwi",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Citron",
+          "quantity": 1,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Éplucher et couper les fruits en dés, peler les oranges à vif.",
+        "Mélanger avec le jus du citron et le sucre. 30 min au frais."
+      ]
+    },
+    {
+      "remoteId": "creme-dessert-vanille",
+      "name": "Crème dessert vanille",
+      "description": "Crème onctueuse à la vanille, comme en pot mais en mieux.",
+      "prepMinutes": 10,
+      "cookMinutes": 10,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "protein": "AUTRE",
+      "kind": "DESSERT",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/creme-dessert-vanille.jpg",
+      "ingredients": [
+        {
+          "name": "Lait",
+          "quantity": 50,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Jaune d'œuf",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Sucre",
+          "quantity": 50,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Maïzena",
+          "quantity": 25,
+          "unit": "G",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Sucre vanillé",
+          "quantity": 1,
+          "unit": "SACHET",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Fouetter les jaunes avec les sucres et la Maïzena.",
+        "Verser le lait chaud dessus en fouettant, remettre dans la casserole et cuire à feu doux en remuant jusqu'à épaississement (2 à 3 min après le premier bouillon).",
+        "Répartir dans des ramequins, filmer au contact, 3 h au frais."
       ]
     }
   ],

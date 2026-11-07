@@ -48,6 +48,7 @@ Ajouter un objet à la fin du tableau `recipes` :
   "servings": 4,
   "cuisine": "FRANCAISE",
   "protein": "PORC",
+  "kind": "PLAT",
   "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg",
   "ingredients": [
     { "name": "Paupiettes de porc", "quantity": 4, "unit": "PIECE", "aisle": "BOUCHERIE" },
@@ -66,7 +67,8 @@ Règles :
 
 - `remoteId` : slug en minuscules sans accent (`a-z0-9-`), **unique**, jamais modifié ensuite (c'est la clé
   de fusion côté app). Vérifier qu'un plat proche n'existe pas déjà (`grep -i paupiettes data/recipes.json`).
-- `servings` : **4**. Les quantités sont mises à l'échelle par l'app selon le planning.
+- `servings` : **4** pour un plat, une entrée, un accompagnement ou un dessert ; **1** pour un petit-déj, un goûter ou
+  une boisson. Les quantités sont mises à l'échelle par l'app selon le nombre de personnes du repas.
 - Quantités en nombres (pas de chaînes), `null` + `"NONE"` pour sel/poivre/« selon goût ».
 - Les ingrédients alimentent la **liste de courses** : noms génériques et achetables (« Crème fraîche »,
   pas « crème de la ferme du coin »), rayon exact, une ligne par produit à acheter. Pas d'eau.
@@ -75,6 +77,9 @@ Règles :
   - `aisle` : `FRUITS_LEGUMES BOUCHERIE FRAIS EPICERIE BOULANGERIE SURGELES BOISSONS AUTRE`
   - `cuisine` : `FRANCAISE ITALIENNE INDIENNE THAI JAPONAISE AMERICAINE AUTRE`
   - `protein` : `BOEUF PORC VOLAILLE VEAU AGNEAU POISSON VEGETARIEN AUTRE`
+  - `kind` : `PLAT` (défaut) `ENTREE ACCOMPAGNEMENT DESSERT PETIT_DEJEUNER GOUTER BOISSON`. Dans l'app, entrée /
+    accompagnement / dessert se rattachent à un plat dans la liste des repas ; petit-déj, goûter et boisson sont des
+    repas à part entière (un bol de lait, un café) et s'écrivent pour **1 personne**.
 - Français, apostrophes typographiques ou droites indifférentes, unités de cuisson en « °C ».
 - Forme du fichier : indentation 2 espaces, clés dans l'ordre de l'exemple ci-dessus, quantités entières sans
   `.0`, pas de `isFavorite` / `sourceUrl` / `imageUrls` vide. `check.py --fix` (et donc la CI) remet le fichier

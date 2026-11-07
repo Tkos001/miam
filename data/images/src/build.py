@@ -1186,6 +1186,408 @@ def trianon():
     return s
 
 
+# ---------------------------------------------------------------- lot 3 : petits-déj, accompagnements, entrées, desserts
+
+def mug(cx=600, cy=400, rx=190, ry=60, depth=260, color="url(#ceramic)", inner="#FFF8EA"):
+    """Grand bol / mug vu de trois-quarts, intérieur visible, anse à droite."""
+    return (f'<ellipse cx="{cx+10}" cy="{cy+depth+28}" rx="{rx}" ry="{ry}" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/>'
+            f'<path d="M {cx+rx+10} {cy+60} C {cx+rx+120} {cy+40} {cx+rx+120} {cy+190} {cx+rx+10} {cy+180}" fill="none" stroke="{color}" stroke-width="34" stroke-linecap="round"/>'
+            f'<path d="M {cx-rx} {cy} L {cx-rx+20} {cy+depth} A {rx-20} {ry-12} 0 0 0 {cx+rx-20} {cy+depth} L {cx+rx} {cy} Z" fill="{color}"/>'
+            f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="{color}" stroke="#C9BDA8" stroke-width="4"/>'
+            f'<ellipse cx="{cx}" cy="{cy}" rx="{rx-22}" ry="{ry-16}" fill="{inner}"/>')
+
+
+def glass(cx=600, cy=330, rx=110, ry=36, depth=330, liquid="#F6E7A1", level=0.2):
+    """Verre droit, liquide rempli depuis le bas (level = hauteur vide en proportion)."""
+    top = cy + depth * level
+    return (f'<ellipse cx="{cx+10}" cy="{cy+depth+26}" rx="{rx}" ry="{ry}" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/>'
+            f'<path d="M {cx-rx+12} {top} L {cx-rx+16} {cy+depth} A {rx-16} {ry-10} 0 0 0 {cx+rx-16} {cy+depth} L {cx+rx-12} {top} Z" fill="{liquid}"/>'
+            f'<ellipse cx="{cx}" cy="{top}" rx="{rx-12}" ry="{ry-6}" fill="{liquid}" stroke="#FFFFFF" stroke-width="3" opacity="0.95"/>'
+            f'<path d="M {cx-rx} {cy} L {cx-rx+16} {cy+depth} A {rx-16} {ry-10} 0 0 0 {cx+rx-16} {cy+depth} L {cx+rx} {cy} Z" fill="#FFFFFF" opacity="0.28"/>'
+            f'<path d="M {cx-rx} {cy} L {cx-rx+16} {cy+depth}" stroke="#FFFFFF" stroke-width="5" opacity="0.7"/><path d="M {cx+rx} {cy} L {cx+rx-16} {cy+depth}" stroke="#D9CFC1" stroke-width="4" opacity="0.8"/>'
+            f'<ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="none" stroke="#D9CFC1" stroke-width="4"/>')
+
+
+def bread_slice(x, y, w=200, h=150, rot=0, crust="#C8912E", crumb="#F5E3B8", topping=None):
+    s = f'<g transform="rotate({rot} {x+w/2} {y+h/2})"><rect x="{x+6}" y="{y+10}" width="{w}" height="{h}" rx="30" fill="#8B5A2B" opacity="0.25" filter="url(#soft)"/>'
+    s += f'<path d="M {x} {y+40} Q {x} {y} {x+w*0.3} {y} Q {x+w/2} {y-22} {x+w*0.7} {y} Q {x+w} {y} {x+w} {y+40} L {x+w} {y+h-20} Q {x+w} {y+h} {x+w-20} {y+h} L {x+20} {y+h} Q {x} {y+h} {x} {y+h-20} Z" fill="{crust}"/>'
+    s += f'<path d="M {x+14} {y+46} Q {x+14} {y+16} {x+w*0.3} {y+16} Q {x+w/2} {y-2} {x+w*0.7} {y+16} Q {x+w-14} {y+16} {x+w-14} {y+46} L {x+w-14} {y+h-24} Q {x+w-14} {y+h-14} {x+w-24} {y+h-14} L {x+24} {y+h-14} Q {x+14} {y+h-14} {x+14} {y+h-24} Z" fill="{crumb}"/>'
+    if topping:
+        s += f'<path d="M {x+30} {y+50} Q {x+w/2} {y+20} {x+w-30} {y+55} Q {x+w-20} {y+h-40} {x+w/2} {y+h-30} Q {x+30} {y+h-36} {x+30} {y+50} Z" fill="{topping}" opacity="0.9"/>'
+    return s + '</g>'
+
+
+def choc_bar(x=300, y=520):
+    return (f'<rect x="{x}" y="{y}" width="140" height="80" rx="10" fill="url(#brown)"/>'
+            f'<g stroke="#4A2010" stroke-width="3"><path d="M {x+35} {y} L {x+35} {y+80} M {x+70} {y} L {x+70} {y+80} M {x+105} {y} L {x+105} {y+80} M {x} {y+40} L {x+140} {y+40}"/></g>')
+
+
+def butter_knob(x=560, y=360, w=60, h=40, rot=-10):
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#FFE98A" stroke="#E5C34A" stroke-width="2" transform="rotate({rot} {x+w/2} {y+h/2})"/>'
+
+
+def bol_de_lait():
+    s = mug(600, 380, 210, 66, 250, "url(#ceramic)", "#FFFDF5")
+    s += '<ellipse cx="600" cy="380" rx="186" ry="48" fill="#FFFFFF"/><ellipse cx="560" cy="372" rx="60" ry="14" fill="#F4F0E6" opacity="0.8"/>'
+    s += steam(600, 300, 2, 70)
+    s += '<rect x="880" y="330" width="130" height="330" rx="18" fill="#DDEAF5" stroke="#B9CCDD" stroke-width="4"/><rect x="880" y="330" width="130" height="90" rx="18" fill="#4B6FA3"/><rect x="900" y="440" width="90" height="160" rx="10" fill="#FFFFFF"/><text x="945" y="530" font-family="sans-serif" font-size="34" font-weight="bold" text-anchor="middle" fill="#4B6FA3">LAIT</text>'
+    s += spoon(300, 330, -25)
+    return s
+
+
+def bol_cereales():
+    rng = random.Random(301)
+    s = mug(600, 380, 220, 70, 240, "url(#potblue)", "#FFF8E6")
+    s += '<ellipse cx="600" cy="380" rx="196" ry="52" fill="#FFFDF5"/>'
+    for _ in range(26):
+        x, y = 600 + rng.uniform(-170, 170), 380 + rng.uniform(-36, 36)
+        s += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{rng.uniform(12, 20):.0f}" fill="#E0A84A" stroke="#B9812A" stroke-width="3"/><circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="#FFF8E6"/>'
+    s += spoon(1000, 330, 30)
+    return s
+
+
+def chocolat_chaud():
+    s = mug(600, 400, 170, 54, 260, "#C2452F", "#6E3119")
+    s += '<ellipse cx="600" cy="400" rx="148" ry="38" fill="#7A3A1C"/><ellipse cx="600" cy="396" rx="110" ry="26" fill="#FFF8EA" opacity="0.9"/><ellipse cx="580" cy="392" rx="60" ry="14" fill="#FFFFFF"/>'
+    s += '<g fill="#5E2A14"><circle cx="560" cy="398" r="4"/><circle cx="620" cy="392" r="3"/><circle cx="600" cy="404" r="3"/></g>'
+    s += steam(600, 320, 3, 60)
+    s += choc_bar()
+    return s
+
+
+def tartines():
+    s = plate(600, 450, 440, 240)
+    s += bread_slice(330, 330, 230, 170, -6, topping="#FFF2C2")
+    s += bread_slice(600, 350, 230, 170, 5, topping="#C9302C")
+    s += '<g fill="#8E1B1B" opacity="0.6"><circle cx="700" cy="420" r="6"/><circle cx="740" cy="460" r="5"/><circle cx="670" cy="470" r="4"/></g>'
+    s += '<rect x="960" y="430" width="110" height="140" rx="14" fill="#B22222" stroke="#7A1414" stroke-width="4"/><rect x="960" y="430" width="110" height="34" rx="14" fill="#F2C84B"/><rect x="975" y="485" width="80" height="60" rx="6" fill="#FFF6E0"/>'
+    s += knife(220, 560, -150)
+    return s
+
+
+def oeufs_brouilles():
+    rng = random.Random(305)
+    s = plate(600, 450, 440, 245)
+    s += '<path d="M 380 470 C 380 380 470 340 580 345 C 700 350 790 400 780 470 C 770 540 680 560 580 555 C 470 550 380 540 380 470 Z" fill="#F2C84B"/>'
+    for _ in range(14):
+        x, y = 580 + rng.uniform(-170, 160), 455 + rng.uniform(-70, 70)
+        s += f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="{rng.uniform(26, 44):.0f}" ry="{rng.uniform(18, 30):.0f}" fill="#F8D96A" stroke="#E0B23A" stroke-width="3"/>'
+    s += herbs([(520, 420, -20), (660, 500, 30), (600, 380, 10)], "#3F8A34")
+    s += bread_slice(830, 480, 150, 110, 12)
+    s += steam(580, 300, 2, 70)
+    s += fork()
+    return s
+
+
+def pain_perdu():
+    s = plate(600, 460, 440, 240)
+    s += bread_slice(330, 380, 240, 180, -8, crust="#B9742E", crumb="#E8B657")
+    s += bread_slice(560, 350, 240, 180, 6, crust="#B9742E", crumb="#E8B657")
+    s += '<g fill="#FFFFFF" opacity="0.9"><circle cx="420" cy="430" r="3"/><circle cx="470" cy="470" r="4"/><circle cx="640" cy="420" r="3"/><circle cx="700" cy="450" r="4"/><circle cx="600" cy="500" r="3"/></g>'
+    s += '<path d="M 640 470 C 690 440 760 470 790 520" fill="none" stroke="#B5651D" stroke-width="12" stroke-linecap="round" opacity="0.8"/>'
+    s += '<circle cx="880" cy="400" r="16" fill="#C9302C"/><circle cx="905" cy="418" r="13" fill="#C9302C"/>'
+    s += fork()
+    return s
+
+
+def smoothie_banane():
+    s = glass(600, 300, 120, 38, 330, "#F6E7A1", 0.12)
+    s += '<path d="M 700 250 C 760 150 840 130 900 170 C 850 190 790 240 760 330" fill="#F2C94C" stroke="#C9A227" stroke-width="4"/>'
+    s += '<rect x="640" y="150" width="14" height="330" rx="7" fill="#C2452F" transform="rotate(14 647 315)"/>'
+    s += '<path d="M 300 560 C 330 450 440 440 480 520 C 420 500 360 520 300 560 Z" fill="#F2C94C" stroke="#C9A227" stroke-width="3"/>'
+    return s
+
+
+def yaourt_miel():
+    rng = random.Random(308)
+    s = bowl(600, 420, 250, 80, 170, "url(#ceramic)", "#FFFDF5")
+    s += '<path d="M 500 400 C 560 380 640 380 700 400 C 680 430 620 440 560 430 Z" fill="#E9A83A" opacity="0.85"/>'
+    for _ in range(18):
+        x, y = 600 + rng.uniform(-190, 190), 420 + rng.uniform(-40, 40)
+        s += f'<ellipse cx="{x:.0f}" cy="{y:.0f}" rx="{rng.uniform(10, 16):.0f}" ry="{rng.uniform(7, 10):.0f}" fill="#C8912E" stroke="#8F6418" stroke-width="2" transform="rotate({rng.uniform(0,90):.0f} {x:.0f} {y:.0f})"/>'
+    s += '<path d="M 820 330 L 820 430" stroke="#D9CFC1" stroke-width="10" stroke-linecap="round"/><ellipse cx="820" cy="440" rx="26" ry="18" fill="#E9A83A"/><ellipse cx="820" cy="434" rx="20" ry="8" fill="#F5C45A"/>'
+    s += spoon(1000, 330, 30)
+    return s
+
+
+def cafe():
+    s = plate(600, 560, 260, 90)
+    s += mug(600, 380, 120, 40, 170, "#FFFFFF", "#3B1F0E")
+    s += '<ellipse cx="600" cy="380" rx="100" ry="26" fill="#4A2612"/><ellipse cx="600" cy="376" rx="70" ry="16" fill="#8B5A2B" opacity="0.7"/>'
+    s += steam(600, 310, 2, 60)
+    s += '<g fill="url(#brown)"><ellipse cx="330" cy="560" rx="22" ry="14" transform="rotate(-30 330 560)"/><ellipse cx="370" cy="590" rx="22" ry="14" transform="rotate(20 370 590)"/><ellipse cx="880" cy="600" rx="22" ry="14" transform="rotate(-10 880 600)"/></g><g stroke="#3B1F0E" stroke-width="3"><path d="M 330 548 L 330 572 M 370 578 L 370 602 M 880 588 L 880 612"/></g>'
+    s += spoon(820, 520, 70)
+    return s
+
+
+def the():
+    s = plate(600, 560, 260, 90)
+    s += mug(600, 380, 130, 42, 170, "#FFFFFF", "#E9B86A")
+    s += '<ellipse cx="600" cy="380" rx="108" ry="28" fill="#D89A3C"/><ellipse cx="600" cy="376" rx="60" ry="14" fill="#F0C070" opacity="0.7"/>'
+    s += '<path d="M 650 372 C 690 300 720 260 740 230" stroke="#FFFFFF" stroke-width="3" fill="none"/><rect x="725" y="200" width="46" height="34" rx="4" fill="#F2F2F2" stroke="#C9BDA8" stroke-width="2"/>'
+    s += steam(580, 310, 2, 60)
+    s += '<path d="M 330 520 A 40 40 0 0 1 370 480 L 370 520 Z" fill="#F9E05A" stroke="#D9B720" stroke-width="3"/>'
+    return s
+
+
+def riz_blanc():
+    rng = random.Random(311)
+    s = bowl(600, 420, 280, 90, 180, "url(#ceramic)", "#FFFFFF")
+    s += '<ellipse cx="600" cy="400" rx="240" ry="80" fill="#FFFFFF"/>'
+    s += '<g fill="none" stroke="#ECE6DC" stroke-width="4" stroke-linecap="round">'
+    for _ in range(70):
+        x, y = 600 + rng.uniform(-220, 220), 400 + rng.uniform(-60, 60)
+        a = rng.uniform(0, math.pi)
+        s += f'<path d="M {x:.0f} {y:.0f} l {math.cos(a)*14:.0f} {math.sin(a)*7:.0f}"/>'
+    s += '</g>'
+    s += steam(600, 300, 3, 60)
+    s += '<g stroke="#8B5A2B" stroke-width="12" stroke-linecap="round"><path d="M 900 250 L 1000 560"/><path d="M 940 250 L 1040 560"/></g>'
+    return s
+
+
+def pates_beurre():
+    rng = random.Random(312)
+    s = plate(600, 450, 430, 240)
+    s += '<ellipse cx="600" cy="445" rx="320" ry="170" fill="#F5D27E"/>'
+    s += '<g fill="none" stroke="#F0C45A" stroke-width="18" stroke-linecap="round">'
+    for _ in range(40):
+        x, y = 600 + rng.uniform(-260, 260), 445 + rng.uniform(-120, 120)
+        s += f'<path d="M {x:.0f} {y:.0f} c 20 -30 50 -30 60 0 s 40 30 60 0"/>'
+    s += '</g>'
+    s += butter_knob(560, 360, 90, 60)
+    s += '<path d="M 560 380 C 600 420 660 440 700 470" fill="none" stroke="#FFE98A" stroke-width="10" opacity="0.8"/>'
+    s += dots(rng, 600, 440, 260, 120, 30, 2, 5, ["#FFF6D6"])
+    s += steam(600, 290, 2, 70)
+    s += fork()
+    return s
+
+
+def puree_maison():
+    s = plate(600, 450, 430, 240)
+    s += '<path d="M 350 480 C 350 380 450 340 600 340 C 750 340 850 380 850 480 C 850 550 740 570 600 570 C 460 570 350 550 350 480 Z" fill="#F6E3A0" stroke="#E2C77A" stroke-width="3"/>'
+    s += '<g fill="none" stroke="#E2C77A" stroke-width="5" stroke-linecap="round" opacity="0.8"><path d="M 420 440 C 480 400 540 470 600 430 S 720 400 790 450"/><path d="M 440 500 C 500 470 560 530 620 490 S 740 470 790 510"/></g>'
+    s += '<ellipse cx="600" cy="400" rx="60" ry="30" fill="#F2C84B" opacity="0.9"/><path d="M 560 400 C 580 430 640 440 660 410" fill="none" stroke="#F2C84B" stroke-width="10" opacity="0.8"/>'
+    s += herbs([(520, 390, -20), (690, 480, 30)], "#3F8A34")
+    s += steam(600, 290, 2, 70)
+    s += fork()
+    return s
+
+
+def pdt_vapeur():
+    rng = random.Random(314)
+    s = bowl(600, 420, 280, 90, 180, "url(#ceramic)", "#F2E8D8")
+    for (x, y, rx, ry, r) in [(500, 400, 70, 50, -15), (640, 390, 76, 52, 10), (570, 440, 66, 46, 25), (720, 430, 60, 44, -20), (440, 440, 58, 42, 5)]:
+        s += f'<ellipse cx="{x+4}" cy="{y+8}" rx="{rx}" ry="{ry}" fill="#8B5A2B" opacity="0.2" filter="url(#soft)"/><ellipse cx="{x}" cy="{y}" rx="{rx}" ry="{ry}" fill="#F2D98A" stroke="#D8B860" stroke-width="3" transform="rotate({r} {x} {y})"/><ellipse cx="{x-rx*0.3:.0f}" cy="{y-ry*0.3:.0f}" rx="{rx*0.35:.0f}" ry="{ry*0.3:.0f}" fill="#FFF3BF" opacity="0.7"/>'
+    s += dots(rng, 600, 415, 230, 60, 24, 3, 6, ["#3F8A34", "#2F7A2A"])
+    s += butter_knob(540, 360, 50, 36, -12)
+    s += steam(600, 300, 3, 60)
+    s += fork()
+    return s
+
+
+def haricots_verts():
+    rng = random.Random(315)
+    s = plate(600, 450, 430, 240)
+    s += '<g fill="none" stroke-width="16" stroke-linecap="round">'
+    for _ in range(34):
+        x, y = 600 + rng.uniform(-240, 240), 440 + rng.uniform(-100, 100)
+        a = rng.uniform(-0.6, 0.6)
+        s += f'<path d="M {x:.0f} {y:.0f} q {math.cos(a)*70:.0f} {math.sin(a)*70-20:.0f} {math.cos(a)*150:.0f} {math.sin(a)*150:.0f}" stroke="{rng.choice(["#3F8A34","#4E9A3B","#2F7A2A"])}"/>'
+    s += '</g>'
+    s += dots(rng, 600, 440, 240, 100, 22, 3, 5, ["#FFF6D6", "#F3E3C5"])
+    s += dots(rng, 600, 440, 240, 100, 20, 3, 5, ["#2F5A1A"])
+    s += steam(600, 290, 2, 70)
+    s += fork()
+    return s
+
+
+def salade_verte():
+    rng = random.Random(316)
+    s = bowl(600, 400, 300, 95, 190, "#7A4A2A", "#3F8A34")
+    for _ in range(26):
+        x, y = 600 + rng.uniform(-240, 240), 380 + rng.uniform(-60, 50)
+        r, c = rng.uniform(0, 360), rng.choice(["#6BBF59", "#4E9A3B", "#8FD47A", "#3F8A34"])
+        s += f'<g transform="translate({x:.0f} {y:.0f}) rotate({r:.0f}) scale(0.9)"><path d="M 0 0 c -30 -40 -10 -80 30 -70 c 40 -10 60 40 20 70 c -10 20 -40 20 -50 0 z" fill="{c}" stroke="#2F7A2A" stroke-width="2"/></g>'
+    s += '<rect x="900" y="280" width="90" height="270" rx="20" fill="#F6E7A1" stroke="#D9CFC1" stroke-width="4" opacity="0.9"/><rect x="915" y="250" width="60" height="40" rx="8" fill="#8B5A2B"/>'
+    s += fork(300, 330, -35)
+    return s
+
+
+def semoule():
+    rng = random.Random(317)
+    s = bowl(600, 420, 280, 90, 180, "url(#ceramic)", "#F6DFA0")
+    s += '<ellipse cx="600" cy="400" rx="236" ry="78" fill="#F6DFA0"/>'
+    s += dots(rng, 600, 400, 230, 70, 160, 2, 4, ["#E8C97A", "#FFF0BF", "#D9B35A"])
+    s += butter_knob(560, 360, 60, 40)
+    s += herbs([(500, 380, -20), (700, 410, 30)], "#3F8A34")
+    s += steam(600, 300, 2, 70)
+    s += spoon(1000, 330, 30)
+    return s
+
+
+def legumes_rotis():
+    rng = random.Random(318)
+    s = dish(600, 450, 760, 300, "#4B4B4B", "#2E2E2E")
+    cols = [("#C9302C", "#8E1B1B"), ("#F2A33A", "#B96F12"), ("#6BBF59", "#3F8A34"), ("#8E4B9E", "#5D2C6B"), ("#F6DFA0", "#D9B35A")]
+    for _ in range(34):
+        x, y = 600 + rng.uniform(-330, 330), 450 + rng.uniform(-110, 110)
+        f, st = rng.choice(cols)
+        w, h, r = rng.uniform(50, 90), rng.uniform(34, 56), rng.uniform(0, 90)
+        s += f'<rect x="{x:.0f}" y="{y:.0f}" width="{w:.0f}" height="{h:.0f}" rx="12" fill="{f}" stroke="{st}" stroke-width="3" transform="rotate({r:.0f} {x+w/2:.0f} {y+h/2:.0f})"/>'
+    s += dots(rng, 600, 450, 340, 120, 30, 2, 4, ["#2F5A1A", "#6B4A1A"])
+    s += steam(600, 280, 3, 70)
+    return s
+
+
+def frites_maison():
+    rng = random.Random(319)
+    fries = ''
+    for _ in range(22):
+        x = 600 + rng.uniform(-150, 150)
+        y = 430 + rng.uniform(-40, 20)
+        h = rng.uniform(170, 260)
+        r = rng.uniform(-18, 18)
+        fries += f'<rect x="{x-14:.0f}" y="{y-h:.0f}" width="28" height="{h:.0f}" rx="6" fill="#F2C94C" stroke="#D9A227" stroke-width="3" transform="rotate({r:.0f} {x:.0f} {y:.0f})"/>'
+    s = '<ellipse cx="610" cy="660" rx="200" ry="40" fill="#8B5A2B" opacity="0.3" filter="url(#soft)"/>'
+    s += fries
+    s += '<path d="M 420 420 L 460 640 L 740 640 L 780 420 Z" fill="#C2452F"/><path d="M 440 440 L 475 620 L 725 620 L 760 440 Z" fill="#E8E0D0"/>'
+    s += '<path d="M 420 420 L 460 640 L 740 640 L 780 420 Z" fill="none" stroke="#7E2318" stroke-width="5"/>'
+    s += dots(rng, 600, 380, 150, 60, 20, 2, 4, ["#FFFFFF"])
+    s += '<ellipse cx="900" cy="560" rx="70" ry="40" fill="#C9302C"/><ellipse cx="900" cy="552" rx="55" ry="26" fill="#E04A3C"/>'
+    return s
+
+
+def carottes_rapees():
+    rng = random.Random(320)
+    s = bowl(600, 410, 280, 90, 180, "url(#ceramic)", "#F2A33A")
+    s += '<g fill="none" stroke-width="7" stroke-linecap="round">'
+    for _ in range(110):
+        x, y = 600 + rng.uniform(-230, 230), 395 + rng.uniform(-60, 55)
+        a = rng.uniform(0, math.pi)
+        s += f'<path d="M {x:.0f} {y:.0f} l {math.cos(a)*40:.0f} {math.sin(a)*18:.0f}" stroke="{rng.choice(["#F2A33A","#E8892B","#FFB75A"])}"/>'
+    s += '</g>'
+    s += dots(rng, 600, 400, 220, 55, 16, 3, 5, ["#2F5A1A"])
+    s += '<path d="M 330 560 A 50 50 0 0 1 380 510 L 380 560 Z" fill="#F9E05A" stroke="#D9B720" stroke-width="3"/>'
+    s += fork(1040, 300, 35)
+    return s
+
+
+def tomates_mozza():
+    s = plate(600, 450, 440, 245)
+    for i, (x, y) in enumerate([(380, 460), (470, 440), (560, 460), (650, 440), (740, 460), (830, 440)]):
+        if i % 2 == 0:
+            s += f'<ellipse cx="{x}" cy="{y}" rx="60" ry="42" fill="#C9302C" stroke="#8E1B1B" stroke-width="3"/><ellipse cx="{x}" cy="{y}" rx="40" ry="26" fill="#E04A3C"/><g fill="#F6DFA0"><circle cx="{x-18}" cy="{y}" r="5"/><circle cx="{x+16}" cy="{y-6}" r="5"/><circle cx="{x+4}" cy="{y+12}" r="4"/></g>'
+        else:
+            s += f'<ellipse cx="{x}" cy="{y}" rx="60" ry="42" fill="#FFFDF5" stroke="#E6DDD0" stroke-width="3"/><ellipse cx="{x-14}" cy="{y-10}" rx="22" ry="12" fill="#FFFFFF"/>'
+    s += herbs([(430, 400, -30), (600, 400, 10), (780, 400, 30), (520, 510, 20), (700, 510, -20)], "#2F7A2A")
+    s += '<path d="M 420 520 C 500 500 700 500 780 520" fill="none" stroke="#B9C53A" stroke-width="8" opacity="0.7" stroke-linecap="round"/>'
+    s += dots(random.Random(321), 600, 450, 240, 60, 20, 2, 4, ["#2E2E2E"])
+    s += fork()
+    return s
+
+
+def oeufs_mimosa():
+    s = plate(600, 450, 440, 245)
+    for (x, y) in [(430, 430), (560, 400), (690, 430), (820, 400), (500, 510), (640, 520), (770, 510)]:
+        s += f'<ellipse cx="{x+4}" cy="{y+8}" rx="62" ry="44" fill="#8B5A2B" opacity="0.2" filter="url(#soft)"/><ellipse cx="{x}" cy="{y}" rx="62" ry="44" fill="#FFFFFF" stroke="#E6DDD0" stroke-width="3"/>'
+        s += f'<ellipse cx="{x}" cy="{y-4}" rx="42" ry="28" fill="#F5CF4A"/><ellipse cx="{x}" cy="{y-10}" rx="34" ry="20" fill="#F8DC6E"/>'
+        s += f'<g fill="#E0B23A"><circle cx="{x-14}" cy="{y-6}" r="3"/><circle cx="{x+10}" cy="{y-14}" r="3"/><circle cx="{x+16}" cy="{y}" r="3"/></g>'
+    s += dots(random.Random(322), 600, 450, 260, 90, 24, 2, 4, ["#2F7A2A"])
+    s += fork()
+    return s
+
+
+def soupe_legumes():
+    rng = random.Random(323)
+    s = bowl(600, 410, 290, 92, 185, "url(#ceramic)", "#E8A33A")
+    s += '<ellipse cx="600" cy="400" rx="250" ry="76" fill="#E8A33A"/>'
+    s += dots(rng, 600, 400, 230, 60, 26, 6, 12, ["#F2A33A", "#C9302C", "#F6DFA0", "#6BBF59"])
+    s += '<ellipse cx="560" cy="385" rx="60" ry="16" fill="#FFF8EA" opacity="0.8"/>'
+    s += herbs([(640, 390, 20), (520, 410, -30)], "#3F8A34")
+    s += steam(600, 290, 3, 60)
+    s += bread_slice(880, 470, 150, 110, 14)
+    s += spoon(300, 330, -25)
+    return s
+
+
+def concombre_creme():
+    rng = random.Random(324)
+    s = bowl(600, 410, 280, 90, 180, "url(#ceramic)", "#FFFDF5")
+    for _ in range(30):
+        x, y = 600 + rng.uniform(-220, 220), 395 + rng.uniform(-55, 50)
+        r = rng.uniform(16, 24)
+        s += f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{r:.0f}" fill="#DCEBB0" stroke="#4E9A3B" stroke-width="4"/><circle cx="{x:.0f}" cy="{y:.0f}" r="{r*0.5:.0f}" fill="#F0F6DC"/>'
+    s += dots(rng, 600, 400, 220, 55, 24, 2, 4, ["#2F7A2A"])
+    s += '<path d="M 880 330 C 920 280 1000 290 1010 350 L 1040 540 L 900 540 Z" fill="#6BBF59" stroke="#3F8A34" stroke-width="4"/><path d="M 905 360 L 925 530 M 955 350 L 965 530" stroke="#3F8A34" stroke-width="3" opacity="0.6"/>'
+    s += fork(300, 330, -35)
+    return s
+
+
+def mousse_chocolat():
+    s = glass(600, 330, 130, 42, 300, "#5E2A14", 0.15)
+    s += '<ellipse cx="600" cy="375" rx="118" ry="34" fill="#6E3119"/><ellipse cx="600" cy="367" rx="70" ry="22" fill="#FFF8EA" opacity="0.95"/><ellipse cx="585" cy="363" rx="40" ry="10" fill="#FFFFFF"/>'
+    s += '<g fill="#3B1F0E"><rect x="560" y="335" width="40" height="14" rx="3" transform="rotate(-20 580 342)"/><rect x="610" y="345" width="34" height="12" rx="3" transform="rotate(15 627 351)"/></g>'
+    s += choc_bar()
+    s += spoon(1000, 330, 30)
+    return s
+
+
+def compote_pommes():
+    rng = random.Random(326)
+    s = bowl(600, 410, 270, 88, 175, "url(#ceramic)", "#F2D98A")
+    s += '<ellipse cx="600" cy="400" rx="230" ry="72" fill="#F2D98A"/>'
+    s += dots(rng, 600, 400, 210, 55, 28, 6, 12, ["#F6E3A0", "#E8C97A"])
+    s += '<path d="M 580 400 C 600 380 640 385 660 400" fill="none" stroke="#B5651D" stroke-width="5" opacity="0.7"/>'
+    s += '<circle cx="900" cy="520" r="70" fill="#C9302C"/><circle cx="880" cy="500" r="40" fill="#E04A3C" opacity="0.6"/><rect x="895" y="440" width="10" height="34" rx="4" fill="#5E2A14"/><ellipse cx="925" cy="458" rx="22" ry="10" fill="#4E9A3B" transform="rotate(-30 925 458)"/>'
+    s += '<circle cx="320" cy="560" r="55" fill="#8FD47A"/><rect x="316" y="500" width="8" height="28" rx="4" fill="#5E2A14"/>'
+    s += spoon(1040, 330, 30)
+    return s
+
+
+def gateau_yaourt():
+    s = plate(600, 480, 430, 230)
+    s += '<path d="M 330 460 L 330 540 A 270 90 0 0 0 870 540 L 870 460 Z" fill="#D9A24A"/><ellipse cx="600" cy="460" rx="270" ry="90" fill="#F2D98A"/><ellipse cx="600" cy="452" rx="240" ry="72" fill="#F6E3A0"/>'
+    s += '<path d="M 600 460 L 870 460 A 270 90 0 0 0 790 395 Z" fill="#F0D6A0"/><path d="M 600 460 L 790 395 L 790 475 L 600 540 Z" fill="#E8C97A"/>'
+    s += '<path d="M 920 420 L 1060 480 L 1040 580 L 920 520 Z" fill="#F6E3A0" stroke="#D9A24A" stroke-width="3"/><path d="M 920 420 L 1060 480 L 1040 500 L 920 440 Z" fill="#E8C97A"/>'
+    s += '<g fill="#FFFFFF" opacity="0.9"><circle cx="500" cy="420" r="3"/><circle cx="560" cy="440" r="4"/><circle cx="640" cy="415" r="3"/><circle cx="700" cy="445" r="4"/><circle cx="470" cy="470" r="3"/></g>'
+    s += fork(300, 330, -35)
+    return s
+
+
+def riz_au_lait():
+    rng = random.Random(328)
+    s = bowl(600, 410, 270, 88, 175, "url(#ceramic)", "#FFF8E6")
+    s += '<ellipse cx="600" cy="400" rx="230" ry="72" fill="#FFF8E6"/>'
+    s += dots(rng, 600, 400, 215, 58, 90, 3, 5, ["#FFFFFF", "#F6EBD2"])
+    s += '<path d="M 560 390 C 600 370 650 380 680 400" fill="none" stroke="#B5651D" stroke-width="6" opacity="0.6" stroke-linecap="round"/>'
+    s += dots(rng, 600, 400, 200, 50, 14, 2, 3, ["#3B1F0E"])
+    s += '<path d="M 300 560 C 340 520 360 440 420 420" fill="none" stroke="#3B1F0E" stroke-width="8" stroke-linecap="round"/>'
+    s += spoon(1040, 330, 30)
+    return s
+
+
+def salade_fruits():
+    rng = random.Random(329)
+    s = bowl(600, 410, 290, 92, 185, "#F7F1E7", "#FFE9A8")
+    cols = [("#F2C94C", "#C9A227"), ("#F2A33A", "#B96F12"), ("#C9302C", "#8E1B1B"), ("#8FD47A", "#3F8A34"), ("#8E4B9E", "#5D2C6B"), ("#FFF2C2", "#D9B35A")]
+    for _ in range(34):
+        x, y = 600 + rng.uniform(-230, 230), 395 + rng.uniform(-55, 50)
+        f, st = rng.choice(cols)
+        s += f'<rect x="{x-22:.0f}" y="{y-16:.0f}" width="44" height="32" rx="9" fill="{f}" stroke="{st}" stroke-width="3" transform="rotate({rng.uniform(0,90):.0f} {x:.0f} {y:.0f})"/>'
+    s += herbs([(520, 370, -30), (680, 380, 30)], "#3F8A34")
+    s += spoon(1040, 330, 30)
+    return s
+
+
+def creme_vanille():
+    s = glass(600, 330, 120, 38, 280, "#F6E3A0", 0.15)
+    s += '<ellipse cx="600" cy="372" rx="108" ry="30" fill="#F6E3A0"/><ellipse cx="580" cy="366" rx="50" ry="12" fill="#FFF3C8" opacity="0.9"/>'
+    s += dots(random.Random(330), 600, 372, 90, 20, 16, 1, 2, ["#3B1F0E"])
+    s += '<path d="M 880 320 C 900 400 900 500 880 580" fill="none" stroke="#3B1F0E" stroke-width="10" stroke-linecap="round"/><path d="M 850 330 C 880 420 880 500 860 570" fill="none" stroke="#5E2A14" stroke-width="8" stroke-linecap="round"/>'
+    s += spoon(300, 330, -25)
+    return s
+
+
 DISHES = {
     "trianon": trianon,
     "spaghetti-bolognaise": spaghetti_bolognaise,
@@ -1234,6 +1636,36 @@ DISHES = {
     "saute-veau-marengo": veau_marengo,
     "gnocchis-poelees-sauge": gnocchis,
     "paupiettes-porc-ail-creme": paupiettes_ail_creme,
+    "bol-de-lait": bol_de_lait,
+    "bol-cereales-lait": bol_cereales,
+    "chocolat-chaud": chocolat_chaud,
+    "tartines-beurre-confiture": tartines,
+    "oeufs-brouilles": oeufs_brouilles,
+    "pain-perdu": pain_perdu,
+    "smoothie-banane": smoothie_banane,
+    "yaourt-miel-granola": yaourt_miel,
+    "cafe": cafe,
+    "the": the,
+    "riz-blanc": riz_blanc,
+    "pates-au-beurre": pates_beurre,
+    "puree-maison": puree_maison,
+    "pommes-de-terre-vapeur": pdt_vapeur,
+    "haricots-verts-persilles": haricots_verts,
+    "salade-verte-vinaigrette": salade_verte,
+    "semoule": semoule,
+    "legumes-rotis": legumes_rotis,
+    "frites-maison": frites_maison,
+    "carottes-rapees": carottes_rapees,
+    "tomates-mozzarella": tomates_mozza,
+    "oeufs-mimosa": oeufs_mimosa,
+    "soupe-de-legumes": soupe_legumes,
+    "concombre-creme": concombre_creme,
+    "mousse-au-chocolat": mousse_chocolat,
+    "compote-de-pommes": compote_pommes,
+    "gateau-au-yaourt": gateau_yaourt,
+    "riz-au-lait": riz_au_lait,
+    "salade-de-fruits": salade_fruits,
+    "creme-dessert-vanille": creme_vanille,
 }
 
 
