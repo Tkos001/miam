@@ -29,6 +29,11 @@ automatiquement la liste de courses.
   Première fois : autoriser Miam à installer des applis + confirmation ; ensuite, sur Android 12+,
   Miam est l'installateur de lui-même et la mise à jour passe sans confirmation
   (`UPDATE_PACKAGES_WITHOUT_USER_ACTION`). L'app se ferme à la fin, à rouvrir.
+- **Assistant IA (optionnel, compte de l'utilisateur)** : Paramètres → Assistant IA (Anthropic, OpenAI, Mistral,
+  Ollama / serveur local, ou toute API compatible OpenAI ; la clé reste sur le téléphone). Sert à deux choses :
+  **lire un ticket de caisse** (Stock → 🧾 : photo → OCR ML Kit hors ligne → structuration par l'assistant, ou
+  parseur local sans clé → relecture ligne par ligne → stock) et **demander une recette** (Trouver des recettes →
+  assistant : demande libre, option « avec ce que j'ai en stock », résultat au format de l'app, ajout à « Mes plats »).
 - **Trouver des recettes** : peut aussi afficher un site configuré dans les paramètres.
 - **Export / import JSON** (plats, repas, stock, articles « Autres »). Tout est stocké en local
   (Room + DataStore), pas de compte, pas de réseau requis.
