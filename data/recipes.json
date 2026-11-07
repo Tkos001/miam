@@ -1,7 +1,7 @@
 {
   "format": "miam-catalog",
-  "version": 9,
-  "updatedAt": "2026-11-06",
+  "version": 10,
+  "updatedAt": "2026-11-07",
   "recipes": [
     {
       "remoteId": "butternut-farcie-boeuf",
@@ -2644,6 +2644,98 @@
         "Fondre le beurre avec l'ail écrasé et la sauge jusqu'à couleur noisette, retirer l'ail. Ajouter les gnocchis, dorer 5 min sans trop remuer.",
         "Poivrer, parmesan, servir aussitôt."
       ]
+    },
+    {
+      "remoteId": "paupiettes-porc-ail-creme",
+      "name": "Paupiettes de porc à l’ail et à la crème",
+      "description": "Paupiettes de porc dorées puis mijotées avec des oignons, 5 à 6 gousses d’ail et une sauce onctueuse à la crème et à la moutarde.",
+      "prepMinutes": 10,
+      "cookMinutes": 40,
+      "servings": 4,
+      "cuisine": "FRANCAISE",
+      "ingredients": [
+        {
+          "name": "Paupiettes de porc",
+          "quantity": 4,
+          "unit": "PIECE",
+          "aisle": "BOUCHERIE"
+        },
+        {
+          "name": "Ail",
+          "quantity": 6,
+          "unit": "GOUSSE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Oignon",
+          "quantity": 2,
+          "unit": "PIECE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Crème fraîche",
+          "quantity": 20,
+          "unit": "CL",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Bouillon de volaille",
+          "quantity": 15,
+          "unit": "CL",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Moutarde",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Beurre",
+          "quantity": 10,
+          "unit": "G",
+          "aisle": "FRAIS"
+        },
+        {
+          "name": "Huile d’olive",
+          "quantity": 1,
+          "unit": "CAS",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Thym",
+          "quantity": 1,
+          "unit": "PINCEE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Persil frais",
+          "quantity": 1,
+          "unit": "BOTTE",
+          "aisle": "FRUITS_LEGUMES"
+        },
+        {
+          "name": "Sel",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        },
+        {
+          "name": "Poivre",
+          "quantity": null,
+          "unit": "NONE",
+          "aisle": "EPICERIE"
+        }
+      ],
+      "steps": [
+        "Dans une cocotte, faire chauffer le beurre et l’huile. Faire dorer les paupiettes sur toutes leurs faces pendant 5 à 8 minutes, puis les réserver.",
+        "Émincer les oignons et hacher finement l’ail. Faire revenir les oignons dans la cocotte, puis ajouter l’ail pendant 1 minute.",
+        "Verser le bouillon de volaille et gratter les sucs au fond de la cocotte.",
+        "Remettre les paupiettes, ajouter le thym, saler et poivrer. Couvrir et laisser mijoter à feu doux 30 à 35 minutes en retournant les paupiettes à mi-cuisson.",
+        "Ajouter la crème fraîche et la moutarde. Laisser réduire 5 minutes à découvert jusqu’à obtenir une sauce onctueuse.",
+        "Parsemer de persil frais. Pour une sauce encore plus aillée, ajouter 1 à 2 gousses d’ail écrasées dans la crème en fin de cuisson."
+      ],
+      "protein": "PORC"
     }
   ],
   "images": {
