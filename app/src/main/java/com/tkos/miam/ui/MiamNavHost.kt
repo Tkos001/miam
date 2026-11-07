@@ -13,7 +13,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.tkos.miam.data.MiamRepository
+import com.tkos.miam.ui.screens.AssistantScreen
 import com.tkos.miam.ui.screens.FindRecipesScreen
+import com.tkos.miam.ui.screens.ReceiptScreen
 import com.tkos.miam.ui.screens.HomeScreen
 import com.tkos.miam.ui.screens.MealsScreen
 import com.tkos.miam.ui.screens.RecipeDetailScreen
@@ -31,6 +33,8 @@ object Routes {
     const val MEALS = "meals"
     const val SHOPPING = "shopping"
     const val STOCK = "stock"
+    const val RECEIPT = "receipt"
+    const val ASSISTANT = "assistant"
     const val SETTINGS = "settings"
     const val FIND = "find"
 
@@ -115,7 +119,18 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
             )
         }
         composable(Routes.STOCK) {
-            StockScreen(repository = repository, onBack = { navController.popBackStack() })
+            StockScreen(repository = repository, onBack = { navController.popBackStack() }, onOpenReceipt = { navController.navigate(Routes.RECEIPT) })
+        }
+        composable(Routes.RECEIPT) {
+            ReceiptScreen(repository = repository, onBack = { navController.popBackStack() }, onDone = { navController.popBackStack() })
+        }
+        composable(Routes.ASSISTANT) {
+            AssistantScreen(
+                repository = repository,
+                onBack = { navController.popBackStack() },
+                onOpenSettings = { navController.navigate(Routes.SETTINGS) },
+                onOpenRecipe = { navController.navigate(Routes.recipe(it)) },
+            )
         }
         composable(Routes.SETTINGS) {
             SettingsScreen(repository = repository, onBack = { navController.popBackStack() })
@@ -125,6 +140,7 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
                 repository = repository,
                 onBack = { navController.popBackStack() },
                 onOpenSettings = { navController.navigate(Routes.SETTINGS) },
+                onOpenAssistant = { navController.navigate(Routes.ASSISTANT) },
             )
         }
     }

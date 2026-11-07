@@ -19,6 +19,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.DeleteSweep
 import androidx.compose.material.icons.filled.PushPin
+import androidx.compose.material.icons.filled.ReceiptLong
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.outlined.PushPin as PushPinOutlined
 import androidx.compose.material3.AlertDialog
@@ -69,6 +70,7 @@ import kotlinx.coroutines.launch
 fun StockScreen(
     repository: MiamRepository,
     onBack: () -> Unit,
+    onOpenReceipt: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val snackbar = remember { SnackbarHostState() }
@@ -84,6 +86,7 @@ fun StockScreen(
                 title = { Text("En stock") },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Retour") } },
                 actions = {
+                    IconButton(onClick = onOpenReceipt) { Icon(Icons.Default.ReceiptLong, contentDescription = "Lire un ticket de caisse") }
                     IconButton(onClick = { confirmClear = true }, enabled = stock.isNotEmpty()) { Icon(Icons.Default.DeleteSweep, contentDescription = "Vider le stock") }
                 },
             )
@@ -107,7 +110,7 @@ fun StockScreen(
                 Text(
                     "Après les courses, « Courses terminées » met ici ce que tu as acheté. Ce qui est en stock n'est plus " +
                         "proposé à l'achat ; cocher un repas « mangé » retire ses ingrédients. Tu peux aussi ajouter à la main " +
-                        "ce que tu as déjà (épingle 📌 = basique de placard, jamais remis sur la liste).",
+                        "ce que tu as déjà (épingle 📌 = basique de placard, jamais remis sur la liste), ou lire un ticket de caisse (icône 🧾 en haut).",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.padding(top = 4.dp),

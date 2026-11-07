@@ -48,6 +48,11 @@ data class Settings(
     val contributorName: String = "",
     /** Ids des recettes modifiées localement et pas encore publiées : la sync ne les écrase pas. */
     val dirtyRecipeIds: Set<Long> = emptySet(),
+    /** Assistant IA (optionnel) : fournisseur, clé du compte de l'utilisateur, modèle, URL (Ollama / compatible OpenAI). */
+    val aiProvider: String = "NONE",
+    val aiApiKey: String = "",
+    val aiModel: String = "",
+    val aiBaseUrl: String = "",
 )
 
 class SettingsRepository(private val context: Context) {
@@ -64,6 +69,10 @@ class SettingsRepository(private val context: Context) {
         val GITHUB_TOKEN = stringPreferencesKey("github_token")
         val CONTRIBUTOR_NAME = stringPreferencesKey("contributor_name")
         val DIRTY_RECIPES = stringSetPreferencesKey("dirty_recipes")
+        val AI_PROVIDER = stringPreferencesKey("ai_provider")
+        val AI_API_KEY = stringPreferencesKey("ai_api_key")
+        val AI_MODEL = stringPreferencesKey("ai_model")
+        val AI_BASE_URL = stringPreferencesKey("ai_base_url")
     }
 
     val settings: Flow<Settings> = context.dataStore.data.map { p ->
@@ -80,6 +89,10 @@ class SettingsRepository(private val context: Context) {
             githubToken = p[Keys.GITHUB_TOKEN] ?: "",
             contributorName = p[Keys.CONTRIBUTOR_NAME] ?: "",
             dirtyRecipeIds = p[Keys.DIRTY_RECIPES]?.mapNotNull { it.toLongOrNull() }?.toSet() ?: emptySet(),
+            aiProvider = p[Keys.AI_PROVIDER] ?: "NONE",
+            aiApiKey = p[Keys.AI_API_KEY] ?: "",
+            aiModel = p[Keys.AI_MODEL] ?: "",
+            aiBaseUrl = p[Keys.AI_BASE_URL] ?: "",
         )
     }
 
@@ -95,6 +108,12 @@ class SettingsRepository(private val context: Context) {
     suspend fun setRecipeDirty(id: Long, dirty: Boolean) = context.dataStore.edit {
         val cur = it[Keys.DIRTY_RECIPES] ?: emptySet()
         it[Keys.DIRTY_RECIPES] = if (dirty) cur + id.toString() else cur - id.toString()
+    }
+    suspend fun setAi(provider: String, apiKey: String, model: String, baseUrl: String) = context.dataStore.edit {
+        it[Keys.AI_PROVIDER] = provider
+        it[Keys.AI_API_KEY] = apiKey.trim()
+        it[Keys.AI_MODEL] = model.trim()
+        it[Keys.AI_BASE_URL] = baseUrl.trim().trimEnd('/')
     }
     suspend fun setCatalogSynced(version: Int, at: Long) = context.dataStore.edit {
         it[Keys.CATALOG_VERSION] = version

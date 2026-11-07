@@ -3,6 +3,12 @@ package com.tkos.miam.data
 import android.content.Context
 import android.net.Uri
 import com.tkos.miam.data.backup.BackupCodec
+import com.tkos.miam.data.backup.RecipeDto
+import com.tkos.miam.data.ai.RecipeAssistant
+import com.tkos.miam.data.ai.ReceiptParser
+import com.tkos.miam.data.ai.ReceiptItem
+import com.tkos.miam.data.ai.Ocr
+import com.tkos.miam.data.ai.LlmClient
 import com.tkos.miam.data.backup.BackupFile
 import com.tkos.miam.data.backup.MealDto
 import com.tkos.miam.data.backup.StockDto
@@ -180,6 +186,75 @@ class MiamRepository(private val context: Context) {
         val key = ShoppingAggregator.keyOf(name, unit.family)
         addToStock(key, name, quantity?.let { it * unit.factor }, unit.family, aisle)
         if (always) stockDao.getByKey(key)?.let { stockDao.update(it.copy(always = true)) }
+    }
+
+    // ---------- Assistant IA (compte de l'utilisateur) et lecture de tickets ----------
+    suspend fun llm(): LlmClient = LlmClient.from(settings.settings.first())
+
+    /** Noms d'ingrédients connus (recettes + stock), pour rapprocher les lignes d'un ticket. */
+    private suspend fun knownIngredients(): Pair<List<String>, Map<String, Aisle>> {
+        val ings = recipeDao.getAllWithDetails().flatMap { it.ingredients }
+        val aisles = HashMap<String, Aisle>()
+        val names = LinkedHashMap<String, String>()
+        for (i in ings) {
+            val k = ShoppingAggregator.normalizeName(i.name)
+            names.putIfAbsent(k, i.name.trim())
+            if (i.aisleEnum != Aisle.AUTRE) aisles.putIfAbsent(k, i.aisleEnum)
+        }
+        for (st in stockDao.getAll()) {
+            val k = ShoppingAggregator.normalizeName(st.name)
+            names.putIfAbsent(k, st.name); if (st.aisleEnum != Aisle.AUTRE) aisles.putIfAbsent(k, st.aisleEnum)
+        }
+        return names.values.toList() to aisles
+    }
+
+    data class ReceiptResult(val items: List<ReceiptItem>, val rawLines: List<String>, val usedAi: Boolean, val aiError: String?)
+
+    /** OCR local, puis structuration par l'assistant si configuré (repli sur le parseur local en cas d'échec). */
+    suspend fun readReceipt(uri: Uri): ReceiptResult {
+        val lines = Ocr.readLines(context, uri)
+        val (names, aisles) = knownIngredients()
+        val client = llm()
+        if (client.isConfigured && lines.isNotEmpty()) {
+            try {
+                val answer = client.complete(ReceiptParser.llmSystemPrompt(names), lines.joinToString("\n"))
+                val items = ReceiptParser.parseLlm(answer).map { it ->
+                    val k = ShoppingAggregator.normalizeName(it.name)
+                    if (it.aisleEnum == Aisle.AUTRE && aisles[k] != null) it.copy(aisle = aisles[k]!!.name) else it
+                }
+                if (items.isNotEmpty()) return ReceiptResult(items, lines, true, null)
+            } catch (e: Exception) {
+                return ReceiptResult(ReceiptParser.parse(lines, names, aisles), lines, false, e.message ?: e.javaClass.simpleName)
+            }
+        }
+        return ReceiptResult(ReceiptParser.parse(lines, names, aisles), lines, false, null)
+    }
+
+    /** Entre en stock les lignes validées par l'utilisateur. Retourne le nombre d'articles. */
+    suspend fun addReceiptToStock(items: List<ReceiptItem>): Int {
+        var n = 0
+        for (it in items) {
+            if (!it.selected || it.name.isBlank()) continue
+            val unit = it.unitEnum
+            addToStock(ShoppingAggregator.keyOf(it.name, unit.family), it.name, it.quantity?.let { q -> q * unit.factor }, unit.family, it.aisleEnum)
+            n++
+        }
+        return n
+    }
+
+    /** Demande 1 à 3 recettes à l'assistant, dans le format de l'app. */
+    suspend fun askRecipes(request: String, useStock: Boolean): List<RecipeDto> {
+        val client = llm()
+        val stock = if (useStock) stockDao.getAll() else emptyList()
+        val existing = recipeDao.getAllWithDetails().map { it.recipe.name }
+        val answer = client.complete(RecipeAssistant.systemPrompt(), RecipeAssistant.userPrompt(request, stock, useStock, existing), maxTokens = 6000)
+        return RecipeAssistant.parse(answer)
+    }
+
+    /** Enregistre une recette proposée par l'assistant dans « Mes plats ». Retourne son id. */
+    suspend fun importRecipeDto(dto: RecipeDto): Long {
+        val (recipe, ings, steps) = BackupCodec.fromDto(dto)
+        return recipeDao.upsertFull(recipe, ings, steps)
     }
 
     // ---------- Liste de courses ----------

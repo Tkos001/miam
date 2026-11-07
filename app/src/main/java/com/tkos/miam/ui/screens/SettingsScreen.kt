@@ -63,6 +63,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.compose.ui.platform.LocalContext
 import com.tkos.miam.data.MiamRepository
+import com.tkos.miam.ui.components.DropdownField
 import com.tkos.miam.data.catalog.Catalog
 import com.tkos.miam.data.catalog.CatalogSyncResult
 import com.tkos.miam.data.update.AppUpdate
@@ -93,6 +94,17 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
     LaunchedEffect(settings.githubToken) { if (token == null) token = settings.githubToken }
     var contributor by remember { mutableStateOf<String?>(null) }
     LaunchedEffect(settings.contributorName) { if (contributor == null) contributor = settings.contributorName }
+    var aiProvider by remember { mutableStateOf("NONE") }
+    var aiApiKey by remember { mutableStateOf("") }
+    var aiModel by remember { mutableStateOf("") }
+    var aiBaseUrl by remember { mutableStateOf("") }
+    var aiLoaded by remember { mutableStateOf(false) }
+    var aiTesting by remember { mutableStateOf(false) }
+    LaunchedEffect(settings.aiProvider, settings.aiApiKey, settings.aiModel, settings.aiBaseUrl) {
+        if (!aiLoaded && (settings.aiProvider != "NONE" || settings.aiApiKey.isNotBlank())) {
+            aiProvider = settings.aiProvider; aiApiKey = settings.aiApiKey; aiModel = settings.aiModel; aiBaseUrl = settings.aiBaseUrl; aiLoaded = true
+        }
+    }
     var checkingUpdate by remember { mutableStateOf(false) }
     var updateInfo by remember { mutableStateOf<AppUpdate.Info?>(null) }
     val availableUpdate by repository.availableUpdate.collectAsStateWithLifecycle()
@@ -216,6 +228,68 @@ fun SettingsScreen(repository: MiamRepository, onBack: () -> Unit) {
                     enabled = (catalogUrl ?: "") != settings.catalogUrl,
                     modifier = Modifier.padding(top = 6.dp),
                 ) { Text("Enregistrer l'adresse") }
+            }
+
+            // ---- Assistant IA ----
+            Section("Assistant IA (optionnel)") {
+                Text(
+                    "Avec ton propre compte (clé API), l'app peut lire un ticket de caisse pour remplir le stock et te proposer des recettes, y compris avec ce que tu as déjà. Sans clé, la lecture de ticket reste possible en local, moins précise. La clé reste sur le téléphone et n'est envoyée qu'au fournisseur choisi.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                val provider = com.tkos.miam.data.ai.AiProvider.fromName(aiProvider)
+                DropdownField(
+                    label = "Fournisseur",
+                    value = provider,
+                    options = com.tkos.miam.data.ai.AiProvider.entries,
+                    optionLabel = { it.label },
+                    onSelected = { aiProvider = it.name; if (aiModel.isBlank() || aiModel == provider.defaultModel) aiModel = it.defaultModel; if (aiBaseUrl.isBlank() || aiBaseUrl == provider.defaultBaseUrl) aiBaseUrl = it.defaultBaseUrl },
+                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                )
+                if (provider != com.tkos.miam.data.ai.AiProvider.NONE) {
+                    if (provider.needsKey || provider == com.tkos.miam.data.ai.AiProvider.OLLAMA) {
+                        OutlinedTextField(
+                            value = aiApiKey, onValueChange = { aiApiKey = it },
+                            label = { Text(if (provider.needsKey) "Clé API" else "Clé API (si ton serveur en demande une)") },
+                            singleLine = true, visualTransformation = PasswordVisualTransformation(),
+                            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                        )
+                    }
+                    OutlinedTextField(
+                        value = aiModel, onValueChange = { aiModel = it },
+                        label = { Text("Modèle") }, placeholder = { Text(provider.defaultModel) },
+                        singleLine = true, modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    )
+                    OutlinedTextField(
+                        value = aiBaseUrl, onValueChange = { aiBaseUrl = it },
+                        label = { Text("URL de l'API") }, placeholder = { Text(provider.defaultBaseUrl) },
+                        singleLine = true, modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    )
+                }
+                Row(Modifier.fillMaxWidth().padding(top = 6.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedButton(
+                        onClick = {
+                            scope.launch {
+                                repository.settings.setAi(aiProvider, aiApiKey, aiModel, aiBaseUrl)
+                                snackbar.showSnackbar("Enregistré")
+                            }
+                        },
+                        enabled = aiProvider != settings.aiProvider || aiApiKey != settings.aiApiKey || aiModel != settings.aiModel || aiBaseUrl != settings.aiBaseUrl,
+                    ) { Text("Enregistrer") }
+                    OutlinedButton(
+                        enabled = !aiTesting && provider != com.tkos.miam.data.ai.AiProvider.NONE,
+                        onClick = {
+                            aiTesting = true
+                            scope.launch {
+                                val msg = runCatching {
+                                    com.tkos.miam.data.ai.LlmClient(provider, aiApiKey, aiModel, aiBaseUrl).complete("Réponds en un mot.", "Dis « prêt ».", maxTokens = 20)
+                                }.fold({ "Réponse du modèle : ${it.trim().take(60)}" }, { "Échec : ${it.message}" })
+                                aiTesting = false
+                                snackbar.showSnackbar(msg)
+                            }
+                        },
+                    ) { Text(if (aiTesting) "Test…" else "Tester") }
+                }
             }
 
             // ---- Contribuer au catalogue ----
