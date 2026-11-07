@@ -116,18 +116,19 @@ fun RecipeDetailScreen(
         topBar = {
             TopAppBar(
                 title = {},
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Retour") } },
+                // Icônes sur pastille sombre : lisibles quel que soit le thème, l'illustration derrière étant claire.
+                navigationIcon = { ScrimIconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Retour") } },
                 actions = {
-                    IconButton(onClick = { scope.launch { repository.setFavorite(d.recipe.id, !d.recipe.isFavorite) } }) {
+                    ScrimIconButton(onClick = { scope.launch { repository.setFavorite(d.recipe.id, !d.recipe.isFavorite) } }) {
                         Icon(
                             if (d.recipe.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                             contentDescription = "Favori",
-                            tint = if (d.recipe.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                            tint = if (d.recipe.isFavorite) Color(0xFFFFB3AD) else Color.White,
                         )
                     }
-                    IconButton(onClick = onEdit) { Icon(Icons.Default.Edit, contentDescription = "Modifier") }
+                    ScrimIconButton(onClick = onEdit) { Icon(Icons.Default.Edit, contentDescription = "Modifier") }
                     Box {
-                        IconButton(onClick = { menuOpen = true }) { Icon(Icons.Default.MoreVert, contentDescription = "Plus") }
+                        ScrimIconButton(onClick = { menuOpen = true }) { Icon(Icons.Default.MoreVert, contentDescription = "Plus") }
                         DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
                             DropdownMenuItem(
                                 text = { Text("Partager / copier") },
@@ -203,13 +204,20 @@ fun RecipeDetailScreen(
                 // ---- Carte « header » : galerie (illustration du catalogue + photos perso) + titre ----
                 val gallery = d.gallery.filter { java.io.File(it.path).exists() }
                 if (gallery.size <= 1) {
-                    RecipeImage(gallery.firstOrNull()?.path ?: d.recipe.imagePath, Modifier.fillMaxWidth().height(260.dp), fallbackIconSize = 64)
+                    Box(Modifier.fillMaxWidth().height(260.dp)) {
+                        RecipeImage(gallery.firstOrNull()?.path ?: d.recipe.imagePath, Modifier.fillMaxSize(), fallbackIconSize = 64)
+                        TopScrim()
+                    }
                 } else {
                     val pager = rememberPagerState(pageCount = { gallery.size })
                     Box(Modifier.fillMaxWidth().height(260.dp)) {
                         HorizontalPager(state = pager, modifier = Modifier.fillMaxSize()) { page ->
                             RecipeImage(gallery[page].path, Modifier.fillMaxSize(), fallbackIconSize = 64)
                         }
+                        TopScrim()
+                        Box(Modifier.align(Alignment.BottomCenter).fillMaxWidth().height(56.dp).background(
+                            androidx.compose.ui.graphics.Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = 0.35f)))
+                        ))
                         Row(
                             Modifier.align(Alignment.BottomCenter).padding(bottom = 10.dp),
                             horizontalArrangement = Arrangement.spacedBy(6.dp),
@@ -438,6 +446,27 @@ private fun AllergensDialog(allergens: Map<Allergen, List<String>>, onDismiss: (
                 )
             }
         },
+    )
+}
+
+/** Dégradé sombre en haut de l'image, sous la barre d'icônes. */
+@Composable
+private fun TopScrim() {
+    Box(
+        Modifier.fillMaxWidth().height(96.dp).background(
+            androidx.compose.ui.graphics.Brush.verticalGradient(listOf(Color.Black.copy(alpha = 0.45f), Color.Transparent))
+        )
+    )
+}
+
+/** Bouton d'icône sur pastille semi-transparente sombre, icône blanche. */
+@Composable
+private fun ScrimIconButton(onClick: () -> Unit, content: @Composable () -> Unit) {
+    androidx.compose.material3.FilledIconButton(
+        onClick = onClick,
+        colors = androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(containerColor = Color.Black.copy(alpha = 0.38f), contentColor = Color.White),
+        modifier = Modifier.padding(horizontal = 2.dp),
+        content = content,
     )
 }
 
