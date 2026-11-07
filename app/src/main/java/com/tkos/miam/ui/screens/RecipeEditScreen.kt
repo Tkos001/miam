@@ -125,7 +125,7 @@ fun RecipeEditScreen(
                         Box(Modifier.size(120.dp).clip(MaterialTheme.shapes.medium)) {
                             RecipeImage(ph.path, Modifier.fillMaxSize(), fallbackIconSize = 32)
                             Text(
-                                if (ph.isCatalog) "Illustration" else "Photo",
+                                if (ph.isCatalog || ph.isGenerated) "Illustration" else "Photo",
                                 style = MaterialTheme.typography.labelSmall, color = Color.White,
                                 modifier = Modifier.align(Alignment.TopStart).padding(6.dp)
                                     .clip(MaterialTheme.shapes.extraSmall).background(Color.Black.copy(alpha = 0.45f)).padding(horizontal = 6.dp, vertical = 2.dp),

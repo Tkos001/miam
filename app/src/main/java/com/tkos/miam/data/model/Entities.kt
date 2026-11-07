@@ -103,9 +103,11 @@ data class RecipePhoto(
     val createdAt: Long = System.currentTimeMillis(),
 ) {
     val isCatalog: Boolean get() = source == PhotoSource.CATALOG.name
+    /** Illustration générée par l'app (recette sans image) : remplacée dès qu'une vraie image arrive. */
+    val isGenerated: Boolean get() = source == PhotoSource.GENERATED.name
 }
 
-enum class PhotoSource { CATALOG, USER }
+enum class PhotoSource { CATALOG, USER, GENERATED }
 
 /** Recette complète avec ses ingrédients, ses étapes et ses photos. */
 data class RecipeWithDetails(

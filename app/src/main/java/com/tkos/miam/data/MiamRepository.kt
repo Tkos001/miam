@@ -73,6 +73,7 @@ class MiamRepository(private val context: Context) {
         val id = recipeDao.upsertFull(recipe.copy(imagePath = cover), ingredients, steps)
         // Modifiée dans l'app : la sync du catalogue ne doit plus l'écraser tant qu'elle n'est pas publiée.
         if (recipe.id != 0L) settings.setRecipeDirty(id, true)
+        ensureIllustration(id)
         return id
     }
 
@@ -278,7 +279,9 @@ class MiamRepository(private val context: Context) {
     /** Enregistre une recette proposée par l'assistant dans « Mes plats ». Retourne son id. */
     suspend fun importRecipeDto(dto: RecipeDto): Long {
         val (recipe, ings, steps) = BackupCodec.fromDto(dto)
-        return recipeDao.upsertFull(recipe, ings, steps)
+        val id = recipeDao.upsertFull(recipe, ings, steps)
+        ensureIllustration(id)
+        return id
     }
 
     // ---------- Liste de courses ----------
@@ -341,8 +344,42 @@ class MiamRepository(private val context: Context) {
         val pos = (recipeDao.getPhotos(recipeId).maxOfOrNull { it.position } ?: -1) + 1
         val photo = RecipePhoto(recipeId = recipeId, path = path, source = PhotoSource.USER.name, position = pos)
         val id = recipeDao.insertPhoto(photo)
-        if (recipeDao.getById(recipeId)?.imagePath == null) recipeDao.setCover(recipeId, path)
+        dropGenerated(recipeId)
+        val r = recipeDao.getById(recipeId)
+        if (r?.imagePath == null || !File(r.imagePath).exists()) recipeDao.setCover(recipeId, path)
         return photo.copy(id = id)
+    }
+
+    /** Une vraie image est arrivée (photo perso ou catalogue) : l'illustration générée n'a plus lieu d'être. */
+    private suspend fun dropGenerated(recipeId: Long) {
+        val r = recipeDao.getById(recipeId) ?: return
+        for (ph in recipeDao.getPhotos(recipeId).filter { it.isGenerated }) {
+            recipeDao.deletePhoto(ph.id)
+            deleteImage(ph.path)
+            if (r.imagePath == ph.path) recipeDao.setCover(recipeId, null)
+        }
+    }
+
+    /**
+     * Recette sans aucune image : dessine une illustration générique (type, protéine, ingrédients) et l'enregistre
+     * comme photo GENERATED + couverture. Sans effet si la recette a déjà une image.
+     */
+    suspend fun ensureIllustration(recipeId: Long) {
+        val d = recipeDao.getWithDetails(recipeId) ?: return
+        if (d.photos.any { File(it.path).exists() }) return
+        val dir = File(context.filesDir, "images").apply { mkdirs() }
+        val dest = File(dir, "gen-$recipeId.jpg")
+        val ok = withContext(Dispatchers.IO) {
+            runCatching { com.tkos.miam.data.images.Illustrator.renderToFile(dest, d.recipe.name, d.ingredients.map { it.name }, d.recipe.proteinEnum, d.recipe.kindEnum) }.isSuccess
+        }
+        if (!ok) return
+        recipeDao.insertPhoto(RecipePhoto(recipeId = recipeId, path = dest.absolutePath, source = PhotoSource.GENERATED.name, position = 0))
+        recipeDao.setCover(recipeId, dest.absolutePath)
+    }
+
+    /** Au lancement : toutes les recettes sans image reçoivent une illustration générée. */
+    suspend fun ensureIllustrations() {
+        for (d in recipeDao.getAllWithDetails()) if (d.photos.none { File(it.path).exists() }) ensureIllustration(d.recipe.id)
     }
 
     suspend fun removePhoto(photo: RecipePhoto) {
@@ -380,6 +417,7 @@ class MiamRepository(private val context: Context) {
         } else {
             backfillBuiltInProtein()
         }
+        ensureIllustrations()
     }
 
     /**
@@ -489,6 +527,7 @@ class MiamRepository(private val context: Context) {
             val ok = dest.exists() && !force || withContext(Dispatchers.IO) { runCatching { com.tkos.miam.data.catalog.Http.download(u, dest) }.isSuccess }
             if (!ok) return@forEachIndexed
             if (known == null) recipeDao.insertPhoto(RecipePhoto(recipeId = recipeId, path = dest.absolutePath, source = PhotoSource.CATALOG.name, position = n))
+            dropGenerated(recipeId)
             val recipe = recipeDao.getById(recipeId) ?: return
             if (recipe.imagePath == null || !File(recipe.imagePath).exists()) recipeDao.setCover(recipeId, dest.absolutePath)
         }

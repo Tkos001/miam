@@ -156,7 +156,7 @@ object CatalogPublisher {
                 .ifEmpty { listOfNotNull(catalog.images.entries.firstOrNull { ShoppingAggregator.normalizeName(it.key) == key }?.value) }
                 .toMutableList()
             val published = mutableMapOf<String, Int>()
-            for (ph in d.gallery.filter { !it.isCatalog }) {
+            for (ph in d.gallery.filter { !it.isCatalog && !it.isGenerated }) {
                 val img = encodeImage(ph.path) ?: continue
                 val index = catalogUrls.size
                 val imgPath = "${target.imagesDir}/$remoteId" + (if (index == 0) "" else "-$index") + ".jpg"

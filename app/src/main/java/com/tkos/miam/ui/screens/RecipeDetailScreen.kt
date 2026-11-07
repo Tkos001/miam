@@ -237,7 +237,7 @@ fun RecipeDetailScreen(
                                 )
                             }
                         }
-                        val label = if (gallery[pager.currentPage].isCatalog) "Illustration" else "Photo"
+                        val label = if (gallery[pager.currentPage].let { it.isCatalog || it.isGenerated }) "Illustration" else "Photo"
                         Text(
                             label,
                             style = MaterialTheme.typography.labelSmall,
