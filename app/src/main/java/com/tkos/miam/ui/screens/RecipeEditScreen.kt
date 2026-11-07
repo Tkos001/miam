@@ -204,7 +204,7 @@ fun RecipeEditScreen(
             }
             item {
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Column {
+                    Column(Modifier.weight(1f).padding(end = 12.dp)) {
                         Text("Pour combien de personnes ?", style = MaterialTheme.typography.labelLarge)
                         Text("Les quantités ci-dessous sont données pour ce nombre.", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }

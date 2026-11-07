@@ -270,6 +270,7 @@ fun RecipeDetailScreen(
                                     "Recette écrite pour ${d.recipe.servings} · quantités ×" + "%.2g".format(ratio).trimEnd('0').trimEnd('.', ','),
                                     style = MaterialTheme.typography.labelMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.weight(1f),
                                 )
                                 TextButton(onClick = { servings = d.recipe.servings }) { Text("Revenir à ${d.recipe.servings}") }
                             }
