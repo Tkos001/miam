@@ -1,6 +1,6 @@
 {
   "format": "miam-catalog",
-  "version": 12,
+  "version": 13,
   "updatedAt": "2026-11-07",
   "recipes": [
     {
@@ -2735,7 +2735,8 @@
         "Ajouter la crème fraîche et la moutarde. Laisser réduire 5 minutes à découvert jusqu’à obtenir une sauce onctueuse.",
         "Parsemer de persil frais. Pour une sauce encore plus aillée, ajouter 1 à 2 gousses d’ail écrasées dans la crème en fin de cuisson."
       ],
-      "protein": "PORC"
+      "protein": "PORC",
+      "imageUrl": "https://raw.githubusercontent.com/Tkos001/miam/main/data/images/paupiettes-porc-ail-creme.jpg"
     }
   ],
   "images": {
