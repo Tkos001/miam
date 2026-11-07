@@ -167,14 +167,21 @@ fun RecipeDetailScreen(
                                     }
                                 },
                             )
-                            if (d.recipe.id in appSettings.dirtyRecipeIds && d.recipe.remoteId != null) {
+                            if (d.recipe.id in appSettings.dirtyRecipeIds && (d.recipe.remoteId != null || d.recipe.isBuiltIn)) {
                                 DropdownMenuItem(
-                                    text = { Text("Reprendre la version du catalogue") },
+                                    text = { Text(if (d.recipe.remoteId != null) "Reprendre la version du catalogue" else "Reprendre la version d'origine") },
                                     leadingIcon = { Icon(Icons.Default.Restore, contentDescription = null) },
                                     onClick = {
                                         menuOpen = false
                                         scope.launch { snackbar.showSnackbar(repository.revertToCatalog(d.recipe.id).getOrElse { "Échec : ${it.message}" }) }
                                     },
+                                )
+                            }
+                            if (d.recipe.id in appSettings.dirtyRecipeIds && d.recipe.remoteId == null && !d.recipe.isBuiltIn) {
+                                DropdownMenuItem(
+                                    text = { Text("Ne plus marquer comme modifiée") },
+                                    leadingIcon = { Icon(Icons.Default.Restore, contentDescription = null) },
+                                    onClick = { menuOpen = false; scope.launch { repository.settings.setRecipeDirty(d.recipe.id, false) } },
                                 )
                             }
                             DropdownMenuItem(

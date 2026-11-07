@@ -501,7 +501,18 @@ class MiamRepository(private val context: Context) {
     suspend fun revertToCatalog(recipeId: Long): kotlin.Result<String> = runCatching {
         val s = settings.settings.first()
         val local = recipeDao.getById(recipeId) ?: error("Recette introuvable")
-        val remoteId = local.remoteId ?: error("Cette recette ne vient pas du catalogue")
+        val remoteId = local.remoteId
+        if (remoteId == null) {
+            // Plat de base fourni avec l'app : la version d'origine est dans SeedRecipes (par nom).
+            val seed = SeedRecipes.all.firstOrNull { ShoppingAggregator.normalizeName(it.recipe.name) == ShoppingAggregator.normalizeName(local.name) }
+                ?: error("Cette recette a été créée ici : il n'y a pas de version d'origine à reprendre")
+            recipeDao.upsertFull(
+                seed.recipe.copy(id = local.id, imagePath = local.imagePath, isFavorite = local.isFavorite, isBuiltIn = true, createdAt = local.createdAt),
+                seed.ingredients, seed.steps,
+            )
+            settings.setRecipeDirty(recipeId, false)
+            return@runCatching "Version d'origine restaurée"
+        }
         val file = Catalog.fetch(catalogUrl(s), bustCache = true)
         val dto = file.recipes.firstOrNull { it.remoteId == remoteId } ?: error("Recette absente du catalogue")
         val (recipe, ings, steps) = BackupCodec.fromDto(dto.copy(sourceUrl = catalogUrl(s)))
