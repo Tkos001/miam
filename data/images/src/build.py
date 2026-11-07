@@ -1137,6 +1137,29 @@ def gnocchis():
     return s
 
 
+def paupiettes_ail_creme():
+    rng = random.Random(71)
+    s = pot(600, 400, 340, 125, 230, "url(#potblue)", "url(#cream)")
+    # oignons fondus et sauce
+    s += dots(rng, 600, 405, 290, 85, 40, 3, 6, ["#F2D9A6", "#E6C27C"])
+    for (x, y, r) in [(420, 380, -20), (760, 372, 25), (600, 455, 10)]:
+        s += f'<ellipse cx="{x}" cy="{y}" rx="34" ry="14" fill="none" stroke="#EAC98C" stroke-width="6" transform="rotate({r} {x} {y})"/>'
+    # paupiettes ficelées, dorées
+    for (x, y) in [(480, 380), (720, 380), (540, 450), (680, 450)]:
+        s += f'<ellipse cx="{x+6}" cy="{y+14}" rx="74" ry="48" fill="#6B3A12" opacity="0.25" filter="url(#soft)"/>'
+        s += f'<ellipse cx="{x}" cy="{y}" rx="74" ry="50" fill="url(#brown)"/>'
+        s += f'<ellipse cx="{x}" cy="{y-6}" rx="56" ry="32" fill="#D08A45" opacity="0.55"/>'
+        s += f'<path d="M {x-74} {y-8} C {x-28} {y-30} {x+28} {y-30} {x+74} {y-8}" fill="none" stroke="#FFFFFF" stroke-width="7" opacity="0.4" stroke-linecap="round"/>'
+        s += f'<g fill="none" stroke="#F3E3C5" stroke-width="5"><path d="M {x-28} {y-48} C {x-30} {y} {x-28} {y+28} {x-26} {y+48}"/><path d="M {x+28} {y-48} C {x+30} {y} {x+28} {y+28} {x+26} {y+48}"/><path d="M {x-74} {y} C {x-28} {y+6} {x+28} {y+6} {x+74} {y}"/></g>'
+    # gousses d'ail entières
+    for (x, y, r) in [(380, 430, -25), (830, 425, 30), (600, 345, 0), (610, 500, 15)]:
+        s += f'<g transform="rotate({r} {x} {y})"><path d="M {x-16} {y+14} C {x-26} {y-6} {x-10} {y-26} {x} {y-30} C {x+10} {y-26} {x+26} {y-6} {x+16} {y+14} Z" fill="#F6EBD2" stroke="#D9C49B" stroke-width="3"/><path d="M {x} {y-30} L {x} {y+12}" stroke="#D9C49B" stroke-width="2"/></g>'
+    s += herbs([(430, 350, -30), (790, 350, 30), (600, 405, 5)], "#3F8A34")
+    s += steam(600, 230)
+    s += spoon(1040, 330, 30)
+    return s
+
+
 DISHES = {
     "spaghetti-bolognaise": spaghetti_bolognaise,
     "gratin-dauphinois": gratin_dauphinois,
@@ -1183,6 +1206,7 @@ DISHES = {
     "quiche-saumon-epinards": quiche_saumon,
     "saute-veau-marengo": veau_marengo,
     "gnocchis-poelees-sauge": gnocchis,
+    "paupiettes-porc-ail-creme": paupiettes_ail_creme,
 }
 
 
