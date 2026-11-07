@@ -49,7 +49,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tkos.miam.data.MiamRepository
-import com.tkos.miam.data.model.Cuisine
 import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.model.Recipe
 import com.tkos.miam.ui.components.EmptyState
@@ -206,10 +205,8 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit
                     Spacer(Modifier.width(6.dp))
                     Text(recipe.proteinEnum.emoji, style = MaterialTheme.typography.bodySmall)
                 }
-                if (recipe.cuisineEnum != Cuisine.FRANCAISE) {
-                    Spacer(Modifier.width(6.dp))
-                    Text(recipe.cuisineEnum.emoji, style = MaterialTheme.typography.bodySmall)
-                }
+                Spacer(Modifier.width(6.dp))
+                Text(recipe.cuisineEnum.emoji, style = MaterialTheme.typography.bodySmall)
             }
         }
     }

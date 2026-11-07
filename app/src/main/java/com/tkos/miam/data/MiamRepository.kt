@@ -19,6 +19,7 @@ import com.tkos.miam.data.model.RecipeWithDetails
 import com.tkos.miam.data.model.ShoppingCheck
 import com.tkos.miam.data.model.Slot
 import com.tkos.miam.data.model.Step
+import com.tkos.miam.data.model.Protein
 import com.tkos.miam.data.seed.SeedRecipes
 import com.tkos.miam.data.settings.Settings
 import com.tkos.miam.data.settings.SettingsRepository
@@ -176,6 +177,23 @@ class MiamRepository(private val context: Context) {
         if (!s.seeded && recipeDao.count() == 0) {
             restoreBuiltIn()
             settings.setSeeded(true)
+        } else {
+            backfillBuiltInProtein()
+        }
+    }
+
+    /**
+     * Les plats de base insérés avant l'ajout de la colonne `protein` ont hérité de AUTRE (migration 2→3) ;
+     * on leur applique le type de viande défini dans [SeedRecipes], par nom. Idempotent, rien à faire ensuite.
+     */
+    private suspend fun backfillBuiltInProtein() {
+        val seeds = SeedRecipes.all.associateBy { ShoppingAggregator.normalizeName(it.recipe.name) }
+        for (d in recipeDao.getAllWithDetails()) {
+            val r = d.recipe
+            if (r.proteinEnum != Protein.AUTRE) continue
+            val seed = seeds[ShoppingAggregator.normalizeName(r.name)]?.recipe ?: continue
+            if (seed.proteinEnum == Protein.AUTRE) continue
+            recipeDao.updateRecipe(r.copy(protein = seed.protein))
         }
     }
 
