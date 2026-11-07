@@ -8,11 +8,17 @@ automatiquement la liste de courses.
 - **Mes plats** : fiches « carte » (photo, infos, ingrédients avec quantité/unité/rayon, étapes).
   La fiche affiche les étapes en cartes à faire défiler vers la gauche. Favoris, duplication,
   partage en texte.
-- **Planning** : semaine par semaine, midi / soir, plusieurs plats par case, nombre de personnes
-  par case (les quantités sont mises à l'échelle).
-- **Liste de courses** : agrégation automatique de tous les ingrédients du planning (4 semaines
-  glissantes), fusion des doublons par unité compatible (g/kg, ml/cl/L, pièces…), groupement par
-  rayon ou liste plate, cases à cocher, rubrique « Autres articles » hors plats, partage / copie.
+- **Mes repas** : la liste des plats qu'on compte faire, dans l'ordre voulu, sans date, avec le nombre de
+  personnes par repas (quantités mises à l'échelle). Cocher un repas = mangé / fini : ses ingrédients sortent
+  du stock et du calcul de la liste.
+- **Liste de courses** = ingrédients de tous les repas à faire, fusionnés par unité compatible (g/kg,
+  ml/cl/L, pièces…), **moins ce qui est en stock**. Une ligne couverte s'affiche cochée « En stock » (la
+  décocher = c'est fini, l'article revient à acheter) ; couverture partielle = reste à acheter. Groupement
+  par rayon ou liste plate, rubrique « Autres articles », partage / copie. **« Courses terminées »** fait
+  entrer le caddie dans le stock.
+- **En stock** (local au téléphone) : ce qu'il y a à la maison par rayon, −/+, édition, épingle « basique de
+  placard » (sel, huile… jamais remis sur la liste), ajout manuel. Les articles en cuillères / pincées /
+  sans unité entrent comme « présent » sans quantité.
 - **15 plats français de base** insérés au premier lancement, restaurables depuis les paramètres.
 - **Thèmes** : suivre le système, clair, sombre, mauve sombre, rouge sombre.
 - **Catalogue de recettes versionné dans ce dépôt** (`data/recipes.json`) : l'app le télécharge au
@@ -24,7 +30,7 @@ automatiquement la liste de courses.
   Miam est l'installateur de lui-même et la mise à jour passe sans confirmation
   (`UPDATE_PACKAGES_WITHOUT_USER_ACTION`). L'app se ferme à la fin, à rouvrir.
 - **Trouver des recettes** : peut aussi afficher un site configuré dans les paramètres.
-- **Export / import JSON** (plats, planning, articles « Autres »). Tout est stocké en local
+- **Export / import JSON** (plats, repas, stock, articles « Autres »). Tout est stocké en local
   (Room + DataStore), pas de compte, pas de réseau requis.
 
 ## Build
@@ -123,7 +129,8 @@ de version.
       "steps": ["Mélanger…"]
     }
   ],
-  "plan": [{ "epochDay": 20760, "slot": "SOIR", "recipeName": "Crêpes", "servings": 4 }],
+  "meals": [{ "recipeName": "Crêpes", "servings": 4, "done": false }],
+  "stock": [{ "name": "Lait", "quantity": 5000, "family": "VOLUME", "aisle": "FRAIS", "always": false }],
   "extras": [{ "name": "Papier toilette", "aisle": "AUTRE" }]
 }
 ```
