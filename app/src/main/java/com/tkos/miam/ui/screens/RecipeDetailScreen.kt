@@ -244,6 +244,7 @@ fun RecipeDetailScreen(
                         )
                     }
                     Row(Modifier.padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        InfoChip("👥 ${d.recipe.servings} pers.")
                         InfoChip("${d.recipe.cuisineEnum.emoji} ${d.recipe.cuisineEnum.label}")
                         if (d.recipe.proteinEnum != com.tkos.miam.data.model.Protein.AUTRE) InfoChip("${d.recipe.proteinEnum.emoji} ${d.recipe.proteinEnum.label}")
                         d.recipe.prepMinutes?.let { InfoChip("Prépa ${it} min") }
@@ -258,9 +259,27 @@ fun RecipeDetailScreen(
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
                 ) {
                     Column(Modifier.padding(16.dp)) {
-                        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                            Text("Ingrédients", style = MaterialTheme.typography.titleMedium)
+                        Text("Ingrédients", style = MaterialTheme.typography.titleMedium)
+                        Row(Modifier.fillMaxWidth().padding(top = 8.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                            Text("Quantités pour", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Stepper(value = servings, onValueChange = { servings = it }, suffix = " pers.")
+                        }
+                        if (servings != d.recipe.servings) {
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    "Recette écrite pour ${d.recipe.servings} · quantités ×" + "%.2g".format(ratio).trimEnd('0').trimEnd('.', ','),
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                                TextButton(onClick = { servings = d.recipe.servings }) { Text("Revenir à ${d.recipe.servings}") }
+                            }
+                        } else {
+                            Text(
+                                "Ajuste le nombre de personnes : les quantités ci-dessous suivent. Le planning a son propre réglage par repas.",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                modifier = Modifier.padding(top = 2.dp),
+                            )
                         }
                         HorizontalDivider(Modifier.padding(vertical = 10.dp))
                         d.sortedIngredients.forEach { ing ->
