@@ -58,6 +58,7 @@ fun MiamNavHost(repository: MiamRepository, navController: NavHostController = r
                 onOpenPlanner = { navController.navigate(Routes.MEALS) },
                 onOpenShopping = { navController.navigate(Routes.SHOPPING) },
                 onOpenFind = { navController.navigate(Routes.FIND) },
+                onOpenStock = { navController.navigate(Routes.STOCK) },
                 onOpenSettings = { navController.navigate(Routes.SETTINGS) },
                 onOpenRecipe = { navController.navigate(Routes.recipe(it)) },
                 onNewRecipe = { navController.navigate(Routes.edit()) },

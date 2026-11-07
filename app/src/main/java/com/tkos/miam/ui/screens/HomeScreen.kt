@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Inventory2
 import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.MenuBook
@@ -72,6 +73,7 @@ fun HomeScreen(
     onOpenPlanner: () -> Unit,
     onOpenShopping: () -> Unit,
     onOpenFind: () -> Unit,
+    onOpenStock: () -> Unit,
     onOpenSettings: () -> Unit,
     onOpenRecipe: (Long) -> Unit,
     onNewRecipe: () -> Unit,
@@ -160,15 +162,9 @@ fun HomeScreen(
             // ---- Prochains repas ----
             NextMealsCard(mealsTodo, onOpenPlanner, onOpenRecipe)
 
-            // ---- Navigation rapide ----
-            Text("Navigation", style = MaterialTheme.typography.titleMedium)
+            // ---- Autres accès (les cartes ci-dessus servent déjà de navigation) ----
             Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                NavTile("Mes plats", Icons.Default.MenuBook, Modifier.weight(1f), onOpenRecipes)
-                NavTile("Favoris", Icons.Default.Favorite, Modifier.weight(1f), onOpenFavorites)
-                NavTile("Mes repas", Icons.Default.RestaurantMenu, Modifier.weight(1f), onOpenPlanner)
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                NavTile("Ma liste", Icons.Default.ShoppingCart, Modifier.weight(1f), onOpenShopping)
+                NavTile("En stock", Icons.Default.Inventory2, Modifier.weight(1f), onOpenStock)
                 NavTile("Trouver", Icons.Default.Search, Modifier.weight(1f), onOpenFind)
                 NavTile("Nouveau plat", Icons.Default.Add, Modifier.weight(1f), onNewRecipe, accent = true)
             }
