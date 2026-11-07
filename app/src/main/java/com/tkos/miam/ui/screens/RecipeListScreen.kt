@@ -204,11 +204,20 @@ fun RecipeCard(recipe: Recipe, onClick: () -> Unit, onToggleFavorite: () -> Unit
     ) {
         Box {
             RecipeImage(recipe.imagePath, Modifier.fillMaxWidth().height(120.dp))
-            IconButton(onClick = onToggleFavorite, modifier = Modifier.align(Alignment.TopEnd)) {
+            // Pastille sombre : l'icône reste lisible sur le fond crème des illustrations, quel que soit le thème.
+            androidx.compose.material3.FilledIconButton(
+                onClick = onToggleFavorite,
+                colors = androidx.compose.material3.IconButtonDefaults.filledIconButtonColors(
+                    containerColor = androidx.compose.ui.graphics.Color.Black.copy(alpha = 0.38f),
+                    contentColor = androidx.compose.ui.graphics.Color.White,
+                ),
+                modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(36.dp),
+            ) {
                 Icon(
                     if (recipe.isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                     contentDescription = "Favori",
-                    tint = if (recipe.isFavorite) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface,
+                    tint = if (recipe.isFavorite) androidx.compose.ui.graphics.Color(0xFFFF6B6B) else androidx.compose.ui.graphics.Color.White,
+                    modifier = Modifier.size(20.dp),
                 )
             }
         }

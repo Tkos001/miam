@@ -304,11 +304,13 @@ private fun MiniRecipeCard(recipe: Recipe, onClick: () -> Unit) {
         Box {
             RecipeImage(recipe.imagePath, Modifier.fillMaxWidth().height(90.dp), fallbackIconSize = 28)
             if (recipe.isFavorite) {
-                Icon(
-                    Icons.Default.Favorite, contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.align(Alignment.TopEnd).padding(6.dp).size(16.dp),
-                )
+                Box(
+                    Modifier.align(Alignment.TopEnd).padding(6.dp).size(24.dp)
+                        .background(androidx.compose.ui.graphics.Color.Black.copy(alpha = 0.38f), androidx.compose.foundation.shape.CircleShape),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(Icons.Default.Favorite, contentDescription = null, tint = androidx.compose.ui.graphics.Color(0xFFFF6B6B), modifier = Modifier.size(14.dp))
+                }
             }
         }
         Text(
